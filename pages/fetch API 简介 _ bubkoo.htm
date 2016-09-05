@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://bubkoo.com/2015/05/08/introduction-to-fetch/ -->
+<html lang="zh-CN" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>fetch API 简介 | bubkoo</title><meta name="author" content="bubkoo"><meta name="description" content="十多年来，我们一直使用 XMLHttpRequest（XHR）来发送异步请求，XHR 很实用，但并不是一个设计优良的 API，在设计上并不符合职责分离原则，输入、输出以及状态都杂糅在同一对象中，并用事件机制来跟踪状态变化。并且，基于事件的模型与最近流行的 Promise 和 generator 异步编程模型不太友好。
+Fetch API 旨在修正上述缺陷，它提供了与 HTTP 语义相同的 JS 语法，简单来说，它引入了 fetch() 这个实用的方法来获取网络资源。
+在 Fetch 规范中对 API 进行了定义，它结合 ServiceWorkers，尝试做到如下优化：
+
+改善离线体验
+保持可扩展性
+
+写这篇文章时，Fetch API 已被 Firefox 39（Nightly）以及 Chrome 42（dev）支持。在 github 上有相应的 polyfill。"><meta name="viewport" content="width=device-width,initial-scale=1"><meta property="og:title" content="fetch API 简介"><meta property="og:site_name" content="bubkoo"><link href="http://bubkoo.com/favicon.ico" rel="icon" type="image/x-ico"><link href="http://bubkoo.com/atom.xml" rel="alternate" title="bubkoo" type="application/atom+xml"><link href="./fetch API 简介 _ bubkoo_files/style.css" rel="stylesheet" type="text/css" charset="utf-8"><link href="./fetch API 简介 _ bubkoo_files/jquery.fancybox.css" rel="stylesheet" type="text/css" charset="utf-8"><!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--><script>__start__ = window.performance && performance.timing ? performance.timing.navigationStart : Date.now();</script><style type="text/css">.fancybox-margin{margin-right:15px;}</style><link type="text/css" rel="stylesheet" href="./fetch API 简介 _ bubkoo_files/embed.default.css"><style type="text/css">#ds-thread #ds-reset #ds-hot-posts {
+  border: 0 none;
+}
+
+
+#ds-thread #ds-reset .ds-meta {
+  border-bottom: 0 none;
+}
+
+
+#ds-thread #ds-reset .ds-replybox .ds-avatar img {
+  border-radius: 0;
+}
+
+
+#ds-thread #ds-reset .ds-textarea-wrapper {
+  background: #fff;
+}
+
+
+#ds-reset .ds-rounded-top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+}
+
+
+#ds-thread #ds-reset .ds-post-toolbar {
+  box-shadow: none;
+}
+
+
+#ds-thread #ds-reset .ds-post-options,
+#ds-thread #ds-reset .ds-post-button {
+  border: 1px solid #ddd;
+  border-bottom-color: #ccc;
+}
+
+
+#ds-thread #ds-reset .ds-post-options {
+  border-bottom-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+}
+
+
+#ds-thread #ds-reset .ds-toolbar-buttons {
+  top: 7px;
+  left: 7px;
+}
+
+
+#ds-thread #ds-reset .ds-post-button {
+  border-bottom-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-left: 0 none;
+  box-shadow: none;
+}
+
+
+#ds-thread #ds-reset .ds-comments {
+  border-bottom: 0 none;
+}
+
+
+#ds-thread #ds-reset .ds-comments-tabs {
+  padding: 0 0 0 60px;
+}
+
+
+#ds-thread #ds-reset li.ds-post {
+  border-top: 0 none;
+}
+
+
+#ds-thread #ds-reset .ds-post-self {
+  padding: 10px 0 10px 60px;
+  border-top: 0 none;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-post-self {
+  padding-left: 23px;
+}
+
+
+#ds-thread #ds-reset .ds-replybox {
+  box-shadow: none;
+}
+
+
+#ds-thread #ds-reset .ds-replybox .ds-avatar {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  top: -4px;
+}
+
+
+#ds-thread #ds-reset .ds-comment-body {
+  background: #fff;
+  padding: 15px 15px 12px 42px;
+  border-radius: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .15), 0 1px 0 rgba(255, 255, 255, .75) inset;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-comment-body {
+  padding-left: 30px;
+}
+
+
+#ds-reset .ds-avatar, #ds-thread #ds-reset ul.ds-children .ds-avatar {
+  position: absolute;
+  top: 26px;
+  left: 25px;
+  padding: 5px;
+  width: 54px;
+  height: 54px;
+  box-shadow: -1px 0 1px rgba(0, 0, 0, .15) inset;
+  border-radius: 50%;
+  background: #E1E1E1;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-avatar {
+  width: 36px;
+  height: 36px;
+  padding: 4px;
+  left: -2px;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-avatar a {
+  width: 32px;
+  height: 32px;
+}
+
+
+#ds-thread .ds-avatar a {
+  display: inline-block;
+  padding: 1px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  -webkit-transition: .2s border-color ease !important;
+  -moz-transition: .2s border-color ease !important;
+  -o-transition: .2s border-color ease !important;
+  -ms-transition: .2s border-color ease !important;
+  transition: .2s border-color ease !important;
+}
+
+
+#ds-thread .ds-avatar a:hover {
+  border-color: #1ba1e2;
+}
+
+
+#ds-thread .ds-avatar > img {
+  margin: 2px 0 0 2px;
+}
+
+
+#ds-reset .ds-avatar img {
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  -webkit-transition: .4s all ease-in-out;
+  -moz-transition: .4s all ease-in-out;
+  -o-transition: .4s all ease-in-out;
+  -ms-transition: .4s all ease-in-out;
+  transition: .4s all ease-in-out;
+}
+
+
+.ds-post-self:hover .ds-avatar img {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+
+.ds-post-self:hover .ds-replybox .ds-avatar img {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-avatar img {
+  width: 32px;
+  height: 32px;
+}
+
+
+#ds-thread #ds-reset ul.ds-children {
+  margin-left: 60px;
+}
+
+
+#ds-thread #ds-reset #ds-user-card .ds-avatar img {
+  border-radius: 3px;
+}
+
+
+#ds-reset #ds-bubble .ds-avatar, #ds-reset #ds-bubble #ds-ctx-bubble .ds-avatar a {
+  position: static;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 3px;
+}
+
+
+#ds-thread #ds-reset ul.ds-children .ds-replybox.ds-inline-replybox a.ds-avatar,
+#ds-reset .ds-replybox.ds-inline-replybox a.ds-avatar {
+  left: 0;
+  top: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  background: none;
+  box-shadow: none;
+}
+
+
+#ds-reset .ds-replybox.ds-inline-replybox a.ds-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+}
+
+
+#ds-thread #ds-reset #ds-bubble {
+  border-color: #ddd;
+  display: none;
+}
+
+
+#ds-thread #ds-reset .ds-comment-body p {
+  line-height: 1.6;
+  color: #666;
+  text-shadow: 0 0 1px transparent;
+}
+
+
+#ds-thread #ds-reset .ds-login-buttons {
+  width: auto;
+  position: relative;
+  padding: 10px 0 6px 60px;
+}
+</style></head><body><header id="header" hoot="default" hoot-rate="1" class="inner"><div class="f-left"><a href="http://bubkoo.com/" class="site-title">bubkoo</a></div><nav class="f-right"><ul class="site-nav"><li><a href="http://bubkoo.com/">&lt;&gt;</a></li><li><a href="http://bubkoo.com/archives">Archives</a></li><li><a href="https://github.com/bubkoo">Github</a></li></ul></nav></header><div id="container" class="inner"><div id="main"><article class="article post"><div class="article-wrap"><header class="article-header"><span class="article-header-icon icon-black"></span><h1 class="article-header-title">fetch API 简介</h1><time datetime="2015-05-08T11:39:23.000Z" itemprop="datePublished" class="article-header-time"><span class="day">08</span><span class="month">2015年05月</span></time></header><section class="article-gallery" style="height: 375.65px;"><div class="article-gallery-photos"><img src="./fetch API 简介 _ bubkoo_files/introduction-to-fetch-small.png" itemprop="image" style="opacity: 1;"></div></section><section class="article-content"><p>十多年来，我们一直使用 XMLHttpRequest（XHR）来发送异步请求，XHR 很实用，但并不是一个设计优良的 API，在设计上并不符合职责分离原则，输入、输出以及状态都杂糅在同一对象中，并用事件机制来跟踪状态变化。并且，基于事件的模型与最近流行的 Promise 和 generator 异步编程模型不太友好。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="external">Fetch API</a> 旨在修正上述缺陷，它提供了与 HTTP 语义相同的 JS 语法，简单来说，它引入了 <code>fetch()</code> 这个实用的方法来获取网络资源。</p>
+<p>在 <a href="https://fetch.spec.whatwg.org/" target="_blank" rel="external">Fetch 规范</a>中对 API 进行了定义，它结合 ServiceWorkers，尝试做到如下优化：</p>
+<ol>
+<li>改善离线体验</li>
+<li>保持可扩展性</li>
+</ol>
+<p>写这篇文章时，Fetch API 已被 Firefox 39（Nightly）以及 Chrome 42（dev）支持。在 github 上有相应的 <a href="https://github.com/github/fetch" target="_blank" rel="external">polyfill</a>。</p>
+<a id="more"></a>
+<h2 id="特征检查"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#特征检查" class="headerlink" title="特征检查"></a>特征检查</h2><p>可以通过检查 <code>Headers</code>、<code>Request</code>、<code>Response</code> 或 <code>fetch</code> 在 window 或 worker 作用域中是否存在，来检查是否支持 Fetch API。</p>
+<h2 id="简单示例"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><p>Fetch API 中最常用的是 <code>fetch()</code> 方法，该方法最简单的形式是，接受一个 URL 参数并返回以一个 promise 对象：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">"/data.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>{</span><br><span class="line">  <span class="comment">// res instanceof Response == true.</span></span><br><span class="line">  <span class="keyword">if</span> (res.ok) {</span><br><span class="line">    res.json().then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>{</span><br><span class="line">      <span class="built_in">console</span>.log(data.entries);</span><br><span class="line">    });</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Looks like the response wasn't perfect, got status"</span>, res.status);</span><br><span class="line">  }</span><br><span class="line">}, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Fetch failed!"</span>, e);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>如果是提交一个POST请求，代码如下：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">"http://www.example.org/submit.php"</span>, {</span><br><span class="line">  method: <span class="string">"POST"</span>,</span><br><span class="line">  headers: {</span><br><span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span></span><br><span class="line">  },</span><br><span class="line">  body: <span class="string">"firstName=Nikhil&amp;favColor=blue&amp;password=easytoguess"</span></span><br><span class="line">}).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>{</span><br><span class="line">  <span class="keyword">if</span> (res.ok) {</span><br><span class="line">    alert(<span class="string">"Perfect! Your settings are saved."</span>);</span><br><span class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> (res.status == <span class="number">401</span>) {</span><br><span class="line">    alert(<span class="string">"Oops! You are not authorized."</span>);</span><br><span class="line">  }</span><br><span class="line">}, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{</span><br><span class="line">  alert(<span class="string">"Error submitting form!"</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p><code>fetch()</code> 方法的参数和 <code>Request()</code> 构造函数的参数完全一致，所以你可以传任意复杂的参数来实现更强大的 <code>fetch()</code>，下面将详细介绍。</p>
+<h2 id="headers"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#Headers" class="headerlink" title="Headers"></a>Headers</h2><p>Fetch 引入了 3 个接口，分别是 <code>Headers</code>，<code>Request</code> 和 <code>Response</code>。他们直接对应于的 HTTP 中相应的概念，但是基于隐私和安全考虑，也有些区别，例如支持 CORS 规则以及保证 cookies 不能被第三方获取。</p>
+<p> <a href="https://fetch.spec.whatwg.org/#headers-class" target="_blank" rel="external">Headers 接口</a>是一个简单的键值对：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> content = <span class="string">"Hello World"</span>;</span><br><span class="line"><span class="keyword">var</span> reqHeaders = <span class="keyword">new</span> Headers();</span><br><span class="line">reqHeaders.append(<span class="string">"Content-Type"</span>, <span class="string">"text/plain"</span></span><br><span class="line">reqHeaders.append(<span class="string">"Content-Length"</span>, content.length.toString());</span><br><span class="line">reqHeaders.append(<span class="string">"X-Custom-Header"</span>, <span class="string">"ProcessThisImmediately"</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>也可以给构造函数传一个多维数组或 JS 字面量对象：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reqHeaders = <span class="keyword">new</span> Headers({</span><br><span class="line">  <span class="string">"Content-Type"</span>: <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">"Content-Length"</span>: content.length.toString(),</span><br><span class="line">  <span class="string">"X-Custom-Header"</span>: <span class="string">"ProcessThisImmediately"</span>,</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>Headers 的内容可被检索：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(reqHeaders.has(<span class="string">"Content-Type"</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(reqHeaders.has(<span class="string">"Set-Cookie"</span>)); <span class="comment">// false</span></span><br><span class="line">reqHeaders.set(<span class="string">"Content-Type"</span>, <span class="string">"text/html"</span>);</span><br><span class="line">reqHeaders.append(<span class="string">"X-Custom-Header"</span>, <span class="string">"AnotherValue"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(reqHeaders.get(<span class="string">"Content-Length"</span>)); <span class="comment">// 11</span></span><br><span class="line"><span class="built_in">console</span>.log(reqHeaders.getAll(<span class="string">"X-Custom-Header"</span>)); <span class="comment">// ["ProcessThisImmediately", "AnotherValue"]</span></span><br><span class="line"> </span><br><span class="line">reqHeaders.delete(<span class="string">"X-Custom-Header"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(reqHeaders.getAll(<span class="string">"X-Custom-Header"</span>)); <span class="comment">// []</span></span><br></pre></td></tr></tbody></table></figure>
+<p>一些操作只在 ServiceWorkers 中可用，但这些 API 使得操作 header 更为方便。</p>
+<p>由于 header 可以在发送请求时被发送或在收到响应时被接收，并规定了那些参数可写，所以在 <code>Headers</code> 对象中有个一 <code>guard</code> 属性，来指定哪些参数可以被改变。</p>
+<p>可能的值如下：</p>
+<ul>
+<li><code>"none"</code>：默认值</li>
+<li><code>"request"</code>：<code>Request.headers</code> 对象只读</li>
+<li><code>"request-no-cors"</code>：在 <code>no-cors</code> 模式下，<code>Request.headers</code> 对象只读</li>
+<li><code>"response"</code>：<code>Response.headers</code> 对象只读</li>
+<li><code>"immutable"</code>：通常在 ServiceWorkers 中使用，所有 Header 对象都为只读</li>
+</ul>
+<p>在<a href="https://fetch.spec.whatwg.org/" target="_blank" rel="external">规范</a>中对每个 <code>guard</code> 属性值有更详细的描述。例如，当 <code>guard</code> 为 <code>request</code> 时，你将不能添加或修改header 的 <code>Content-Length</code> 属性。</p>
+<p>如果使用了一个不合法的 <a href="https://fetch.spec.whatwg.org/#concept-header-name" target="_blank" rel="external">HTTP Header 名</a>，那么 Headers 的方法通常都抛出 TypeError 异常。如果不小心写入了一个只读属性，也会抛出一个 TypeError 异常。除此以外，失败了将不抛出任何异常。例如：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = Response.error();</span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  res.headers.set(<span class="string">"Origin"</span>, <span class="string">"http://mybank.com"</span>);</span><br><span class="line">} <span class="keyword">catch</span>(e) {</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Cannot pretend to be a bank!"</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="request"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#Request" class="headerlink" title="Request"></a>Request</h2><p>通过构造一个 <code>Request</code> 对象来获取网络资源，构造函数需要 <code>URL</code>、<code>method</code> 和 <code>headers</code> 参数，同时也可以提供请求体（body）、请求模式（mode）、<code>credentials</code> 和 <code>cache hints</code> 等参数。</p>
+<p>最简单的形式如下：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> req = <span class="keyword">new</span> Request(<span class="string">"/index.html"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(req.method); <span class="comment">// "GET"</span></span><br><span class="line"><span class="built_in">console</span>.log(req.url); <span class="comment">// "http://example.com/index.html"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>也可以将一个 <code>Request</code> 对象传给构造函数，这将返回该对象的一个副本（这与 <code>clone()</code> 方法不同，后面将介绍）。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> copy = <span class="keyword">new</span> Request(req);</span><br><span class="line"><span class="built_in">console</span>.log(copy.method); <span class="comment">// "GET"</span></span><br><span class="line"><span class="built_in">console</span>.log(copy.url); <span class="comment">// "http://example.com/index.html"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>同时，这种形式通常只在 ServiceWorkers 中使用。</p>
+<p>除 <code>URL</code> 之外的参数只能通过第二个参数传递，该参数是一个键值对：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uploadReq = <span class="keyword">new</span> Request(<span class="string">"/uploadImage"</span>, {</span><br><span class="line">  method: <span class="string">"POST"</span>,</span><br><span class="line">  headers: {</span><br><span class="line">    <span class="string">"Content-Type"</span>: <span class="string">"image/png"</span>,</span><br><span class="line">  },</span><br><span class="line">  body: <span class="string">"image data"</span></span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p><code>mode</code> 参数用来决定是否允许跨域请求，以及哪些 <code>response</code> 属性可读。可选的 <code>mode</code> 值为 <code>"same-origin"</code>、<code>"no-cors"</code>（默认）以及 <code>"cors"</code>。</p>
+<h3 id="same-origin"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#same-origin" class="headerlink" title="same-origin"></a>same-origin</h3><p>该模式很简单，如果一个请求是跨域的，那么将返回一个 <code>error</code>，这样确保所有的请求遵守同源策略。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arbitraryUrl = <span class="built_in">document</span>.getElementById(<span class="string">"url-input"</span>).value;</span><br><span class="line">fetch(arbitraryUrl, { mode: <span class="string">"same-origin"</span> }).then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Response succeeded?"</span>, res.ok);</span><br><span class="line">}, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Please enter a same-origin URL!"</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="no-cors"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#no-cors" class="headerlink" title="no-cors"></a>no-cors</h3><p>该模式允许来自 CDN 的脚本、其他域的图片和其他一些跨域资源，但是首先有个前提条件，就是请求的 method 只能是<code>HEAD</code>、<code>GET</code> 或 <code>POST</code>。此外，如果 ServiceWorkers 拦截了这些请求，它不能随意添加或者修改除<a href="https://fetch.spec.whatwg.org/#simple-header" target="_blank" rel="external">这些</a>之外 Header 属性。第三，JS 不能访问 Response 对象中的任何属性，这确保了跨域时 ServiceWorkers 的安全和隐私信息泄漏问题。</p>
+<h3 id="cors"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#cors" class="headerlink" title="cors"></a>cors</h3><p>该模式通常用于跨域请求，用来从第三方提供的 API 获取数据。该模式遵守 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="external">CORS 协议</a>，并只有有限的一些 Header 被暴露给 Response 对象，但是 body 是可读的。例如，获取一个 Flickr <a href="https://www.flickr.com/services/api/flickr.interestingness.getList.html" target="_blank" rel="external">最感兴趣</a>的照片的清单：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> u = <span class="keyword">new</span> URLSearchParams();</span><br><span class="line">u.append(<span class="string">'method'</span>, <span class="string">'flickr.interestingness.getList'</span>);</span><br><span class="line">u.append(<span class="string">'api_key'</span>, <span class="string">'&lt;insert api key here&gt;'</span>);</span><br><span class="line">u.append(<span class="string">'format'</span>, <span class="string">'json'</span>);</span><br><span class="line">u.append(<span class="string">'nojsoncallback'</span>, <span class="string">'1'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> apiCall = fetch(<span class="string">'https://api.flickr.com/services/rest?'</span> + u);</span><br><span class="line"> </span><br><span class="line">apiCall.then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> response.json().then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>{</span><br><span class="line">    <span class="comment">// photo is a list of photos.</span></span><br><span class="line">    <span class="keyword">return</span> json.photos.photo;</span><br><span class="line">  });</span><br><span class="line">}).then(<span class="function"><span class="keyword">function</span>(<span class="params">photos</span>) </span>{</span><br><span class="line">  photos.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">photo</span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(photo.title);</span><br><span class="line">  });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>你将无法从 Headers 中读取 <code>Date</code> 属性，因为 Flickr 在 <code>Access-Control-Expose-Headers</code> 中设置了不允许读取它。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.headers.get(<span class="string">"Date"</span>); <span class="comment">// null</span></span><br></pre></td></tr></tbody></table></figure>
+<p>另外，<code>credentials</code> 属性决定了是否可以跨域访问 cookie 。该属性与 XHR 的<br><code>withCredentials</code> 标志相同，但是只有三个值，分别是 <code>omit</code>（默认）、<code>same-origin</code> 和 <code>include</code>。</p>
+<p>Request 对象也提供了客户端缓存机制（caching hints）。这个属性还在安全复审阶段。Firefox 提供了这个属性，但目前还不起作用。</p>
+<p>Request 对象还有两个与 ServiceWorks 拦截有关的只读属性。其中一个是<code>referrer</code>，表示该 Request 的来源，可能为空。另外一个是 <code>context</code>，是一个非常大的<a href="https://fetch.spec.whatwg.org/#requestcredentials" target="_blank" rel="external">枚举集合</a>，定义了获得的资源的种类，它可能是 <code>image</code> 当请求来自于 <code>img</code> 标签时，可能是 <code>worker</code> 如果是一个 Worker 脚本，等等。如果使用 <code>fetch()</code> 函数，这个值是 <code>fetch</code>。</p>
+<h2 id="response"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#Response" class="headerlink" title="Response"></a>Response</h2><p>Response 对象通常在 <code>fetch()</code> 的回调中获得，也可以通过 JS 构造，不过这通常只在 ServiceWorkers 中使用。</p>
+<p>Response 对象中最常见的属性是 <code>status</code>（整数，默认值是 <code>200</code>）和<code>statusText</code>（默认值是 <code>"OK"</code>）。还有一个 <code>ok</code> 属性，这是 <code>status</code> 值为 <code>200~299</code> 时的语法糖。</p>
+<p>另外，还有一个 <code>type</code> 属性，它的值可能是 <code>"basic"</code>、<code>"cors"</code>、<code>"default"</code>、<code>"error"</code> 或 <code>"opaque"</code>。</p>
+<ul>
+<li><code>"basic"</code>：同域的响应，除 <code>Set-Cookie</code> 和 <code>Set-Cookie2</code> 之外的所有 Header 可用</li>
+<li><code>"cors"</code>：Response 从一个合法的跨域请求获得，<a href="https://fetch.spec.whatwg.org/#concept-filtered-response-cors" target="_blank" rel="external">某些</a> Header 和 body 可读</li>
+<li><code>"error"</code>：网络错误。Response 对象的 <code>status</code> 属性为 <code>0</code>，<code>headers</code> 属性为空并且不可写。当 Response 对象从 <code>Response.error()</code> 中得到时，就是这种类型</li>
+<li><code>"opaque"</code>：在 <code>"no-cors"</code> 模式下请求了跨域资源。依靠<a href="https://fetch.spec.whatwg.org/#concept-filtered-response-opaque" target="_blank" rel="external">服务端来做限制</a></li>
+</ul>
+<p>当 <code>type</code> 属性值为 <code>"error"</code> 时会导致 <code>fetch()</code> 方法的 Promise 被 reject，reject 回调的参数为 TypeError 对象。</p>
+<p>还有一些属性只在 ServerWorker 下有效。在 ServerWorker 下返回一个 Response 的正确方式为：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>{</span><br><span class="line">  event.respondWith(<span class="keyword">new</span> Response(<span class="string">"Response body"</span>, {</span><br><span class="line">    headers: { <span class="string">"Content-Type"</span> : <span class="string">"text/plain"</span> }</span><br><span class="line">  });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>如你所见，Response 构造函数接收两个参数：返回的 body 和一个键值对对象，通过该对象来设置 <code>status</code>、<code>statusText</code> 和 <code>headers</code> 属性。</p>
+<p>静态方法 <code>Response.error()</code> 将返回一个错误响应，<code>Response.redirect(url, status)</code> 将返回一个跳转响应。</p>
+<h2 id="处理-body"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#处理-body" class="headerlink" title="处理 body"></a>处理 body</h2><p>在 Request 和 Response 对象中都可能有 <code>body</code> 属性，并且 <code>body</code> 可以是各种类型，比较复杂，所以前面我们故意先跳过它，在这里单独拿出来讲解。</p>
+<p><code>body</code> 可以是以下任何一种类型的实例：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer" target="_blank" rel="external">ArrayBuffer</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ArrayBufferView" target="_blank" rel="external">ArrayBufferView</a> (Uint8Array and friends)</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Blob" target="_blank" rel="external">Blob</a>/<a href="https://developer.mozilla.org/en-US/docs/Web/API/File" target="_blank" rel="external">File</a></li>
+<li>string</li>
+<li><a href="https://url.spec.whatwg.org/#interface-urlsearchparams" target="_blank" rel="external">URLSearchParams</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" target="_blank" rel="external">FormData</a> —— 目前不被 Gecko 和 Blink 支持，Firefox 预计在版本 39 和 Fetch 的其他部分一起推出</li>
+</ul>
+<p>此外，Request 和 Response 都为操作 <code>body</code> 提供了以下方法，这些方法都返回一个使用实际内容 resolve 的 Promise 对象。</p>
+<ul>
+<li>arrayBuffer()</li>
+<li>blob()</li>
+<li>json()</li>
+<li>text()</li>
+<li>formData()</li>
+</ul>
+<p>所以，在处理非文本的数据方面，Fetch API 比 XHR 更为便利。</p>
+<p>设置请求体：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> form = <span class="keyword">new</span> FormData(<span class="built_in">document</span>.getElementById(<span class="string">'login-form'</span>));</span><br><span class="line">fetch(<span class="string">"/login"</span>, {</span><br><span class="line">  method: <span class="string">"POST"</span>,</span><br><span class="line">  body: form</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>Responses 构造函数的第一个参数是响应体：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = <span class="keyword">new</span> Response(<span class="keyword">new</span> File([<span class="string">"chunk"</span>, <span class="string">"chunk"</span>], <span class="string">"archive.zip"</span>,</span><br><span class="line">{type: <span class="string">"application/zip"</span>})                  	</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<p>Request 和 Response（扩展的 <code>fetch()</code> 方法）都能够<a href="https://fetch.spec.whatwg.org/#concept-bodyinit-extract" target="_blank" rel="external">自动识别</a>自己的内容类型，Request 还可以自动设置 <code>Content-Type</code> 头，如果开发者没有设置它的话。</p>
+<h2 id="流和克隆"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#流和克隆" class="headerlink" title="流和克隆"></a>流和克隆</h2><p>非常重要的一点是，Request 和 Response 的 body 只能被读取一次！它们有一个属性叫 <code>bodyUsed</code>，读取一次之后设置为 <code>true</code>，之后就不能再被读取了。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = <span class="keyword">new</span> Response(<span class="string">"one time use"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(res.bodyUsed); <span class="comment">// false</span></span><br><span class="line">res.text().then(<span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(res.bodyUsed); <span class="comment">// true</span></span><br><span class="line">});</span><br><span class="line"><span class="built_in">console</span>.log(res.bodyUsed); <span class="comment">// true</span></span><br><span class="line"> </span><br><span class="line">res.text().catch(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Tried to read already consumed Response"</span>);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<p>这样设计的目的是为了之后兼容<a href="https://streams.spec.whatwg.org/" target="_blank" rel="external">基于流</a>的 API，我们的目的是当数据到达时就进行相应的处理，这样就使得 JavaScript 可以处理大文件例如视频，并且可以支持实时压缩和编辑。</p>
+<p>有时候，我们希望能多次访问 body，例如，你可能想使用即将支持的 <a href="http://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#cache-objects" target="_blank" rel="external">Cache API</a> 来缓存 Request 和 Response，以便于可以离线使用，Cache 要求 body 能被再次读取。</p>
+<p>那么，如何让 body 能被多次读取呢？API 为这两个对象提供了一个 <code>clone()</code> 方法。调用这个方法可以得到一个克隆对象，对象中包含全新的 body。不过要记得，<code>clone()</code> 必须要在使用 body 之前调用，也就是先 <code>clone()</code> 再读使用。</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>{</span><br><span class="line">  <span class="keyword">var</span> sheep = <span class="keyword">new</span> Response(<span class="string">"Dolly"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(sheep.bodyUsed); <span class="comment">// false</span></span><br><span class="line">  <span class="keyword">var</span> clone = sheep.clone();</span><br><span class="line">  <span class="built_in">console</span>.log(clone.bodyUsed); <span class="comment">// false</span></span><br><span class="line"> </span><br><span class="line">  clone.text();</span><br><span class="line">  <span class="built_in">console</span>.log(sheep.bodyUsed); <span class="comment">// false</span></span><br><span class="line">  <span class="built_in">console</span>.log(clone.bodyUsed); <span class="comment">// true</span></span><br><span class="line"> </span><br><span class="line">  evt.respondWith(cache.add(sheep.clone()).then(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{</span><br><span class="line">    <span class="keyword">return</span> sheep;</span><br><span class="line">  });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="未来的改进"><a href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#未来的改进" class="headerlink" title="未来的改进"></a>未来的改进</h2><p>为了支持流，Fetch 最终将提供可以中断执行和得到读取进度的 API。这些在 XHR 中有，但是想要实现基于 Promise 的 Fetch API 有些麻烦。</p>
+<p>你可以加入 <a href="https://whatwg.org/mailing-list" target="_blank" rel="external">WHATWG 的邮件组</a>参与 <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=WHATWG&amp;component=Fetch&amp;resolution=---" target="_blank" rel="external">Fetch</a> 和 <a href="https://github.com/slightlyoff/ServiceWorker/issues" target="_blank" rel="external">ServiceWorker</a> 的讨论，为改进 API 贡献自己的力量。</p>
+<p>为了创造更好的互联网而努力！</p>
+<p><em>感谢 Andrea Marchesini, Anne van Kesteren 和 Ben Kelly 感谢他们对规范和实现所做的努力。</em></p><div class="div j-quote"><p><strong>参考资源：</strong></p>
+<ul>
+<li><a href="https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/" target="_blank" rel="external">This API is so Fetching!</a></li>
+<li><a href="http://updates.html5rocks.com/2015/03/introduction-to-fetch" target="_blank" rel="external">Introduction to fetch()</a></li>
+<li><a href="http://www.w3ctech.com/topic/854" target="_blank" rel="external">【翻译】这个API很“迷人”——(新的Fetch API)</a></li>
+</ul></div><p></p></section><footer class="article-footer clearfix"><div class="categories"><a href="http://bubkoo.com/categories/javascript/" title="JavaScript">JavaScript</a></div><div class="tags"><a href="http://bubkoo.com/tags/fetch/" title="fetch">fetch</a></div></footer></div><nav class="article-nav clearfix"><a href="http://bubkoo.com/2015/06/10/7-essential-javascript-functions/" class="article-nav-link article-nav-newer"><strong class="article-nav-type">Newer</strong><span class="article-nav-title">几个必备的 JavaScript 函数</span></a><a href="http://bubkoo.com/2015/04/17/a-visual-guide-to-css3-flexbox-properties/" class="article-nav-link article-nav-older"><strong class="article-nav-type">Older</strong><span class="article-nav-title">弹性盒模型指南</span></a></nav></article><section id="article-comment" class="article-comment"><div data-thread-key="http://bubkoo.com/2015/05/08/introduction-to-fetch/" data-title="fetch API 简介" data-url="http://bubkoo.com/2015/05/08/introduction-to-fetch/" class="ds-thread" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://bubkoo.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://bubkoo.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://bubkoo.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://bubkoo.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://bubkoo.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://bubkoo.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://bubkoo.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://bubkoo.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./fetch API 简介 _ bubkoo_files/64186.jpg" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="1240063298666234051">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57ac6865e054c"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="不许调戏…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">戳一下</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">6</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6325286986751935233"><div class="ds-post-self" data-post-id="6325286986751935233" data-thread-id="1240063298666234051" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./fetch API 简介 _ bubkoo_files/64186.jpg" alt="oil"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">oil</span></div><p>var uploadReq = new Request("/uploadImage", {<br>  method: "POST",<br>  headers: {<br>    "Content-Type": "image/png",<br>  },<br>  body: "image data"<br>});<br><br>fetch post 传图片 能不能举个例子啊，总是上传不正确啊。谢谢啊</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-09-01T17:04:00+08:00" title="2016年9月1日 下午5:04:00">9月1日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6266926225726374657"><div class="ds-post-self" data-post-id="6266926225726374657" data-thread-id="1240063298666234051" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./fetch API 简介 _ bubkoo_files/64186.jpg" alt="ziv"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">ziv</span></div><p>不错，学习！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-28T10:34:26+08:00" title="2016年3月28日 上午10:34:26">3月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6225062485636940546"><div class="ds-post-self" data-post-id="6225062485636940546" data-thread-id="1240063298666234051" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6903427"><a rel="nofollow author" target="_blank" href="http://shooter.gl/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=6903427&#39;;" title="shooter"><img src="./fetch API 简介 _ bubkoo_files/1" alt="shooter"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://shooter.gl/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=6903427&#39;;" rel="nofollow" target="_blank" data-user-id="6903427">shooter</a></div><p>三观又被调戏了 <br>观念转变 撕扯的好难受</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-06T15:01:45+08:00" title="2015年12月6日 下午3:01:45">2015年12月6日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="6252074437064000257"><div class="ds-post-self" data-post-id="6252074437064000257" data-thread-id="1240063298666234051" data-root-id="6225062485636940546" data-source="duoshuo"><div class="ds-avatar" data-user-id="4436096"><a rel="nofollow author" target="_blank" href="http://bubkoo.com/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=4436096&#39;;" title="bubkoo"><img src="./fetch API 简介 _ bubkoo_files/131236.jpg" alt="bubkoo"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://bubkoo.com/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=4436096&#39;;" rel="nofollow" target="_blank" data-user-id="4436096">bubkoo</a></div><p>挺逗的</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-02-17T10:01:55+08:00" title="2016年2月17日 上午10:01:55">2月17日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1240063298666233958"><div class="ds-post-self" data-post-id="1240063298666233958" data-thread-id="1240063298666234051" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="8174357"><a rel="nofollow author" target="_blank" href="https://about.me/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=8174357&#39;;" title="网络督察"><img src="./fetch API 简介 _ bubkoo_files/100" alt="网络督察"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="https://about.me/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=8174357&#39;;" rel="nofollow" target="_blank" data-user-id="8174357">网络督察</a></div><p>公司的chrome是v41的，不好升级，等回家试试。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-06-19T14:45:56+08:00" title="2015年6月19日 下午2:45:56">2015年6月19日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1240063298666233966"><div class="ds-post-self" data-post-id="1240063298666233966" data-thread-id="1240063298666234051" data-root-id="1240063298666233958" data-source="duoshuo"><div class="ds-avatar" data-user-id="4436096"><a rel="nofollow author" target="_blank" href="http://bubkoo.com/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=4436096&#39;;" title="bubkoo"><img src="./fetch API 简介 _ bubkoo_files/131236.jpg" alt="bubkoo"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://bubkoo.com/" onclick="this.href=&#39;http://bubkoo.duoshuo.com/user-url/?user_id=4436096&#39;;" rel="nofollow" target="_blank" data-user-id="4436096">bubkoo</a></div><p> <img src="./fetch API 简介 _ bubkoo_files/tootha_org.gif" alt="[嘻嘻]" title="[嘻嘻]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-07-09T19:47:48+08:00" title="2015年7月9日 下午7:47:48">2015年7月9日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">bubkoo正在使用多说</a></p></div></div></section></div><aside id="sidebar" role="sidebar"><div class="widget tagcloud"><h3 class="widget-title">标签</h3><div class="widget-content"><a href="http://bubkoo.com/tags/aop/" style="font-size: 10px">AOP</a> <a href="http://bubkoo.com/tags/algorithm/" style="font-size: 18.33px">Algorithm</a> <a href="http://bubkoo.com/tags/analysis/" style="font-size: 10px">Analysis</a> <a href="http://bubkoo.com/tags/angularjs/" style="font-size: 15px">AngularJS</a> <a href="http://bubkoo.com/tags/animation/" style="font-size: 10px">Animation</a> <a href="http://bubkoo.com/tags/architecture/" style="font-size: 16.67px">Architecture</a> <a href="http://bubkoo.com/tags/archives/" style="font-size: 10.83px">Archives</a> <a href="http://bubkoo.com/tags/async/" style="font-size: 12.5px">Async</a> <a href="http://bubkoo.com/tags/backbone/" style="font-size: 10px">Backbone</a> <a href="http://bubkoo.com/tags/browsers/" style="font-size: 10px">Browsers</a> <a href="http://bubkoo.com/tags/css/" style="font-size: 12.5px">CSS</a> <a href="http://bubkoo.com/tags/css3/" style="font-size: 10px">CSS3</a> <a href="http://bubkoo.com/tags/closure/" style="font-size: 10.83px">Closure</a> <a href="http://bubkoo.com/tags/closures/" style="font-size: 10px">Closures</a> <a href="http://bubkoo.com/tags/cookies/" style="font-size: 10px">Cookies</a> <a href="http://bubkoo.com/tags/cross-domain/" style="font-size: 10px">Cross Domain</a> <a href="http://bubkoo.com/tags/custom-elements/" style="font-size: 10.83px">Custom Elements</a> <a href="http://bubkoo.com/tags/d3/" style="font-size: 10px">D3</a> <a href="http://bubkoo.com/tags/debug/" style="font-size: 10.83px">Debug</a> <a href="http://bubkoo.com/tags/dependency/" style="font-size: 10px">Dependency</a> <a href="http://bubkoo.com/tags/ecma-262-3/" style="font-size: 15.83px">ECMA-262-3</a> <a href="http://bubkoo.com/tags/ecmascript/" style="font-size: 15.83px">ECMAScript</a> <a href="http://bubkoo.com/tags/es6/" style="font-size: 20px">ES6</a> <a href="http://bubkoo.com/tags/errors/" style="font-size: 10px">Errors</a> <a href="http://bubkoo.com/tags/essential/" style="font-size: 10px">Essential</a> <a href="http://bubkoo.com/tags/evaluation-strategy/" style="font-size: 10px">Evaluation strategy</a> <a href="http://bubkoo.com/tags/event/" style="font-size: 10px">Event</a> <a href="http://bubkoo.com/tags/exceptions/" style="font-size: 10px">Exceptions</a> <a href="http://bubkoo.com/tags/express/" style="font-size: 10px">Express</a> <a href="http://bubkoo.com/tags/flip/" style="font-size: 10px">FLIP</a> <a href="http://bubkoo.com/tags/flexbox/" style="font-size: 10px">Flexbox</a> <a href="http://bubkoo.com/tags/funarg/" style="font-size: 10px">Funarg</a> <a href="http://bubkoo.com/tags/gist/" style="font-size: 10px">Gist</a> <a href="http://bubkoo.com/tags/github/" style="font-size: 10px">Github</a> <a href="http://bubkoo.com/tags/guide/" style="font-size: 10px">Guide</a> <a href="http://bubkoo.com/tags/html/" style="font-size: 10px">HTML</a> <a href="http://bubkoo.com/tags/http/" style="font-size: 10px">HTTP</a> <a href="http://bubkoo.com/tags/hexo/" style="font-size: 10.83px">Hexo</a> <a href="http://bubkoo.com/tags/ie/" style="font-size: 10px">IE</a> <a href="http://bubkoo.com/tags/iife/" style="font-size: 10px">IIFE</a> <a href="http://bubkoo.com/tags/jshint/" style="font-size: 10px">JSHint</a> <a href="http://bubkoo.com/tags/javascript/" style="font-size: 19.17px">JavaScript</a> <a href="http://bubkoo.com/tags/leak/" style="font-size: 10px">Leak</a> <a href="http://bubkoo.com/tags/linting/" style="font-size: 10px">Linting</a> <a href="http://bubkoo.com/tags/mvc/" style="font-size: 10px">MVC</a> <a href="http://bubkoo.com/tags/methodology/" style="font-size: 10px">Methodology</a> <a href="http://bubkoo.com/tags/mock/" style="font-size: 10px">Mock</a> <a href="http://bubkoo.com/tags/modular/" style="font-size: 10px">Modular</a> <a href="http://bubkoo.com/tags/mongodb/" style="font-size: 10px">MongoDB</a> <a href="http://bubkoo.com/tags/oop/" style="font-size: 10.83px">OOP</a> <a href="http://bubkoo.com/tags/partial-application/" style="font-size: 10px">Partial Application</a> <a href="http://bubkoo.com/tags/pattern/" style="font-size: 10px">Pattern</a> <a href="http://bubkoo.com/tags/patterns/" style="font-size: 10px">Patterns</a> <a href="http://bubkoo.com/tags/performance/" style="font-size: 14.17px">Performance</a> <a href="http://bubkoo.com/tags/promise/" style="font-size: 13.33px">Promise</a> <a href="http://bubkoo.com/tags/prototype/" style="font-size: 11.67px">Prototype</a> <a href="http://bubkoo.com/tags/quiz/" style="font-size: 10px">Quiz</a> <a href="http://bubkoo.com/tags/regex/" style="font-size: 10px">Regex</a> <a href="http://bubkoo.com/tags/requirejs/" style="font-size: 10px">RequireJS</a> <a href="http://bubkoo.com/tags/sass/" style="font-size: 10px">SASS</a> <a href="http://bubkoo.com/tags/svg/" style="font-size: 10px">SVG</a> <a href="http://bubkoo.com/tags/scope/" style="font-size: 10.83px">Scope</a> <a href="http://bubkoo.com/tags/shapes/" style="font-size: 10px">Shapes</a> <a href="http://bubkoo.com/tags/shuffle/" style="font-size: 10px">Shuffle</a> <a href="http://bubkoo.com/tags/sort/" style="font-size: 17.5px">Sort</a> <a href="http://bubkoo.com/tags/source-map/" style="font-size: 10.83px">Source Map</a> <a href="http://bubkoo.com/tags/styling/" style="font-size: 10px">Styling</a> <a href="http://bubkoo.com/tags/sublime-text/" style="font-size: 10px">Sublime Text</a> <a href="http://bubkoo.com/tags/template/" style="font-size: 10px">Template</a> <a href="http://bubkoo.com/tags/timing/" style="font-size: 10px">Timing</a> <a href="http://bubkoo.com/tags/tools/" style="font-size: 11.67px">Tools</a> <a href="http://bubkoo.com/tags/variable-object/" style="font-size: 10px">Variable object</a> <a href="http://bubkoo.com/tags/visualizations/" style="font-size: 10px">Visualizations</a> <a href="http://bubkoo.com/tags/when/" style="font-size: 12.5px">When</a> <a href="http://bubkoo.com/tags/delete/" style="font-size: 10px">delete</a> <a href="http://bubkoo.com/tags/execution-context/" style="font-size: 10px">execution context</a> <a href="http://bubkoo.com/tags/fetch/" style="font-size: 10px">fetch</a> <a href="http://bubkoo.com/tags/function/" style="font-size: 10px">function</a> <a href="http://bubkoo.com/tags/nodejs/" style="font-size: 10px">nodejs</a> <a href="http://bubkoo.com/tags/nodemon/" style="font-size: 10px">nodemon</a> <a href="http://bubkoo.com/tags/npm/" style="font-size: 10px">npm</a> <a href="http://bubkoo.com/tags/performance/" style="font-size: 10px">performance</a> <a href="http://bubkoo.com/tags/prebrowsing/" style="font-size: 10px">prebrowsing</a> <a href="http://bubkoo.com/tags/prefetching/" style="font-size: 10px">prefetching</a> <a href="http://bubkoo.com/tags/preloading/" style="font-size: 10px">preloading</a> <a href="http://bubkoo.com/tags/tabindex/" style="font-size: 10px">tabindex</a> <a href="http://bubkoo.com/tags/this/" style="font-size: 10px">this</a> <a href="http://bubkoo.com/tags/ui-router/" style="font-size: 14.17px">ui-router</a></div></div><div class="widget"><h3 class="widget-title">最新文章</h3><div class="widget-content"><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/31/high-performance-animations/">使用 FLIP 来提高 Web 动画的性能</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/28/styling-broken-images/">定制图片加载失败时的样式</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/26/delivering-octicons-with-svg/">使用 SVG 输出 Octicon</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/03/18/how-to-use-npm-as-a-build-tool/">如何将 npm 作为构建工具使用</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2016/02/24/what-you-can-do-with-gists-on-github/">任何人都可以使用到的 Gist 服务</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/19/prefetching-preloading-prebrowsing/">前端性能优化 - 资源预加载</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/18/es6-in-depth-the-future/">深入解析 ES6：未来展望</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/18/es6-in-depth-modules/">深入解析 ES6：Modules</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/18/es6-in-depth-subclassing/">深入解析 ES6：Subclassing</a></li><li class="post-list-item"><a class="post-list-link" href="http://bubkoo.com/2015/11/18/es6-in-depth-let-and-const/">深入解析 ES6：let 和 const</a></li></ul></div></div></aside><aside id="topic-wrap" class="toc-wrap f-right" style="visibility: hidden;"><h3 class="toc-wrap-title">内容</h3><div class="toc-tree"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#特征检查"><span class="toc-number">1.</span> <span class="toc-text">特征检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link active" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#简单示例"><span class="toc-number">2.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#headers"><span class="toc-number">3.</span> <span class="toc-text">Headers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#request"><span class="toc-number">4.</span> <span class="toc-text">Request</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#same-origin"><span class="toc-number">4.1.</span> <span class="toc-text">same-origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#no-cors"><span class="toc-number">4.2.</span> <span class="toc-text">no-cors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#cors"><span class="toc-number">4.3.</span> <span class="toc-text">cors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#response"><span class="toc-number">5.</span> <span class="toc-text">Response</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#处理-body"><span class="toc-number">6.</span> <span class="toc-text">处理 body</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#流和克隆"><span class="toc-number">7.</span> <span class="toc-text">流和克隆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#未来的改进"><span class="toc-number">8.</span> <span class="toc-text">未来的改进</span></a></li></ol></div><div class="toc-progress" style="width: 9.6475%;"></div></aside><aside id="topic-wrap-sticky-polyfill-0" class="toc-wrap f-right" style="margin-top: auto; position: fixed; width: 270px; left: 1160.5px; top: 30px;"><h3 class="toc-wrap-title">内容</h3><div class="toc-tree"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#特征检查"><span class="toc-number">1.</span> <span class="toc-text">特征检查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link active" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#简单示例"><span class="toc-number">2.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#headers"><span class="toc-number">3.</span> <span class="toc-text">Headers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#request"><span class="toc-number">4.</span> <span class="toc-text">Request</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#same-origin"><span class="toc-number">4.1.</span> <span class="toc-text">same-origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#no-cors"><span class="toc-number">4.2.</span> <span class="toc-text">no-cors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#cors"><span class="toc-number">4.3.</span> <span class="toc-text">cors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#response"><span class="toc-number">5.</span> <span class="toc-text">Response</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#处理-body"><span class="toc-number">6.</span> <span class="toc-text">处理 body</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#流和克隆"><span class="toc-number">7.</span> <span class="toc-text">流和克隆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="http://bubkoo.com/2015/05/08/introduction-to-fetch/#未来的改进"><span class="toc-number">8.</span> <span class="toc-text">未来的改进</span></a></li></ol></div><div class="toc-progress" style="width: 19.3414%;"></div></aside></div><footer id="footer" class="inner">© 2015 bubkoo</footer><img id="go2top" src="./fetch API 简介 _ bubkoo_files/top_arrow.png" alt="go2top" style="display: inline;"><script charset="utf-8" src="./fetch API 简介 _ bubkoo_files/jquery-2.1.3.min.js"></script><script charset="utf-8" src="./fetch API 简介 _ bubkoo_files/jquery.imagesloaded.min.js"></script><script charset="utf-8" src="./fetch API 简介 _ bubkoo_files/jquery.fancybox.pack.js"></script><script charset="utf-8" src="./fetch API 简介 _ bubkoo_files/sea.js"></script><script charset="utf-8" src="./fetch API 简介 _ bubkoo_files/main.js"></script></body></html>

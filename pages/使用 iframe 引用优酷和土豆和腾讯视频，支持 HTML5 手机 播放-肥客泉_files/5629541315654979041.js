@@ -1,0 +1,1 @@
+$(document).ready(function(){if($.browser.msie&&$.browser.version==="10.0"){$("html").addClass("ie10")}});

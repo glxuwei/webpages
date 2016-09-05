@@ -1,0 +1,8 @@
+(function(){
+  document.write('<div id="adsatlas-3484060956" style="position:relative;width:336px;height:280px;overflow:hidden">');
+  document.write('<a href="http://www.googleadservices.com/pagead/aclk?sa=L&ai=C7JfrGBfJV-2-AYqAigOg3oC4Dd3S-sBGuK_VscwCr4G649cCEAEgpsW_CWDJBqAB0vjL4gPIAQmoAwGqBIMBT9BWUhiGQqkke75aOFNl1JD8rIxAMbQ0hOWoqtbYyaE6bWyS63oKNH9Ny10wKfUY-mUvlrRjHwK6ClUnkumaI59ZWLsQcOcBN-NOgSdsAtvjB3OEbCTiZa6ZLqcnsf4y-78dVkkqKdwrb_mD5IMf9nNfpElphC-YDJKpICcrUdDDkNSIBgGgBhGAB8DOyiKoB4HGG6gHpr4b2AcA2BMD&num=1&cid=CAASEuRo7WSW4a2-tk2CjazUQxOc_Q&sig=AOD64_0C4C-drE7VorzDqzxCQiSrTk4miQ&client=ca-pub-9195052014444206&adurl=https://ad.atdmt.com/c/go;p=11237202898198;as=11237202901910;a=11237202897761;crs=11237202897699;cr=11237202897702;i.ts=1472798863" target="_blank"><img border="0" src="https://cdn.atlassbx.com/FB/11237202897702/q2-display-programmatic-336x280-commerce_start.jpg"/></a><img src="https://ad.atdmt.com/d/img;p=11237202898198;as=11237202901910;a=11237202897761;crs=11237202897699;cr=11237202897702;llid=7805421573653582978;cache=1153539379" />');
+  document.write('</div>');
+  document.write('<script src="https://cdn.atlassbx.com/FB/11122200772940/browser_features1469469235.js"></script><script type="text/javascript">(function(){var data = window.getAtlasBrowserFeatures.getFastBrowserFeatures();new Image().src = "https://sig.atdmt.com/bf?iid=7805421573653582978&bf=" + encodeURIComponent(data);})();</script>');
+  document.write('');
+  document.close();
+})();

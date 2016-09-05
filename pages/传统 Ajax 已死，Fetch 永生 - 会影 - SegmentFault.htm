@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000003810652 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault</title><meta name="description" content="原谅我做一次标题党，Ajax 不会死，传统 Ajax 指的是 XMLHttpRequest（XHR），未来现在已被 Fetch 替代。 最近把阿里一个千万级 PV 的数据产品全部由 jQuery 的 $.ajax 迁移到 Fetch，上线一个多月以来运行非常稳..."><meta name="keywords" content="ajax,fetch,async,异步编程,javascript"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/touch-icon.png"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/global.css"><link rel="stylesheet" href="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/blog.css"><link rel="stylesheet" href="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/responsive.css"><!--[if lt IE 9]><link rel="stylesheet" href="https://sf-static.b0.upaiyun.com/v-57c64471/global/css/ie.css"/><script src="https://sf-static.b0.upaiyun.com/v-57c64471/global/script/html5shiv.js"></script><script src="https://sf-static.b0.upaiyun.com/v-57c64471/global/script/respond.js"></script><![endif]--><script src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/hm.js"></script><script type="text/javascript" async="" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/vds.js"></script><script async="" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/analytics.js"></script><script src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/debug.js"></script></head><body data-mod="blog" class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/touch-icon-512.png"><img id="icon4weChat" data-src="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/touch-icon-512.png"><div class="global-nav sf-header"><nav class="container nav"><div class="hidden-sm hidden-lg hidden-md"><div class="sf-header__logo sf-header__logo--response"><h1><a></a></h1></div><div class="dropdown m-menu"><a href="javascript:void(0);" id="dLabel" class="visible-xs-block m-toptools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span><span class="mobile-menu__unreadpoint"></span></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li class="mobile-menu__item"><a href="https://segmentfault.com/questions/newest">问答</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/blogs">文章</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/user/note">笔记</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/events">活动</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/tags">标签</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/users">榜单</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/sites">子站</a></li></ul></div><a href="https://segmentfault.com/user/login" class="visible-xs-block pull-right m-ask m-toptools"><span class="glyphicon glyphicon-log-in"></span></a></div><div class="row hidden-xs"><div class="col-sm-9 col-md-7 col-lg-6"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/questions">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs">文章</a></li><li class="menu__item"><a href="https://segmentfault.com/notes">笔记</a></li><li class="menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="menu__item"><a href="https://segmentfault.com/events">活动</a></li></ul></div><div class="col-sm-3 col-md-5 col-lg-6 text-right"><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs mr20"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="输入关键字搜索" class="form-control" value=""></form><ul class="opts list-inline hidden-xs"><li class="opts__item message has-unread"><a target="_blank" href="https://segmentfault.com/tour"><span class="sr-only">消息</span><span id="messageCount" class="fa fa-hand-peace-o"></span></a></li><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFLogin em ml10" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">注册 ·
+                                        登录</a></li></ul></div></div></nav></div><div class="global-navTags"><div class="container"><nav class=" nav"><ul class="nav__list"><li class="nav__item"><a href="https://segmentfault.com/"><i class="fa fa-home"></i>home
+                            </a></li><li class="nav__item"><a href="https://segmentfault.com/timeline"><i class="fa fa-list-alt"></i>feed
+                            </a></li><li class="nav__item nav__item--split"><a><span class="split"></span></a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/javascript">javascript</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/php">php</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/python">python</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/java">java</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mysql">mysql</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ios">ios</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/android">android</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/node.js">node.js</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/html5">html5</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/linux">linux</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/c%2B%2B">c++</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/css3">css3</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/git">git</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/golang">golang</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ruby">ruby</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/vim">vim</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/docker">docker</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mongodb">mongodb</a></li><li class="nav__item nav__item--more" data-open="0"><a class="nav__item--more-link" href="https://segmentfault.com/tags"><div class="tag__more"><i class="tag__more--icon"></i><i class="tag__more--icon"></i><i class="tag__more--icon"></i></div></a></li></ul><div class="tag-mgr__box hide"><input class="tag-mgr__query" type="text" placeholder="搜索关注的标签" data-tags="null"><div class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 0px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr"><ul class="tag-mgr__list"></ul></div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div><a href="https://segmentfault.com/tags" class="btn btn-primary btn-sm tag-mgr__btn">标签管理</a></div></nav></div></div>
+    <div class="wrap">
+    <div class="post-topheader custom-">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <span class="post-topheader__title--icon-symbol">文</span>
+
+                    <div class="post-topheader__info" data-username="Cam" data-userslug="cam" data-useravatar="https://sfault-avatar.b0.upaiyun.com/237/055/2370552746-55cff44ba0973_big64">
+
+                        <h1 class="h3 post-topheader__info--title" id="articleTitle" data-id="1190000003810652">
+
+                                                <a href="https://segmentfault.com/a/1190000003810652"> 传统 Ajax 已死，Fetch 永生</a>
+                                            </h1>
+
+                        <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/ajax/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="ajax" data-id="1040000000090169">ajax</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/fetch/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="fetch" data-id="1040000000584108">fetch</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/async/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="async" data-id="1040000000324702">async</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="异步编程" data-id="1040000002802433">异步编程</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/javascript/blogs" data-toggle="popover" data-img="https://sfault-avatar.b0.upaiyun.com/195/823/1958237468-1040000000089436_huge256" data-placement="top" data-original-title="javascript" data-id="1040000000089436">javascript</a></li>
+                                                    </ul>
+
+                        <div class="article__author">
+                        <a href="https://segmentfault.com/u/cam" class="mr5 "><strong>Cam</strong></a>
+                        2015年09月30日发布
+                                                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 hidden-xs">
+                    <ul class="post-topheader__side list-unstyled">
+                        <li>
+                                                                                                <button type="button" class="btn btn-success btn-sm" data-id="1190000003810652" id="sideLike">推荐
+                                    </button>
+                                                                                        <strong id="sideLiked">29</strong> 推荐
+                        </li>
+                        <li>
+                                                                                                <button type="button" id="sideBookmark" class="btn btn-default btn-sm" data-id="1190000003810652" data-type="article">收藏
+                                    </button>
+                                                                                        <strong id="sideBookmarked">263</strong> 收藏，<strong class="no-stress">17.7k</strong> 浏览
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+
+                                                <div class="article fmt article__content" data-id="1190000003810652" data-license="cc">
+                    
+<p><img data-src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/948896/10188666/bc9a535a-6793-11e5-9d77-f3254a210b09.png&amp;objectId=1190000003810652&amp;token=3b3031cfaf496ec3e7daad8323d78bf7" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/image" style="cursor: pointer; display: inline;"></p>
+<p>原谅我做一次标题党，Ajax 不会死，传统 Ajax 指的是 XMLHttpRequest（XHR），<del>未来</del>现在已被 <a href="https://fetch.spec.whatwg.org/" target="_blank">Fetch</a> 替代。</p>
+<p>最近把阿里一个千万级 PV 的数据产品全部由 jQuery 的  <code>$.ajax</code> 迁移到 <code>Fetch</code>，上线一个多月以来运行非常稳定。结果证明，对于 IE8+ 以上浏览器，在生产环境使用 Fetch 是可行的。</p>
+<p>由于 Fetch API 是基于 Promise 设计，有必要先学习一下 Promise，推荐阅读 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">MDN Promise 教程</a>。旧浏览器不支持 Promise，需要使用 polyfill <a href="https://github.com/jakearchibald/es6-promise" target="_blank">es6-promise</a> 。</p>
+<p>本文不是 Fetch API 科普贴，其实是讲异步处理和 Promise 的。Fetch API 很简单，看文档很快就学会了。推荐 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch" target="_blank">MDN Fetch 教程</a> 和 万能的<a href="https://fetch.spec.whatwg.org/" target="_blank">WHATWG Fetch 规范</a></p>
+<h2 id="articleHeader0">Why Fetch</h2>
+<p>XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。</p>
+<p>Fetch 的出现就是为了解决 XHR 的问题，拿例子说明：</p>
+<p>使用 XHR 发送一个 json 请求一般是这样：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, url);
+xhr.responseType = &#39;json&#39;;
+
+xhr.onload = function() {
+  console.log(xhr.response);
+};
+
+xhr.onerror = function() {
+  console.log(&quot;Oops, error&quot;);
+};
+
+xhr.send();" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="js"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+xhr.open(<span class="hljs-string">'GET'</span>, url);
+xhr.responseType = <span class="hljs-string">'json'</span>;
+
+xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">console</span>.log(xhr.response);
+};
+
+xhr.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Oops, error"</span>);
+};
+
+xhr.send();</code></pre>
+<p>使用 Fetch 后，顿时看起来好一点</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="fetch(url).then(function(response) {
+  return response.json();
+}).then(function(data) {
+  console.log(data);
+}).catch(function(e) {
+  console.log(&quot;Oops, error&quot;);
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="js">fetch(url).then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{
+  <span class="hljs-keyword">return</span> response.json();
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(data);
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Oops, error"</span>);
+});</code></pre>
+<p>使用 ES6 的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">箭头函数</a> 后：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="fetch(url).then(response =&gt; response.json())
+  .then(data =&gt; console.log(data))
+  .catch(e =&gt; console.log(&quot;Oops, error&quot;, e))" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="js">fetch(url).then(response =&gt; response.json())
+  .then(data =&gt; <span class="hljs-built_in">console</span>.log(data))
+  .catch(e =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Oops, error"</span>, e))</code></pre>
+<p>现在看起来好很多了，但这种 Promise 的写法还是有 Callback 的影子，而且 promise 使用 catch 方法来进行错误处理的方式有点奇怪。不用急，下面使用 async/await 来做最终优化：</p>
+<blockquote><p>注：async/await 是非常新的 API，属于 ES7，目前尚在 Stage 1(提议) 阶段，这是它的<a href="https://github.com/lukehoban/ecmascript-asyncawait" target="_blank">完整规范</a>。使用 <a href="https://babeljs.io/" target="_blank">Babel</a> 开启 <a href="https://babeljs.io/docs/usage/runtime/" target="_blank">runtime</a> 模式后可以把 async/await 无痛编译成 ES5 代码。也可以直接使用 <a href="https://github.com/facebook/regenerator" target="_blank">regenerator</a> 来编译到 ES5。</p></blockquote>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="try {
+  let response = await fetch(url);
+  let data = response.json();
+  console.log(data);
+} catch(e) {
+  console.log(&quot;Oops, error&quot;, e);
+}
+// 注：这段代码如果想运行，外面需要包一个 async function" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="js"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">let</span> response = await fetch(url);
+  <span class="hljs-keyword">let</span> data = response.json();
+  <span class="hljs-built_in">console</span>.log(data);
+} <span class="hljs-keyword">catch</span>(e) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Oops, error"</span>, e);
+}
+<span class="hljs-comment">// 注：这段代码如果想运行，外面需要包一个 async function</span></code></pre>
+<p>duang~~ 的一声，使用 <code>await</code>  后，<strong>写异步代码就像写同步代码一样爽</strong>。<code>await</code> 后面可以跟 Promise 对象，表示等待 Promise <code>resolve()</code> 才会继续向下执行，如果 Promise 被 <code>reject()</code> 或抛出异常则会被外面的 <code>try...catch</code> 捕获。</p>
+<p>Promise，generator/yield，await/async 都是现在和未来 JS 解决异步的标准做法，可以完美搭配使用。这也是使用标准 Promise 一大好处。最近也把项目中使用第三方 Promise 库的代码全部转成标准 Promise，为以后全面使用 async/await 做准备。</p>
+<p>另外，Fetch 也很适合做现在流行的同构应用，有人基于 Fetch 的语法，在 Node 端基于 http 库实现了 <a href="https://github.com/bitinn/node-fetch" target="_blank">node-fetch</a>，又有人封装了用于同构应用的 <a href="https://github.com/matthew-andrews/isomorphic-fetch" target="_blank">isomorphic-fetch</a>。</p>
+<blockquote><p>注：同构(isomorphic/universal)就是使<strong>前后端运行同一套代码</strong>的意思，后端一般是指 NodeJS 环境。</p></blockquote>
+<p>总结一下，Fetch 优点主要有：</p>
+<ol>
+<li><p>语法简洁，更加语义化</p></li>
+<li><p>基于标准 Promise 实现，支持 async/await</p></li>
+<li><p>同构方便，使用 <a href="https://github.com/matthew-andrews/isomorphic-fetch" target="_blank">isomorphic-fetch</a></p></li>
+</ol>
+<h2 id="articleHeader1">Fetch 启用方法</h2>
+<p>下面是重点↓↓↓</p>
+<p>先看一下 Fetch 原生支持率：<br><img data-src="https://segmentfault.com/image?src=https://cloud.githubusercontent.com/assets/948896/10188421/c6e19fc8-6791-11e5-8ac2-bfede76df6b4.png&amp;objectId=1190000003810652&amp;token=21f555d76bde525897cbb7b183350941" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/image(1)" style="cursor: pointer; display: inline;"></p>
+<p>原生支持率并不高，幸运的是，引入下面这些 polyfill 后可以完美支持 IE8+ ：</p>
+<ol>
+<li><p>由于 IE8 是 ES3，需要引入 ES5 的 polyfill: <a href="https://github.com/es-shims/es5-shim" target="_blank">es5-shim, es5-sham</a></p></li>
+<li><p>引入 Promise 的 polyfill: <a href="https://github.com/jakearchibald/es6-promise" target="_blank">es6-promise</a></p></li>
+<li><p>引入 fetch 探测库：<a href="https://github.com/camsong/fetch-detector" target="_blank">fetch-detector</a></p></li>
+<li><p>引入 fetch 的 polyfill: <a href="https://github.com/camsong/fetch-ie8" target="_blank">fetch-ie8</a></p></li>
+<li><p>可选：如果你还使用了 jsonp，引入 <a href="https://github.com/camsong/fetch-jsonp" target="_blank">fetch-jsonp</a></p></li>
+<li><p>可选：开启 Babel 的 runtime 模式，现在就使用 async/await</p></li>
+</ol>
+<p>Fetch polyfill 的基本原理是探测是否存在 <code>window.fetch</code> 方法，如果没有则用 XHR 实现。这也是 <a href="https://github.com/github/fetch" target="_blank">github/fetch</a> 的做法，但是有些浏览器（Chrome 45）原生支持 Fetch，但响应中有<a href="https://lists.w3.org/Archives/Public/public-webapps-github/2015Aug/0218.html" target="_blank">中文时会乱码</a>，老外又不太关心这种问题，所以我自己才封装了 <code>fetch-detector</code> 和 <code>fetch-ie8</code> 只在浏览器稳定支持 Fetch 情况下才使用原生 Fetch。这些库现在<strong>每天有几千万个请求都在使用，绝对靠谱</strong>！</p>
+<p>终于，引用了这一堆 polyfill 后，可以愉快地使用 Fetch 了。但要小心，下面有坑：</p>
+<h2 id="articleHeader2">Fetch 常见坑</h2>
+<ul>
+<li><p>Fetch 请求默认是不带 cookie 的，需要设置 <code>fetch(url, {credentials: 'include'})</code></p></li>
+<li><p>服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。</p></li>
+</ul>
+<p>竟然没有提到 IE，这实在太不科学了，现在来详细说下 IE</p>
+<h2 id="articleHeader3">IE 使用策略</h2>
+<p>所有版本的 IE 均不支持原生 Fetch，fetch-ie8 会自动使用 XHR 做 polyfill。但在跨域时有个问题需要处理。</p>
+<p>IE8, 9 的 XHR 不支持 CORS 跨域，虽然提供 <code>XDomainRequest</code>，但这个东西就是玩具，不支持传 Cookie！如果接口需要权限验证，还是乖乖地使用 jsonp 吧，推荐使用 <a href="https://github.com/camsong/fetch-jsonp" target="_blank">fetch-jsonp</a>。如果有问题直接提 issue，我会第一时间解决。</p>
+<h2 id="articleHeader4">标准 Promise 的不足</h2>
+<p>由于 Fetch 是典型的异步场景，所以大部分遇到的问题不是 Fetch 的，其实是 Promise 的。ES6 的 Promise 是基于 <a href="https://promisesaplus.com/" target="_blank">Promises/A+</a> 标准，为了保持<strong>简单简洁</strong>，只提供极简的几个 API。如果你用过一些牛 X 的异步库，如 jQuery(不要笑) 、Q.js 或者 RSVP.js，可能会感觉 Promise 功能太少了。</p>
+<h3 id="articleHeader5">没有 Deferred</h3>
+<p><a href="http://api.jquery.com/category/deferred-object/" target="_blank">Deferred</a> 可以在创建 Promise 时可以减少一层嵌套，还有就是跨方法使用时很方便。<br>ECMAScript 11 年就有过 <a href="http://wiki.ecmascript.org/doku.php?id=strawman:deferred_functions" target="_blank">Deferred 提案</a>，但后来没被接受。其实用 Promise 不到十行代码就能实现 Deferred：<a href="https://github.com/seangenabe/es6-deferred/blob/master/deferred.js" target="_blank">es6-deferred</a>。现在有了 async/await，generator/yield 后，deferred 就没有使用价值了。</p>
+<h3 id="articleHeader6">没有获取状态方法：isRejected，isResolved</h3>
+<p>标准 Promise 没有提供获取当前状态 rejected 或者 resolved 的方法。只允许外部传入成功或失败后的回调。我认为这其实是优点，这是一种声明式的接口，更简单。</p>
+<h3 id="articleHeader7">缺少其它一些方法：always，progress，finally</h3>
+<p>always 可以通过在 then 和 catch 里重复调用方法实现。finally 也类似。progress 这种进度通知的功能还没有用过，暂不知道如何替代。</p>
+<h2 id="articleHeader8">最后</h2>
+<p>Fetch 替换 XHR 只是时间问题，现在看到国外很多新的库都默认使用了 Fetch。</p>
+<p>最后再做一个大胆预测：由于 async/await 这类新异步语法的出现，第三方的 Promise 类库会逐渐被标准 Promise 替代，使用 polyfill 是现在比较明智的做法。</p>
+<blockquote><p>转至我的博客，原文地址：<a href="https://github.com/camsong/blog/issues/2" target="_blank">https://github.com/camsong/blog/issues/2</a></p></blockquote>
+<blockquote><p>想不想加入阿里巴巴一起玩 ES7，React，FRP 等最新技术，欢迎简历到 neosoyn@gmail.com</p></blockquote>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+
+                    <ul class="article-operation list-inline pull-left">
+                        <li><a href="https://segmentfault.com/a/1190000003810652" class="text-muted">2015年09月30日发布</a></li>
+                                                                                                                            <li class="dropdown js__content-ops" data-module="article" data-id="1190000003810652" data-typetext="文章">
+                                <a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown">更多<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="https://segmentfault.com/a/1190000003810652#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li>
+                                                                                                                                                                                                    
+                                                                    </ul>
+                            </li>
+                                            </ul>
+                </div>
+
+                <div class="text-center mt10">
+                    
+                        <button type="button" id="mainLike" data-id="1190000003810652" class="btn btn-success btn-lg mr10">
+                            29 推荐
+                        </button>
+                    
+                                            <button type="button" id="mainBookmark" data-type="article" data-id="1190000003810652" class="btn btn-default btn-lg ">
+                            收藏
+                        </button>
+                                    </div>
+
+                                    <div class="recommend-post pt30 mt40 mb30 border-top">
+                        <div class="row">
+                            <div class="col-md-8">
+                                                                <h4 class="mt0">你可能感兴趣的文章</h4>
+                                <ul class="widget-links list-unstyled">
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000002881997" title="再谈 JavaScript 异步编程">再谈 JavaScript 异步编程</a>
+                                            <small class="text-muted">
+                                                41 收藏，2k
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000006510526" title="JavaScript异步编程的终极演变">JavaScript异步编程的终极演变</a>
+                                            <small class="text-muted">
+                                                19 收藏，600
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000003742890" title="闲谈异步调用“扁平”化">闲谈异步调用“扁平”化</a>
+                                            <small class="text-muted">
+                                                6 收藏，1.8k
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                    </ul>
+                                                            </div>
+                            <div class="col-md-4">
+                                                                    <div class="article-license">
+                                                                                                                        <img class="mb5" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/creativecommons-cc.png" height="24"><br>
+                                                                                <div class="license-item text-muted">
+                                            本文采用 <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" class="alert-link">署名-相同方式共享 3.0 中国大陆许可协议</a>，分享、演绎需署名且使用相同方式共享。
+                                        </div>
+
+                                    </div>
+                                                            </div>
+                        </div>
+
+                    </div>
+                                <!-- <ul class="list-unstyled text-muted mt30">
+                                        <li>上一篇：<a href="/a/1190000003099895">还在纠结 Flux 或 Relay，或许 Redux 更适合你</a></li>
+                                                            <li class="mt5">下一篇：<a href="/a/1190000004074866">抛弃jQuery，拥抱原生JavaScript</a></li>
+                                    </ul> -->
+
+                <h2 class="h4 post-comment-title">讨论区</h2>
+                <div class="widget-comments" id="comment-1190000003810652" data-id="1190000003810652"><div class="widget-comments__item hover-show " id="1050000003811289"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003811289" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>看了yahoo/fiexible，好复杂了，下午折腾了一下，文档太少，看不明白，不过感觉同构应该是js的未来吧</p> </div><textarea name="text" rows="1" id="commentText-1050000003811289" class="editTextarea mono form-control mb10 hidden">看了yahoo/fiexible，好复杂了，下午折腾了一下，文档太少，看不明白，不过感觉同构应该是js的未来吧</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003811289" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/tianyingjinchaung" class="commentUser" data-userid="1030000000144353" data-username="天赢金创" data-userslug="tianyingjinchaung" data-useravatar="https://sfault-avatar.b0.upaiyun.com/281/512/2815120957-554b14a3c8021_medium40"><strong>天赢金创</strong></a> · <span class="createdDate">2015年09月30日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000144353" data-id="1050000003811289" data-username="天赢金创"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003811289" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003811387"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003811387" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/tianyingjinchaung">天赢金创</a>：</span>        <div class="content fmt"><p>yahoo/flexible 确实有点复杂，可以试试 Redux <a href="http://camsong.github.io/redux-in-chinese/docs/recipes/ServerRendering.html" target="_blank">http://camsong.github.io/redux-in-chinese/docs/recipes/ServerRendering.html</a></p> </div><textarea name="text" rows="1" id="commentText-1050000003811387" class="editTextarea mono form-control mb10 hidden">yahoo/flexible 确实有点复杂，可以试试 Redux http://camsong.github.io/redux-in-chinese/docs/recipes/ServerRendering.html</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003811387" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/cam" class="commentUser" data-userid="1030000000093422" data-username="Cam" data-userslug="cam" data-useravatar="https://sfault-avatar.b0.upaiyun.com/237/055/2370552746-55cff44ba0973_medium40"><strong>Cam</strong></a> · <span class="createdDate">2015年09月30日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000093422" data-id="1050000003811387" data-username="Cam"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003811387" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003811399"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003811399" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/cam">Cam</a>：</span>        <div class="content fmt"><p>好的，这一块估计还要一段时间发展吧，redux学习的时候看的就是你翻译的文档，辛苦了</p> </div><textarea name="text" rows="1" id="commentText-1050000003811399" class="editTextarea mono form-control mb10 hidden">好的，这一块估计还要一段时间发展吧，redux学习的时候看的就是你翻译的文档，辛苦了</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003811399" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/tianyingjinchaung" class="commentUser" data-userid="1030000000144353" data-username="天赢金创" data-userslug="tianyingjinchaung" data-useravatar="https://sfault-avatar.b0.upaiyun.com/281/512/2815120957-554b14a3c8021_medium40"><strong>天赢金创</strong></a> · <span class="createdDate">2015年09月30日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000144353" data-id="1050000003811399" data-username="天赢金创"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003811399" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003812280"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003812280" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>es7的代码还可以，前面es5、es6的代码写起来感觉很别扭</p> </div><textarea name="text" rows="1" id="commentText-1050000003812280" class="editTextarea mono form-control mb10 hidden">es7的代码还可以，前面es5、es6的代码写起来感觉很别扭</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003812280" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/tom0" class="commentUser" data-userid="1030000003779936" data-username="lqixv" data-userslug="tom0" data-useravatar="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/user-40.png"><strong>lqixv</strong></a> · <span class="createdDate">2015年10月01日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000003779936" data-id="1050000003812280" data-username="lqixv"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003812280" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003812730"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003812730" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>的确 至少我现在是shim，而不是xhr</p> </div><textarea name="text" rows="1" id="commentText-1050000003812730" class="editTextarea mono form-control mb10 hidden">的确 至少我现在是shim，而不是xhr</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003812730" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/888888sd" class="commentUser" data-userid="1030000002548055" data-username="88888888888888888" data-userslug="888888sd" data-useravatar="https://sfault-avatar.b0.upaiyun.com/255/400/2554002727-570b9c1519624_medium40"><strong>88888888888888888</strong></a> · <span class="createdDate">2015年10月01日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000002548055" data-id="1050000003812730" data-username="88888888888888888"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003812730" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003830429"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003830429" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/tom0">lqixv</a>：</span>        <div class="content fmt"><p>5658526</p> </div><textarea name="text" rows="1" id="commentText-1050000003830429" class="editTextarea mono form-control mb10 hidden">5658526</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003830429" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/zy0695354" class="commentUser" data-userid="1030000003058753" data-username="zy0695354" data-userslug="zy0695354" data-useravatar="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/user-40.png"><strong>zy0695354</strong></a> · <span class="createdDate">2015年10月08日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000003058753" data-id="1050000003830429" data-username="zy0695354"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003830429" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003835439"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003835439" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>太高端，看不懂</p> </div><textarea name="text" rows="1" id="commentText-1050000003835439" class="editTextarea mono form-control mb10 hidden">太高端，看不懂</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003835439" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/wanggonghe" class="commentUser" data-userid="1030000002896062" data-username="wghe110" data-userslug="wanggonghe" data-useravatar="https://sfault-avatar.b0.upaiyun.com/398/072/3980725732-5699b696b8911_medium40"><strong>wghe110</strong></a> · <span class="createdDate">2015年10月09日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000002896062" data-id="1050000003835439" data-username="wghe110"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003835439" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003836839"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003836839" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>刚在ata看了这篇文章，没想到在这里也看见了 ^_^</p> </div><textarea name="text" rows="1" id="commentText-1050000003836839" class="editTextarea mono form-control mb10 hidden">刚在ata看了这篇文章，没想到在这里也看见了 ^_^</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003836839" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/bluedream" class="commentUser" data-userid="1030000000177001" data-username="bluedream" data-userslug="bluedream" data-useravatar="https://sfault-avatar.b0.upaiyun.com/596/676/596676680-1030000000177001_medium40"><strong>bluedream</strong></a> · <span class="createdDate">2015年10月10日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000177001" data-id="1050000003836839" data-username="bluedream"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003836839" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003843811"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003843811" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/bluedream">bluedream</a>：</span>        <div class="content fmt"><p>aaa</p> </div><textarea name="text" rows="1" id="commentText-1050000003843811" class="editTextarea mono form-control mb10 hidden">aaa</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003843811" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/cryms" class="commentUser" data-userid="1030000003507929" data-username="cryms" data-userslug="cryms" data-useravatar="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/user-40.png"><strong>cryms</strong></a> · <span class="createdDate">2015年10月11日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000003507929" data-id="1050000003843811" data-username="cryms"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003843811" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003849006"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003849006" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>如何实现 <strong>ifModified</strong> 呢？换句话说，如何能让服务器返回303呢？</p> </div><textarea name="text" rows="1" id="commentText-1050000003849006" class="editTextarea mono form-control mb10 hidden">如何实现 **ifModified** 呢？换句话说，如何能让服务器返回303呢？</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003849006" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/fuchao2012" class="commentUser" data-userid="1030000002424967" data-username="fuchao2012" data-userslug="fuchao2012" data-useravatar="https://sfault-avatar.b0.upaiyun.com/745/363/745363562-56c1798cc9c97_medium40"><strong>fuchao2012</strong></a> · <span class="createdDate">2015年10月12日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000002424967" data-id="1050000003849006" data-username="fuchao2012"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003849006" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003850090"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003850090" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/fuchao2012">fuchao2012</a>：</span>        <div class="content fmt"><p>Fetch 也是基于 HTTP 规范，可以设置 request head <a href="https://fetch.spec.whatwg.org/#concept-request-cache-mode" target="_blank">https://fetch.spec.whatwg.org/#concept-request-cache-mode</a></p> </div><textarea name="text" rows="1" id="commentText-1050000003850090" class="editTextarea mono form-control mb10 hidden">Fetch 也是基于 HTTP 规范，可以设置 request head https://fetch.spec.whatwg.org/#concept-request-cache-mode</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003850090" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/cam" class="commentUser" data-userid="1030000000093422" data-username="Cam" data-userslug="cam" data-useravatar="https://sfault-avatar.b0.upaiyun.com/237/055/2370552746-55cff44ba0973_medium40"><strong>Cam</strong></a> · <span class="createdDate">2015年10月13日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000093422" data-id="1050000003850090" data-username="Cam"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003850090" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000003850684"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000003850684" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>Usuds</p> </div><textarea name="text" rows="1" id="commentText-1050000003850684" class="editTextarea mono form-control mb10 hidden">Usuds</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000003850684" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/Renjinkui" class="commentUser" data-userid="1030000003850673" data-username="Renjinkui" data-userslug="Renjinkui" data-useravatar="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/user-40.png"><strong>Renjinkui</strong></a> · <span class="createdDate">2015年10月13日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000003850673" data-id="1050000003850684" data-username="Renjinkui"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000003850684" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004353603"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004353603" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>楼主你好，<a href="http://web.jobbole.com/82601/" target="_blank">http://web.jobbole.com/82601/</a> 这篇里说使用defferd模式是错的…关于promise的说法众说纷纭，究竟怎么样才是standard practice这个业界有木有一个标准呢?</p> </div><textarea name="text" rows="1" id="commentText-1050000004353603" class="editTextarea mono form-control mb10 hidden">楼主你好，http://web.jobbole.com/82601/ 这篇里说使用defferd模式是错的…关于promise的说法众说纷纭，究竟怎么样才是standard practice这个业界有木有一个标准呢?</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004353603" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/hiitea" class="commentUser" data-userid="1030000003702200" data-username="sabrinaluo" data-userslug="hiitea" data-useravatar="https://sfault-avatar.b0.upaiyun.com/110/500/1105008937-56a2656aa6484_medium40"><strong>sabrinaluo</strong></a> · <span class="createdDate">1月23日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000003702200" data-id="1050000004353603" data-username="sabrinaluo"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004353603" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004355874"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004355874" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">  <span>回复 <a href="https://segmentfault.com/u/hiitea">sabrinaluo</a>：</span>        <div class="content fmt"><p>这篇文章说的对，只是有些细节翻译的不清楚，建议看下原文。<a href="http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html" target="_blank">http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html</a></p>
+<p>Deferred 不建议使用。</p>
+ </div><textarea name="text" rows="1" id="commentText-1050000004355874" class="editTextarea mono form-control mb10 hidden">这篇文章说的对，只是有些细节翻译的不清楚，建议看下原文。http://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html
+
+Deferred 不建议使用。</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004355874" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/cam" class="commentUser" data-userid="1030000000093422" data-username="Cam" data-userslug="cam" data-useravatar="https://sfault-avatar.b0.upaiyun.com/237/055/2370552746-55cff44ba0973_medium40"><strong>Cam</strong></a> · <span class="createdDate">1月23日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000000093422" data-id="1050000004355874" data-username="Cam"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004355874" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000006008058"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000006008058" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>请问下fetch完数据，接下来的链式方法中对数据进行json()格式化，这一步需要花销1秒多的时间，这是正常情况吗？</p> </div><textarea name="text" rows="1" id="commentText-1050000006008058" class="editTextarea mono form-control mb10 hidden">请问下fetch完数据，接下来的链式方法中对数据进行json()格式化，这一步需要花销1秒多的时间，这是正常情况吗？</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000006008058" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/dbdou" class="commentUser" data-userid="1030000002568651" data-username="dbdou" data-userslug="dbdou" data-useravatar="https://sfault-avatar.b0.upaiyun.com/401/205/4012059368-5701fcf0dfb00_medium40"><strong>dbdou</strong></a> · <span class="createdDate">7月19日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000003810652#" class="commentReply mr5" data-userid="1030000002568651" data-id="1050000006008058" data-username="dbdou"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000003810652#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000006008058" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                
+
+    <div class="widget-comments__form row">
+        
+                            <form class="clearfix SFLogin" method="POST">
+                    <div class="form-group mb0 widget-comments__form--input">
+                        <input name="id" type="hidden" value="1190000003810652">
+                        <textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1190000003810652" data-id="1190000003810652" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题" style="overflow: hidden; word-wrap: break-word; height: 28px;"></textarea>
+
+                    </div>
+                    <div class="widget-comments__btn">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-default postComment" data-id="1190000003810652">提交评论
+                            </button>
+                            <span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示">
+                            <i class="fa fa-question-circle"></i>
+                        </a></span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code> <code>_italic_</code>
+                        <code>[link](http://example.com)</code> <code>&gt; 引用</code> <code>`code`</code> <code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div>
+                </div>
+            
+        </div><!-- /.widget-comments__form -->
+            </div><!-- /.widget-comments -->
+
+    
+
+                                    
+                
+            </div><!-- /.main -->
+
+
+            <div class="col-xs-12 col-md-3 side">
+                <div class="sfad-sidebar">
+      <div class="sfad-item">
+    <ins><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=69__zoneid=2__cb=c9044c63e5__oadest=https%3A%2F%2Fwww.teambition.com%2F%3Futm_source%3Dsegmentfault%26utm_medium%3Dbanner" target="_blank"><img src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/9168fdfb9ca9177fd3ee892dd8a10f20.jpg" width="255" height="165" alt="Teambition 高效协作" title="Teambition 高效协作" border="0"></a><div id="beacon_c9044c63e5" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></ins>
+    <button class="close" type="button" aria-hidden="true">×</button>
+</div>
+
+  </div>
+
+
+                <div class="widget-box no-border">
+                    <p class="text-muted">本文隶属于专栏</p>
+                    <h4 class="fz16"><a href="https://segmentfault.com/blog/camsong">会影</a></h4>
+
+                    <p class="wordbreak">关注前端开发</p>
+
+
+                    <div class="article__widget--author">
+                        <a href="https://segmentfault.com/u/cam">
+                            <img class="avatar-40" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/2370552746-55cff44ba0973_big64" alt="Cam">
+                        </a>
+                        <a href="https://segmentfault.com/u/cam">
+                            Cam
+                        </a>
+                        <p class="text-muted mb0">作者</p>
+
+                                                    <div style="margin-top: 20px;">
+                                                                    <button type="button mb20" class="btn btn-default follow-article" data-do="follow" data-type="blog" data-id="1200000003099627">关注专栏
+                                    </button>
+                                                            </div>
+                        
+
+                    </div>
+
+                </div>
+
+
+                
+                    <div data-type="widget" data-api="/api/bookmarkArchive/hots" data-api-overwrite="/api/bookmarkArchive/1190000003810652/related">
+        <script type="text/template">
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right"
+                                                          href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    <% _.each(data,function(d){ %>
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-<%= d.id%19 %> mr10" src="https://sf-static.b0.upaiyun.com/v-57c64471/global/img/pattern/<%= d.id%10 ? d.id%10 : 10 %>.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="<%- d.url %>"><%= d.name %></a>
+                            <p class="mb0">
+                                <span><%- d.num %></span> 个条目 <span class="division">|</span> <span><%- d.followers %></span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </script>
+    
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 </h4>
+                <ul class="widget-links list-unstyled media">
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-7 mr10" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/3.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000004850913">Javascript</a>
+                            <p class="mb0">
+                                <span>20</span> 个条目 <span class="division">|</span> <span>0</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+                <div class="widget-share__full" data-text="传统 Ajax 已死，Fetch 永生" data-url="https://segmentfault.com/a/1190000003810652" data-shorturl="http://sfau.lt/b5p9ui"><div style="margin-bottom:10px;">分享扩散：</div><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/a/1190000003810652" data-shorturl="http://sfau.lt/b5p9ui"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+                <div class="post-nav hidden-xs side-outline hidden-sm fixed" style="display: block; width: 255px; top: 0px;">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">文章目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="top: 0px;">
+                                <div class="highlight-title" style="display: block; top: 162px; height: 48px;"></div>
+                                <ul class="articleIndex"><li class=""><a href="https://segmentfault.com/a/1190000003810652#articleHeader0">Why Fetch</a></li><li class=""><a href="https://segmentfault.com/a/1190000003810652#articleHeader1">Fetch 启用方法</a></li><li class=""><a href="https://segmentfault.com/a/1190000003810652#articleHeader2">Fetch 常见坑</a></li><li class=""><a href="https://segmentfault.com/a/1190000003810652#articleHeader3">IE 使用策略</a></li><li><a href="https://segmentfault.com/a/1190000003810652#articleHeader4">标准 Promise 的不足</a></li><li style="list-style:none;"><ul><li class=""><a href="https://segmentfault.com/a/1190000003810652#articleHeader5">没有 Deferred</a></li><li class="active"><a href="https://segmentfault.com/a/1190000003810652#articleHeader6">没有获取状态方法：isRejected，isResolved</a></li><li><a href="https://segmentfault.com/a/1190000003810652#articleHeader7">缺少其它一些方法：always，progress，finally</a></li></ul></li><li><a href="https://segmentfault.com/a/1190000003810652#articleHeader8">最后</a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/a/1190000003810652" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<script type="text/template" id="regNext">
+        <div class="row flex-vertical-center">
+        <div class="col-md-12">
+            <p class="mb0" style="font-size: 14px; margin-right:50px; font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace;">
+                    “人生苦短须尽欢，我有 Python 价值观”……不对，什么叫 Python 价值观？
+            </p>
+            <button class="btn btn-primary SFLogin mr10"
+                    onclick='ga("send", "event", "join button", "clicked", "footer welcome popup");'>投入组织怀抱
+            </button>
+            <button class="btn  btn-default  tomorrow">你才用 Python</button>
+        </div>
+        
+    </div>
+</script>
+
+<div class="widget-register widget-welcome-question mt20 hidden-xs widget-welcome widget-register-slideUp">
+    <div class="container">
+        <div class="row flex-vertical-center">
+            <div class="col-sm-12 col-md-8">
+                <p class="mb0">
+                                                                技术专栏，帮你记录编程中的点滴，提升你对技术的理解<br>收藏感兴趣的文章，丰富自己的知识库
+                                    </p>
+
+            </div>
+            <div class="col-sm-12 col-lg-3 col-lg-offset-1 col-md-4">
+                <button class="btn btn-primary btn-lg SFLogin  mr10" onclick="ga(&quot;send&quot;, &quot;event&quot;, &quot;join button&quot;, &quot;clicked&quot;, &quot;footer welcome popup&quot;);">立即注册
+                </button>
+                <button class="btn btn-lg btn-default  tomorrow">明天提醒我</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>网站相关</dt>
+                <dd><a href="https://segmentfault.com/about">关于我们</a></dd>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://segmentfault.com/faq">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/markdown">编辑器语法</a></dd>
+                <dd><a href="https://weekly.segmentfault.com/">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/app">App 下载</a></dd>
+            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>联系合作</dt>
+                <dd><a href="https://segmentfault.com/contact">联系我们</a></dd>
+                <dd><a href="https://segmentfault.com/hiring">加入我们</a></dd>
+                <dd><a href="https://segmentfault.com/link">合作伙伴</a></dd>
+                <dd><a href="https://segmentfault.com/press">媒体报道</a></dd>
+                <dd><a href="https://board.segmentfault.com/">建议反馈</a></dd>
+                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>常用链接</dt>
+                                                <dd><a href="https://chrome.google.com/webstore/detail/segmentfault-%E7%AC%94%E8%AE%B0/pjklfdmleagfaekibdccmhlhellefcfo" target="_blank">笔记插件: Chrome</a></dd>
+                                                                <dd><a href="https://addons.mozilla.org/zh-CN/firefox/addon/sf-note-ext/" target="_blank">笔记插件: Firefox</a></dd>
+                                                                <dd>订阅：<a href="https://segmentfault.com/feeds">问答</a> / <a href="https://segmentfault.com/feeds/blogs">文章</a></dd>
+                                                                <dd><a href="https://mirrors.segmentfault.com/" target="_blank">文档镜像</a></dd>
+                                                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                                                <dd><a href="https://segmentfault.com/d-day" target="_blank">D-DAY 技术沙龙</a></dd>
+                                                                <dd><a href="https://segmentfault.com/hackathon" target="_blank">黑客马拉松 Hackathon</a></dd>
+                                                                <dd><a href="https://namebeta.com/" target="_blank">域名搜索注册</a></dd>
+                                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>关注我们</dt>
+                                <dd><a href="https://github.com/SegmentFault" target="_blank">Github</a></dd>
+                                <dd><a href="https://twitter.com/segment_fault" target="_blank">Twitter</a></dd>
+                                <dd><a href="http://weibo.com/segmentfault" target="_blank">新浪微博</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                            </dl>
+            <dl class="col-sm-4 site-link" id="license">
+                <dt>内容许可</dt>
+                <dd>除特别说明外，用户内容均采用 <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/cn/">知识共享署名-相同方式共享 3.0 中国大陆许可协议</a> 进行许可
+                </dd>
+                <dd>本站由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 提供 CDN 存储服务
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2016 SegmentFault. 当前呈现版本 16.08.30<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="border-bottom" href="https://segmentfault.com/a/1190000003810652#">回顶部</a>
+
+    <div class="qrcodeWraper">
+        <a href="https://segmentfault.com/app#qrcode"><span class="glyphicon glyphicon-qrcode"></span></a>
+        <img id="qrcode" class="border" alt="sf-wechat" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/appQrcode.png">
+
+        <p class="qrcode-text">扫扫下载 App</p>
+    </div>
+</div>
+
+<div class="app-promotion-bar">
+    <a href="javascript:;"><i class="fa fa-close close"></i></a>
+    <div class="icon"></div>
+    <h5 class="title h5">SegmentFault</h5>
+    <p class="describe">一起探索更多未知</p>
+    <a class="download-btn btn btn-sm btn-primary" href="https://segmentfault.com/app#qrcode">下载 App</a>
+</div>
+
+<script id="loginModal" type="text/template">
+<div class="row bg-white login-modal">
+    <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+        <h1 class="h4 text-muted login-title">用户登录</h1>
+        <form action="/api/user/login" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="email" class="form-control" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="密码">
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right pl20 pr20" onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录</button>
+            </div>
+        </form>
+        <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+        <div class="widget-login mt30">
+            <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+            <a href="/user/oauth/google" class="btn btn-default btn-sm btn-sn-google" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span class="icon-sn-bg-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+            <a href="/user/oauth/github" class="btn btn-default btn-sm btn-sn-github" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span class="icon-sn-bg-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+            <a href="/user/oauth/weibo" class="btn btn-default btn-sm btn-sn-weibo" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span class="icon-sn-bg-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+            <a href="/user/oauth/qq" class="btn btn-default btn-sm btn-sn-qq" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span class="icon-sn-bg-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+            <a href="/user/oauth/weixin" class="btn btn-default btn-sm btn-sn-weixin" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span class="icon-sn-bg-weixin"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+            <button id="loginShowMore" href="javascript:void(0);" class="btn mb5 btn-default btn-sm btn-sn-dotted"><span class="icon-sn-bg-dotted"></span><strong class="visible-xs-inline">•••</strong></button>
+            <a href="/user/oauth/twitter" class="btn btn-default btn-sn-twitter btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span class="icon-sn-bg-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+            <a href="/user/oauth/facebook" class="btn btn-default btn-sn-facebook btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span class="icon-sn-bg-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+            <a href="/user/oauth/douban" class="btn btn-default btn-sn-douban btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span class="icon-sn-bg-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+        </div>
+    </div>
+    <div class="login-vline hidden-xs hidden-sm"></div>
+    <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+        <h1 class="h4 text-muted login-title">创建新账号</h1>
+        <form action="/api/user/register" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label for="name" class="control-label">用户名</label>
+                <input type="text" class="form-control" name="name" required placeholder="字母、数字等，用户名唯一">
+            </div>
+            <div class="form-group">
+                <label for="mail" class="control-label">Email</label>
+                <input type="hidden" style="display:none" name="mail">
+                <input type="email" autocomplete="off" class="form-control register-mail" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="required control-label">验证码</label>
+                <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                <div class="mt10"><a id="loginReloadCaptcha"  href="javascript:void(0)"><img data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50" /></a></div>
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                </div>
+                <button type="submit" class="btn btn-primary pl20 pr20 pull-right" onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center text-muted mt30">
+    <a href="/user/forgot" class="ml5">找回密码</a>
+</div>
+</script>
+
+
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://sf-static.b0.upaiyun.com/v-57c64471"
+        };
+        w.SF.token = (function () {
+    var _yE4q = //'8E'
+'3'+'O5U'//'O5U'
++'0f8'//'Im'
++//'EU'
+'c8'+//'n'
+'n'+//'9q'
+'47c'+'74'//'q'
++'5'//'7'
++//'p'
+'018'+//'dZt'
+'958'+//'r'
+'9'+'8b'//'8b'
++/* 'fK'//'fK' */''+//'J'
+'f7f'+'9'//'jH'
++//'CV'
+'456'+'cbc'//'S'
++'ae'//'UK1'
++'a'//'L8E'
+, _Czu1vQ = [[1,4],[6,7],[19,21]];
+
+    for (var i = 0; i < _Czu1vQ.length; i ++) {
+        _yE4q = _yE4q.substring(0, _Czu1vQ[i][0]) + _yE4q.substring(_Czu1vQ[i][1]);
+    }
+
+    return _yE4q;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+</script>
+
+    <script crossorigin="" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/assets.js"></script>
+    <script crossorigin="" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/post.min.js"></script>
+
+<script async="" src="./传统 Ajax 已死，Fetch 永生 - 会影 - SegmentFault_files/asyncjs.php"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            
+        
+
+            
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1472715944 });
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function() {
+        _vds.push(['setAccountId', '5411b7ab1ae040ed9a4eb4a120a06ead']);
+        (function() {
+            var vds = document.createElement('script');
+            vds.type = 'text/javascript';
+            vds.async = true;
+            vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(vds, s);
+        })();
+    })();
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<div id="noteWidget" class="noteWidget hidden hidden-xs">
+    <div class="noteWidget-header clearfix">
+        <h2 class="h4 pull-left">记笔记</h2>
+        <ul class="list-inline pull-right mb0">
+            <li id="noteWidgetMinimize"><span class="icon-minimize"></span></li><li id="noteWidgetZoom"><span class="icon-zoom"></span></li><li id="noteWidgetClose"><span class="icon-close"></span></li>
+        </ul>
+    </div>
+    <form method="POST" action="https://segmentfault.com/api/notes/add" role="form">
+        <div class="form-group">
+            <label for="title" class="sr-only">标题</label>
+            <input type="hidden" value="" id="draftId">
+            <input type="text" name="title" data-error="" autocomplete="off" class="form-control" placeholder="笔记描述" value="">
+        </div>
+        <div class="editor-config clearfix">
+            <select name="lang" class="form-control pull-left input-sm">
+                <optgroup label="文本语法">
+                    <option value="text" data-mode="text">纯文本</option>
+                    <option value="markdown" data-mode="markdown">Markdown</option>
+                    <option value="javascript" data-mode="javascript">Javascript</option>
+                    <option value="css" data-mode="css">CSS</option>
+                    <option value="html5" data-mode="htmlmixed">HTML</option>
+                    <option value="php" data-mode="php">PHP</option>
+                    <option value="python" data-mode="python">Python</option>
+                    <option value="ruby" data-mode="ruby">Ruby</option>
+                    <option value="go" data-mode="go">Go</option>
+                    <option value="c" data-mode="clike">C/C++</option>
+                    <option value="java" data-mode="java">Java</option>
+                    <option value="bash" data-mode="shell">Shell/Bash</option>
+                </optgroup>
+            </select>
+            <div class="pull-right hidden-xs">
+                <select name="indentWithTabs" class="form-control inline-block input-sm">
+                    <optgroup label="缩进模式">
+                        <option value="false">空格缩进</option>
+                        <option value="true">Tabs 缩进</option>
+                    </optgroup>
+                </select>
+                <select name="tabSize" class="form-control inline-block input-sm">
+                    <optgroup label="缩进大小">
+                        <option value="2">2</option>
+                        <option value="4" selected="">4</option>
+                    </optgroup>
+                </select>
+                <select name="lineWrap" class="form-control inline-block input-sm">
+                    <optgroup label="换行方式">
+                        <option value="true">自动换行</option>
+                        <option value="false">不换行</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <textarea id="codeMirror" class="form-control" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+        <div class="mt20 clearfix">
+            <div class="pull-right">
+                <span class="text-muted hidden" id="editorStatus">已保存</span>
+                <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                <button data-type="note" id="publishIt2" class="btn btn-default ml10" data-id="" data-do="add" data-url="" data-text="保存私密笔记" data-name="">保存私密笔记</button>
+                <button data-type="note" id="publishIt" class="btn btn-primary ml10" data-id="" data-do="add" data-url="" data-text="保存公开笔记" data-name="">保存公开笔记</button>
+                </div>
+            </div>
+        </form></div>
+    
+<div id="atwho-container"><div id="atwho-ground-commentText-1190000003810652"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; transition: none; height: 0px !important; min-height: 0px !important; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; word-spacing: 0px; text-indent: 0px; white-space: pre-wrap; line-height: 21px; width: 649px;" class="autosizejs" id="autosizejs"></textarea></body></html>

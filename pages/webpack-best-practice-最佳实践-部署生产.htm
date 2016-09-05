@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<!-- saved from url=(0121)http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- content-Type -->
+
+
+
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="language" content="en">
+<meta name="robots" content="all">
+
+
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+<meta name="author" content="theme.author, theme.email">
+<meta name="reply-to" content="theme.email">
+<meta name="owner" content="theme.author">
+
+
+
+
+<meta name="google-site-verification" content="UA-78049587-1">
+
+
+
+
+<meta name="baidu-site-verification" content="fRBucd9VmI">
+
+
+
+
+<meta name="baidu-gxt-verify-token" content="ca8f032797b876ef3be37c3d492168a0">
+
+
+
+
+<meta name="description" content="hello word! 😺">
+
+
+
+
+<meta name="keywords" content="JavaScript,webpack,">
+
+
+<meta name="description" content="tipwebpack的入门篇可以看我的这一片博文。《如何使用webpack—webpack-howto》.
+前言最近一段时间在项目中使用了webpack和React来开发，总之来说也是遇到了许多坑，webpack毕竟还是比较新的技术，而且也很难有一个很好的构建案例来适应所有的项目，总之，在看了许多项目demo和官方文档以及官方推荐的tutorials之后，也算是自己总结出的一套最佳实践吧。
+代码代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack-best-practice-最佳实践-部署生产">
+<meta property="og:url" content="http://qiutc.me/post/webpack-best-practice-最佳实践-部署生产.html">
+<meta property="og:site_name" content="阿城的blog">
+<meta property="og:description" content="tipwebpack的入门篇可以看我的这一片博文。《如何使用webpack—webpack-howto》.
+前言最近一段时间在项目中使用了webpack和React来开发，总之来说也是遇到了许多坑，webpack毕竟还是比较新的技术，而且也很难有一个很好的构建案例来适应所有的项目，总之，在看了许多项目demo和官方文档以及官方推荐的tutorials之后，也算是自己总结出的一套最佳实践吧。
+代码代">
+<meta property="og:image" content="http://qiutc.me/img/webpack.png">
+<meta property="og:updated_time" content="2016-05-10T03:51:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack-best-practice-最佳实践-部署生产">
+<meta name="twitter:description" content="tipwebpack的入门篇可以看我的这一片博文。《如何使用webpack—webpack-howto》.
+前言最近一段时间在项目中使用了webpack和React来开发，总之来说也是遇到了许多坑，webpack毕竟还是比较新的技术，而且也很难有一个很好的构建案例来适应所有的项目，总之，在看了许多项目demo和官方文档以及官方推荐的tutorials之后，也算是自己总结出的一套最佳实践吧。
+代码代">
+
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="http://qiutc.me/favicon.ico?v=0.0.1">
+
+
+
+
+
+
+<link href="./webpack-best-practice-最佳实践-部署生产_files/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./webpack-best-practice-最佳实践-部署生产_files/main.css">
+
+
+<script src="./webpack-best-practice-最佳实践-部署生产_files/hm.js"></script><script async="" src="./webpack-best-practice-最佳实践-部署生产_files/analytics.js"></script><script src="./webpack-best-practice-最佳实践-部署生产_files/push.js"></script><script>
+(function(){
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <title> webpack-best-practice-最佳实践-部署生产 </title>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-78049587-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?47d302b006bf28a09c22990da53cd3da";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script type="text/javascript" async="" src="./webpack-best-practice-最佳实践-部署生产_files/embed.js" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="./webpack-best-practice-最佳实践-部署生产_files/embed.default.css"></head>
+<body lang="zh-Hans">
+
+  <!--[if lte IE 9]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <div class="another-theme layout">
+
+    
+<header class="header" id="header">
+
+  <div class="header-cont">
+    <div class="text-area">
+      
+        <h1 class="title" data-text="webpack-best-practice-最佳实践-部署生产"> webpack-best-practice-最佳实践-部署生产 </h1>
+
+        
+        <div class="post-meta">
+          <div class="post-time">
+            发表于
+            <time datetime="2015-12-02T10:56:39+08:00" content="2015-12-02">
+              2015-12-02
+            </time>
+          </div>
+
+          
+            <div class="post-category">
+              
+                <span>
+                  <a href="http://qiutc.me/categories#webpack" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </div>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <a href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/webpack-best-practice-最佳实践-部署生产.html" itemprop="commentsCount">29条评论</span>
+                </a>
+              </span>
+            
+          
+        </div>
+        
+      
+    </div>
+    <!-- Navigation -->
+    
+    <nav class="navigation clearfix scrolled" id="navigation">
+      
+        
+        <a class="nav-link" href="http://qiutc.me/" rel="section">
+          首页
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/categories" rel="section">
+          分类
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/tags" rel="section">
+          标签
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/about" rel="section">
+          关于
+        </a>
+      
+    </nav>
+    
+  </div>
+  <div class="mask"></div>
+</header>
+
+
+    <main class="container">
+
+      
+
+  <article class="post-article post-type-normal post" itemscope="">
+
+  <div class="post-body">
+
+    <div class="content markdown-body"><p><img src="./webpack-best-practice-最佳实践-部署生产_files/webpack.png" alt="webpack"></p>
+<h1 id="tip">tip</h1><p>webpack的入门篇可以看我的这一片博文。<br><a href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html">《如何使用webpack—webpack-howto》</a>.</p>
+<h1 id="前言">前言</h1><p>最近一段时间在项目中使用了webpack和React来开发，总之来说也是遇到了许多坑，webpack毕竟还是比较新的技术，而且也很难有一个很好的构建案例来适应所有的项目，总之，在看了许多项目demo和官方文档以及官方推荐的tutorials之后，也算是自己总结出的一套最佳实践吧。</p>
+<h2 id="代码">代码</h2><p>代码可以在我的<a href="https://github.com/TongchengQiu/webpack-best-practice" target="_blank" rel="external">Github</a>上。<br><a href="https://github.com/TongchengQiu/webpack-best-practice" target="_blank" rel="external">可以戳这里～～</a>。</p>
+<h1 id="package-json_命令配置">package.json 命令配置</h1><p>既然是需要用到的是实际项目的构建，那么必然就要考虑开发环境和生产环境下的配置项了：<br></p><figure class="highlight 1c"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">{</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">"scripts"</span>: {</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack --progress --colors --watch"</span>,</span><br><span class="line">    <span class="string">"watch"</span>: <span class="string">"webpack-dev-server --hot --progress --colors"</span>,</span><br><span class="line">    <span class="string">"dist"</span>: <span class="string">"NODE_ENV=production webpack --progress --colors"</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>可以在目录下执行 <code>npm run build</code> , <code>npm run watch</code> , <code>npm run dist</code><br>解释一下:</p>
+<ul>
+<li>build 是在我们开发环境下执行的构建命令;</li>
+<li>watch 也是在开发环境下执行，但是加了webpack最强大的功能－－搭建静态服务器和热插拔功能（这个在后面介绍;</li>
+<li>dist 是项目在要部署到生产环境时打包发布。</li>
+</ul>
+<p>dist 里面的<code>NODE_ENV=production</code>是声明了当前执行的环境是production－生产环境<br><br><br>后面跟着几个命令：</p>
+<ul>
+<li>–colors 输出的结果带彩色</li>
+<li>–progress 输出进度显示</li>
+<li>–watch 动态实时监测依赖文件变化并且更新</li>
+<li>–hot 是热插拔</li>
+<li>–display-error-details 错误的时候显示更多详细错误信息</li>
+<li>–display-modules 默认情况下 node_modules 下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块</li>
+<li>-w 动态实时监测依赖文件变化并且更新</li>
+<li>-d 提供sorcemap</li>
+<li>-p 对打包文件进行压缩</li>
+</ul>
+<h1 id="目录结构">目录结构</h1><p>现在前端模块化的趋势导致目录结构也发生了很大的改变和争议，这只是我自己用到的一种形式，可以参考。<br></p><figure class="highlight gherkin"><table><tbody><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── app                 <span class="comment">#开发目录</span></span><br><span class="line">|<span class="string">   ├──assets           #存放静态资源</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   ├──datas        #存放数据 json 文件</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   ├──images       #存放图片资源文件</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   └──styles       #存放全局sass变量文件和reset文件</span><br><span class="line"></span>|<span class="string">   ├──lib</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   ├──components   #存放数据 模块组件 文件</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">   └──Header</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">       ├──Header.jsx</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">       └──Header.scss</span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   </span>|<span class="string">       </span><br><span class="line"></span>|<span class="string">   </span>|<span class="string">   └──utils        #存放utils工具函数文件</span><br><span class="line"></span>|<span class="string">   </span>|</span><br><span class="line">|<span class="string">   └──views</span><br><span class="line"></span>|<span class="string">       ├──Index        #入口文件</span><br><span class="line"></span>|<span class="string">       </span>|<span class="string">   ├──Index.html #html文件</span><br><span class="line"></span>|<span class="string">       </span>|<span class="string">   ├──Index.jsx</span><br><span class="line"></span>|<span class="string">       </span>|<span class="string">   └──Index.scss</span><br><span class="line"></span>|<span class="string">       └──Index2</span><br><span class="line">├── dist                #发布目录</span><br><span class="line">├── node_modules        #包文件夹</span><br><span class="line">├── .gitignore     </span><br><span class="line">├── .jshintrc      </span><br><span class="line">├── webpack.config.js   #webpack配置文件</span><br><span class="line">└── package.json</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>具体可以到Github上看demo。</p>
+<h1 id="webpack-config-js">webpack.config.js</h1><h2 id="引入包">引入包</h2><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br></pre></td></tr></tbody></table></figure>
+<p>这个毋庸置疑吧。</p>
+<h2 id="判断是否是在当前生产环境">判断是否是在当前生产环境</h2><p>定义函数判断是否是在当前生产环境，这个很重要，一位开发环境和生产环境配置上有一些区别<br></p><figure class="highlight actionscript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> isProduction = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">return</span> process.env.NODE_ENV === <span class="string">'production'</span>;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="声明文件夹">声明文件夹</h2><figure class="highlight actionscript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 定义输出文件夹</span></span><br><span class="line"><span class="keyword">var</span> outputDir = <span class="string">'./dist'</span>;</span><br><span class="line"><span class="comment">// 定义开发文件夹</span></span><br><span class="line"><span class="keyword">var</span> entryPath = <span class="string">'./app/views'</span>;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="定义插件">定义插件</h2><figure class="highlight gradle"><table><tbody><tr><td class="code"><pre><span class="line">var plugins = [</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin({</span><br><span class="line">    name: <span class="string">'commons'</span>,</span><br><span class="line">    filename: <span class="string">'js/commons.js'</span>,</span><br><span class="line">  }),</span><br><span class="line">  <span class="keyword">new</span> webpack.ProvidePlugin({</span><br><span class="line">    React: <span class="string">'react'</span>,</span><br><span class="line">    ReactDOM: <span class="string">'react-dom'</span>,</span><br><span class="line">    reqwest: <span class="string">'reqwest'</span>,</span><br><span class="line">  }),</span><br><span class="line">];</span><br><span class="line"><span class="keyword">if</span>( isProduction() ) {</span><br><span class="line">  plugins.<span class="keyword">push</span>(</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin({</span><br><span class="line">      test: <span class="regexp">/(\.jsx|\.js)$/</span>,</span><br><span class="line">      compress: {</span><br><span class="line">        warnings: <span class="keyword">false</span></span><br><span class="line">      },</span><br><span class="line">    })</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<ol>
+<li>CommonsChunkPlugin 插件可以打包所有文件的共用部分生产一个commons.js文件。</li>
+<li>ProvidePlugin 插件可以定义一个共用的入口，比如 下面加的 React ,他会在每个文件自动require了react，所以你在文件中不需要 require(‘react’)，也可以使用 React。</li>
+<li>如果是在生产环境下，则加入插件 UglifyJsPlugin ，执行代码压缩，并且去除 warnings。</li>
+</ol>
+<h2 id="自动遍历多文件入口">自动遍历多文件入口</h2><figure class="highlight tcl"><table><tbody><tr><td class="code"><pre><span class="line">var entris = fs.readdirSync(entryPath).reduce(function (o, <span class="keyword">filename</span>) {</span><br><span class="line">    !/\./.test(<span class="keyword">filename</span>) &amp;&amp;</span><br><span class="line">    (o[<span class="keyword">filename</span>] = <span class="string">'./'</span> + path.<span class="keyword">join</span>(entryPath, <span class="keyword">filename</span>, <span class="keyword">filename</span> + <span class="string">'.jsx'</span>));</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">  }, {}</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure>
+<p>函数会自动遍历开发的入口文件夹下面的文件，然后一一生产入口并且返回一个对象－－入口。</p>
+<h2 id="如果在这一步不需要多页面多入口">如果在这一步不需要多页面多入口</h2><p>那么可以使用<a href="https://www.npmjs.com/package/html-webpack-plugin" target="_blank" rel="external">html-webpack-plugin</a>插件，它可以自动为入口生成一个html文件，配置如下：<br></p><figure class="highlight livescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">plugins.push(<span class="keyword">new</span> HtmlWebpackPlugin({</span><br><span class="line">  <span class="attribute">title</span>: <span class="string">'index'</span>,</span><br><span class="line">  <span class="attribute">filename</span>: outputDir+<span class="string">'/index.html'</span>,  <span class="comment">#生成html的位置</span></span><br><span class="line">  <span class="attribute">inject</span>: <span class="string">'body'</span>,                     <span class="comment">#插入script在body标签里</span></span><br><span class="line">}));</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>entry 就可以自定义一个入口就够了</p>
+<h2 id="config的具体配置">config的具体配置</h2><figure class="highlight typescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> config = {</span><br><span class="line">  target: <span class="string">'web'</span>,</span><br><span class="line">  cache: <span class="literal">true</span>,</span><br><span class="line">  entry: entris,</span><br><span class="line">  output: {</span><br><span class="line">    path: outputDir,</span><br><span class="line">    filename: <span class="string">'js/[name].bundle.js'</span>,</span><br><span class="line">    publicPath: isProduction()? <span class="string">'http://******'</span> : <span class="string">'http://localhost:3000'</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="module"><span class="keyword">module</span>: </span>{</span><br><span class="line">    loaders: [</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/(\.jsx|\.js)$/</span>,</span><br><span class="line">        loaders: [<span class="string">'babel?presets[]=es2015&amp;presets[]=react'</span>],</span><br><span class="line">        exclude: <span class="regexp">/node_modules/</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">        loaders: [<span class="string">'style'</span>, <span class="string">'css?root='</span>+__dirname, <span class="string">'resolve-url'</span>, <span class="string">'sass'</span>]</span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.json$/</span>,</span><br><span class="line">        loader: <span class="string">'json'</span>,</span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.(jpe?g|png|gif|svg)$/</span>,</span><br><span class="line">        loader: <span class="string">'url?limit=1024&amp;name=img/[name].[ext]'</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.(woff2?|otf|eot|svg|ttf)$/i</span>,</span><br><span class="line">        loader: <span class="string">'url?name=fonts/[name].[ext]'</span></span><br><span class="line">      },</span><br><span class="line">      {</span><br><span class="line">        test: <span class="regexp">/\.html$/</span>,</span><br><span class="line">        loader: <span class="string">'file?name=views/[name].[ext]'</span></span><br><span class="line">      },</span><br><span class="line">    ]</span><br><span class="line">  },</span><br><span class="line">  plugins: plugins,</span><br><span class="line">  resolve: {</span><br><span class="line">    extensions: [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'jsx'</span>],</span><br><span class="line">  },</span><br><span class="line">  devtool: isProduction()?<span class="literal">null</span>:<span class="string">'source-map'</span>,</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>这里来一一说明：</p>
+<h3 id="对于output">对于output</h3><p>path和filename都不用多说了，path是生成文件的存放目录，filename是文件名，当然可以在前面加上目录位置。<br>这里提醒一下，filename 的相对路径就是 path了，并且下面 静态文件生成的filename也是相对于这里的path的，比如 image 和 html。<br>publicPath 的话是打包的时候生成的文件链接，比如 图片 资源，<br>如果是在生产环境当然是用服务器地址，如果是开发环境就是用本地静态服务器的地址。</p>
+<h3 id="module_loaders_打包加载的处理器">module loaders 打包加载的处理器</h3><p>可以不用夹 loader了 比如 原来 url-loader  现在 url</p>
+<h4 id="js/jsx">js/jsx</h4><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /(\.jsx|\.js)$/,</span><br><span class="line">  loaders: [<span class="string">'babel?presets[]=es2015&amp;presets[]=react'</span>],</span><br><span class="line">  exclude: /node_modules/</span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>对于js文件和jsx文件用了babel来处理，这里注意一下，最新版本的babel吧es2015和react的处理分开了，所有要这么写。</p>
+<h3 id="处理scss文件">处理scss文件</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /\.scss$/,</span><br><span class="line">  loaders: [<span class="string">'style'</span>, <span class="string">'css?root='</span>+__dirname, <span class="string">'resolve-url'</span>, <span class="string">'sass'</span>]</span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>这里用了sass、css、style的loader这不用多说了。<br>那么root和resolve-url是怎么回事呢，root是定义了scss文件里面声明的url地址是相对于根目录的，然后resolve-url回去相对解析这个路径，而不用require去获取，比如<br></p><figure class="highlight scss"><table><tbody><tr><td class="code"><pre><span class="line"><span class="attribute">background</span><span class="value">: <span class="function">url</span>(<span class="string">'./assets/images/webpack.png'</span>);</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这样就可以加载到<code>./assets/images/webpack.png</code>这个文件，而不用使用相对路径和require</p>
+<h3 id="处理json文件">处理json文件</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /\.json$/,</span><br><span class="line">  loader: <span class="string">'json'</span>,</span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>对于json文件，可以自动请求该模块并且打包。</p>
+<h3 id="处理_图片_字体_资源文件">处理 图片 字体 资源文件</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /\.(jpe?g|png|gif|svg)$/,</span><br><span class="line">  loader: <span class="string">'url?limit=1024&amp;name=img/[name].[ext]'</span></span><br><span class="line"></span></span></span>},</span><br><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /\.(woff2?|otf|eot|svg|ttf)$/i,</span><br><span class="line">  loader: <span class="string">'url?name=fonts/[name].[ext]'</span></span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>这里使用了 url 这个loader，但是url依赖 file-loader，它是对file-loader的二次封装。<br>在请求图片的时候如果文件大小小于 1024k ，使用内联 base64 URLs，否则会自动导入到name所声明的目录，这里是相对之前声明的 outputDir 路径。<br>字体资源也是一样。</p>
+<h3 id="处理html文件">处理html文件</h3><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">test</span>:<span class="value"> /\.html$/,</span><br><span class="line">  loader: <span class="string">'file?name=views/[name].[ext]'</span></span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>在多页面的项目中需要，可以自动吧html文件导入到指定的生产文件夹下。</p>
+<h2 id="resolve">resolve</h2><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">resolve</span>: <span class="rules">{</span><br><span class="line">  <span class="rule"><span class="attribute">extensions</span>:<span class="value"> [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'jsx'</span>],</span><br><span class="line"></span></span></span>},</span><br></pre></td></tr></tbody></table></figure>
+<p>是可以忽略的文件后缀名，比如可以直接<code>require('Header');</code>而不用加.jsx。</p>
+<h2 id="devtool">devtool</h2><figure class="highlight groovy"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">devtool:</span> isProduction()?null:<span class="string">'source-map'</span>,</span><br></pre></td></tr></tbody></table></figure>
+<p>规定了在开发环境下才使用 source-map。</p>
+<h1 id="疑问">疑问</h1><p>目前为止，对于多页面项目还是没有找到一个很好的方案去构建自动化。</p>
+</div>
+
+    <div class="post-sidebar">
+  <div class="toggle-btn" id="toggle-btn">
+    <i class="fa fa-reorder"></i>
+  </div>
+  <section class="post-toc-wrap" id="post-sidebar">
+    <h2 class="toc-title">内容目录</h2>
+    <div class="post-toc">
+      
+      
+        <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#tip"><span class="nav-text">tip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#前言"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#代码"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#package-json_命令配置"><span class="nav-text">package.json 命令配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#目录结构"><span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#webpack-config-js"><span class="nav-text">webpack.config.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#引入包"><span class="nav-text">引入包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#判断是否是在当前生产环境"><span class="nav-text">判断是否是在当前生产环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#声明文件夹"><span class="nav-text">声明文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#定义插件"><span class="nav-text">定义插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#自动遍历多文件入口"><span class="nav-text">自动遍历多文件入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#如果在这一步不需要多页面多入口"><span class="nav-text">如果在这一步不需要多页面多入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#config的具体配置"><span class="nav-text">config的具体配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#对于output"><span class="nav-text">对于output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#module_loaders_打包加载的处理器"><span class="nav-text">module loaders 打包加载的处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#js/jsx"><span class="nav-text">js/jsx</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#处理scss文件"><span class="nav-text">处理scss文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#处理json文件"><span class="nav-text">处理json文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#处理_图片_字体_资源文件"><span class="nav-text">处理 图片 字体 资源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#处理html文件"><span class="nav-text">处理html文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#resolve"><span class="nav-text">resolve</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#devtool"><span class="nav-text">devtool</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/webpack-best-practice-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-%E9%83%A8%E7%BD%B2%E7%94%9F%E4%BA%A7.html#疑问"><span class="nav-text">疑问</span></a></li></ol></div>
+      
+    </div>
+  </section>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="http://qiutc.me/tags#JavaScript" rel="tag">#JavaScript</a>
+        
+          <a href="http://qiutc.me/tags#webpack" rel="tag">#webpack</a>
+        
+      </div>
+    
+    
+  <style>
+    .donation {
+      width: 100%;
+      margin-top: 2rem;
+    }
+    .donation .text {
+      color: #333;
+      font-size: .8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .donation .text:hover {
+      color: rgb(63,134,181);
+    }
+    .donation .img-box {
+      transition: all .3s;
+      width: 0;
+      height: 0;
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+    .donation .img-box img {
+      width: 100%;
+      height: 100%;
+    }
+    .donation #donation {
+      display: none;
+    }
+    .donation #donation:checked + .img-box {
+      width: 16rem;
+      height: 16rem;
+    }
+  </style>
+  <div class="donation">
+    <label class="text" for="donation">
+      如果你觉得文章对你有帮助，并且想为我买一杯咖啡，点这里～
+    </label>
+    <input type="checkbox" name="donation" id="donation">
+    <div class="img-box">
+      <img src="./webpack-best-practice-最佳实践-部署生产_files/donation.png" alt="donation">
+    </div>
+    
+  </div>
+
+
+  </footer>
+
+</article>
+
+
+
+
+      
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="post/webpack-best-practice-最佳实践-部署生产.html" data-title="webpack-best-practice-最佳实践-部署生产" data-url="http://qiutc.me/post/webpack-best-practice-最佳实践-部署生产.html" id="ds-thread">
+      <div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"><span class="ds-highlight">3</span> 人喜欢</span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">23</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6311599917160727297"><div class="ds-post-self" data-post-id="6311599917160727297" data-thread-id="6223525110033154818" data-root-id="6311183537764565761" data-source="duoshuo"><div class="ds-avatar" data-user-id="3213980"><a rel="nofollow author" target="_blank" href="http://t.qq.com/caiyunfeixiaz" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3213980&#39;;" title="大飞"><img src="./webpack-best-practice-最佳实践-部署生产_files/50" alt="大飞"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/caiyunfeixiaz" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3213980&#39;;" rel="nofollow" target="_blank" data-user-id="3213980">大飞</a></div><p><a class="ds-comment-context" data-post-id="6311599917160727297" data-parent-id="6311211163816297218">回复 vvv阿城: </a>恩 确实是这样。合适的框架搭建合适的项目。 强扭的瓜很苦，那我宁愿还用模板+ajax</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-26T19:51:11+08:00" title="2016年7月26日 下午7:51:11">7月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6311211163816297218"><div class="ds-post-self" data-post-id="6311211163816297218" data-thread-id="6223525110033154818" data-root-id="6311183537764565761" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6311211163816297218" data-parent-id="6311183537764565761">回复 大飞: </a>对的，这就不需要多入口了，但是很多时候还是看业务场景，并不是所有网站都适合 spa</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-25T18:42:37+08:00" title="2016年7月25日 下午6:42:37">7月25日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6311183537764565761"><div class="ds-post-self" data-post-id="6311183537764565761" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="3213980"><a rel="nofollow author" target="_blank" href="http://t.qq.com/caiyunfeixiaz" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3213980&#39;;" title="大飞"><img src="./webpack-best-practice-最佳实践-部署生产_files/50" alt="大飞"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/caiyunfeixiaz" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3213980&#39;;" rel="nofollow" target="_blank" data-user-id="3213980">大飞</a></div><p>构建单页吧 就没有多页面打包的问题了   react-router + react + redux</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-25T16:55:25+08:00" title="2016年7月25日 下午4:55:25">7月25日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6307381559280272130"><div class="ds-post-self" data-post-id="6307381559280272130" data-thread-id="6223525110033154818" data-root-id="6301077392945316609" data-source="duoshuo"><div class="ds-avatar" data-user-id="4401458"><a rel="nofollow author" target="_blank" href="http://t.qq.com/liwenyao9365" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=4401458&#39;;" title="小明的小名叫小明"><img src="./webpack-best-practice-最佳实践-部署生产_files/50(1)" alt="小明的小名叫小明"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/liwenyao9365" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=4401458&#39;;" rel="nofollow" target="_blank" data-user-id="4401458">小明的小名叫小明</a></div><p><a class="ds-comment-context" data-post-id="6307381559280272130" data-parent-id="6301819032135811841">回复 vvv阿城: </a>好的，谢谢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-15T11:01:48+08:00" title="2016年7月15日 上午11:01:48">7月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6301819032135811841"><div class="ds-post-self" data-post-id="6301819032135811841" data-thread-id="6223525110033154818" data-root-id="6301077392945316609" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6301819032135811841" data-parent-id="6301077392945316609">回复 小明的小名叫小明: </a>手动写的啊，并没有用其他工具</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-30T11:16:21+08:00" title="2016年6月30日 上午11:16:21">6月30日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6301077392945316609"><div class="ds-post-self" data-post-id="6301077392945316609" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="4401458"><a rel="nofollow author" target="_blank" href="http://t.qq.com/liwenyao9365" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=4401458&#39;;" title="小明的小名叫小明"><img src="./webpack-best-practice-最佳实践-部署生产_files/50(1)" alt="小明的小名叫小明"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/liwenyao9365" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=4401458&#39;;" rel="nofollow" target="_blank" data-user-id="4401458">小明的小名叫小明</a></div><p>您好，请问一下目录结构是怎么生成的？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-28T11:18:25+08:00" title="2016年6月28日 上午11:18:25">6月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6288988170511975169"><div class="ds-post-self" data-post-id="6288988170511975169" data-thread-id="6223525110033154818" data-root-id="6285900818042323714" data-source="duoshuo"><div class="ds-avatar"><img src="./webpack-best-practice-最佳实践-部署生产_files/227054.jpg" alt="leo"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">leo</span></div><p><a class="ds-comment-context" data-post-id="6288988170511975169" data-parent-id="6285954176220398337">回复 vvv阿城: </a>其实可以配合gulp，用gulp-changed来解决</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-26T21:26:03+08:00" title="2016年5月26日 下午9:26:03">5月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6288311734943875841"><div class="ds-post-self" data-post-id="6288311734943875841" data-thread-id="6223525110033154818" data-root-id="6285900818042323714" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6288311734943875841" data-parent-id="6288138518770221826">回复 赖熊: </a>这样的话我的一个想法是建立两个 entry，一个是主要的功能，另一个单纯用来打包第三方的 css，这样可以分开来了。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-25T01:41:08+08:00" title="2016年5月25日 上午1:41:08">5月25日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6288138518770221826"><div class="ds-post-self" data-post-id="6288138518770221826" data-thread-id="6223525110033154818" data-root-id="6285900818042323714" data-source="duoshuo"><div class="ds-avatar" data-user-id="6285871821480788738"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6285871821480788738&#39;;" title="赖熊"><img src="./webpack-best-practice-最佳实践-部署生产_files/0" alt="赖熊"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6285871821480788738&#39;;" rel="nofollow" target="_blank" data-user-id="6285871821480788738">赖熊</a></div><p><a class="ds-comment-context" data-post-id="6288138518770221826" data-parent-id="6285954176220398337">回复 vvv阿城: </a>非常感谢你的回答！~第二个问题已经完美解决，原来是我的配置那里把node_modules这个文件夹过滤掉了，摆了个乌龙。。关于第一个问题，还是决定由着它这样先。<br>
+大神，想再请教个问题啊~<br>
+因为现在web项目中使用了很多第三方库和插件什么的，比如bootstrap、font-awesome、uediter等，这些都会有自己的css和js，对于它们的css和js你是怎么引入的呢？我现在是直接require进来的，但是最后打包之后的css文件好大。因为是多页面，这些页面中有很多的css和js都是公用的，js可以用webpack的CommonsChunkPlugin和UglifyJsPlugin进行打包压缩处理，但是css最后只打包成了一个文件，而且文件好大，对于这个问题你一般都是怎么处理的呢？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-24T14:28:58+08:00" title="2016年5月24日 下午2:28:58">5月24日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6285954176220398337"><div class="ds-post-self" data-post-id="6285954176220398337" data-thread-id="6223525110033154818" data-root-id="6285900818042323714" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6285954176220398337" data-parent-id="6285900818042323714">回复 赖熊: </a>第一个问题的话，每次运行webpack的时候他会根据entry去打包整个依赖然后输出，你没办法去限制每次它只打包哪几个入口，除非己手动删掉它。而且这个去限制是没意义的吧，因为这么一点消耗无所谓吧，而且项目中总有一些公共的依赖，都需要整个项目去打包的。对于hash值的话是有一个 ``chunkhash `` 的，它是对于每个模块的hash，不知道能不能解决问题。旧的文件我是都删除的，可以在 npm 的package 配置一个 clean 命令，``"clean": "rimraf dist"`` ，在build的时候先运行clean：``"build": "npm run clean &amp;&amp; NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors"``。<br>
+第二个问题的话，可以尝试在 css 的 loader 加上 ``include: /node_modules/`` 配置，</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-18T17:12:36+08:00" title="2016年5月18日 下午5:12:36">5月18日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6285900818042323714"><div class="ds-post-self" data-post-id="6285900818042323714" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6285871821480788738"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6285871821480788738&#39;;" title="赖熊"><img src="./webpack-best-practice-最佳实践-部署生产_files/0" alt="赖熊"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6285871821480788738&#39;;" rel="nofollow" target="_blank" data-user-id="6285871821480788738">赖熊</a></div><p>文章写得很赞的！作为新手，有几个问题很迫切地想请教一下大神：<br>
+1、我现在是用webpack搭建多页面的web项目，项目有n多个页面，而每次运行webpack进行打包之后，webpack都会将所有的文件都重新打包一次，这样的话很浪费资源而且不太合理...<br>
+比如，我现在有login.html,userList.html,adminList.html三个页面，每个页面都有一个对应的入口文件（login.js,userList.js,adminList.js），假设开发项目的周期是一个月，如果我今天只是开发了login相关的功能，然后明天我要接着开发userList相关的功能，那么当我运行 webpack 命令之后，之前没有修改过而且不需要修改的login相关的js/css等文件又被毫无意义地重新打包了一次，这样的话，随着项目周期越来越长，页面越来越多，而每当我运行 webpack 命令，那些之前早就开发好的功能都要被无意义地重新打包一次吗？？我只是想将我当天的开发功能和作了修改的功能重新打包就好了，之前已经开发好的功能我肯定是不想再重新又打包生成一次了。而且，在生产环境中，每次打包生成的文件都加了hash，那么旧的文件改怎么处理呢？总不能每次重新打包都先将所有旧的文件都清理一遍吧？<br>
+不知道我能不能把问题给说清楚，就想请教一下，这个问题您是怎么处理的呢？<br>
+<br>
+2、结合webpack该怎么使用jquery的插件呢？比如在login的功能中使用 sweetalert 插件（它有 sweetalert.css/sweetalert.min.css和sweetalert.js/sweetalert.min.js这些文件），我是用npm下载sweetalert的。现在我在login.js入口文件中import "sweetalert/dist/sweetalert.css"，然后在需要使用sweetalert的组件LoginForm.js中import sweetalert from 'sweetalert'; <br>
+可是webpack会报错：<br>
+<br>
+ERROR in ./~/sweetalert/dist/sweetalert.css<br>
+Module parse failed: F:\MyFiles\myPro\watermirrorPro\shv\view\node_modules\sweetalert\dist\swee<br>
+talert.css Unexpected token (1:20)<br>
+You may need an appropriate loader to handle this file type.<br>
+SyntaxError: Unexpected token (1:20)<br>
+我在webpack的配置文件中已经做了配置，也已经安装了相应的loader，我 import 其他的 css 文件是没有问题的，只是import "sweetalert/dist/sweetalert.css"这个的时候却报错了。。。这是怎么回事呢？麻烦大神帮忙解答一下</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-18T13:45:33+08:00" title="2016年5月18日 下午1:45:33">5月18日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6263035659619926785"><div class="ds-post-self" data-post-id="6263035659619926785" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./webpack-best-practice-最佳实践-部署生产_files/227054.jpg" alt="zjb"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">zjb</span></div><p>我知道了 好像在chunk 里面指定入口文件 就可以了~</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-17T22:57:03+08:00" title="2016年3月17日 下午10:57:03">3月17日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6263024374761128705"><div class="ds-post-self" data-post-id="6263024374761128705" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./webpack-best-practice-最佳实践-部署生产_files/227054.jpg" alt="zjb"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">zjb</span></div><p>我没次生成出来的 多html 引用的都是一样的js文件，不知道怎么区分开来~</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-17T22:13:16+08:00" title="2016年3月17日 下午10:13:16">3月17日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6263019421258744578"><div class="ds-post-self" data-post-id="6263019421258744578" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./webpack-best-practice-最佳实践-部署生产_files/227054.jpg" alt="zjb"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">zjb</span></div><p>请问楼主html-webpack-plugin相关的实践有么？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-17T21:54:03+08:00" title="2016年3月17日 下午9:54:03">3月17日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6245928876204098306"><div class="ds-post-self" data-post-id="6245928876204098306" data-thread-id="6223525110033154818" data-root-id="6242179742192108290" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6245928876204098306" data-parent-id="6242179742192108290">回复 黄哲宇--风变科技: </a>html-webpack-plugin</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-31T20:34:00+08:00" title="2016年1月31日 下午8:34:00">1月31日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6245928314872005378"><div class="ds-post-self" data-post-id="6245928314872005378" data-thread-id="6223525110033154818" data-root-id="6243205731932177153" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6245928314872005378" data-parent-id="6243205731932177153">回复 ސސސސސސސސސސސސސސސސސސ: </a>html-webpack-plugin</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-31T20:31:49+08:00" title="2016年1月31日 下午8:31:49">1月31日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6243205731932177153"><div class="ds-post-self" data-post-id="6243205731932177153" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6243200141780583170"><img src="./webpack-best-practice-最佳实践-部署生产_files/100" alt="ސސސސސސސސސސސސސސސސސސ"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-user-id="6243200141780583170" data-qqt-account="">ސސސސސސސސސސސސސސސސސސ</span></div><p> <img src="./webpack-best-practice-最佳实践-部署生产_files/z2_org.gif" alt="[赞]" title="[赞]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-24T12:26:49+08:00" title="2016年1月24日 下午12:26:49">1月24日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6242179742192108290"><div class="ds-post-self" data-post-id="6242179742192108290" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="14072669"><a rel="nofollow author" target="_blank" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" title="黄哲宇--风变科技"><img src="./webpack-best-practice-最佳实践-部署生产_files/1" alt="黄哲宇--风变科技"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" rel="nofollow" target="_blank" data-user-id="14072669">黄哲宇--风变科技</a></div><p>不过现在可以了，有插件，可以在webpack配置，自动为每个入口生成一个html文件。<br>
+请问是什么插件</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-21T18:05:27+08:00" title="2016年1月21日 下午6:05:27">1月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6238133497391743746"><div class="ds-post-self" data-post-id="6238133497391743746" data-thread-id="6223525110033154818" data-root-id="6238092468768736001" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6238133497391743746" data-parent-id="6238092468768736001">回复 淑梅: </a>谢谢～</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-10T20:23:57+08:00" title="2016年1月10日 下午8:23:57">1月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6238092468768736001"><div class="ds-post-self" data-post-id="6238092468768736001" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6234486547723322114"><a rel="nofollow author" target="_blank" href="http://1024xyz.com/?k_sm" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6234486547723322114&#39;;" title="淑梅"><img src="./webpack-best-practice-最佳实践-部署生产_files/209344.jpg" alt="淑梅"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://1024xyz.com/?k_sm" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=6234486547723322114&#39;;" rel="nofollow" target="_blank" data-user-id="6234486547723322114">淑梅</a></div><p>网站不错，过来看看!</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-10T17:44:44+08:00" title="2016年1月10日 下午5:44:44">1月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6230360454338708225"><div class="ds-post-self" data-post-id="6230360454338708225" data-thread-id="6223525110033154818" data-root-id="6228689832298676994" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./webpack-best-practice-最佳实践-部署生产_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6230360454338708225" data-parent-id="6228689832298676994">回复 TooBug: </a>因为多页面就要多个 html 文件，每个入口一个html文件，之前想着也做成自动化，不过现在可以了，有插件，可以在webpack配置，自动为每个入口生成一个html文件。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-20T21:40:34+08:00" title="2015年12月20日 下午9:40:34">2015年12月20日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6228689832298676994"><div class="ds-post-self" data-post-id="6228689832298676994" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="1525162"><a rel="nofollow author" target="_blank" href="http://weibo.com/toooobug" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=1525162&#39;;" title="TooBug"><img src="./webpack-best-practice-最佳实践-部署生产_files/5a0c6cd9a25667dd170fb4bfae972b17" alt="TooBug"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/toooobug" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=1525162&#39;;" rel="nofollow" target="_blank" data-user-id="1525162">TooBug</a></div><p>多页面项目和多入口应该是一样的啊，有什么问题么？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-16T09:37:42+08:00" title="2015年12月16日 上午9:37:42">2015年12月16日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6226547647142953730"><div class="ds-post-self" data-post-id="6226547647142953730" data-thread-id="6223525110033154818" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="3981111"><a rel="nofollow author" target="_blank" href="http://t.qq.com/a552594996" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3981111&#39;;" title="梁向辉"><img src="./webpack-best-practice-最佳实践-部署生产_files/50(2)" alt="梁向辉"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/a552594996" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=3981111&#39;;" rel="nofollow" target="_blank" data-user-id="3981111">梁向辉</a></div><p>作为同是天涯webpack和React踩坑人，很想和你做个朋友，一起来研究研究如何更好更合理的构建基于webpack和React的前端框架构建方案。 博主可能也看过这个吧，<a href="https://github.com/gaearon/react-transform-boilerplate%EF%BC%8C%E6%84%9F%E8%A7%89%E8%BF%99%E4%B8%A4%E4%B8%AA%E4%B8%80%E7%BB%93%E5%90%88%E6%95%88%E6%9E%9C%E6%9B%B4%E4%BD%B3%EF%BC%81%EF%BC%8C%EF%BC%8C%EF%BC%8C%E6%88%91%E7%9A%84qq%EF%BC%9A552594996%EF%BC%8C%E5%B8%8C%E6%9C%9B%E8%83%BD%E5%81%9A%E4%BD%A0%E7%9A%84%E5%A5%BD%E5%8F%8B%EF%BC%8C%E8%B0%A2%E8%B0%A2%EF%BC%81" target="_blank" rel="nofollow">https://github.com/gaearon/react-transform-boilerplate，感觉这两个一结合效果更佳！，，，我的qq：552594996，希望能做你的好友，谢谢！</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-10T15:04:56+08:00" title="2015年12月10日 下午3:04:56">2015年12月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://qiutongcheng.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://qiutongcheng.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./webpack-best-practice-最佳实践-部署生产_files/227054.jpg" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6223525110033154818">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57ac6865e054c"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Powered by 多说</a></p></div></div>
+    
+  </div>
+
+
+
+
+    </main>
+
+    <footer class="footer clearfix">
+  <div class="copyright">
+    <span>Copyright</span>
+    
+    ©  2015-
+    <span itemprop="copyrightYear">2016</span>
+    <span class="author" itemprop="copyrightHolder">阿城😇</span>
+  </div>
+
+  <div class="info">
+    <script async="" src="./webpack-best-practice-最佳实践-部署生产_files/busuanzi.pure.mini.js"></script>
+    
+      <span id="showDays" class="show-days">本站已运行 320 天</span>
+      <script>
+      var birthDay = new Date('10/04/2015');
+      var now = new Date();
+      var duration = now.getTime() - birthDay.getTime();
+      var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+      document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+      </script>
+      ---
+    
+    <span id="busuanzi_container_site_pv" style="display: inline;">
+        总访问量<span id="busuanzi_value_site_pv">53424</span>次
+    </span>
+  </div>
+
+</footer>
+
+
+  </div>
+
+  <div class="back-top-btn" id="back-top-btn" style="display: block;"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qiutongcheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+
+
+<script type="text/javascript" src="./webpack-best-practice-最佳实践-部署生产_files/motto.min.js"></script>
+<script type="text/javascript" src="./webpack-best-practice-最佳实践-部署生产_files/main.js"></script>
+
+
+
+
+</body></html>

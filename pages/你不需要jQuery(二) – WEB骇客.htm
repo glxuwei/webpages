@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.webhek.com/you-do-not-need-jquery2 -->
+<html lang="zh-CN"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width">
+	<title>你不需要jQuery(二) – WEB骇客</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="http://www.webhek.com/wordpress/xmlrpc.php">
+	<!--[if lt IE 9]>
+	<script src="http://www.webhek.com/wordpress/wp-content/themes/webhek4/js/html5.js"></script>
+	<![endif]-->
+	
+<!-- All in One SEO Pack 2.3.4.1 by Michael Torbert of Semper Fi Web Design[-1,-1] -->
+<meta name="description" content="有些时候，我们只需要jQuery的一个小功能，来完成一个小任务，完全没有必要加载整个jQuery程序库。下面是一些用简单JavaScript实现jQuery功能特征的代码汇总。">
+
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="WEB骇客 » Feed" href="http://www.webhek.com/feed">
+<link rel="alternate" type="application/rss+xml" title="WEB骇客 » 评论Feed" href="http://www.webhek.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="WEB骇客 » 你不需要jQuery(二)评论Feed" href="http://www.webhek.com/you-do-not-need-jquery2/feed">
+		<script src="./你不需要jQuery(二) – WEB骇客_files/ca-pub-9195052014444206.js"></script><script async="" src="./你不需要jQuery(二) – WEB骇客_files/analytics.js"></script><script type="text/javascript" async="" src="./你不需要jQuery(二) – WEB骇客_files/prism.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.webhek.com\/wordpress\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.3"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="genericons-css" href="./你不需要jQuery(二) – WEB骇客_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentyfourteen-style-css" href="./你不需要jQuery(二) – WEB骇客_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentyfourteen-ie-css'  href='http://www.webhek.com/wordpress/wp-content/themes/webhek4/css/ie.css?ver=20131205' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/jquery.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/advertisement.js"></script>
+<link rel="https://api.w.org/" href="http://www.webhek.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.webhek.com/wordpress/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.webhek.com/wordpress/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="简单几句JavaScript代码实现图片延迟加载并淡入淡出显示效果" href="http://www.webhek.com/lazyload-image-fade">
+<link rel="next" title="修改WordPress里页面(page)的固定链接结构的方法" href="http://www.webhek.com/change-wordpress-permalinks-for-pages">
+<meta name="generator" content="WordPress 4.5.3">
+<link rel="canonical" href="http://www.webhek.com/you-do-not-need-jquery2">
+<link rel="shortlink" href="http://www.webhek.com/?p=2089">
+<link rel="alternate" type="application/json+oembed" href="http://www.webhek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.webhek.com%2Fyou-do-not-need-jquery2">
+<link rel="alternate" type="text/xml+oembed" href="http://www.webhek.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.webhek.com%2Fyou-do-not-need-jquery2&amp;format=xml">
+
+	<!-- Clean Archives Reloaded v3.2.0 | http://www.viper007bond.com/wordpress-plugins/clean-archives-reloaded/ -->
+	<style type="text/css">.car-collapse .car-yearmonth { cursor: s-resize; } </style>
+	<script type="text/javascript">
+		/* <![CDATA[ */
+			jQuery(document).ready(function() {
+				jQuery('.car-collapse').find('.car-monthlisting').hide();
+				jQuery('.car-collapse').find('.car-monthlisting:first').show();
+				jQuery('.car-collapse').find('.car-yearmonth').click(function() {
+					jQuery(this).next('ul').slideToggle('fast');
+				});
+				jQuery('.car-collapse').find('.car-toggler').click(function() {
+					if ( '展开所有月份' == jQuery(this).text() ) {
+						jQuery(this).parent('.car-container').find('.car-monthlisting').show();
+						jQuery(this).text('折叠所有月份');
+					}
+					else {
+						jQuery(this).parent('.car-container').find('.car-monthlisting').hide();
+						jQuery(this).text('展开所有月份');
+					}
+					return false;
+				});
+			});
+		/* ]]> */
+	</script>
+
+
+<link rel="stylesheet" type="text/css" href="./你不需要jQuery(二) – WEB骇客_files/prism.css"></head>
+
+<body class="single single-post postid-2089 single-format-standard masthead-fixed full-width footer-widgets singular">
+
+<div id="page" class="hfeed site">
+
+	<table id="logo-bar" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td><a href="http://www.webhek.com/" rel="home"><img src="./你不需要jQuery(二) – WEB骇客_files/webhek-logo.png"></a></td>
+			<td>
+								<div class="slider-outer">
+                  <ul id="hd_slider">
+                   
+                     <li>
+                      <p><a href="http://www.webhek.com/misc/circumscrible/" target="_blank">HTML5技术秀：写出<br>你的3D立体旋转名字</a></p>
+                      <a href="http://www.webhek.com/misc/circumscrible/" target="_blank"><img src="./你不需要jQuery(二) – WEB骇客_files/5.jpg"></a>
+                      <div class="slider-title-shadow"></div>
+                    </li>
+                    <li>
+                      <p><a href="http://www.webhek.com/misc/creativeguidebook/" target="_blank">现代网页技术：<br>一本书里的大千世界</a></p>
+                      <a href="http://www.webhek.com/misc/creativeguidebook/" target="_blank"><img src="./你不需要jQuery(二) – WEB骇客_files/4.jpg"></a>
+                      <div class="slider-title-shadow"></div>
+                    </li>
+                    <li>
+                      <p><a href="http://www.webhek.com/misc/hackertyper/" target="_blank">电影中的黑客高手<br>都是这样编程的</a></p>
+                      <a href="http://www.webhek.com/misc/hackertyper/" target="_blank"><img src="./你不需要jQuery(二) – WEB骇客_files/3.jpg"></a>
+                      <div class="slider-title-shadow"></div>
+                    </li>
+                    <li>
+                      <p><a href="http://www.webhek.com/misc/z-type/" target="_blank">HTML5技术精品：<br>盲打高手打飞字</a></p>
+                      <a href="http://www.webhek.com/misc/z-type/" target="_blank"><img src="./你不需要jQuery(二) – WEB骇客_files/2.jpg"></a>
+                      <div class="slider-title-shadow"></div>
+                    </li>
+                    <li>
+                      <p><a href="http://www.webhek.com/misc/3d-album/" target="_blank">程序员给女朋友用<br>HTML5制作的3D相册</a></p>
+                      <a href="http://www.webhek.com/misc/3d-album/" target="_blank"><img src="./你不需要jQuery(二) – WEB骇客_files/1.jpg"></a>
+                      <div class="slider-title-shadow"></div>
+                    </li>
+
+                  </ul>
+                  <div style="clear:both;"></div>
+                </div>
+			</td>
+			<td id="vbar">
+			</td>
+			<td>
+				<div class="follow-item">
+					<div>关注我们</div>
+					<ul>
+						<li><a href="http://weibo.com/forehack" target="_blank" rel="nofollow">新浪微博</a></li>
+						<li><a target="_blank" href="http://www.webhek.com/feed">RSS</a> </li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="header-main">
+
+			<div class="search-toggle">
+				<a href="http://www.webhek.com/you-do-not-need-jquery2#search-container" class="screen-reader-text">搜索</a>
+			</div>
+
+			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
+				<h1 class="menu-toggle">主菜单</h1>
+				<a class="screen-reader-text skip-link" href="http://www.webhek.com/you-do-not-need-jquery2#content">跳至内容</a>
+				<div class="menu-menu1-container"><ul id="menu-menu1" class="nav-menu"><li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6"><a href="http://www.webhek.com/">首页</a></li>
+<li id="menu-item-2317" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2317"><a href="http://know.webhek.com/html5/html5-intro.html">HTML5手册</a></li>
+<li id="menu-item-2311" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2311"><a href="http://know.webhek.com/svg/svg-home.html">SVG手册</a></li>
+<li id="menu-item-8" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-8"><a href="http://www.webhek.com/about">关于</a></li>
+<li id="menu-item-526" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-526"><a href="http://www.webhek.com/contact">来信</a></li>
+<li id="menu-item-731" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-731"><a href="http://www.webhek.com/all-posts">全部文章</a></li>
+</ul></div>			</nav>
+		</div>
+
+		<div id="search-container" class="search-box-wrapper hide">
+			<div class="search-box">
+				<form role="search" method="get" class="search-form" action="http://www.webhek.com/">
+				<label>
+					<span class="screen-reader-text">搜索：</span>
+					<input type="search" class="search-field" placeholder="搜索…" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="搜索">
+			</form>			</div>
+		</div>
+	</header><!-- #masthead -->
+
+<div class="cup_banner">
+  <div style="max-width:970px;margin:0 auto"><a href="http://begeek.cn/post/programming-mug.html"><img title="程序员专用水杯 必极客出品" alt="程序员专用水杯 必极客出品" width="100%" src="./你不需要jQuery(二) – WEB骇客_files/bab8ab1fgw1f5iwkmfiptj20qy06yq5d.jpg"></a></div>
+</div>
+
+	<div id="main" class="site-main">
+
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+			<article id="post-2089" class="post-2089 post type-post status-publish format-standard has-post-thumbnail hentry category-article tag-jquery">
+
+	<header class="entry-header">
+
+			<h1 class="entry-title">你不需要jQuery(二)</h1><section class="c square_shares">
+  <div>
+    <div class=" bottom-share-buttons">
+      <div class="tsina_share share_wrapper"><a title="分享到新浪微博" class="shareBtn square" onclick="t(&#39;tsina&#39;)" href="javascript:;">
+      <div class="tsina_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="qzone_share share_wrapper"><a title="分享到QQ空间" class="shareBtn square" onclick="t(&#39;qzone&#39;)" href="javascript:;">
+        <div class="qzone_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="tqq_share share_wrapper"><a title="分享到腾讯微博" class="shareBtn square" onclick="t(&#39;tqq&#39;)" href="javascript:;">
+        <div class="tqq_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="renren_share share_wrapper"><a title="分享到人人网" class="shareBtn square" onclick="t(&#39;renren&#39;)" href="javascript:;">
+        <div class="renren_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="tweet_share share_wrapper"><a title="分享到Twitter" class=" shareBtn square" onclick="t(&#39;twitter&#39;)" href="javascript:;">
+        <div class="twitter_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</section>	</header><!-- .entry-header -->
+
+	
+		<div class="entry-content">
+		<div class="single-content">
+
+			<div class="m20">
+				<p>完全没有否定jQuery的意思，jQuery是一个神奇的、非常有用的工具，可以节省我们大量的时间。</p>
+<p>但是，有些时候，我们只需要jQuery的一个小功能，来完成一个小任务，完全没有必要加载整个jQuery程序库。下面是一些用简单JavaScript实现jQuery功能特征的代码汇总。当然，这个汇总并不完全，你最好还是看一下《<a href="http://www.webhek.com/you-do-not-need-jquery">你不需要jQuery(一)</a>》</p>
+<h2>查找搜索(选择器)</h2>
+<p>按ID查找:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>
+</pre>
+</div>
+<p>按class名搜索:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.bar'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span>
+</pre>
+</div>
+<p>按标记名搜索:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span>
+</pre>
+</div>
+<p>按子元素搜索:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo span'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span>
+</pre>
+</div>
+<p>搜索特殊元素:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span>documentElement
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'head'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span>head
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'body'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span>body
+</pre>
+</div>
+<h2>元素属性操作</h2>
+<p>获取/设置HTML:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token string">'Hello, world!'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Hello, world!'</span>
+</pre>
+</div>
+<p>添加/删除/搜索判断class:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>className <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">' bar '</span>
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>className <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>className<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\bbar\b/gi</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>className<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token regex">/\bbar\b/gi</span><span class="token punctuation">)</span> <span class="token operator">!</span><span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span>
+</pre>
+</div>
+<p>元素值:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">val</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value
+</pre>
+</div>
+<h2>特效</h2>
+<p>隐藏/显示操作:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">''</span>
+
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span>
+</pre>
+</div>
+<p>修改CSS样式:</p>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'background-color'</span><span class="token punctuation">,</span> <span class="token string">'red'</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">'red'</span>
+</pre>
+</div>
+<h2>事件</h2>
+<h2>页面加载完成(ready)</h2>
+<p>在jQuery里，我们最常使用的是<code>$(document).ready</code>。对于它，下面是替换方法：</p>
+<div class="js">
+<pre>document<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token string">'complete'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// DOM is ready!</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+</div>
+<h2>点击事件</h2>
+<div class="js">
+<pre><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+</pre>
+</div>
+<h2>AJAX</h2>
+<p>新版的JavaScript API里提供了一个全新的可以实现ajax的API——<a href="http://www.webhek.com/introduction-to-fetch">fetch</a>，这个api采用了全新的 <a href="http://www.webhek.com/javascript-promise-api">Promise</a> 架构，使用起来更方便，更灵活，详细用法请参考《<a href="http://www.webhek.com/introduction-to-fetch">你不需要jQuery(三)：新AJAX方法fetch() </a>》。</p>
+<h2>工具类技术</h2>
+<p>分析JSON:</p>
+<div class="js">
+<pre>jQuery<span class="token punctuation">.</span><span class="token function">parseJSON</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span>
+JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span>
+
+</pre>
+</div>
+<h2>总结</h2>
+<p>从上面的代码，我们可以看出，jQuery里的很多功能都可以用很多简单的JavaScript代码实现。jQuery虽然很好用，但它有体积的负担，如果遇到一个问题，你可以用简单的代码实现，而不用去加载jQuery，这岂不是更高效，更实用的方法吗？</p>
+
+				<script async="" src="./你不需要jQuery(二) – WEB骇客_files/adsbygoogle.js"></script>
+				<!-- webhek001 -->
+				<ins class="adsbygoogle adsense single_responsive_1" data-ad-client="ca-pub-9195052014444206" data-ad-slot="4994255794" data-adsbygoogle-status="done" style="width: 300px; height: 250px;"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./你不需要jQuery(二) – WEB骇客_files/saved_resource.html"></iframe></ins></ins></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<div class="mysense" style="width: 328px; height: 280px;">
+				<a target="_blank" href="http://www.webhek.com/you-do-not-need-jquery2"></a>
+				</div>
+
+				<div class="cup_bottom"><a href="http://shop162567423.taobao.com/"><img src="./你不需要jQuery(二) – WEB骇客_files/linux-cup.jpg"></a></div>
+
+				<footer class="entry-meta"><span class="tag-links"><a href="http://www.webhek.com/tag/%e4%bd%a0%e4%b8%8d%e9%9c%80%e8%a6%81jquery" rel="tag">你不需要jQuery</a></span></footer>
+				<div class="bottom_share">
+
+					<h5 class="sd-title">分享这篇文章：</h5>
+
+					<section class="c square_shares">
+  <div>
+    <div class=" bottom-share-buttons">
+      <div class="tsina_share share_wrapper"><a title="分享到新浪微博" class="shareBtn square" onclick="t(&#39;tsina&#39;)" href="javascript:;">
+      <div class="tsina_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="qzone_share share_wrapper"><a title="分享到QQ空间" class="shareBtn square" onclick="t(&#39;qzone&#39;)" href="javascript:;">
+        <div class="qzone_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="tqq_share share_wrapper"><a title="分享到腾讯微博" class="shareBtn square" onclick="t(&#39;tqq&#39;)" href="javascript:;">
+        <div class="tqq_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="renren_share share_wrapper"><a title="分享到人人网" class="shareBtn square" onclick="t(&#39;renren&#39;)" href="javascript:;">
+        <div class="renren_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+      <div class="tweet_share share_wrapper"><a title="分享到Twitter" class=" shareBtn square" onclick="t(&#39;twitter&#39;)" href="javascript:;">
+        <div class="twitter_icon">&nbsp;</div>
+        <div class="label">分享</div>
+        </a></div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</section>
+				</div>
+
+					<div style="width:100%; display:table;">
+						<div class="qrshare_wrapper">
+							<div class="qrshare"><div>扫一扫二维码分享：</div>
+							<img style="width:200px" src="./你不需要jQuery(二) – WEB骇客_files/api.php">
+							</div>
+						</div>
+						<div class="related_posts">  <h3 style="margin-bottom:20px;">相关文章：</h3>
+  <ol>
+                     <li><a href="http://www.webhek.com/introduction-to-fetch">你不需要jQuery(三)：新AJAX方法fetch()</a></li>
+                     <li><a href="http://www.webhek.com/you-do-not-need-jquery">你不需要jQuery（一）</a></li>
+                     <li><a href="http://www.webhek.com/10-tips-for-writing-javascript-without-jquery">你不需要jQuery(四)</a></li>
+                     <li><a href="http://www.webhek.com/how-to-forget-about-jquery-and-start-using-native">你不需要jQuery(五)</a></li>
+                     <li><a href="http://www.webhek.com/ditching-jquery">你不需要jQuery(六)</a></li>
+                     <li><a href="http://www.webhek.com/more-html5-apis">你不知道的5个HTML5新功能(第二辑)</a></li>
+                     <li><a href="http://www.webhek.com/datalist">DataList：HTML5中的input输入框自动提示宝器</a></li>
+                     <li><a href="http://www.webhek.com/get-real-image-height-and-width-dimensions">用JavaScript获取图片真实尺寸大小的简单方法</a></li>
+                     <li><a href="http://www.webhek.com/wordpress-404-attack">为什么WordPress面对404攻击会如此脆弱</a></li>
+                     <li><a href="http://www.webhek.com/the-text-decoration-property-is-now-a-shorthand">你未必知道的CSS小知识：text-decoration属性变成了属性简写</a></li>
+           </ol>
+</div>
+					</div>
+				
+				
+
+				<div id="reveal-comments" data-revealed="0">
+			        <div id="comment-count-bubble" onclick="javascript:location.href=&#39;#comments&#39;"><span class="count">0</span></div>
+			        <p><a href="http://www.webhek.com/you-do-not-need-jquery2#comments">参与讨论</a></p>
+			    </div>
+
+				
+<div id="comments" class="comments-area">
+
+	
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.webhek.com/you-do-not-need-jquery2#respond" style="display:none;">取消回复</a></small></h3>				<form action="http://www.webhek.com/wordpress/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+					<p class="comment-notes"><span id="email-notes">电子邮件地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p><p class="comment-form-comment"><label for="comment">评论</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">姓名 <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">电子邮件 <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<p class="comment-form-captcha">壹加壹等于 <input id="captcha" name="captcha" style="width:30px;" size="10" type="text" value=""></p><p><script>if(document.getElementById("captcha").value == "") document.getElementById("captcha").value = "2";</script>
+</p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论"> <input type="hidden" name="comment_post_ID" value="2089" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="036f5a4cb2"></p><p style="display: none;"></p>				<input type="hidden" id="ak_js" name="ak_js" value="1472796218001"></form>
+					</div><!-- #respond -->
+		
+</div><!-- #comments -->
+			</div>
+		</div>
+		<div class="sidebar-content"><div id="content-sidebar" class="content-sidebar widget-area" role="complementary">
+
+
+	<div class="best-wrapper">
+		<div class="best-img">
+			<div class="google-ad adsense">
+		 	<script async="" src="./你不需要jQuery(二) – WEB骇客_files/adsbygoogle.js"></script>
+				<!-- webhek001 -->
+				<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9195052014444206" data-ad-slot="4994255794" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" src="./你不需要jQuery(二) – WEB骇客_files/saved_resource(1).html"></iframe></ins></ins></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="best-wrapper">
+		<div class="best-img">
+			
+			<div><a href="http://static.webhek.com/tb.html"><img style="width:300px;height:auto;" src="./你不需要jQuery(二) – WEB骇客_files/bab8ab1fgw1f5t7p0pjwxj20940fg76k.jpg"></a></div>
+
+		</div>
+		
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/color-test" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2016/05/color-test-330x240.png" style="display: block;" src="./你不需要jQuery(二) – WEB骇客_files/color-test-330x240.png">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/color-test">
+          			<h2>你对颜色敏感吗？过不了16关就不要再玩手机了！</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>测测你的眼睛对色差的辨识度，所有的色块中有一个方块的颜色有稍微的不同，你要把它挑出来，在一分钟的时间里，看你能获得多少分，16分以下不要再玩手机了！</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/draw-a-stickman" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2016/04/pQ-330x240.jpg" style="display: block;" src="./你不需要jQuery(二) – WEB骇客_files/pQ-330x240.jpg">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/draw-a-stickman">
+          			<h2>趣味游戏：请画一个小人</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>请随意画出一个小人，它就能活起来，你可以和它一起完成一次充满奇幻色彩的冒险旅程。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/html5-color-spin-game" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2016/03/a3551665615_10-e1458637443719-330x240.jpg" style="display: block;" src="./你不需要jQuery(二) – WEB骇客_files/a3551665615_10-e1458637443719-330x240.jpg">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/html5-color-spin-game">
+          			<h2>HTML5旋转拼图智力游戏</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这是一个HTML5 jQuery 益智游戏，玩家需要调换图形的位置来实现目标图案。</p>
+</div>
+		</div>
+	</div>
+
+	<div class="best-wrapper">
+		<div class="best-img">
+			<div class="google-ad adsense">
+		 	<script async="" src="./你不需要jQuery(二) – WEB骇客_files/adsbygoogle.js"></script>
+				<!-- webhek001 -->
+				<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9195052014444206" data-ad-slot="4994255794" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" src="./你不需要jQuery(二) – WEB骇客_files/saved_resource(2).html"></iframe></ins></ins></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</div>
+		
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/pathfinding" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2015/11/The-Maze-Runner-Movie-Mazes.jpg-330x240.jpg" style="display: block;" src="./你不需要jQuery(二) – WEB骇客_files/The-Maze-Runner-Movie-Mazes.jpg-330x240.jpg">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/pathfinding">
+          			<h2>动画展示计算机迷宫路径各种搜索算法</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>十分形象的迷宫搜索算法，能看的计算机如何一步一步的探索路径，障碍物，最终确定最佳，最近的路线图</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/species-in-pieces" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2015/07/143150732595360500_a580x330-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/species-in-pieces">
+          			<h2>中文版濒危动物CSS碎片拼图</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这里我们用纯CSS技术表现出30种动物的碎片拼图形象，这30动物，非常的可爱，但不幸的是，它们都是濒临灭绝的动物，它们的生存情况正面临着危机。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/inverter" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/07/dd-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/inverter">
+          			<h2>HTML5小游戏：蓝色拼图</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这是一个用HTML5制作的智力游戏，有相当的难度。每个方块一面橙色，一面蓝色。点击一个方块，这个方块的颜色会翻转，并且，与它邻接的方块的颜色也会翻转。使拼板全部变成蓝色， 你就算过关了。</p>
+</div>
+		</div>
+	</div>
+
+	<div class="best-wrapper">
+		<div class="best-img">
+			<div class="google-ad adsense">
+		 	<script async="" src="./你不需要jQuery(二) – WEB骇客_files/adsbygoogle.js"></script>
+				<!-- webhek001 -->
+				<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-9195052014444206" data-ad-slot="4994255794" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_3_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;" src="./你不需要jQuery(二) – WEB骇客_files/saved_resource(3).html"></iframe></ins></ins></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+		</div>
+		
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/css-blend-mode" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/07/css3-logo.jpg-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/css-blend-mode">
+          			<h2>CSS颜色混合模式</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>虽然并不是Adobe的Photoshop发明了混合模式，但它的实现效果是最真实的。但现在，你不需要使用Photoshop来运用混合模式美化你的图片，因为CSS3里提供里动态的实现这种效果的方法。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/css-loaders" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/07/css3-logo.jpg-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/css-loaders">
+          			<h2>你能相信吗？这些都是由一个DIV元素实现的动画，纯CSS3技术</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>CSS3给Web程序员提供了无限发挥的创造空间，以前只有视频、Flash、JavaScript才能实现的动画效果，如今只需要纯CSS+HTML就能做到。你能相信吗？这里呈现的所有动画，都是由一个DIV元素实现，纯CSS3技术。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/impress-js" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/07/impress-js-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/impress-js">
+          			<h2>HTML5+CSS3特效幻灯片(impress.js)</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>HTML5和CSS3的诞生和普及必将对传统行业带来巨大的冲击，像微软PPT这样的软件必将慢慢转移的在线的HTML5+CSS3上，因为用HTML5+CSS3实现幻灯片不仅更简单、容易，而且功能更强调，特效更绚丽。impress.js就是这样一款可以让你轻松利用CSS3动画实现具有神奇特效的幻灯片工具。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/link-style" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/04/css3-logo-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/link-style">
+          			<h2>超链接特效</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这里提供了各种各样的超链接特性，有些是借助伪元素，有些是借助svg，有些是借助HTML5动画。用你的鼠标悬停在这些链接上，给你跟传统链接完全不一样的效果感觉。你需要使用现代浏览器，比如谷歌浏览器或火狐浏览器。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/css-shake" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/05/hmtl5css3tutorials-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/css-shake">
+          			<h2>CSS发抖</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>在一个大型项目里我需要制作出抖动的效果。最初我使用的是普通的CSS。<br>
+当开发完成后，我发现了这个很酷的jQuery plugin(由@jackrugile开发)。<br>
+于是我就开始思考，我应该做出这个小的CSS project。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/responsive-web-design" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/06/devices-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/responsive-web-design">
+          			<h2>什么是自适应网页设计？</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>自适应网页设计,也叫做响应式网页设计（英语：Responsive web design）是一种网页设计的技術做法，该设计可使网站在多种浏览设备（从桌面电脑显示器到移动电话或其它便携设备）上阅读和导航，根据设备尺寸的不同，自动的调整页面上的元素布局和数量。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/circumscrible" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/04/grafik-692-webinfo-3d-maker-7-int_22-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/circumscrible">
+          			<h2>HTML5技术秀：你的3D立体旋转名字</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这是一个很酷的HTML5技术应用，用户可以在画布上用画笔写出自己想看的文字或图案，这个应该能将你写的东西用3D方式呈现，而且让它围着中心3D旋转，只要你设计的巧妙，你可以绘制出让人惊叹的效果和图案。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/unitethelovers" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/04/lover-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/unitethelovers">
+          			<h2>一个内衣公司用HTML5制作的公益游戏：让爱做主</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>这是一个生产内衣的公司使用HTML5技术制作的公益游戏。曾获得Cutting Edge技术奖。游戏的主旨是反对印度国内存在的包办婚姻现象。内衣公司的游戏非常有内衣特色。但游戏中使用的技术还是让人佩服的，纯HTML5+JS，整个游戏有很好的互动性，值得游戏设计者学习。</p>
+</div>
+		</div>
+	</div>
+	<div class="best-wrapper">
+		<div class="best-img">
+			<a href="http://www.webhek.com/misc/3d-album" class="">
+			<img alt="" class="lazy attachment-thumbnail size-thumbnail wp-post-image" data-original="http://www.webhek.com/wordpress/wp-content/uploads/2014/04/b-330x240.jpg" style="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">			</a>
+		</div>
+		<div class="best-txt">
+			<div class="best-title">
+				<a href="http://www.webhek.com/misc/3d-album">
+          			<h2>程序员给女朋友用HTML5制作的3D相册</h2>
+          		</a>
+			</div>
+			<div class="best-desc"><p>程序员给女朋友用HTML5制作的3D相册，使用鼠标拖拽，能看到3D旋转效果，点击相片，相片能放大，移近。程序员发挥自己的专长，这是那些不懂编程的人望尘莫及的。本相册使用了HTML5的画布技术，需要谷歌浏览器或火狐浏览器等现代浏览器才能正常观看。</p>
+</div>
+		</div>
+	</div>
+
+
+</div><!-- #content-sidebar -->
+</div>
+	</div><!-- .entry-content -->
+	
+	
+</article><!-- #post-## -->
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+		</div><!-- #main -->
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+
+			
+<div id="supplementary">
+	<div id="footer-sidebar" class="footer-sidebar widget-area masonry" role="complementary" style="position: relative; height: 548px;">
+		<aside id="categories-4" class="widget widget_categories masonry-brick" style="position: absolute; left: 0px; top: 48px;"><h1 class="widget-title">分类目录</h1>		<ul>
+	<li class="cat-item cat-item-172"><a href="http://www.webhek.com/cat/snippets">代码片段</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.webhek.com/cat/show">作品欣赏</a>
+</li>
+	<li class="cat-item cat-item-164"><a href="http://www.webhek.com/cat/tools">开发工具</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.webhek.com/cat/article">技术技巧</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.webhek.com/cat/111demo">效果演示</a>
+</li>
+	<li class="cat-item cat-item-178"><a href="http://www.webhek.com/cat/news">新闻资讯</a>
+</li>
+		</ul>
+</aside><aside id="tag_cloud-3" class="widget widget_tag_cloud masonry-brick" style="position: absolute; left: 476px; top: 48px;"><h1 class="widget-title">标签</h1><div class="tagcloud"><a href="http://www.webhek.com/tag/3d" class="tag-link-14 tag-link-position-1" title="6个话题" style="font-size: 10.892561983471pt;">3d</a>
+<a href="http://www.webhek.com/tag/best" class="tag-link-84 tag-link-position-2" title="21个话题" style="font-size: 16.561983471074pt;">best</a>
+<a href="http://www.webhek.com/tag/canvas" class="tag-link-8 tag-link-position-3" title="15个话题" style="font-size: 14.942148760331pt;">canvas</a>
+<a href="http://www.webhek.com/tag/console" class="tag-link-300 tag-link-position-4" title="3个话题" style="font-size: 8pt;">console</a>
+<a href="http://www.webhek.com/tag/css" class="tag-link-32 tag-link-position-5" title="62个话题" style="font-size: 21.884297520661pt;">css</a>
+<a href="http://www.webhek.com/tag/css3" class="tag-link-19 tag-link-position-6" title="42个话题" style="font-size: 19.917355371901pt;">css3</a>
+<a href="http://www.webhek.com/tag/css%e5%8a%a8%e7%94%bb" class="tag-link-6 tag-link-position-7" title="19个话题" style="font-size: 16.099173553719pt;">css动画</a>
+<a href="http://www.webhek.com/tag/html5" class="tag-link-20 tag-link-position-8" title="64个话题" style="font-size: 22pt;">html5</a>
+<a href="http://www.webhek.com/tag/html5%e6%96%b0%e5%85%83%e7%b4%a0" class="tag-link-334 tag-link-position-9" title="8个话题" style="font-size: 12.04958677686pt;">html5新元素</a>
+<a href="http://www.webhek.com/tag/input%e7%b1%bb%e5%9e%8b" class="tag-link-207 tag-link-position-10" title="3个话题" style="font-size: 8pt;">input类型</a>
+<a href="http://www.webhek.com/tag/javascript" class="tag-link-40 tag-link-position-11" title="62个话题" style="font-size: 21.884297520661pt;">javascript</a>
+<a href="http://www.webhek.com/tag/javascript6" class="tag-link-285 tag-link-position-12" title="4个话题" style="font-size: 9.1570247933884pt;">javascript6</a>
+<a href="http://www.webhek.com/tag/jquery" class="tag-link-236 tag-link-position-13" title="6个话题" style="font-size: 10.892561983471pt;">jquery</a>
+<a href="http://www.webhek.com/tag/php" class="tag-link-184 tag-link-position-14" title="5个话题" style="font-size: 10.082644628099pt;">php</a>
+<a href="http://www.webhek.com/tag/placeholder" class="tag-link-101 tag-link-position-15" title="3个话题" style="font-size: 8pt;">placeholder</a>
+<a href="http://www.webhek.com/tag/promise" class="tag-link-344 tag-link-position-16" title="4个话题" style="font-size: 9.1570247933884pt;">promise</a>
+<a href="http://www.webhek.com/tag/svg" class="tag-link-39 tag-link-position-17" title="7个话题" style="font-size: 11.471074380165pt;">SVG</a>
+<a href="http://www.webhek.com/tag/table" class="tag-link-175 tag-link-position-18" title="3个话题" style="font-size: 8pt;">table</a>
+<a href="http://www.webhek.com/tag/transform" class="tag-link-11 tag-link-position-19" title="4个话题" style="font-size: 9.1570247933884pt;">transform</a>
+<a href="http://www.webhek.com/tag/wordpress" class="tag-link-173 tag-link-position-20" title="11个话题" style="font-size: 13.553719008264pt;">wordpress</a>
+<a href="http://www.webhek.com/tag/%e4%bc%aa%e5%85%83%e7%b4%a0" class="tag-link-68 tag-link-position-21" title="4个话题" style="font-size: 9.1570247933884pt;">伪元素</a>
+<a href="http://www.webhek.com/tag/%e4%bd%a0%e4%b8%8d%e9%9c%80%e8%a6%81jquery" class="tag-link-363 tag-link-position-22" title="6个话题" style="font-size: 10.892561983471pt;">你不需要jQuery</a>
+<a href="http://www.webhek.com/tag/%e5%8a%a8%e7%94%bb" class="tag-link-10 tag-link-position-23" title="11个话题" style="font-size: 13.553719008264pt;">动画</a>
+<a href="http://www.webhek.com/tag/%e5%9b%be%e7%89%87" class="tag-link-267 tag-link-position-24" title="3个话题" style="font-size: 8pt;">图片</a>
+<a href="http://www.webhek.com/tag/%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86" class="tag-link-305 tag-link-position-25" title="3个话题" style="font-size: 8pt;">图片处理</a>
+<a href="http://www.webhek.com/tag/%e5%ad%97%e4%bd%93" class="tag-link-314 tag-link-position-26" title="3个话题" style="font-size: 8pt;">字体</a>
+<a href="http://www.webhek.com/tag/%e5%b8%83%e5%b1%80" class="tag-link-124 tag-link-position-27" title="5个话题" style="font-size: 10.082644628099pt;">布局</a>
+<a href="http://www.webhek.com/tag/%e6%88%aa%e5%b1%8f" class="tag-link-226 tag-link-position-28" title="3个话题" style="font-size: 8pt;">截屏</a>
+<a href="http://www.webhek.com/tag/%e6%8f%92%e4%bb%b6" class="tag-link-228 tag-link-position-29" title="3个话题" style="font-size: 8pt;">插件</a>
+<a href="http://www.webhek.com/tag/%e6%97%8b%e8%bd%ac" class="tag-link-22 tag-link-position-30" title="3个话题" style="font-size: 8pt;">旋转</a>
+<a href="http://www.webhek.com/tag/%e6%b5%8f%e8%a7%88%e5%99%a8" class="tag-link-12 tag-link-position-31" title="7个话题" style="font-size: 11.471074380165pt;">浏览器</a>
+<a href="http://www.webhek.com/tag/%e6%b8%b8%e6%88%8f" class="tag-link-199 tag-link-position-32" title="7个话题" style="font-size: 11.471074380165pt;">游戏</a>
+<a href="http://www.webhek.com/tag/%e7%81%ab%e7%8b%90%e6%b5%8f%e8%a7%88%e5%99%a8" class="tag-link-239 tag-link-position-33" title="3个话题" style="font-size: 8pt;">火狐浏览器</a>
+<a href="http://www.webhek.com/tag/%e7%94%bb%e5%b8%83" class="tag-link-9 tag-link-position-34" title="16个话题" style="font-size: 15.289256198347pt;">画布</a>
+<a href="http://www.webhek.com/tag/%e7%95%8c%e9%9d%a2%e8%ae%be%e8%ae%a1" class="tag-link-74 tag-link-position-35" title="3个话题" style="font-size: 8pt;">界面设计</a>
+<a href="http://www.webhek.com/tag/%e7%ab%8b%e6%96%b9%e4%bd%93" class="tag-link-15 tag-link-position-36" title="3个话题" style="font-size: 8pt;">立方体</a>
+<a href="http://www.webhek.com/tag/%e7%ab%96%e5%90%91%e5%b1%85%e4%b8%ad" class="tag-link-165 tag-link-position-37" title="3个话题" style="font-size: 8pt;">竖向居中</a>
+<a href="http://www.webhek.com/tag/%e7%ae%97%e6%b3%95" class="tag-link-156 tag-link-position-38" title="3个话题" style="font-size: 8pt;">算法</a>
+<a href="http://www.webhek.com/tag/%e7%bd%91%e7%bb%9c%e5%ad%97%e4%bd%93" class="tag-link-197 tag-link-position-39" title="3个话题" style="font-size: 8pt;">网络字体</a>
+<a href="http://www.webhek.com/tag/%e8%83%8c%e6%99%af" class="tag-link-24 tag-link-position-40" title="7个话题" style="font-size: 11.471074380165pt;">背景</a>
+<a href="http://www.webhek.com/tag/%e8%83%8c%e6%99%af%e5%8a%a8%e7%94%bb" class="tag-link-5 tag-link-position-41" title="4个话题" style="font-size: 9.1570247933884pt;">背景动画</a>
+<a href="http://www.webhek.com/tag/%e8%83%8c%e6%99%af%e5%9b%be" class="tag-link-141 tag-link-position-42" title="4个话题" style="font-size: 9.1570247933884pt;">背景图</a>
+<a href="http://www.webhek.com/tag/%e8%87%aa%e9%80%82%e5%ba%94%e7%bd%91%e9%a1%b5%e8%ae%be%e8%ae%a1" class="tag-link-186 tag-link-position-43" title="4个话题" style="font-size: 9.1570247933884pt;">自适应网页设计</a>
+<a href="http://www.webhek.com/tag/%e8%a7%86%e5%b7%ae" class="tag-link-91 tag-link-position-44" title="6个话题" style="font-size: 10.892561983471pt;">视差</a>
+<a href="http://www.webhek.com/tag/%e8%a7%86%e9%a2%91" class="tag-link-177 tag-link-position-45" title="6个话题" style="font-size: 10.892561983471pt;">视频</a></div>
+</aside><aside id="text-4" class="widget widget_text masonry-brick" style="position: absolute; left: 952px; top: 48px;"><h1 class="widget-title">关注我们</h1>			<div class="textwidget"><ul>
+	<li><a href="http://weibo.com/forehack">新浪微博</a></li>
+	<li><a href="http://www.webhek.com/feed/">RSS订阅</a></li>
+</ul></div>
+		</aside>		<aside id="recent-posts-4" class="widget widget_recent_entries masonry-brick" style="position: absolute; left: 1428px; top: 48px;">		<h1 class="widget-title">近期文章</h1>		<ul>
+					<li>
+				<a href="http://www.webhek.com/new-string-features-in-ecmascript-6">JavaScript 6 里关于字符串的几个新用法</a>
+						</li>
+					<li>
+				<a href="http://www.webhek.com/javascript-bind">理解 javascript 里的 bind() 函数</a>
+						</li>
+					<li>
+				<a href="http://www.webhek.com/javascript-6-new-feature">Javascript 6里的4个新语法</a>
+						</li>
+					<li>
+				<a href="http://www.webhek.com/nine-console-methods">Web程序员必须知道的 Console 对象里的九个方法</a>
+						</li>
+					<li>
+				<a href="http://www.webhek.com/javascript-promise-programming">Promise异步编程模式总结</a>
+						</li>
+				</ul>
+		</aside>		<aside id="rss-2" class="widget widget_rss masonry-brick" style="position: absolute; left: 952px; top: 169px;"><h1 class="widget-title"><a class="rsswidget" href="http://know.webhek.com/feed"><img class="rss-widget-icon" style="border:0" width="14" height="14" src="./你不需要jQuery(二) – WEB骇客_files/rss.png" alt="RSS"></a> <a class="rsswidget" href="http://know.webhek.com/">Web知识手册</a></h1><ul><li><a class="rsswidget" href="http://know.webhek.com/html5/html-dl-dt-dd.html">&lt;dl&gt;、&lt;dt&gt;和&lt;dd&gt;标记的用法</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-video-audio.html">HTML5视频&lt;video&gt;/音频&lt;audio&gt;的用法介绍</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-progress.html">HTML5 &lt;progress&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-output.html">HTML5 &lt;output&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-datalist.html">HTML5 &lt;datalist&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/svg/svg-fecomposite.html">SVG &lt;feComposite&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/svg/svg-fediffuselightinggt-filter.html">SVG光照滤镜</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-section.html">HTML5 &lt;section&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-nav.html">HTML5 &lt;nav&gt;</a></li><li><a class="rsswidget" href="http://know.webhek.com/html5/html5-header.html">HTML5 &lt;header&gt;</a></li></ul></aside>	</div><!-- #footer-sidebar -->
+</div><!-- #supplementary -->
+
+			<div class="site-info">
+								<a href="http://wordpress.org/">自豪地采用WordPress</a>
+			</div><!-- .site-info -->
+		</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+<div id="demo-frame">
+	<div id="demo-menu">
+		<div class="demo-menu-a"><a class="demo-home" href="http://www.webhek.com/">WEB骇客</a> <a href="http://www.webhek.com/">返回首页</a> <a onclick="close_demo()" href="javascript:;">返回文章</a> <a onclick="close_demo()" href="javascript:;"><img src="./你不需要jQuery(二) – WEB骇客_files/close-demo.png" title="关闭演示"></a> <a class="close-demo-menu" onclick="close_demo()" href="javascript:;"><img src="./你不需要jQuery(二) – WEB骇客_files/close-demo.png" title="关闭演示"></a></div>
+	</div>
+	<div class="demo-frame-warp">
+	<div style="height:50px;"></div>
+		<iframe id="demo-iframe" frameborder="0" src="./你不需要jQuery(二) – WEB骇客_files/saved_resource(4).html"></iframe>
+	</div>
+	
+</div>
+<script type="text/javascript">
+	function show_demo(url){
+		
+		jQuery('html, body').height('100%').css('overflow','hidden');
+		jQuery('#demo-frame').show();
+		jQuery('#demo-iframe').attr('src', url);
+	}
+	function close_demo(){
+		
+		jQuery('html, body').height('auto').css('overflow','auto');
+		jQuery('#demo-frame').hide();
+		jQuery('#demo-iframe').attr('src', 'about:blank');
+	}
+</script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/jquery.lazyload.min.js"></script>
+<script type="text/javascript">
+	jQuery(".best-img .lazy").lazyload();
+	jQuery("img.lazy").lazyload();
+
+  	if( jQuery('pre').length > 0 ){
+
+		jQuery("<link/>", {
+			   rel: "stylesheet",
+			   type: "text/css",
+			   href: "http://www.webhek.com/wordpress/wp-content/themes/webhek4/js/prism.css"
+		}).appendTo("head");
+
+		(function() {
+	      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	      ga.src = 'http://www.webhek.com/wordpress/wp-content/themes/webhek4/js/prism.js';
+	      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+	}
+	
+</script> 
+
+
+<script type="text/javascript">
+
+
+function share_me(webid, url, mytitle, summary){
+
+	var title = "分享好文【"+mytitle+"】";
+
+	var tsummary = title + summary;
+
+	var share_services = {
+		'tsina':  "http://service.weibo.com/share/share.php?title="+encodeURIComponent( tsummary )+"&url="+url,
+		'qzone':  "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+url+"&title="+encodeURIComponent( title )+"&pics=&summary="+encodeURIComponent( summary ),
+		'tqq':    "http://share.v.t.qq.com/index.php?c=share&a=index&title="+encodeURIComponent( tsummary )+"&url="+url,
+		'renren': "http://widget.renren.com/dialog/share?resourceUrl="+url+"&srcUrl="+url+"&title="+encodeURIComponent( title )+"&pic=&description="+encodeURIComponent( summary ),
+		'twitter':"http://twitter.com/intent/tweet?url="+url+"&text="+encodeURIComponent( tsummary ),
+		'facebook':"http://facebook.com/sharer.php?u="+url,
+		'more':   "http://www.jiathis.com/send/?webid=" + webid + "&url="+url+"&title="+encodeURIComponent("分享好文：【"+title+"】")+"&summary="+encodeURIComponent(summary)
+	};
+
+	window.open(share_services[webid], "_blank", "width=615,height=505");
+}
+
+function t(app){
+	var summary = '';
+	var description;
+	var metas = document.getElementsByTagName('meta');
+	for (var x=0,y=metas.length; x<y; x++) {
+	  if (metas[x].name.toLowerCase() == "description") {
+	    description = metas[x];
+	  }
+	}
+	if( description ) summary = description.content;
+
+	var title = document.title;
+
+	var url = document.location.href;
+		
+	share_me(app, url, title, summary);
+}
+
+</script>
+
+<script type="text/javascript">
+
+
+	
+   if (typeof adblockJsFile === 'undefined') {
+      jQuery('body').addClass('adblocked_view');
+
+	(function(){
+		      var mysense_square = [
+		      					{
+		      						'url': 'https://shop162567423.taobao.com/?_='+new Date().getMilliseconds(),
+		      						'img': 'http://static.webhek.com/linux-cup.jpg'
+		      					},
+		      					{
+		      						'url': 'https://shop162567423.taobao.com/?_='+new Date().getMilliseconds(),
+		      						'img': 'http://static.webhek.com/linux-cup.jpg'
+		      					}
+		      				];
+
+		      var mysense_rect = [
+		      					{
+		      						'url': 'http://union.dangdang.com/transfer.php?_='+new Date().getMilliseconds()+'&from=P-285716&ad_type=10&sys_id=1&backurl=http%3A%2F%2Fbook.dangdang.com%2F',
+		      						'img': 'http://static.webhek.com/dd72890.jpg'
+		      					},
+		      					{
+		      						'url': 'http://www.west.cn?_='+new Date().getMilliseconds()+'&ReferenceID=171737',
+		      						'img': 'http://static.webhek.com/west-738173.jpg'
+		      					}
+		      				];
+		     var i = new Date().getMilliseconds()%2; 
+
+		      jQuery('.mysense').each(function(){
+
+		      		var d = mysense_square;
+
+		      		if(jQuery(this).hasClass('rect')) d = mysense_rect;
+
+		      		jQuery(this).find('a').attr('href', d[i].url);
+
+		      		jQuery(this).css('background-image', 'url("'+d[i].img+'")');
+
+		      		jQuery(this).attr('ref', new Date().getMilliseconds());
+
+		      		jQuery(this).attr('class', 'c'+new Date().getMilliseconds() + ' ' + jQuery(this).attr('class'));
+
+		      		// b-b 表示下一个和这个相同 i 不变
+		      		if(!jQuery(this).hasClass('b-b'))  i = (i==0)?1:0;
+
+		      });
+      })();				
+    }
+
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2477810-34', 'webhek.com');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/form.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/masonry.min.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/functions.js"></script>
+<script type="text/javascript" src="./你不需要jQuery(二) – WEB骇客_files/wp-embed.min.js"></script>
+<span id="pageendflag"></span>
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced (User agent is rejected)
+
+ Served from: www.webhek.com @ 2016-08-28 10:56:23 by W3 Total Cache --><!-- 2016-8-28 10:56 static gzip--></body></html>

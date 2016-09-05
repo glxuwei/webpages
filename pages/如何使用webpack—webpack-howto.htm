@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- content-Type -->
+
+
+
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="language" content="en">
+<meta name="robots" content="all">
+
+
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+<meta name="author" content="theme.author, theme.email">
+<meta name="reply-to" content="theme.email">
+<meta name="owner" content="theme.author">
+
+
+
+
+<meta name="google-site-verification" content="UA-78049587-1">
+
+
+
+
+<meta name="baidu-site-verification" content="fRBucd9VmI">
+
+
+
+
+<meta name="baidu-gxt-verify-token" content="ca8f032797b876ef3be37c3d492168a0">
+
+
+
+
+<meta name="description" content="hello word! 😺">
+
+
+
+
+<meta name="keywords" content="JavaScript,webpack,翻译,">
+
+
+<meta name="description" content="如何使用webpack本文章翻译自petehunt的webpack-howto教程，原地址https://github.com/petehunt/webpack-howto，还有源码。
+本教程的目标这是一本如何使用webpack来处理代码的“烹饪书”，它包括了我们在Instagram用的大多数东西以及我们还没在项目中用到过的。我（作者）的建议：把这本书作为你学习webpack文档的开端，然后配合看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用webpack—webpack-howto">
+<meta property="og:url" content="http://qiutc.me/post/如何使用webpack—webpack-howto.html">
+<meta property="og:site_name" content="阿城的blog">
+<meta property="og:description" content="如何使用webpack本文章翻译自petehunt的webpack-howto教程，原地址https://github.com/petehunt/webpack-howto，还有源码。
+本教程的目标这是一本如何使用webpack来处理代码的“烹饪书”，它包括了我们在Instagram用的大多数东西以及我们还没在项目中用到过的。我（作者）的建议：把这本书作为你学习webpack文档的开端，然后配合看">
+<meta property="og:updated_time" content="2016-07-26T23:16:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用webpack—webpack-howto">
+<meta name="twitter:description" content="如何使用webpack本文章翻译自petehunt的webpack-howto教程，原地址https://github.com/petehunt/webpack-howto，还有源码。
+本教程的目标这是一本如何使用webpack来处理代码的“烹饪书”，它包括了我们在Instagram用的大多数东西以及我们还没在项目中用到过的。我（作者）的建议：把这本书作为你学习webpack文档的开端，然后配合看">
+
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="http://qiutc.me/favicon.ico?v=0.0.1">
+
+
+
+
+
+
+<link href="./如何使用webpack—webpack-howto_files/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./如何使用webpack—webpack-howto_files/main.css">
+
+
+<script src="./如何使用webpack—webpack-howto_files/hm.js"></script><script async="" src="./如何使用webpack—webpack-howto_files/analytics.js"></script><script src="./如何使用webpack—webpack-howto_files/push.js"></script><script>
+(function(){
+  var bp = document.createElement('script');
+  bp.src = '//push.zhanzhang.baidu.com/push.js';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <title> 如何使用webpack—webpack-howto </title>
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-78049587-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?47d302b006bf28a09c22990da53cd3da";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+<script type="text/javascript" async="" src="./如何使用webpack—webpack-howto_files/embed.js" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="./如何使用webpack—webpack-howto_files/embed.default.css"></head>
+<body lang="zh-Hans">
+
+  <!--[if lte IE 9]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+  <div class="another-theme layout">
+
+    
+<header class="header" id="header">
+
+  <div class="header-cont">
+    <div class="text-area">
+      
+        <h1 class="title" data-text="如何使用webpack—webpack-howto"> 如何使用webpack—webpack-howto </h1>
+
+        
+        <div class="post-meta">
+          <div class="post-time">
+            发表于
+            <time datetime="2015-10-21T10:58:10+08:00" content="2015-10-21">
+              2015-10-21
+            </time>
+          </div>
+
+          
+            <div class="post-category">
+              
+                <span>
+                  <a href="http://qiutc.me/categories#webpack" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </div>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <a href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="post/如何使用webpack—webpack-howto.html" itemprop="commentsCount">暂无评论</span>
+                </a>
+              </span>
+            
+          
+        </div>
+        
+      
+    </div>
+    <!-- Navigation -->
+    
+    <nav class="navigation clearfix scrolled" id="navigation">
+      
+        
+        <a class="nav-link" href="http://qiutc.me/" rel="section">
+          首页
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/categories" rel="section">
+          分类
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/tags" rel="section">
+          标签
+        </a>
+      
+        
+        <a class="nav-link" href="http://qiutc.me/about" rel="section">
+          关于
+        </a>
+      
+    </nav>
+    
+  </div>
+  <div class="mask"></div>
+</header>
+
+
+    <main class="container">
+
+      
+
+  <article class="post-article post-type-normal post" itemscope="">
+
+  <div class="post-body">
+
+    <div class="content markdown-body"><h1 id="如何使用webpack">如何使用webpack</h1><p>本文章翻译自petehunt的webpack-howto教程，<a href="https://github.com/petehunt/webpack-howto" target="_blank" rel="external">原地址https://github.com/petehunt/webpack-howto</a>，还有源码。</p>
+<h2 id="本教程的目标">本教程的目标</h2><p>这是一本如何使用webpack来处理代码的“烹饪书”，它包括了我们在Instagram用的大多数东西以及我们还没在项目中用到过的。<br>我（作者）的建议：把这本书作为你学习webpack文档的开端，然后配合看官方文档的说明。</p>
+<h2 id="预备知识">预备知识</h2><ul>
+<li>你了解browserify，ReqiureJs或者其他类似的东西。</li>
+<li>你明白这些东西的价值：<ul>
+<li>打包分离</li>
+<li>异步加载</li>
+<li>打包静态资源，比如图片和CSS</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-为什么使用webpack？">1.为什么使用webpack？</h2><ul>
+<li><strong>他类似browserify</strong> 但是可以把你的应用分离成许多文件，如果你有许多页面在你的单页应用里面，用户只需要下载当前页面所需要的代码。如果你跳转到另一个页面，他们不需要重新加载通用的代码。</li>
+<li><strong>他能替代grunt或者gulp大部分的功能</strong> 因为他可以构建和打包CSS，预处理CSS，编译JS和打包处理图片，甚至更多事情。<br>他支持AMD和CommonJs以及其他的模块化系统（Angular，ES6）。如果你不知道用什么，那么可以用CommonJs。</li>
+</ul>
+<h2 id="2-给用browserify的人">2.给用browserify的人</h2><p>下面的代码是等价的：<br></p><figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">browserify</span> <span class="tag">main</span><span class="class">.js</span> &gt; <span class="tag">bundle</span><span class="class">.js</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<figure class="highlight css"><table><tbody><tr><td class="code"><pre><span class="line"><span class="tag">webpack</span> <span class="tag">main</span><span class="class">.js</span> <span class="tag">bundle</span><span class="class">.js</span></span><br></pre></td></tr></tbody></table></figure>
+<p>然而，webpack比browserify更加强大，你可能会更愿意去编写一个<code>webpack.config.js</code>来合理地组织你的项目：<br></p><figure class="highlight typescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="module"><span class="keyword">module</span>.exports = </span>{</span><br><span class="line">    entry: <span class="string">'./main.js'</span>,</span><br><span class="line">    output: {</span><br><span class="line">        filename: <span class="string">'bundle.js'</span></span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这就是JS，所以你可以很轻松地在这个文件里编写代码。</p>
+<h2 id="3-如何调用webpack？">3.如何调用webpack？</h2><p>切换带包含webpack.config.js的目录然后在命令行运行：</p>
+<ul>
+<li><code>webpack</code> 执行一次开发时的编译</li>
+<li><code>webpack -p</code> 执行一次生成环境的编译（压缩）</li>
+<li><code>webpack --watch</code> 在开发时持续监控增量编译（很快）</li>
+<li><code>webpack -d</code> 让他生成SourceMaps</li>
+</ul>
+<h2 id="编译JS语言">编译JS语言</h2><p>webpack和browserify一样能转化（transforms）的RequireJs插件是一个加载器（loader）<br>你能让webpack加载CoffeeScript和Facebook的JSX+ES6支持（你必须先 <code>npm install babel-loader coffee-loader</code>）:<br></p><figure class="highlight groovy"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">module.exports = {</span><br><span class="line"><span class="label">    entry:</span> <span class="string">'./main.js'</span>,</span><br><span class="line"><span class="label">    output:</span> {</span><br><span class="line"><span class="label">        filename:</span> <span class="string">'bundle,js'</span></span><br><span class="line">    },</span><br><span class="line"><span class="label">    module:</span> {</span><br><span class="line"><span class="label">        loader:</span> [</span><br><span class="line">            { <span class="string">test:</span> <span class="regexp">/\.coffee$/</span>, <span class="string">loader:</span> <span class="string">'coffee-loader'</span> },</span><br><span class="line">            { <span class="string">test:</span> <span class="regexp">/\.js$/</span>, <span class="string">loader:</span> <span class="string">'bebel-loader'</span> }</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>为了开启后缀名的自动补全，你需要添加<code>resolve.extensions</code>参数来指定哪些文件是webpack需要搜索的：<br></p><figure class="highlight coffeescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="regexp">//</span> webpack.config.js</span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">    <span class="attribute">entry</span>: <span class="string">'./main.js'</span>,</span><br><span class="line">    <span class="attribute">output</span>: {</span><br><span class="line">        <span class="attribute">filename</span>: <span class="string">'bundle,js'</span></span><br><span class="line">    },</span><br><span class="line">    <span class="attribute">module</span>: {</span><br><span class="line">        <span class="attribute">loader</span>: [</span><br><span class="line">            { <span class="attribute">test</span>: <span class="regexp">/\.coffee$/</span>, <span class="attribute">loader</span>: <span class="string">'coffee-loader'</span> },</span><br><span class="line">            { <span class="attribute">test</span>: <span class="regexp">/\.js$/</span>, <span class="attribute">loader</span>: <span class="string">'bebel-loader'</span> }</span><br><span class="line">        ]</span><br><span class="line">    },</span><br><span class="line">    <span class="attribute">resolve</span>: {</span><br><span class="line">        <span class="regexp">//</span> 你现在可以使用 `<span class="javascript"></span>`<span class="built_in">require</span>(<span class="string">'file'</span>)`<span class="javascript"></span>` 来代替 `<span class="javascript"></span>`<span class="built_in">require</span>(<span class="string">'file.coffee'</span>)`<span class="javascript"></span>` 。</span><br><span class="line">        <span class="attribute">extensions</span>: [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'.json'</span>, <span class="string">'.coffee'</span>, <span class="string">'.jsx'</span>]</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="5-样式和图片">5.样式和图片</h2><p>首先你需要更新你的代码去请求 <code>require()</code> 你的静态资源（命名和他们在node里面使用 <code>require()</code> 一样）。<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'./bootstrap.css'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./myapp.less'</span>);</span><br><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">img.src = <span class="built_in">require</span>(<span class="string">'./glyph.png'</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>当你请求CSS（或者less或者其他）的时候，webpack会把CSS像字符串一样内联到JS包里面，require（）会在页面插入一个style标签。<br>当你请求图片时，webpack会内联一个图片的URL链接到你的代码包然后通过<code>require()</code>返回。<br>但是你需要去教webpack去做这件事（再次重复，用loaders）：<br></p><figure class="highlight groovy"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">module.exports = {</span><br><span class="line"><span class="label">  entry:</span> <span class="string">'./main.js'</span>,</span><br><span class="line"><span class="label">  output:</span> {</span><br><span class="line"><span class="label">    path:</span> <span class="string">'./build'</span>, <span class="comment">// 图片和js会被打包到这个目录</span></span><br><span class="line"><span class="label">    publicPath:</span> <span class="string">'http://mycdn.com/'</span>, <span class="comment">// 这个是用来生成图片地址的URL</span></span><br><span class="line"><span class="label">    filename:</span> <span class="string">'bundle.js'</span></span><br><span class="line">  },</span><br><span class="line"><span class="label">  module:</span> {</span><br><span class="line"><span class="label">    loaders:</span> [</span><br><span class="line">      { <span class="string">test:</span> <span class="regexp">/\.less$/</span>, <span class="string">loader:</span> <span class="string">'style-loader!css-loader!less-loader'</span> }, <span class="comment">// 使用 ! 来链接多个loader</span></span><br><span class="line">      { <span class="string">test:</span> <span class="regexp">/\.css$/</span>, <span class="string">loader:</span> <span class="string">'style-loader!css-loader'</span> },</span><br><span class="line">      {<span class="string">test:</span> <span class="regexp">/\.(png|jpg)$/</span>, <span class="string">loader:</span> <span class="string">'url-loader?limit=8192'</span>} <span class="comment">// 内联小于8k的base64图片，其他的直接使用URL</span></span><br><span class="line">    ]</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h2 id="6-功能标志">6.功能标志</h2><p>有些代码可能我们只想要在生产环境下运行（比如日志logging）和我们内部的测试调试服务器（就像我们的测试人员在测试应用），可以在你的代码引入全局环境变量。<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(__DEV__) {</span><br><span class="line">    <span class="built_in">console</span>.warn(<span class="string">'Extra logging'</span>);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">if</span>(__PRERELEASE__) {</span><br><span class="line">    showSecretFeature();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>这会教webpack这些奇特的全局环境：<br></p><figure class="highlight typescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// definePlugin 接收字符串插入到代码当中, 所以你需要的话可以写上 JS 的字符串.</span></span><br><span class="line"><span class="keyword">var</span> definePlugin = <span class="keyword">new</span> webpack.DefinePlugin({</span><br><span class="line">  __DEV__: <span class="built_in">JSON</span>.stringify(<span class="built_in">JSON</span>.parse(process.env.BUILD_DEV || <span class="string">'true'</span>)),</span><br><span class="line">  __PRERELEASE__: <span class="built_in">JSON</span>.stringify(<span class="built_in">JSON</span>.parse(process.env.BUILD_PRERELEASE || <span class="string">'false'</span>))</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="module"><span class="keyword">module</span>.exports = </span>{</span><br><span class="line">  entry: <span class="string">'./main.js'</span>,</span><br><span class="line">  output: {</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>       </span><br><span class="line">  },</span><br><span class="line">  plugins: [definePlugin]</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>你可以在控制台里执行 <code>BUILD_DEV=1 BUILD_PRERELEASE=1 webpack</code> .<br>注意：<code>webpack -p</code>会丑化并且剔除死代码，然和包含在里面的代码都会被剔除掉，这样你就不用担心泄露秘密咯~</p>
+<h2 id="7-多重入口">7.多重入口</h2><p>比如说你有一个profile和一个feed页面，你不想让用户在只想要profile页面的时候下载feed页面的代码，所以你可以创建多个包，每个页面都有一个”main module”。<br></p><figure class="highlight typescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="module"><span class="keyword">module</span>.exports = </span>{</span><br><span class="line">  entry: {</span><br><span class="line">    Profile: <span class="string">'./profile.js'</span>,</span><br><span class="line">    Feed: <span class="string">'./feed.js'</span></span><br><span class="line">  },</span><br><span class="line">  output: {</span><br><span class="line">    path: <span class="string">'build'</span>,</span><br><span class="line">    filename: <span class="string">'[name].js'</span> <span class="comment">// 模板基于上面入口文件的key</span></span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>在profile页面，插入 <code>&lt;script src="build/Profile.js"&gt;&lt;/script&gt;</code> .feed页面也会这样。</p>
+<h2 id="8-优化通用代码">8.优化通用代码</h2><p>feed和profile页面共享许多通用的代码（比如React和公用样式和组件）。<br>webpack可以计算出哪些代码是它们公用的然后生成一个共享的包然后在页面之间被缓存。<br></p><figure class="highlight typescript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> commonsPlugin =</span><br><span class="line">  <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="string">'common.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="module"><span class="keyword">module</span>.exports = </span>{</span><br><span class="line">  entry: {</span><br><span class="line">    Profile: <span class="string">'./profile.js'</span>,</span><br><span class="line">    Feed: <span class="string">'./feed.js'</span></span><br><span class="line">  },</span><br><span class="line">  output: {</span><br><span class="line">    path: <span class="string">'build'</span>,</span><br><span class="line">    filename: <span class="string">'[name].js'</span> <span class="comment">// Template based on keys in entry above</span></span><br><span class="line">  },</span><br><span class="line">  plugins: [commonsPlugin]</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>在script标签添加之前添加 <code>&lt;script src="build/common.js"&gt;&lt;/script&gt;</code> 就可以使用缓存啦~</p>
+<h2 id="9-异步加载">9.异步加载</h2><p>CommonJs是同步加载的，但是webpack提供了一个方法可以异步加载指定的依赖项。<br>这对于客户端的路由是很有用的，每一个页面都需要路由，但是在某个功能被用到之前你不会想去下载这部分代码的。<br>在你想要异步加载的地方指定分离点，比如：<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.location.pathname === <span class="string">'/feed'</span>) {</span><br><span class="line">  showLoadingState();</span><br><span class="line">  <span class="built_in">require</span>.ensure([], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{ <span class="comment">// 这个语法很怪异但是他能执行</span></span><br><span class="line">    hideLoadingState();</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'./feed'</span>).show(); <span class="comment">// 当这个函数被调用的时候, 这个模块时可以同步的。</span></span><br><span class="line">  });</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.location.pathname === <span class="string">'/profile'</span>) {</span><br><span class="line">  showLoadingState();</span><br><span class="line">  <span class="built_in">require</span>.ensure([], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</span><br><span class="line">    hideLoadingState();</span><br><span class="line">    <span class="built_in">require</span>(<span class="string">'./profile'</span>).show();</span><br><span class="line">  });</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>webpack会做剩下的事情并且生成额外的包然后给你加载。<br>webpack在html的script标签加载时会假设这些文件是在你的根目录下的，比如，你可以使用 <code>output.publicPath来配置他</code><br></p><figure class="highlight less"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="tag">output</span>: {</span><br><span class="line">    <span class="attribute">path</span>: <span class="string">"/home/proj/public/assets"</span>, <span class="comment">//path指向你编译时的文件目录</span></span><br><span class="line">    <span class="attribute">publicPath</span>: <span class="string">"/assets/"</span> <span class="comment">//publicPath指向你引用文件是考虑的地址</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h1 id="其他资源">其他资源</h1><p>可以看一看一个成功的团队如何在真实项目中使用webpack：<a href="http://youtu.be/VkTCL6Nqm6Y" target="_blank" rel="external">http://youtu.be/VkTCL6Nqm6Y</a><br>这是Pete Hunt 在OSCon大会上说的关于webpack在Instagram.com中的使用。</p>
+<h1 id="FAQ">FAQ</h1><p><strong>webpack不像模块化？</strong><br>webpack非常的模块化。他能让插件自身集成到编译过程中的许多地方相比于browserify和requireJs.<br>许多看起来是在被编写在核心代码中的功能实际上是被默认加载的插件，他们可以被覆盖。</p>
+<h1 id="PS">PS</h1><h2 id="1_关于_webpack_-p">1 关于 <code>webpack -p</code></h2><p>关于 <code>webpack -p</code> 混淆压缩代码，并剔除死代码，测试如下：<br>刚刚测试了下，会删除死代码：<br>webpack.config.js：<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  entry: <span class="string">'./index.js'</span>,</span><br><span class="line">  output: {</span><br><span class="line">    path: <span class="string">'./'</span>,</span><br><span class="line">    filename: <span class="string">'output.js'</span>,</span><br><span class="line">    publicPath: <span class="string">''</span></span><br><span class="line">  },</span><br><span class="line">  <span class="built_in">module</span>: {</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>测试一：<br>index.js<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'tesst'</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>执行 webpack -p：<br>输出了：<br></p><figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">WARNING <span class="keyword">in</span> output.js from UglifyJs</span><br><span class="line">Dropping unused <span class="keyword">function</span> <span class="built_in">test</span> [./index.js:<span class="number">1</span>,<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>打开 output.js 看到，除了 webpack 的一些代码，index.js 中的 test 函数并没有被打包进来，一位它没有执行或者输出，是死代码；</p>
+<p>测试二：<br>给刚刚的 index.js 改变一下：<br></p><figure class="highlight javascript"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'tesst'</span>);</span><br><span class="line">}</span><br><span class="line">test();</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>执行了 test 函数。<br>执行 webpack -p：<br>没有刚刚的 WARNING 输出，打开 output.js 看到，test 函数被打包了进来。</p>
+<p>ps. 这里的 test 函数名被混淆了，但是可以看函数里面执行的 console.log(‘test’) 来判断函数是否被打包进来。</p>
+</div>
+
+    <div class="post-sidebar">
+  <div class="toggle-btn" id="toggle-btn">
+    <i class="fa fa-reorder"></i>
+  </div>
+  <section class="post-toc-wrap" id="post-sidebar">
+    <h2 class="toc-title">内容目录</h2>
+    <div class="post-toc">
+      
+      
+        <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#如何使用webpack"><span class="nav-text">如何使用webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#本教程的目标"><span class="nav-text">本教程的目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#预备知识"><span class="nav-text">预备知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#1-为什么使用webpack？"><span class="nav-text">1.为什么使用webpack？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#2-给用browserify的人"><span class="nav-text">2.给用browserify的人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#3-如何调用webpack？"><span class="nav-text">3.如何调用webpack？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#编译JS语言"><span class="nav-text">编译JS语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#5-样式和图片"><span class="nav-text">5.样式和图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#6-功能标志"><span class="nav-text">6.功能标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#7-多重入口"><span class="nav-text">7.多重入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#8-优化通用代码"><span class="nav-text">8.优化通用代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#9-异步加载"><span class="nav-text">9.异步加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#其他资源"><span class="nav-text">其他资源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#FAQ"><span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#PS"><span class="nav-text">PS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="http://qiutc.me/post/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webpack%E2%80%94webpack-howto.html#1_关于_webpack_-p"><span class="nav-text">1 关于 webpack -p</span></a></li></ol></li></ol></div>
+      
+    </div>
+  </section>
+</div>
+
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-tags">
+        
+          <a href="http://qiutc.me/tags#JavaScript" rel="tag">#JavaScript</a>
+        
+          <a href="http://qiutc.me/tags#webpack" rel="tag">#webpack</a>
+        
+          <a href="http://qiutc.me/tags#翻译" rel="tag">#翻译</a>
+        
+      </div>
+    
+    
+  <style>
+    .donation {
+      width: 100%;
+      margin-top: 2rem;
+    }
+    .donation .text {
+      color: #333;
+      font-size: .8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .donation .text:hover {
+      color: rgb(63,134,181);
+    }
+    .donation .img-box {
+      transition: all .3s;
+      width: 0;
+      height: 0;
+      margin: 1rem auto;
+      overflow: hidden;
+    }
+    .donation .img-box img {
+      width: 100%;
+      height: 100%;
+    }
+    .donation #donation {
+      display: none;
+    }
+    .donation #donation:checked + .img-box {
+      width: 16rem;
+      height: 16rem;
+    }
+  </style>
+  <div class="donation">
+    <label class="text" for="donation">
+      如果你觉得文章对你有帮助，并且想为我买一杯咖啡，点这里～
+    </label>
+    <input type="checkbox" name="donation" id="donation">
+    <div class="img-box">
+      <img src="./如何使用webpack—webpack-howto_files/donation.png" alt="donation">
+    </div>
+    
+  </div>
+
+
+  </footer>
+
+</article>
+
+
+
+
+      
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="post/如何使用webpack—webpack-howto.html" data-title="如何使用webpack—webpack-howto" data-url="http://qiutc.me/post/如何使用webpack—webpack-howto.html" id="ds-thread">
+      <div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"><span class="ds-highlight">2</span> 人喜欢</span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">9</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6313384754624332545"><div class="ds-post-self" data-post-id="6313384754624332545" data-thread-id="6207931251305808641" data-root-id="6310822715393573634" data-source="duoshuo"><div class="ds-avatar" data-user-id="14072669"><a rel="nofollow author" target="_blank" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" title="黄哲宇--风变科技"><img src="./如何使用webpack—webpack-howto_files/1" alt="黄哲宇--风变科技"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" rel="nofollow" target="_blank" data-user-id="14072669">黄哲宇--风变科技</a></div><p><a class="ds-comment-context" data-post-id="6313384754624332545" data-parent-id="6311775949952123649">回复 vvv阿城: </a>谢谢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-31T15:17:16+08:00" title="2016年7月31日 下午3:17:16">7月31日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6311775949952123649"><div class="ds-post-self" data-post-id="6311775949952123649" data-thread-id="6207931251305808641" data-root-id="6310822715393573634" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./如何使用webpack—webpack-howto_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6311775949952123649" data-parent-id="6311448140020974338">回复 黄哲宇--风变科技: </a>刚刚测试了下，会删除死代码：<br>
+webpack.config.js：<br>
+```<br>
+const webpack = require('webpack');<br>
+<br>
+module.exports = {<br>
+  entry: './index.js',<br>
+  output: {<br>
+    path: './',<br>
+    filename: 'output.js',<br>
+    publicPath: ''<br>
+  },<br>
+  module: {<br>
+  }<br>
+};<br>
+```<br>
+测试一：<br>
+index.js<br>
+```<br>
+function test() {<br>
+  console.log('tesst');<br>
+}<br>
+```<br>
+执行 webpack -p：<br>
+输出了：<br>
+```<br>
+WARNING in output.js from UglifyJs<br>
+Dropping unused function test [./index.js:1,0]<br>
+```<br>
+打开 output.js 看到，除了 webpack 的一些代码，index.js 中的 test 函数并没有被打包进来，一位它没有执行或者输出，是死代码；<br>
+<br>
+测试二：<br>
+给刚刚的 index.js 改变一下：<br>
+```<br>
+function test() {<br>
+  console.log('tesst');<br>
+}<br>
+test();<br>
+```<br>
+执行了 test 函数。<br>
+执行 webpack -p：<br>
+没有刚刚的 WARNING 输出，打开 output.js 看到，test 函数被打包了进来。<br>
+<br>
+ps. 这里的 test 函数名被混淆了，但是可以看函数里面执行的 console.log('test') 来判断函数是否被打包进来。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-27T07:14:17+08:00" title="2016年7月27日 上午7:14:17">7月27日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6311448140020974338"><div class="ds-post-self" data-post-id="6311448140020974338" data-thread-id="6207931251305808641" data-root-id="6310822715393573634" data-source="duoshuo"><div class="ds-avatar" data-user-id="14072669"><a rel="nofollow author" target="_blank" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" title="黄哲宇--风变科技"><img src="./如何使用webpack—webpack-howto_files/1" alt="黄哲宇--风变科技"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" rel="nofollow" target="_blank" data-user-id="14072669">黄哲宇--风变科技</a></div><p><a class="ds-comment-context" data-post-id="6311448140020974338" data-parent-id="6311212414016684801">回复 vvv阿城: </a>测试过-p可以删除没用代码吗？我个人测试build后还是存在的</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-26T10:02:12+08:00" title="2016年7月26日 上午10:02:12">7月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6311212414016684801"><div class="ds-post-self" data-post-id="6311212414016684801" data-thread-id="6207931251305808641" data-root-id="6310822715393573634" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./如何使用webpack—webpack-howto_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6311212414016684801" data-parent-id="6310822715393573634">回复 黄哲宇--风变科技: </a>-p 是压缩混淆，这里估计是我翻译失误，一会儿改改 😂</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-25T18:47:28+08:00" title="2016年7月25日 下午6:47:28">7月25日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6310822715393573634"><div class="ds-post-self" data-post-id="6310822715393573634" data-thread-id="6207931251305808641" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="14072669"><a rel="nofollow author" target="_blank" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" title="黄哲宇--风变科技"><img src="./如何使用webpack—webpack-howto_files/1" alt="黄哲宇--风变科技"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/meckodo" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=14072669&#39;;" rel="nofollow" target="_blank" data-user-id="14072669">黄哲宇--风变科技</a></div><p>注意：webpack -p会丑化并且剔除死代码，然和包含在里面的代码都会被剔除掉，这样你就不用担心泄露秘密咯~<br>
+<br>
+看了build后的代码并没有删除啊，想问问博主可以吗</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-24T17:35:14+08:00" title="2016年7月24日 下午5:35:14">7月24日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6243200208365159169"><div class="ds-post-self" data-post-id="6243200208365159169" data-thread-id="6207931251305808641" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6243200141780583170"><img src="./如何使用webpack—webpack-howto_files/100" alt="ސސސސސސސސސސސސސސސސސސ"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-user-id="6243200141780583170" data-qqt-account="">ސސސސސސސސސސސސސސސސސސ</span></div><p>编译JS语言<br>
+filename: 'bundle,js'</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-24T12:05:22+08:00" title="2016年1月24日 下午12:05:22">1月24日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6226832062133830401"><div class="ds-post-self" data-post-id="6226832062133830401" data-thread-id="6207931251305808641" data-root-id="6226107700686619394" data-source="duoshuo"><div class="ds-avatar" data-user-id="13605288"><a rel="nofollow author" target="_blank" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" title="vvv阿城"><img src="./如何使用webpack—webpack-howto_files/222258.jpg" alt="vvv阿城"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://qiutc.me/" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=13605288&#39;;" rel="nofollow" target="_blank" data-user-id="13605288">vvv阿城</a></div><p><a class="ds-comment-context" data-post-id="6226832062133830401" data-parent-id="6226107700686619394">回复 LeoLiuYan: </a>理论上确实不能说是异步，他就是把代码打包成按需加载，做 spa 的时候这一个感觉才是很好用的。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-11T09:28:36+08:00" title="2015年12月11日 上午9:28:36">2015年12月11日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6226107700686619394"><div class="ds-post-self" data-post-id="6226107700686619394" data-thread-id="6207931251305808641" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10253393"><a rel="nofollow author" target="_blank" href="http://weibo.com/3737714120" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=10253393&#39;;" title="LeoLiuYan"><img src="./如何使用webpack—webpack-howto_files/1(1)" alt="LeoLiuYan"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/3737714120" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=10253393&#39;;" rel="nofollow" target="_blank" data-user-id="10253393">LeoLiuYan</a></div><p>我感觉异步那个地方不能称之为异步  只能说是lazy load</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-09T10:37:43+08:00" title="2015年12月9日 上午10:37:43">2015年12月9日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6207956759116284674"><div class="ds-post-self" data-post-id="6207956759116284674" data-thread-id="6207931251305808641" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10226087"><a rel="nofollow author" target="_blank" href="http://weibo.com/2809423853" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=10226087&#39;;" title="丿姑娘请留步"><img src="./如何使用webpack—webpack-howto_files/1(2)" alt="丿姑娘请留步"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2809423853" onclick="this.href=&#39;http://qiutongcheng.duoshuo.com/user-url/?user_id=10226087&#39;;" rel="nofollow" target="_blank" data-user-id="10226087">丿姑娘请留步</a></div><p>不错，先顶为快 <img src="./如何使用webpack—webpack-howto_files/good_org.gif" alt="[good]" title="[good]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-21T12:42:48+08:00" title="2015年10月21日 下午12:42:48">2015年10月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://qiutongcheng.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://qiutongcheng.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://qiutongcheng.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./如何使用webpack—webpack-howto_files/227054.jpg" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6207931251305808641">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57ac6865e054c"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Powered by 多说</a></p></div></div>
+    
+  </div>
+
+
+
+
+    </main>
+
+    <footer class="footer clearfix">
+  <div class="copyright">
+    <span>Copyright</span>
+    
+    ©  2015-
+    <span itemprop="copyrightYear">2016</span>
+    <span class="author" itemprop="copyrightHolder">阿城😇</span>
+  </div>
+
+  <div class="info">
+    <script async="" src="./如何使用webpack—webpack-howto_files/busuanzi.pure.mini.js"></script>
+    
+      <span id="showDays" class="show-days">本站已运行 320 天</span>
+      <script>
+      var birthDay = new Date('10/04/2015');
+      var now = new Date();
+      var duration = now.getTime() - birthDay.getTime();
+      var total= Math.floor(duration / (1000 * 60 * 60 * 24));
+      document.getElementById("showDays").innerHTML = "本站已运行 "+total+" 天";
+      </script>
+      ---
+    
+    <span id="busuanzi_container_site_pv" style="display: inline;">
+        总访问量<span id="busuanzi_value_site_pv">53426</span>次
+    </span>
+  </div>
+
+</footer>
+
+
+  </div>
+
+  <div class="back-top-btn" id="back-top-btn" style="display: block;"><i class="fa fa-chevron-up"></i></div>
+
+
+
+
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qiutongcheng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+
+
+<script type="text/javascript" src="./如何使用webpack—webpack-howto_files/motto.min.js"></script>
+<script type="text/javascript" src="./如何使用webpack—webpack-howto_files/main.js"></script>
+
+
+
+
+</body></html>

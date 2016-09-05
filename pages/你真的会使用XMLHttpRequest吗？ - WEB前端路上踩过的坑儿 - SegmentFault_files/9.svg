@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="200" height="200"></rect>
+    </defs>
+    <g id="pattern" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="9">
+            <g>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill-opacity="0" fill="#D8D8D8" xlink:href="#path-1"></use>
+                <g id="Group" mask="url(#mask-2)" stroke="#000000" stroke-opacity="0.02" stroke-width="0.714285714">
+                    <rect id="Rectangle-path" fill-opacity="0.115333333" fill="#222222" x="0" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0893333333" fill="#DDDDDD" x="33.3333333" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.15" fill="#222222" x="66.6666667" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0286666667" fill="#222222" x="100" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.15" fill="#222222" x="133.333333" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.124" fill="#DDDDDD" x="166.666667" y="0" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.15" fill="#222222" x="0" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.02" fill="#DDDDDD" x="33.3333333" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.106666667" fill="#DDDDDD" x="66.6666667" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.02" fill="#DDDDDD" x="100" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.046" fill="#222222" x="133.333333" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0633333333" fill="#222222" x="166.666667" y="33.3333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.124" fill="#DDDDDD" x="0" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.072" fill="#DDDDDD" x="33.3333333" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.132666667" fill="#222222" x="66.6666667" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0546666667" fill="#DDDDDD" x="100" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.02" fill="#DDDDDD" x="133.333333" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0373333333" fill="#DDDDDD" x="166.666667" y="66.6666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.106666667" fill="#DDDDDD" x="0" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.115333333" fill="#222222" x="33.3333333" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.098" fill="#222222" x="66.6666667" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0893333333" fill="#DDDDDD" x="100" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.132666667" fill="#222222" x="133.333333" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.02" fill="#DDDDDD" x="166.666667" y="100" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.106666667" fill="#DDDDDD" x="0" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.132666667" fill="#222222" x="33.3333333" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.115333333" fill="#222222" x="66.6666667" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.141333333" fill="#DDDDDD" x="100" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0806666667" fill="#222222" x="133.333333" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0546666667" fill="#DDDDDD" x="166.666667" y="133.333333" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0806666667" fill="#222222" x="0" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0893333333" fill="#DDDDDD" x="33.3333333" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.0806666667" fill="#222222" x="66.6666667" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.072" fill="#DDDDDD" x="100" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.106666667" fill="#DDDDDD" x="133.333333" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                    <rect id="Rectangle-path" fill-opacity="0.046" fill="#222222" x="166.666667" y="166.666667" width="33.3333333" height="33.3333333"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

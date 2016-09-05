@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0086)http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/ca-pub-8387657399364017.js"></script><script>var _sf_startpt=new Date().getTime(); // Chartbeat</script> 
+
+
+<title>ReadyState4 » Blog Archive   » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV*) Application.</title>
+
+<meta name="generator" content="WordPress 3.2.1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/reset.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/style.css" type="text/css" media="screen">
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="http://readystate4.com/wp-content/themes/ColdBlue/css/legacy.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="ReadyState4 RSS Feed" href="http://readystate4.com/feed/">
+<link rel="pingback" href="http://readystate4.com/xmlrpc.php">
+<style>
+  pre{
+    overflow-x: auto;
+    padding: 10px;
+  }
+  .wp_syntax{
+    border: 0 !important;
+    background-color: #F6F6F9 !important;
+  }
+</style>
+<link rel="alternate" type="application/rss+xml" title="ReadyState4 » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV*) Application. Comments Feed" href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/feed/">
+<link rel="stylesheet" id="md_style-css" href="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/demo.css" type="text/css" media="all">
+<script type="text/javascript" src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/l10n.js"></script>
+<script type="text/javascript" src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/jquery.js"></script>
+<script type="text/javascript" src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/prettify.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://readystate4.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://readystate4.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="ReadyState4" href="http://readystate4.com/">
+<link rel="start" title="Division of most popular social networks by country" href="http://readystate4.com/2008/02/29/division-of-most-popular-social-networks-per-country/">
+<link rel="prev" title="405 Not Allowed on Facebook Canvas Page" href="http://readystate4.com/2012/05/11/405-not-allowed-on-facebook-canvas-page/">
+<link rel="next" title="Nginx, the non-blocking model, and why Apache sucks" href="http://readystate4.com/2012/07/08/nginx-the-non-blocking-model-and-why-apache-sucks/">
+<meta name="generator" content="WordPress 3.2.1">
+<link rel="canonical" href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/">
+<link rel="shortlink" href="http://readystate4.com/?p=495">
+
+<link rel="stylesheet" href="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/wp-syntax.css" type="text/css" media="screen">
+</head>
+<body>
+
+	<div id="header"><div class="inner clear">
+		<h1><a href="http://readystate4.com/">ReadyState4</a></h1>
+		<ul id="navigation">
+			<li class="page_item page-item-2"><a href="http://readystate4.com/about/" title="About">About</a></li>
+			<li><a href="http://readystate4.com/feed/">RSS Feed</a></li>
+		</ul>
+	</div></div>
+	
+	<div id="search"><div class="inner clear">
+		<a id="rss-link" href="http://readystate4.com/feed/"><strong>Subscribe to the RSS Feed</strong></a>
+		<a id="technorati-link" href="http://technorati.com/faves?add=http://readystate4.com"><strong>Add to your Favorites</strong></a>
+		<form method="get" id="searchform" action="http://readystate4.com/"><div>
+	<input type="text" value="" name="s" id="s">
+	<input type="submit" id="searchsubmit" value="Search">
+</div></form>
+	</div></div>
+	
+	<div id="wrapper" class="clear">
+	<div id="content">
+
+	
+		<div class="post" id="post-495">
+			
+			<div class="post-title">
+				<h2><a href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/" rel="bookmark" title="Permanent Link to Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV*) Application.">Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV*) Application.</a></h2>
+				<h3>Posted on May 17th, 2012 in <a href="http://readystate4.com/category/apache/" title="View all posts in Apache" rel="category tag">Apache</a>, <a href="http://readystate4.com/category/backbone/" title="View all posts in backbone" rel="category tag">backbone</a>, <a href="http://readystate4.com/category/nginx/" title="View all posts in nginx" rel="category tag">nginx</a> |   <a href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/#comments" title="Comment on Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV*) Application.">4 Comments »</a></h3>
+			</div>
+
+			<div class="post-content">
+				<p>HTML5 pushstate is awesome. It enables you to change the URL of your site dynamically without refreshing the page (goodbye hashes!). Libraries like <a href="http://backbonejs.org/">Backbone</a> have great support for this. Unfortunately if a user bookmarks or refresh a page on an app that’s using HTML5 pushstate, it makes a request to the server for that deep linked content. Here are the rewrites for Nginx and Apache to internally redirect that call to the same html file. Browser thinks its a unique page but it’s the same.</p>
+<h3>Apache</h3>
+<p>In your vhost <directory>:</directory></p>
+
+<div class="wp_syntax"><div class="code"><pre class="bash prettyprint" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;"><span class="tag">&lt;</span></span><span class="tag">IfModule</span><span class="pln"> </span><span class="atn">mod_rewrite</span><span class="pln">.</span><span class="atn">c</span><span style="color: #000000; font-weight: bold;"><span class="tag">&gt;</span></span><span class="pln">
+    RewriteEngine On
+    RewriteBase </span><span style="color: #000000; font-weight: bold;"><span class="pln">/</span></span><span class="pln">
+    RewriteRule ^index\.html$ - </span><span style="color: #7a0874; font-weight: bold;"><span class="pln">[</span></span><span class="pln">L</span><span style="color: #7a0874; font-weight: bold;"><span class="pln">]</span></span><span class="pln">
+    RewriteCond </span><span style="color: #000000; font-weight: bold;"><span class="pln">%</span></span><span style="color: #7a0874; font-weight: bold;"><span class="pln">{</span></span><span class="pln">REQUEST_FILENAME</span><span style="color: #7a0874; font-weight: bold;"><span class="pln">}</span></span><span class="pln"> </span><span style="color: #000000; font-weight: bold;"><span class="pln">!</span></span><span class="pln">-f
+    RewriteCond </span><span style="color: #000000; font-weight: bold;"><span class="pln">%</span></span><span style="color: #7a0874; font-weight: bold;"><span class="pln">{</span></span><span class="pln">REQUEST_FILENAME</span><span style="color: #7a0874; font-weight: bold;"><span class="pln">}</span></span><span class="pln"> </span><span style="color: #000000; font-weight: bold;"><span class="pln">!</span></span><span class="pln">-d
+    RewriteRule . </span><span style="color: #000000; font-weight: bold;"><span class="pln">/</span></span><span class="pln">index.html </span><span style="color: #7a0874; font-weight: bold;"><span class="pln">[</span></span><span class="pln">L</span><span style="color: #7a0874; font-weight: bold;"><span class="pln">]</span></span><span class="pln">
+ </span><span style="color: #000000; font-weight: bold;"><span class="tag">&lt;/</span></span><span class="tag">IfModule</span><span style="color: #000000; font-weight: bold;"><span class="tag">&gt;</span></span></pre></div></div>
+
+<h3>Nginx</h3>
+
+<div class="wp_syntax"><div class="code"><pre class="bash prettyprint" style="font-family:monospace;"><span class="pln">    rewrite </span><span class="pun">^</span><span style="color: #7a0874; font-weight: bold;"><span class="pun">(</span></span><span class="pun">.+</span><span style="color: #7a0874; font-weight: bold;"><span class="pun">)</span></span><span class="pln">$ </span><span style="color: #000000; font-weight: bold;"><span class="pun">/</span></span><span class="pln">index</span><span class="pun">.</span><span class="pln">html </span><span style="color: #c20cb9; font-weight: bold;"><span class="kwd">last</span></span><span class="pun">;</span></pre></div></div>
+
+<p>Note that once you have this in place your server no longer reports 400 errors as all requests pull up the index page. To work around this you can create a 404 in a Backbone route:</p>
+
+<div class="wp_syntax"><div class="code"><pre class="javascript prettyprint" style="font-family:monospace;"><span class="pln">  routes</span><span style="color: #339933;"><span class="pun">:</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">{</span></span><span class="pln">
+    </span><span style="color: #006600; font-style: italic;"><span class="com">// Other routes</span></span><span class="pln">
+    </span><span style="color: #3366CC;"><span class="str">"*path"</span></span><span class="pln">  </span><span style="color: #339933;"><span class="pun">:</span></span><span class="pln"> </span><span style="color: #3366CC;"><span class="str">"notFound"</span></span><span class="pln">
+  </span><span style="color: #009900;"><span class="pun">}</span></span><span style="color: #339933;"><span class="pun">,</span></span><span class="pln">
+&nbsp;
+  notFound</span><span style="color: #339933;"><span class="pun">:</span></span><span class="pln"> </span><span style="color: #003366; font-weight: bold;"><span class="kwd">function</span></span><span style="color: #009900;"><span class="pun">(</span></span><span class="pln">path</span><span style="color: #009900;"><span class="pun">)</span></span><span class="pln"> </span><span style="color: #009900;"><span class="pun">{</span></span><span class="pln">
+    </span><span style="color: #006600; font-style: italic;"><span class="com">// Load 404 template, probably of a cute animal.</span></span><span class="pln">
+  </span><span style="color: #009900;"><span class="pun">}</span></span></pre></div></div>
+
+			</div>
+			
+			
+<!-- You can start editing here. -->
+
+	<ul class="post-comments clear">
+		
+		<h3>4 Responses</h3>
+
+	
+		<li class="comment clear alt" id="comment-2835">
+			<cite class="comment-author"><a href="http://deserialized.com/" rel="external nofollow" class="url">Bryan Migliorisi</a></cite>
+			<div class="comment-content">
+								<p>If you are using any modern MVC framework, it should be trivial to simply map all requests to the correct controller\action.  I’m doing this on a Rails project right now and I like it because it places the logic in the app instead of in the server and leaves less to worry about when deploying.</p>
+			</div>
+		</li>
+
+	
+	
+		<li class="comment clear" id="comment-2837">
+			<cite class="comment-author">Mauvis</cite>
+			<div class="comment-content">
+								<p>Great point, Bryan. I guess I didn’t add real context to this post. These kind of Nginx-level rewrites are really for backend-independent JavaScript application frameworks as most the apps I’ve been writing lately have been straight Backbone.js which harness backend as API calls on the same or different server. The Apache version of the rewrites are for local dev environments as most developers are most familiar with that and already have it installed.</p>
+<p>Doing it this way enables me to decouple my backend from my front and allows me to put 95% of the entire application compressed and gzipped on the CDN sittin’ cool as a cucumber. The only servers I need to worry about scaling are the API servers, and I don’t require the overhead of loading an entire backend application stack just to load a static html file.</p>
+<p>To target those few pages that require SEO (or Facebook sharing), I also use Nginx to serve seo friendly version when those deep links get hit directly (outside of HTML5 pushsate). I use Node Express which I’m working on getting to understand my Backbone routes and templates directly without much extra coding.</p>
+			</div>
+		</li>
+
+	
+	
+		<li class="comment clear alt" id="comment-3172">
+			<cite class="comment-author">Schmulik Raskin</cite>
+			<div class="comment-content">
+								<p>How are Ajax requests for dynamic resources handled, won’t they also be redirected to ‘index.html’? Is there a way to ignore requests that are made from Ajax?</p>
+			</div>
+		</li>
+
+	
+	
+		<li class="comment clear" id="comment-3173">
+			<cite class="comment-author">Mauvis</cite>
+			<div class="comment-content">
+								<p>Schmulik, I usually put API calls into its own domain served by the same or different web server, for example api.domain.com. I use CORS to support this but also have a work around domain.com/api/ for browsers that don’t support CORS.</p>
+			</div>
+		</li>
+
+	
+	
+	</ul>
+
+ 
+
+
+<h3>Leave a Reply</h3>
+
+
+<form action="http://readystate4.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1">
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2">
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3">
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; &lt;pre lang=&quot;&quot; line=&quot;&quot; escaped=&quot;&quot;&gt; </code></small></p>-->
+
+<p><textarea name="comment" id="comment" cols="60" rows="7" tabindex="4"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+<input type="hidden" name="comment_post_ID" value="495">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="16ccb1cac1"></p>
+</form>
+
+
+		</div>
+
+	
+	</div>
+	
+	<ul id="sidebar">
+                <!--<li><img src="http://readystate4.com/adfreebutton.jpg" /></li>-->
+                <li><script async="" src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/adsbygoogle.js"></script>
+<!-- readystate -->
+<ins class="adsbygoogle" style="display: block; height: 600px;" data-ad-client="ca-pub-8387657399364017" data-ad-slot="3574772462" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:240px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:240px;background-color:transparent"><iframe width="240" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/saved_resource.html"></iframe></ins></ins></ins>
+<script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+</script></li>
+
+					<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">Recent Posts</h2>
+		<ul>
+				<li><a href="http://readystate4.com/2013/10/29/a-post-about-backing-up-your-data/" title="A post about backing up your data.">A post about backing up your data.</a></li>
+				<li><a href="http://readystate4.com/2013/10/29/improving-prototypal-inheritance-in-javascript-with-a-surrogate-class/" title="Improving prototypal inheritance in JavaScript with a surrogate class.">Improving prototypal inheritance in JavaScript with a surrogate class.</a></li>
+				<li><a href="http://readystate4.com/2013/09/24/preparing-for-ios7-by-doing-a-full-ios-backup-to-an-attached-drive/" title="Preparing for iOS7 by doing a full iOS backup to an attached drive">Preparing for iOS7 by doing a full iOS backup to an attached drive</a></li>
+				<li><a href="http://readystate4.com/2013/05/01/rate-limiting-your-wordpress-login-from-wannabe-hackers/" title="Rate limiting your WordPress login from wannabe hackers">Rate limiting your WordPress login from wannabe hackers</a></li>
+				<li><a href="http://readystate4.com/2013/04/09/aws-gaining-ssh-access-to-an-ec2-instance-you-lost-access-to/" title="AWS: Gaining SSH access to an EC2 instance you lost access to.">AWS: Gaining SSH access to an EC2 instance you lost access to.</a></li>
+				</ul>
+		</li>
+<li id="categories-1" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
+		<ul>
+	<li class="cat-item cat-item-44"><a href="http://readystate4.com/category/android/" title="View all posts filed under android">android</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="http://readystate4.com/category/apache/" title="View all posts filed under Apache">Apache</a>
+</li>
+	<li class="cat-item cat-item-60"><a href="http://readystate4.com/category/aws/" title="View all posts filed under AWS">AWS</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://readystate4.com/category/backbone/" title="View all posts filed under backbone">backbone</a>
+</li>
+	<li class="cat-item cat-item-30"><a href="http://readystate4.com/category/bash/" title="View all posts filed under bash">bash</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://readystate4.com/category/character-encoding/" title="View all posts filed under Character Encoding">Character Encoding</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://readystate4.com/category/dropbox/" title="View all posts filed under dropbox">dropbox</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://readystate4.com/category/dwr/" title="View all posts filed under DWR">DWR</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://readystate4.com/category/emacs/" title="View all posts filed under emacs">emacs</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://readystate4.com/category/facebook/" title="View all posts filed under facebook">facebook</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://readystate4.com/category/firebug/" title="View all posts filed under Firebug">Firebug</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://readystate4.com/category/firefox/" title="View all posts filed under Firefox">Firefox</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://readystate4.com/category/general-web-dev/" title="View all posts filed under General Web Dev">General Web Dev</a>
+</li>
+	<li class="cat-item cat-item-53"><a href="http://readystate4.com/category/gerrit/" title="View all posts filed under gerrit">gerrit</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="http://readystate4.com/category/git/" title="View all posts filed under git">git</a>
+</li>
+	<li class="cat-item cat-item-52"><a href="http://readystate4.com/category/humor/" title="View all posts filed under humor">humor</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://readystate4.com/category/internationalization/" title="View all posts filed under Internationalization">Internationalization</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://readystate4.com/category/internet-explorer/" title="View all posts filed under Internet Explorer">Internet Explorer</a>
+</li>
+	<li class="cat-item cat-item-33"><a href="http://readystate4.com/category/ios/" title="View all posts filed under iOS">iOS</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="http://readystate4.com/category/iphone/" title="View all posts filed under iPhone">iPhone</a>
+</li>
+	<li class="cat-item cat-item-45"><a href="http://readystate4.com/category/irc/" title="View all posts filed under irc">irc</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://readystate4.com/category/javascript/" title="View all posts filed under JavaScript">JavaScript</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://readystate4.com/category/jquery/" title="View all posts filed under jQuery">jQuery</a>
+</li>
+	<li class="cat-item cat-item-57"><a href="http://readystate4.com/category/linux/" title="View all posts filed under Linux">Linux</a>
+</li>
+	<li class="cat-item cat-item-62"><a href="http://readystate4.com/category/mac/" title="View all posts filed under mac">mac</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://readystate4.com/category/make-life-easy/" title="View all posts filed under make life easy">make life easy</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="http://readystate4.com/category/memcached/" title="View all posts filed under memcached">memcached</a>
+</li>
+	<li class="cat-item cat-item-47"><a href="http://readystate4.com/category/mobile-apps/" title="View all posts filed under mobile apps">mobile apps</a>
+</li>
+	<li class="cat-item cat-item-51"><a href="http://readystate4.com/category/mongodb/" title="View all posts filed under mongodb">mongodb</a>
+</li>
+	<li class="cat-item cat-item-54"><a href="http://readystate4.com/category/nginx/" title="View all posts filed under nginx">nginx</a>
+</li>
+	<li class="cat-item cat-item-50"><a href="http://readystate4.com/category/node/" title="View all posts filed under node">node</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://readystate4.com/category/omniture/" title="View all posts filed under Omniture">Omniture</a>
+</li>
+	<li class="cat-item cat-item-58"><a href="http://readystate4.com/category/performance/" title="View all posts filed under performance">performance</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="http://readystate4.com/category/personal/" title="View all posts filed under Personal">Personal</a>
+</li>
+	<li class="cat-item cat-item-37"><a href="http://readystate4.com/category/productivity/" title="View all posts filed under productivity">productivity</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="http://readystate4.com/category/ruby/" title="View all posts filed under ruby">ruby</a>
+</li>
+	<li class="cat-item cat-item-61"><a href="http://readystate4.com/category/security/" title="View all posts filed under security">security</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://readystate4.com/category/social-networks/" title="View all posts filed under Social Networks">Social Networks</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="http://readystate4.com/category/ssh/" title="View all posts filed under ssh">ssh</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://readystate4.com/category/startups/" title="View all posts filed under startups">startups</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="http://readystate4.com/category/tinymce/" title="View all posts filed under tinymce">tinymce</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="http://readystate4.com/category/tmux/" title="View all posts filed under tmux">tmux</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://readystate4.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+</li>
+	<li class="cat-item cat-item-40"><a href="http://readystate4.com/category/unix/" title="View all posts filed under unix">unix</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://readystate4.com/category/usability/" title="View all posts filed under Usability">Usability</a>
+</li>
+	<li class="cat-item cat-item-34"><a href="http://readystate4.com/category/webkit/" title="View all posts filed under webkit">webkit</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://readystate4.com/category/xhtml/" title="View all posts filed under XHTML">XHTML</a>
+</li>
+	<li class="cat-item cat-item-55"><a href="http://readystate4.com/category/zepto/" title="View all posts filed under zepto">zepto</a>
+</li>
+		</ul>
+</li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>
+		<ul>
+			<li><a href="http://readystate4.com/2013/10/" title="October 2013">October 2013</a></li>
+	<li><a href="http://readystate4.com/2013/09/" title="September 2013">September 2013</a></li>
+	<li><a href="http://readystate4.com/2013/05/" title="May 2013">May 2013</a></li>
+	<li><a href="http://readystate4.com/2013/04/" title="April 2013">April 2013</a></li>
+	<li><a href="http://readystate4.com/2013/02/" title="February 2013">February 2013</a></li>
+	<li><a href="http://readystate4.com/2013/01/" title="January 2013">January 2013</a></li>
+	<li><a href="http://readystate4.com/2012/12/" title="December 2012">December 2012</a></li>
+	<li><a href="http://readystate4.com/2012/11/" title="November 2012">November 2012</a></li>
+	<li><a href="http://readystate4.com/2012/10/" title="October 2012">October 2012</a></li>
+	<li><a href="http://readystate4.com/2012/09/" title="September 2012">September 2012</a></li>
+	<li><a href="http://readystate4.com/2012/08/" title="August 2012">August 2012</a></li>
+	<li><a href="http://readystate4.com/2012/07/" title="July 2012">July 2012</a></li>
+	<li><a href="http://readystate4.com/2012/05/" title="May 2012">May 2012</a></li>
+	<li><a href="http://readystate4.com/2012/04/" title="April 2012">April 2012</a></li>
+	<li><a href="http://readystate4.com/2012/03/" title="March 2012">March 2012</a></li>
+	<li><a href="http://readystate4.com/2012/02/" title="February 2012">February 2012</a></li>
+	<li><a href="http://readystate4.com/2012/01/" title="January 2012">January 2012</a></li>
+	<li><a href="http://readystate4.com/2011/11/" title="November 2011">November 2011</a></li>
+	<li><a href="http://readystate4.com/2011/10/" title="October 2011">October 2011</a></li>
+	<li><a href="http://readystate4.com/2011/07/" title="July 2011">July 2011</a></li>
+	<li><a href="http://readystate4.com/2011/06/" title="June 2011">June 2011</a></li>
+	<li><a href="http://readystate4.com/2011/05/" title="May 2011">May 2011</a></li>
+	<li><a href="http://readystate4.com/2011/04/" title="April 2011">April 2011</a></li>
+	<li><a href="http://readystate4.com/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://readystate4.com/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://readystate4.com/2011/01/" title="January 2011">January 2011</a></li>
+	<li><a href="http://readystate4.com/2010/12/" title="December 2010">December 2010</a></li>
+	<li><a href="http://readystate4.com/2010/11/" title="November 2010">November 2010</a></li>
+	<li><a href="http://readystate4.com/2010/10/" title="October 2010">October 2010</a></li>
+	<li><a href="http://readystate4.com/2010/06/" title="June 2010">June 2010</a></li>
+	<li><a href="http://readystate4.com/2010/01/" title="January 2010">January 2010</a></li>
+	<li><a href="http://readystate4.com/2009/09/" title="September 2009">September 2009</a></li>
+	<li><a href="http://readystate4.com/2009/07/" title="July 2009">July 2009</a></li>
+	<li><a href="http://readystate4.com/2009/05/" title="May 2009">May 2009</a></li>
+	<li><a href="http://readystate4.com/2009/02/" title="February 2009">February 2009</a></li>
+	<li><a href="http://readystate4.com/2009/01/" title="January 2009">January 2009</a></li>
+	<li><a href="http://readystate4.com/2008/12/" title="December 2008">December 2008</a></li>
+	<li><a href="http://readystate4.com/2008/11/" title="November 2008">November 2008</a></li>
+	<li><a href="http://readystate4.com/2008/10/" title="October 2008">October 2008</a></li>
+	<li><a href="http://readystate4.com/2008/09/" title="September 2008">September 2008</a></li>
+	<li><a href="http://readystate4.com/2008/08/" title="August 2008">August 2008</a></li>
+	<li><a href="http://readystate4.com/2008/07/" title="July 2008">July 2008</a></li>
+	<li><a href="http://readystate4.com/2008/06/" title="June 2008">June 2008</a></li>
+	<li><a href="http://readystate4.com/2008/05/" title="May 2008">May 2008</a></li>
+	<li><a href="http://readystate4.com/2008/04/" title="April 2008">April 2008</a></li>
+	<li><a href="http://readystate4.com/2008/03/" title="March 2008">March 2008</a></li>
+	<li><a href="http://readystate4.com/2008/02/" title="February 2008">February 2008</a></li>
+		</ul>
+</li>
+<li id="linkcat-2" class="widget widget_links"><h2 class="widgettitle">Blogroll</h2>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://brainswap.me/" rel="me" title="My Company">brainswap.me</a></li>
+<li><a href="http://www.linkedin.com/in/readystate4" rel="me">LinkedIn</a></li>
+<li><a href="http://stackoverflow.com/users/704703/mauvis-ledford" rel="me" title="StackOverflow is great!">My StackOverflow</a></li>
+
+	</ul>
+</li>
+
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>
+			<ul>
+						<li><a href="http://readystate4.com/wp-login.php">Log in</a></li>
+			<li><a href="http://readystate4.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://readystate4.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</li>
+<li id="search-2" class="widget widget_search"><form method="get" id="searchform" action="http://readystate4.com/"><div>
+	<input type="text" value="" name="s" id="s">
+	<input type="submit" id="searchsubmit" value="Search">
+</div></form>
+</li>
+	</ul>
+
+
+</div>
+
+<div id="footer">
+	<p id="blog-name">Copyright © 2012 <a href="http://readystate4.com/">ReadyState4</a></p>
+	<p id="webrevolutionary-link">
+				<a href="http://webrevolutionary.com/coldblue/">ColdBlue</a> v1.0 — A theme by <a href="http://webrevolutionary.com/">WebRevolutionary</a>
+	</p>
+</div>
+
+<!-- ColdBlue v1.0 theme designed by WebRevolutionary.com -->
+
+		        
+        
+    <script type="text/javascript">
+       // Chartbeat
+        var _sf_async_config={uid:26394,domain:"readystate4.com"};(function(){function loadChartbeat(){window._sf_endpt=(new Date()).getTime();var e=document.createElement('script');e.setAttribute('src',(("https:"==document.location.protocol)?"https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/":"http://static.chartbeat.com/")+"js/chartbeat.js");document.body.appendChild(e);}
+var oldonload=window.onload;window.onload=(typeof window.onload!='function')?loadChartbeat:function(){oldonload();loadChartbeat();};})();
+
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/ga.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-3768081-1");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+	</script>
+
+
+
+<!-- Dynamic page generated in 0.111 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-04-11 21:46:00 -->
+
+<!-- super cache --><script src="./ReadyState4 » Blog Archive » Nginx and Apache rewrites to support HTML5 Pushstate in pure Backbone.js (or other JS MV_) Application._files/chartbeat.js"></script></body></html>

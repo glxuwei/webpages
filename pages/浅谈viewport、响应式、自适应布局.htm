@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://www.chengfeilong.com/mobile-layout -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <title>浅谈viewport、响应式、自适应布局</title>
+  <meta name="description" content="本文将从viewport入手，详细介绍如何实现响应式和自适应布局，以及目前主流的几种移动端布局适配方式。">
+  <meta name="keywords" content="本文将从viewport入手，详细介绍如何实现响应式和自适应布局，以及目前主流的几种移动端布局适配方式。">
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="./浅谈viewport、响应式、自适应布局_files/font-awesome.min.css">
+  <link rel="stylesheet" href="./浅谈viewport、响应式、自适应布局_files/pygments.css">
+  <link rel="stylesheet" href="./浅谈viewport、响应式、自适应布局_files/skPlayer.min.css">
+  <link rel="stylesheet" href="./浅谈viewport、响应式、自适应布局_files/main.css">
+  <!--<link rel="stylesheet" href="http://www.chengfeilong.com/css/iconfont.css">-->
+
+  <link rel="canonical" href="http://www.chengfeilong.com/mobile-layout">
+  <link rel="alternate" type="application/rss+xml" title="Scott&#39;s Blog | 一生想做优雅前端" href="http://www.chengfeilong.com%20/feed.xml">
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://www.chengfeilong.com/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://www.chengfeilong.com/favicon.png">
+<script type="text/javascript" async="" src="./浅谈viewport、响应式、自适应布局_files/embed.js" charset="UTF-8"></script><style type="text/css">[data-hk-top-pages]{color:#333}.hit-kounter-top-title{padding:5px;margin:.3em 0 .4em;font-size:16px}.hit-kounter-top-table{width:100%;border-collapse:collapse;font-size:16px}.hit-kounter-top-table td{padding:10px 5px}.hit-kounter-top-table td:last-child{text-align:right}.hit-kounter-top-table tr{border-top:1px solid #aaa}.hit-kounter-top-table a{color:#5890ad;text-decoration:none}</style><link type="text/css" rel="stylesheet" href="./浅谈viewport、响应式、自适应布局_files/embed.default.css"></head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 l3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-bottom">
+  
+  <img src="./浅谈viewport、响应式、自适应布局_files/avatar.jpg" alt="" class="avatar">
+  
+  <a href="http://www.chengfeilong.com/" class="author_name">Scott</a>
+  <span class="author_job">front-end developer</span>
+  <span class="author_bio mbm">一生想做优雅前端.</span>
+  <nav class="nav">
+    <ul class="nav-list">
+       
+      <li class="nav-item">
+        <a href="http://www.chengfeilong.com/archive/">时间轴</a>
+        <span>/</span>
+      </li>
+            
+      <li class="nav-item">
+        <a href="http://www.chengfeilong.com/categories/">分类</a>
+        <span>/</span>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://www.chengfeilong.com/tags/">标签</a>
+        <span>/</span>
+      </li>
+        
+      <li class="nav-item">
+        <a href="http://www.chengfeilong.com/links/">成启的朋友们</a>
+        <span>/</span>
+      </li>
+         
+    </ul>
+  </nav>
+  <div class="social-links">
+  <ul>
+    <li><a href="mailto:me@chengfeilong.com" class="social-link-item" target="_blank"><i class="fa fa-fw fa-envelope"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="http://github.com/wangpengfei15975" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="http://www.weibo.com/Sco7777777" class="social-link-item" target="_blank"><i class="fa fa-fw fa-weibo"></i></a></li>
+    <li><a href="https://www.zhihu.com/people/se7en-zone" class="social-link-item" target="_blank">知</a></li> <!--<i class="fa-fw iconfont">&#xe6d1;</i>-->
+    
+    
+  </ul>
+</div>
+
+</div>
+<div id="particles-after-filter"><canvas class="particles-js-canvas-el" width="956" height="1880" style="width: 100%; height: 100%;"></canvas></div>
+<div id="particles"><canvas class="particles-js-canvas-el" width="956" height="1880" style="width: 100%; height: 100%;"></canvas></div>
+      </div>
+    </div>
+    <div class="col s12 l9">
+      <div class="post-listing">
+        <div class="back-home">
+  <a href="javascript:;">back.</a> <!-- window.history.back() -->
+</div>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="浅谈viewport、响应式、自适应布局">浅谈viewport、响应式、自适应布局</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        May 10 2016
+      </span>
+      <!-- - -->
+      <!--<span class="read-time" title="Estimated read time">
+  
+  
+    5 mins read
+  
+</span>
+-->
+      <p class="read-time">访问量:&nbsp;<span data-hk-page="current">803</span></p>
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h2 id="section">前言</h2>
+<p>本文将从viewport入手，详细介绍如何实现响应式和自适应布局，以及目前主流的几种移动端布局适配方式。</p>
+
+<h2 id="viewport">viewport</h2>
+<p>我们最直观的接触到这个东西是有这样一个标签的出现：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, user-scalable=0"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<p>这个<code class="highlighter-rouge">meta</code>标签的name叫做<code class="highlighter-rouge">viewport</code>，那么这个标签到底是做什么的呢？我们可以先从它的字面意思入手：</p>
+
+<blockquote>
+  <p>viewport	英[ˈvju:pɔ:t]  美[ˈvju:pɔ:rt]<br>
+  n.	视口;<br>
+  [网络]	视图; 视窗; 视区;<br>
+  [例句]The upper-left corner of the viewport to set or retrieve.<br>
+        要设置或检索的视区的左上角。<br></p>
+</blockquote>
+
+<p>上边列出了对该词简单的翻译，那么什么是视窗？<br>
+我想已经很明显了，就是我们眼睛所看到的窗口，在浏览器中它就是我们眼睛获取信息的那部分窗口。<br>
+不同浏览器上viewport都有一个默认值，即为该浏览器想要向我们展示信息的窗口大小。<br>
+而且，我们可以通过手动的方式获取到这个默认值：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>在布局上不论PC还是Mobile，对我们影响最大的就是浏览器窗口宽度，所以我们只使用其中获取viewport宽度的方法为己用。<br>
+在PC浏览器下，它默认就是获取到浏览器窗口的宽度；<br>
+但是在移动端浏览器下，如果我们没有设置viewport的情况下，一般浏览器默认该值为<code class="highlighter-rouge">980</code>。<br>
+如下：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/1.jpg" data-src="/img/viewport/1.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/2.jpg" data-src="/img/viewport/2.jpg" class="lazy"><br>
+此时我们来找一个设置过了viewport的页面为例：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/3.jpg" data-src="/img/viewport/3.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/4.jpg" data-src="/img/viewport/4.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/5.jpg" data-src="/img/viewport/5.jpg" class="lazy"><br>
+到这里，我们就能明白有时候一些PC页面在移动端设备中打开，会显示的特别小，字根本看不清，本身PC页面并没有对移动端设备适配是一个原因，
+其次因为大多数移动端设备默认的视窗宽度为980，它在PC页面的基础上将适配到980的宽度，但是实际中手机的宽度却有414,375,320等等各有不同，因此不但字显示的很小，还会出现横向滚动条。<br>
+到这里，我们对<code class="highlighter-rouge">viewport</code>有了一个简单的了解，接下来我们对它的每个属性进行详细的了解。<br></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">属性</th>
+      <th style="text-align: center">可选值</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">width</td>
+      <td style="text-align: center">device-width/指定数字</td>
+      <td style="text-align: left">设置viewport宽度</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">height</td>
+      <td style="text-align: center">device-height/指定数字</td>
+      <td style="text-align: left">设置viewport高度</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">initial-scale</td>
+      <td style="text-align: center">指定数字</td>
+      <td style="text-align: left">设置viewport初始缩放比例</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">minimum-scale</td>
+      <td style="text-align: center">指定数字</td>
+      <td style="text-align: left">设置viewport最小缩放比例</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">maximum-scale</td>
+      <td style="text-align: center">指定数字</td>
+      <td style="text-align: left">设置viewport最大缩放比例</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">user-scalable</td>
+      <td style="text-align: center">yes/no/1/0</td>
+      <td style="text-align: left">设置viewport是否允许用户缩放</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>接下来详细讲解每个属性的用法：</p>
+
+<ul>
+  <li>将视窗设置为浏览器宽度,下边两种方法都可以实现：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"initial-scale=1"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>只设置视窗宽度，不设置缩放相关的属性，此时页面会自动缩放到手机宽度，有一种简单的移动端布局基于此方法：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=640,user-scalable=no"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>同时设置好最大和最小缩放为1等效于设置了禁止用户缩放属性：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"minimum-scale=1.0,maximum-scale=1.0"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"user-scalable=no"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>最常用的移动端布局视窗设置：</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width,initial-scale=1,user-scalable=no"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<h2 id="section-1">响应式布局</h2>
+<p>首先我们要知道什么是响应式布局，响应的意思就是根据外界因素的影响作出改变以适应。<br>
+所以响应式的意思就是一个页面可以适应所有的设备，包括PC\PAD\PHONE各种情况，但是又因为设备跨度较大，我们不可能做到所有设备上的表现基本一致，那么我们就要通过
+判断不同的设备从而设计不同的布局方式，对布局进行改变和取舍。<br>
+通常响应式布局的特点是：百分比布局，文字流式，图片自适应，通过几个关键断点进行媒体查询区分设备类型来改变布局或者进行布局取舍。<br></p>
+<hr>
+
+<p>接下来我就以本博客为例详细的介绍一下响应式布局：<br>
+首先我将断点设置为<code class="highlighter-rouge">600px</code>和<code class="highlighter-rouge">992px</code>，将小于600px的设备理解为手机等移动设备，之间的理解为pad，大于992px的理解为PC设备。<br>
+页面主要分为侧边栏和文章详情两个部分进行布局，所以页面结构也较为简单，利于很方便的进行响应式布局。<br></p>
+
+<ul>
+  <li>在大于992px的屏幕下：<br>
+左侧侧边栏设为宽度<code class="highlighter-rouge">25%</code>，右侧内容的宽度为<code class="highlighter-rouge">75%</code>，同时将文章内容等受宽度影响的元素设为流式布局，所以在大于992px的设备情况下，页面呈现方式基本相同。<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/6.jpg" data-src="/img/viewport/6.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/7.jpg" data-src="/img/viewport/7.jpg" class="lazy"><br>
+页面效果：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/8.jpg" data-src="/img/viewport/8.jpg" class="lazy"><br></li>
+  <li>在小于992px且大于600px的屏幕下：<br>
+由于屏幕过小，所以我们在这种情况下将左侧侧边栏移动到顶部，宽度设置为<code class="highlighter-rouge">100%</code>，同样的将右侧的内容宽度设置为<code class="highlighter-rouge">100%</code>，然后在页面滚动的情况下，我们将内容覆盖在信息之上。
+<img src="./浅谈viewport、响应式、自适应布局_files/9.jpg" data-src="/img/viewport/9.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/10.jpg" data-src="/img/viewport/10.jpg" class="lazy"><br>
+页面效果：<br>
+(btw:由于屏幕高度不够，只显示了pad的75%，所以字显得很小，不要在意 ~ )<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/11.jpg" data-src="/img/viewport/11.jpg" class="lazy"><br></li>
+  <li>在小于600px的屏幕下：<br>
+这个断点区间内我将他们理解为都是移动设备，但是我们并没有专门为PAD设计布局，所以PAD情况下基本就是PHONE的布局了(2333)，所以我们的布局基本按照上一个布局的逻辑，唯一有一点的就是隐藏掉了音乐播放器。<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/12.jpg" data-src="/img/viewport/12.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/13.jpg" data-src="/img/viewport/13.jpg" class="lazy"><br>
+页面效果：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/14.jpg" data-src="/img/viewport/14.jpg" class="lazy"><br></li>
+</ul>
+<p style="color:red">总结一下：通过设置断点进行媒体查询区别设备类型，从页面设计之初就考虑到每一个模块在所以设备下的布局，通过百分比布局的方式进行页面控制和页面取舍，通过文字流式保证页面的良好显示。</p>
+
+<h2 id="section-2">自适应布局</h2>
+<p>那么什么是自适应布局呢?它不同于响应式布局那种一个页面适应所有设备的方式，自适应布局只专注实现移动端的布局，旨在实现所有移动端设备的实现效果完全一样，这点与响应式布局有很大的不同。
+通常我们利用<code class="highlighter-rouge">viewport</code>,<code class="highlighter-rouge">dpr</code>,<code class="highlighter-rouge">rem</code>等方式来进行开发，它也是webApp的布局实现最为主流的方式。<br>
+本部分将着重介绍自适应布局的相关方法，主要是简单的移动端活动页面布局和webApp的复杂布局的实现。<br></p>
+
+<ul>
+  <li>首先为大家介绍第一种上手最快也是最方便的方法，这种方法是利用<code class="highlighter-rouge">viewport</code>的特性进行布局，但是这种方法有很大的弊端，只能做一些时间比较赶的活动专题页面，且页面布局要求较为简单，因为这种方式
+是利用viewport的自动缩放来实现，在通过这种方式实现的布局经常会使页面有很明显的失真问题，不适用于较为复杂的布局。<br>
+首先我来为大家讲解这种布局利用的viewport的特性：<br>
+在<code class="highlighter-rouge">viewport</code>模块我提到过：只设置视窗宽度，不设置缩放相关的属性，此时页面会自动缩放到手机宽度，有一种简单的移动端布局基于此方法。<br>
+那我们为什么不试试将<code class="highlighter-rouge">viewport</code>的宽度设置为设计稿宽度，然后不设置缩放相关的属性，但是要设置用户禁止缩放，这样我们不就可以利用<code class="highlighter-rouge">viewport</code>的特性完全按照设计稿的数据进行开发了吗?<br>
+循着这条思路我们就往下走，首先根据设计稿的宽度设置好<code class="highlighter-rouge">viewport</code>，我以设计稿宽度为<code class="highlighter-rouge">640</code>为例：<br></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=640(设计稿宽度), user-scalable=no"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<p>然后我们在此基础上，跟着思路尝试利用640的设计稿完全按照<code class="highlighter-rouge">px为单位</code>的布局进行开发：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/15.jpg" data-src="/img/viewport/15.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/16.jpg" data-src="/img/viewport/16.jpg" class="lazy"><br>
+当写了一部分布局之后我们可以惊奇地发现，页面竟然真的可以自适应，并且布局也没有什么问题。<br>
+<a href="http://m.dinghuo123.com/">demo:易订货移动端官网</a></p>
+
+<ul>
+  <li>第二种方式与第一种完全不同，它将<code class="highlighter-rouge">viewport</code>设为设备宽度，然后根据设计稿宽度为基础设置好页面的<code class="highlighter-rouge">html根字体大小</code>，从而利用<code class="highlighter-rouge">rem</code>单位把控页面进行开发。<br>
+但是有一点要注意的是：<br>
+关于文字大小，我们通常不用rem，因为由于不同的rem计算方式会产生很多奇怪的大小，使得文字出现糊掉或者模糊的情况，通常我们使用媒体查询事先设置好body的字体大小，这样来确保文字的正常显示。<br>
+即为：<code class="highlighter-rouge">rem</code>处理适配距离的问题，<code class="highlighter-rouge">em</code>处理文字大小的问题。<br>
+首先设置好<code class="highlighter-rouge">viewport</code>：<br></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<p>然后利用之前<code class="highlighter-rouge">viewport</code>模块提到的方式获取设备宽度，在页面加载之初设置好页面的html根字体大小，我们以设计稿宽度为<code class="highlighter-rouge">750</code>为例：<br></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="mf">7.5</span><span class="p">(</span><span class="err">设计稿宽度缩小</span><span class="mi">100</span><span class="err">倍，为了后期方便测量和使用</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'px'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>接下来我们以网易移动端为例，在<code class="highlighter-rouge">iphone6plus</code>下它将<code class="highlighter-rouge">html根字体大小</code>设置为<code class="highlighter-rouge">55.2px</code>，设置了<code class="highlighter-rouge">dpr=1</code>应该是对dpr没有任何的考虑，然后随便找一处页面中的内容查看元素：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/17.jpg" data-src="/img/viewport/17.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/18.jpg" data-src="/img/viewport/18.jpg" class="lazy"><br>
+为什么<code class="highlighter-rouge">html根字体大小</code>设置为<code class="highlighter-rouge">55.2px</code>呢?我们可以通过<code class="highlighter-rouge">clientWidth</code>除以这个值就能明白：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/21.jpg" data-src="/img/viewport/21.jpg" class="lazy"><br>
+已经可以看出网易就是用的这一套移动端布局方式，那么它的距离应该也是拿<code class="highlighter-rouge">rem</code>进行把控的，我们随便找一个元素内容往下看：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/19.jpg" data-src="/img/viewport/19.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/20.jpg" data-src="/img/viewport/20.jpg" class="lazy"><br>
+我们选取了其中一个元素的右侧边距为例，这里右边距为<code class="highlighter-rouge">.2rem</code>，这个值到底是怎么来的呢?跟着我的思路往下看：</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span><span class="err">实际页面宽度</span>
+<span class="mi">1</span><span class="nx">rem</span> <span class="o">=</span> <span class="mf">55.2</span><span class="nx">px</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="mf">7.5</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="mi">750</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span><span class="err">那么</span><span class="p">.</span><span class="mi">2</span><span class="nx">rem</span> <span class="o">=</span> <span class="mf">0.2</span><span class="nx">rem</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="nx">width</span><span class="o">/</span><span class="mi">750</span>
+<span class="err">我们将设计稿上此处的距离设置为</span><span class="p">?</span><span class="nx">px</span><span class="err">，就有一个很简单的初中等式</span>
+<span class="nx">width</span><span class="p">(</span><span class="err">页面实际宽度</span><span class="p">)</span><span class="o">/</span><span class="mi">750</span><span class="p">(</span><span class="err">设计稿宽度</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.2</span><span class="nx">rem</span><span class="p">(</span><span class="err">某个元素实际距离，转换成</span><span class="nx">rem</span><span class="err">单位</span><span class="p">)</span><span class="o">/</span><span class="p">?</span><span class="nx">px</span><span class="p">(</span><span class="err">设计稿实际距离</span><span class="p">);</span><span class="err">将</span><span class="mf">0.2</span><span class="nx">rem</span><span class="err">的换算结果代入可得：</span>
+<span class="nx">width</span> <span class="o">/</span> <span class="mi">750</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="nx">width</span> <span class="o">/</span> <span class="p">(</span><span class="mi">750</span> <span class="o">*</span> <span class="p">?);</span>
+<span class="err">可以逆推出</span><span class="p">?</span> <span class="o">=</span> <span class="mi">20</span><span class="nx">px</span><span class="err">，根据这种布局方式，实际设计稿中的距离除以</span><span class="mi">100</span><span class="err">的值作为实际的大小并冠以</span><span class="nx">rem</span><span class="err">单位，就是实现适配的效果。</span>
+</code></pre>
+</div>
+
+<p><a href="http://3g.163.com/touch/all?version=v_standard">demo:手机网易网</a></p>
+
+<ul>
+  <li>第三种方式，也是我现在在用的一种方式，其实本质上跟第二种方式基本相同，还是通过<code class="highlighter-rouge">viewport</code>控制<code class="highlighter-rouge">rem</code>的方式：<br>
+即为遵循该等式：<br></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+<span class="nx">width</span> <span class="o">/</span> <span class="err">设计稿宽度</span> <span class="o">=</span> <span class="nx">rem</span> <span class="o">/</span> <span class="nx">px</span>
+</code></pre>
+</div>
+
+<p>然后我将<code class="highlighter-rouge">rem</code>设置为：<br></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="nx">width</span> <span class="o">/</span> <span class="mi">640</span><span class="p">(</span><span class="err">设计稿宽度</span><span class="p">)</span> <span class="o">*</span> <span class="mi">50</span><span class="p">(</span><span class="err">任意值</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'px'</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code>
+<span class="c">/* px to rem */</span>
+<span class="k">@function</span> <span class="n">rem</span><span class="p">(</span><span class="err">$</span><span class="n">num</span><span class="p">){</span>
+  <span class="k">@return</span> <span class="p">(</span><span class="err">$</span><span class="n">num</span><span class="p">/</span><span class="m">50</span><span class="p">)</span><span class="err">*</span><span class="m">1rem</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">body</span><span class="p">{</span>
+  <span class="nl">font-family</span><span class="p">:</span><span class="s1">"Microsoft Yahei"</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span><span class="n">rem</span><span class="p">(</span><span class="m">640</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里是使用了sass的方式，定义了一个函数进行不规律数字的转换，从而也实现了px2rem。<br>
+可能有人会问，为什么要乘以一个值呢？，因为<code class="highlighter-rouge">width/设计稿宽度</code>总是一个小于1的值，我们要按一定的比例放大然后才能作为根的字体大小，只不过不同的公司或许有不同的放大倍数。<br>
+<a href="http://download.shengli.com/www/yt/ytfst01.html">demo:倚天屠龙记手游推广</a></p>
+
+<ul>
+  <li>第四种方式，淘宝突破天际的完美方式，还是基于这种布局方式，不过考虑到了<code class="highlighter-rouge">dpr</code>，然后放大缩小设计稿的方式进行适配使不同的<code class="highlighter-rouge">dpr</code>设备都有最优的体验<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/22.jpg" data-src="/img/viewport/22.jpg" class="lazy"><br>
+<img src="./浅谈viewport、响应式、自适应布局_files/23.jpg" data-src="/img/viewport/23.jpg" class="lazy"><br>
+在<code class="highlighter-rouge">iphone6plus</code>设备下，我们看到<code class="highlighter-rouge">html根字体</code>为<code class="highlighter-rouge">124.2px</code>这么一个奇葩的数字，而且还有一个<code class="highlighter-rouge">data-dpr=3</code>，到底是什么意思呢？跟我的思路往下看：<br>
+因为<code class="highlighter-rouge">iphone6plus</code>的<code class="highlighter-rouge">dpr</code>为3，所以相当于一个像素的大小可以显示三个像素的内容那么清晰，主要还是因为屏幕等硬件的原因，分辨率太高，那么我们就要考虑到高分辨率的体验：<br>
+<code class="highlighter-rouge">iphone6plus</code>的屏幕宽度为<code class="highlighter-rouge">414px</code>，然后乘以<code class="highlighter-rouge">dpr</code>即为：414 * 3 = 1242，有没有感到这个数字很亲切，刚好是<code class="highlighter-rouge">html根字体</code>大小的十倍。<br>
+其实淘宝的内部运作是，为了考虑<code class="highlighter-rouge">iphone6plus</code>专门将设计稿放大到<code class="highlighter-rouge">1242</code>这种高分屏情况，然后继续开发，待开发完成后再根据<code class="highlighter-rouge">dpr</code>判断进行设置<code class="highlighter-rouge">viewport</code>的缩放值：<br>
+<img src="./浅谈viewport、响应式、自适应布局_files/25.jpg" data-src="/img/viewport/25.jpg" class="lazy"><br>
+由于是<code class="highlighter-rouge">dpr=3</code>，所以这里页面先写成<code class="highlighter-rouge">1242px</code>的宽度，然后缩小到原先的1/3，即为<code class="highlighter-rouge">iphone6plus</code>的屏幕宽度为<code class="highlighter-rouge">414px</code>，从而实现高分辨率的页面布局。<br>
+在这里，<code class="highlighter-rouge">viewport</code>并没有设置宽度，说明淘宝只是用它设置了缩放的比例，同时我们也可以看一下这个页面的<code class="highlighter-rouge">clientWidth</code>是多少，也能说明完全吻合我上面所说的布局方式，相当的诡异 。。 <br>
+<img src="./浅谈viewport、响应式、自适应布局_files/24.jpg" data-src="/img/viewport/24.jpg" class="lazy"><br>
+<a href="https://m.taobao.com/#index">demo:淘宝网触屏版</a></li>
+</ul>
+
+  </article>
+</div>
+
+<!--<div class="share-buttons">-->
+  <!--<h6>Share on: </h6>-->
+  <!--<ul>-->
+    <!--<li>-->
+      <!--<a href="https://twitter.com/intent/tweet?text=http://www.chengfeilong.com/mobile-layout" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.chengfeilong.com/mobile-layout" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<a href="https://plus.google.com/share?url=http://www.chengfeilong.com/mobile-layout" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<a href="https://news.ycombinator.com/submitlink?u=http://www.chengfeilong.com/mobile-layout" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<a href="https://www.reddit.com/submit?url=http://www.chengfeilong.com/mobile-layout" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</div>&lt;!&ndash; end share-buttons &ndash;&gt;-->
+
+<!---->
+<!--<div id="disqus_thread"></div>-->
+<!--<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'Sco7777777';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+-->
+<!---->
+
+<div class="ds-share" data-thread-key="/mobile-layout" data-title="浅谈viewport、响应式、自适应布局" data-images="http://www.chengfeilong.com/img/logo.jpg" data-content="" data-url="http://www.chengfeilong.com/mobile-layout" id="ds-share">
+  <div class="ds-share-inline" id="ds-reset">
+    <ul class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more" style="display: none;"><div class="ds-share-icons"> <div class="ds-share-icons-inner"> <ul class="ds-share-icons-16">  <li> <a class="ds-weibo" href="javascript:void(0);" data-service="weibo">新浪微博</a> </li>  <li> <a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a> </li>  <li> <a class="ds-sohu" href="javascript:void(0);" data-service="sohu">搜狐微博</a> </li>  <li> <a class="ds-renren" href="javascript:void(0);" data-service="renren">人人网</a> </li>  <li> <a class="ds-netease" href="javascript:void(0);" data-service="netease">undefined</a> </li>  <li> <a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a> </li>  <li> <a class="ds-kaixin" href="javascript:void(0);" data-service="kaixin">开心网</a> </li>  <li> <a class="ds-douban" href="javascript:void(0);" data-service="douban">豆瓣网</a> </li>  <li> <a class="ds-qq" href="javascript:void(0);" data-service="qq">QQ</a> </li>  <li> <a class="ds-meilishuo" href="javascript:void(0);" data-service="meilishuo">undefined</a> </li>  <li> <a class="ds-mogujie" href="javascript:void(0);" data-service="mogujie">undefined</a> </li>  <li> <a class="ds-baidu" href="javascript:void(0);" data-service="baidu">百度</a> </li>  <li> <a class="ds-taobao" href="javascript:void(0);" data-service="taobao">undefined</a> </li>  <li> <a class="ds-google" href="javascript:void(0);" data-service="google">谷歌</a> </li>  <li> <a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a> </li>  <li> <a class="ds-diandian" href="javascript:void(0);" data-service="diandian">undefined</a> </li>  <li> <a class="ds-huaban" href="javascript:void(0);" data-service="huaban">undefined</a> </li>  <li> <a class="ds-duitang" href="javascript:void(0);" data-service="duitang">undefined</a> </li>  <li> <a class="ds-youdao" href="javascript:void(0);" data-service="youdao">undefined</a> </li>  <li> <a class="ds-pengyou" href="javascript:void(0);" data-service="pengyou">undefined</a> </li>  <li> <a class="ds-facebook" href="javascript:void(0);" data-service="facebook">Facebook</a> </li>  <li> <a class="ds-twitter" href="javascript:void(0);" data-service="twitter">Twitter</a> </li>  <li> <a class="ds-linkedin" href="javascript:void(0);" data-service="linkedin">Linkedin</a> </li>  <li> <a class="ds-msn" href="javascript:void(0);" data-service="msn">undefined</a> </li>  </ul> </div> <div class="ds-share-icons-footer">多说分享插件</div></div></div>
+  </div>
+</div>
+
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/mobile-layout" data-title="浅谈viewport、响应式、自适应布局" data-url="http://www.chengfeilong.com/mobile-layout" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">18</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6284090572705628930"><div class="ds-post-self" data-post-id="6284090572705628930" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6284090497266877186"><a rel="nofollow author" target="_blank" href="http://t.qq.com/libo1102067342" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6284090497266877186&#39;;" title="李博"><img src="./浅谈viewport、响应式、自适应布局_files/100" alt="李博"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/libo1102067342" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6284090497266877186&#39;;" rel="nofollow" target="_blank" data-user-id="6284090497266877186">李博</a></div><p>虽然我现在看的不是很懂(其实是现在还没有看到，用到)。。。觉得挺好的，先mark</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T16:40:52+08:00" title="2016年5月13日 下午4:40:52">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284094863138882305"><div class="ds-post-self" data-post-id="6284094863138882305" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6278137028064314113"><img src="./浅谈viewport、响应式、自适应布局_files/100(1)" alt="uhey"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-user-id="6278137028064314113" data-qqt-account="">uhey</span></div><p> <img src="./浅谈viewport、响应式、自适应布局_files/zy_org.gif" alt="[挤眼]" title="[挤眼]" class="ds-smiley"> 赞</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T16:57:31+08:00" title="2016年5月13日 下午4:57:31">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284099570230100738"><div class="ds-post-self" data-post-id="6284099570230100738" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6278137028064314113"><img src="./浅谈viewport、响应式、自适应布局_files/100(1)" alt="uhey"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-user-id="6278137028064314113" data-qqt-account="">uhey</span></div><p> <img src="./浅谈viewport、响应式、自适应布局_files/rabbit_org.gif" alt="[兔子]" title="[兔子]" class="ds-smiley"> 看你如此辛苦的份上再赞你一次</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T17:15:47+08:00" title="2016年5月13日 下午5:15:47">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284118649200444161"><div class="ds-post-self" data-post-id="6284118649200444161" data-thread-id="6282978867690865410" data-root-id="6284090572705628930" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6284118649200444161" data-parent-id="6284090572705628930">回复 李博: </a>有帮助就行呢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T18:29:49+08:00" title="2016年5月13日 下午6:29:49">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284118720788824834"><div class="ds-post-self" data-post-id="6284118720788824834" data-thread-id="6282978867690865410" data-root-id="6284099570230100738" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6284118720788824834" data-parent-id="6284099570230100738">回复 uhey: </a>好人 = =</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T18:30:06+08:00" title="2016年5月13日 下午6:30:06">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284136053360034562"><div class="ds-post-self" data-post-id="6284136053360034562" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6284090497266877186"><a rel="nofollow author" target="_blank" href="http://t.qq.com/libo1102067342" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6284090497266877186&#39;;" title="李博"><img src="./浅谈viewport、响应式、自适应布局_files/100" alt="李博"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/libo1102067342" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6284090497266877186&#39;;" rel="nofollow" target="_blank" data-user-id="6284090497266877186">李博</a></div><p>版主人不错啊，提了一个意见，放假了也立马修改了！ 赞 <img src="./浅谈viewport、响应式、自适应布局_files/geili_org.gif" alt="[给力]" title="[给力]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T19:37:22+08:00" title="2016年5月13日 下午7:37:22">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284150121441526529"><div class="ds-post-self" data-post-id="6284150121441526529" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6272726852918313730"><a rel="nofollow author" target="_blank" href="http://daphnechang.github.io/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6272726852918313730&#39;;" title="花花丹"><img src="./浅谈viewport、响应式、自适应布局_files/100(3)" alt="花花丹"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://daphnechang.github.io/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6272726852918313730&#39;;" rel="nofollow" target="_blank" data-user-id="6272726852918313730">花花丹</a></div><p>前两种以前接触过，最后的自适应布局还是第一次接触哎，非常涨知识~<br>
+有些地方有些小困惑，待我这两天实践研究下再请教你 <img src="./浅谈viewport、响应式、自适应布局_files/tza_org.gif" alt="[可爱]" title="[可爱]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T20:31:57+08:00" title="2016年5月13日 下午8:31:57">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284156643542303490"><div class="ds-post-self" data-post-id="6284156643542303490" data-thread-id="6282978867690865410" data-root-id="6284136053360034562" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6284156643542303490" data-parent-id="6284136053360034562">回复 李博: </a> <img src="./浅谈viewport、响应式、自适应布局_files/kbsa_org.gif" alt="[挖鼻屎]" title="[挖鼻屎]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T20:57:16+08:00" title="2016年5月13日 下午8:57:16">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6284156670884971265"><div class="ds-post-self" data-post-id="6284156670884971265" data-thread-id="6282978867690865410" data-root-id="6284150121441526529" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6284156670884971265" data-parent-id="6284150121441526529">回复 花花丹: </a>好的</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-13T20:57:22+08:00" title="2016年5月13日 下午8:57:22">5月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6288564283370373889"><div class="ds-post-self" data-post-id="6288564283370373889" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6288564092571484929"><a rel="nofollow author" target="_blank" href="http://t.qq.com/xd1161302988" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6288564092571484929&#39;;" title="俞雅菲"><img src="./浅谈viewport、响应式、自适应布局_files/50" alt="俞雅菲"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/xd1161302988" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6288564092571484929&#39;;" rel="nofollow" target="_blank" data-user-id="6288564092571484929">俞雅菲</a></div><p> <img src="./浅谈viewport、响应式、自适应布局_files/geili_org.gif" alt="[给力]" title="[给力]" class="ds-smiley"> 麦麦到此一游 说的很棒！！！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-25T18:01:09+08:00" title="2016年5月25日 下午6:01:09">5月25日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6288816345274385154"><div class="ds-post-self" data-post-id="6288816345274385154" data-thread-id="6282978867690865410" data-root-id="6288564283370373889" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6288816345274385154" data-parent-id="6288564283370373889">回复 俞雅菲: </a>哈哈 thx</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-26T10:19:17+08:00" title="2016年5月26日 上午10:19:17">5月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6290859468037030658"><div class="ds-post-self" data-post-id="6290859468037030658" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13436464"><a rel="nofollow author" target="_blank" href="http://www.mrju.cn/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=13436464&#39;;" title="Scott Ju"><img src="./浅谈viewport、响应式、自适应布局_files/100(4)" alt="Scott Ju"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.mrju.cn/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=13436464&#39;;" rel="nofollow" target="_blank" data-user-id="13436464">Scott Ju</a></div><p>想问问你那个音乐是怎么做出来的，好像还不错的感觉。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-31T22:27:39+08:00" title="2016年5月31日 下午10:27:39">5月31日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6291042227787399937"><div class="ds-post-self" data-post-id="6291042227787399937" data-thread-id="6282978867690865410" data-root-id="6290859468037030658" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6291042227787399937" data-parent-id="6290859468037030658">回复 Scott Ju: </a>自己做的播放器太渣，用的网易云音乐外链iframe</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-01T10:16:51+08:00" title="2016年6月1日 上午10:16:51">6月1日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6295135524264870658"><div class="ds-post-self" data-post-id="6295135524264870658" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6894112"><a rel="nofollow author" target="_blank" href="http://t.qq.com/yougunedit" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6894112&#39;;" title="DearHuaney"><img src="./浅谈viewport、响应式、自适应布局_files/100(5)" alt="DearHuaney"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/yougunedit" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6894112&#39;;" rel="nofollow" target="_blank" data-user-id="6894112">DearHuaney</a></div><p>对我很有帮助，谢谢楼主！（发前删掉括号内容，一条5毛）</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-12T11:00:56+08:00" title="2016年6月12日 上午11:00:56">6月12日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6307074279645119233"><div class="ds-post-self" data-post-id="6307074279645119233" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6301787946743759618"><a rel="nofollow author" target="_blank" href="http://weibo.com/2942684565" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6301787946743759618&#39;;" title="天闪星2942684565"><img src="./浅谈viewport、响应式、自适应布局_files/default_avatar_male_50.gif" alt="天闪星2942684565"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2942684565" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6301787946743759618&#39;;" rel="nofollow" target="_blank" data-user-id="6301787946743759618">天闪星2942684565</a></div><p>看来我只能用第二种比较简单</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-14T15:09:24+08:00" title="2016年7月14日 下午3:09:24">7月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6307074351459992322"><div class="ds-post-self" data-post-id="6307074351459992322" data-thread-id="6282978867690865410" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6301787946743759618"><a rel="nofollow author" target="_blank" href="http://weibo.com/2942684565" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6301787946743759618&#39;;" title="天闪星2942684565"><img src="./浅谈viewport、响应式、自适应布局_files/default_avatar_male_50.gif" alt="天闪星2942684565"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2942684565" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6301787946743759618&#39;;" rel="nofollow" target="_blank" data-user-id="6301787946743759618">天闪星2942684565</a></div><p>淘宝的太麻烦了</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-14T15:09:40+08:00" title="2016年7月14日 下午3:09:40">7月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6307351493049582337"><div class="ds-post-self" data-post-id="6307351493049582337" data-thread-id="6282978867690865410" data-root-id="6307074279645119233" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6307351493049582337" data-parent-id="6307074279645119233">回复 天闪星2942684565: </a>淘宝的需要多个设计稿，有帮助就好。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-15T09:05:07+08:00" title="2016年7月15日 上午9:05:07">7月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6312564589057803010"><div class="ds-post-self" data-post-id="6312564589057803010" data-thread-id="6282978867690865410" data-root-id="6290859468037030658" data-source="duoshuo"><div class="ds-avatar" data-user-id="6262648410541654786"><a rel="nofollow author" target="_blank" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" title="成飞龙"><img src="./浅谈viewport、响应式、自适应布局_files/100(2)" alt="成飞龙"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.chengfeilong.com/" onclick="this.href=&#39;http://chengfeilong.duoshuo.com/user-url/?user_id=6262648410541654786&#39;;" rel="nofollow" target="_blank" data-user-id="6262648410541654786">成飞龙</a></div><p><a class="ds-comment-context" data-post-id="6312564589057803010" data-parent-id="6290859468037030658">回复 Scott Ju: </a>已经换了自己做的播放器了  哈哈哈</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-07-29T10:14:36+08:00" title="2016年7月29日 上午10:14:36">7月29日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://chengfeilong.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://chengfeilong.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://chengfeilong.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://chengfeilong.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://chengfeilong.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://chengfeilong.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://chengfeilong.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://chengfeilong.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./浅谈viewport、响应式、自适应布局_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6282978867690865410">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57aaebab57c07"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Scott's Blog正在使用多说</a></p></div></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"chengfeilong"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+        <footer>
+  © 2016 Scott. <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> 强力驱动, <iframe style="margin-left:7px;margin-bottom:-5px;margin-right:-4px;" frameborder="0" scrolling="0" width="91px" height="20px" src="./浅谈viewport、响应式、自适应布局_files/github-btn.html"></iframe> 关注主题.
+  <br>
+  <div class="blogRoll">
+    友情链接：
+    <a href="http://www.qiancheng.me/" target="_blank">千橙</a>&nbsp;
+    <a href="http://www.ouch.me/" target="_blank">Srioe's Blog</a>&nbsp;
+    <a href="http://www.u-hey.com/" target="_blank">Uhey</a>&nbsp;
+    <a href="http://daphnechang.github.io/" target="_blank">花花丹</a>&nbsp;
+    <a href="https://www.ubuntuhot.com/" target="_blank">UbuntuHOT</a>&nbsp;
+    <a href="https://lian233.cc/" target="_blank">Lian233</a>&nbsp;
+    <a href="https://www.anotherhome.net/" target="_blank">Anotherhome</a>&nbsp;
+    <a href="http://sbco.cc/" target="_blank">Coco</a>
+  </div>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <div id="musicContainer">
+    <a id="musicSwitch" href="javascript:void(0)"></a>
+    <div id="skPlayer"><audio src="http://o9vplcp9o.bkt.clouddn.com/CountingStars.mp3" preload="auto" loop=""></audio><div class="skPlayer-picture">    <img src="./浅谈viewport、响应式、自适应布局_files/CountingStars_cover.jpg" alt="" class="skPlayer-cover">    <a href="javascript:;" class="skPlayer-play-btn">        <span class="skPlayer-left"></span>        <span class="skPlayer-right"></span>    </a></div><div class="skPlayer-control">    <p class="skPlayer-name">Counting Stars</p>    <p class="skPlayer-author">OneRepublic</p>    <div class="skPlayer-percent">        <div class="skPlayer-line"></div>    </div>    <p class="skPlayer-time">        <span class="skPlayer-cur">00:00</span>/<span class="skPlayer-total">04:17</span>    </p>    <div class="skPlayer-volume">        <i class="skPlayer-icon" data-volume="0"></i>        <div class="skPlayer-percent">            <div class="skPlayer-line" style="width: 70%;"></div>        </div>    </div></div><div class="skPlayer-loading" style="color: rgba(117, 101, 98, 0); display: none; background-color: rgba(255, 255, 255, 0);">    LOADING</div></div>
+</div>
+  <script type="text/javascript" src="./浅谈viewport、响应式、自适应布局_files/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="./浅谈viewport、响应式、自适应布局_files/jquery.unveil.js"></script>
+<!--<script type="text/javascript" src="http://www.chengfeilong.com/js/jquery.lazyload.min.js"></script>-->
+<script type="text/javascript" src="./浅谈viewport、响应式、自适应布局_files/particles.min.js"></script>
+<script type="text/javascript" src="./浅谈viewport、响应式、自适应布局_files/skPlayer.min.js"></script>
+<script type="text/javascript" src="./浅谈viewport、响应式、自适应布局_files/main.js"></script>
+
+<!--<script src="http://192.168.1.218:8080/target/target-script-min.js#anonymous"></script>-->
+
+<!-- Hit Kounter LC -->
+<script src="./浅谈viewport、响应式、自适应布局_files/av-mini-0.6.10.js"></script>
+<script src="./浅谈viewport、响应式、自适应布局_files/hit-kounter-lc-0.2.0.js"></script>
+
+
+</body></html>

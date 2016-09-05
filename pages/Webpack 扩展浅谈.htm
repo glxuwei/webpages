@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Webpack 扩展浅谈</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="http://ued.fanxing.com/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="./Webpack 扩展浅谈_files/screen.css">
+    <link rel="stylesheet" type="text/css" href="./Webpack 扩展浅谈_files/css">
+
+    <link rel="canonical" href="http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/">
+    
+    <meta property="og:site_name" content="繁星UED">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Webpack 扩展浅谈">
+    <meta property="og:description" content="Webpack 是什么 一句话介绍，Webpack 是一个当下最热门且生态完善的 Web 前端构建工具。为什么这么说呢？从开源项目使用情况来看，Grunt, Gulp, FIS, Browserify, Webpack, Rollup 等等，最近讨论及大家推荐最多的当属 Webpack 了，实际上 Webpack 并不是最好的打包工具，有 Rollup 以函数（ES6 Modules 编码）为最小颗粒的打包工具，不过这个 Webpack v2.0+ 将实现，有带缓存编译的 FIS ，这个尤其在较大性项目中优势更加突出。但是目前围绕着 Webpack 已有非常多且成熟的加载器(...">
+    <meta property="og:url" content="http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/">
+    <meta property="article:published_time" content="2016-04-26T06:13:38.649Z">
+    <meta property="article:modified_time" content="2016-04-26T06:13:38.645Z">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Webpack 扩展浅谈">
+    <meta name="twitter:description" content="Webpack 是什么 一句话介绍，Webpack 是一个当下最热门且生态完善的 Web 前端构建工具。为什么这么说呢？从开源项目使用情况来看，Grunt, Gulp, FIS, Browserify, Webpack, Rollup 等等，最近讨论及大家推荐最多的当属 Webpack 了，实际上 Webpack 并不是最好的打包工具，有 Rollup 以函数（ES6 Modules 编码）为最小颗粒的打包工具，不过这个 Webpack v2.0+ 将实现，有带缓存编译的 FIS ，这个尤其在较大性项目中优势更加突出。但是目前围绕着 Webpack 已有非常多且成熟的加载器(...">
+    <meta name="twitter:url" content="http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/">
+    
+    <script src="./Webpack 扩展浅谈_files/hm.js"></script><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "繁星UED",
+    "author": {
+        "@type": "Person",
+        "name": "liangjintao",
+        "url": "http://ued.fanxing.com/author/liangjintao-2",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Webpack 扩展浅谈",
+    "url": "http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/",
+    "datePublished": "2016-04-26T06:13:38.649Z",
+    "dateModified": "2016-04-26T06:13:38.645Z",
+    "description": "Webpack 是什么 一句话介绍，Webpack 是一个当下最热门且生态完善的 Web 前端构建工具。为什么这么说呢？从开源项目使用情况来看，Grunt, Gulp, FIS, Browserify, Webpack, Rollup 等等，最近讨论及大家推荐最多的当属 Webpack 了，实际上 Webpack 并不是最好的打包工具，有 Rollup 以函数（ES6 Modules 编码）为最小颗粒的打包工具，不过这个 Webpack v2.0+ 将实现，有带缓存编译的 FIS ，这个尤其在较大性项目中优势更加突出。但是目前围绕着 Webpack 已有非常多且成熟的加载器(..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6">
+    <link rel="alternate" type="application/rss+xml" title="繁星UED" href="http://ued.fanxing.com/rss/">
+    <style>
+    body{font-family:Microsoft YaHei,"Open Sans",Calibri,Candara,Arial,sans-serif}
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{font-family:Microsoft YaHei,"Open Sans",Calibri,Candara,Arial,sans-serif}
+    .label{font-weight:normal}
+    .list-inline{display:none}
+    .post{max-width:1250px;}
+    .read-next-story{min-width:49%}
+</style>
+<script>
+try{
+	console.log('%cWelcome to Fanxing UED! ', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
+}catch(e){
+}    
+
+</script>
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+<body class="post-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-" role="presentation"><a href="http://ued.fanxing.com/">首页</a></li>
+            <li class="nav-" role="presentation"><a href="http://www.fanxing.com/">繁星网</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="http://ued.fanxing.com/rss/">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+            <a class="menu-button icon-menu" href="http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Webpack 扩展浅谈</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-04-26">26 April 2016</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <h2 id="webpack">Webpack 是什么</h2>
+
+<p>一句话介绍，Webpack 是一个当下最热门且生态完善的 Web 前端构建工具。为什么这么说呢？从开源项目使用情况来看，<code>Grunt</code>, <code>Gulp</code>, <code>FIS</code>, <code>Browserify</code>, <code>Webpack</code>, <code>Rollup</code> 等等，最近讨论及大家推荐最多的当属 Webpack 了，实际上 Webpack 并不是最好的打包工具，有 <code>Rollup</code> 以函数（<code>ES6 Modules</code> 编码）为最小颗粒的打包工具，不过这个 Webpack v2.0+ 将实现，有带缓存编译的 FIS ，这个尤其在较大性项目中优势更加突出。但是目前围绕着 Webpack 已有非常多且成熟的加载器(<code>Loader</code>)以及插件(<code>Plugin</code>)，最吸引人的当属它的热加载（内存中编译并使用 WebSocket 推送新增的内容到客户端），代码切分实现异步加载等等。</p>
+
+<h2 id="webpack">使用 Webpack 中遇到的问题</h2>
+
+<ol>
+<li>资源多个 CDN 域名支持；  </li>
+<li>缓存编译，对于没有修改的模块不进行编译；  </li>
+<li><code>chunkhash</code> 在编译的时候出现内容没变但 <code>chunkhash</code> 变了。</li>
+</ol>
+
+<h2 id="loader">Loader</h2>
+
+<p>Loader 是 Webpack 非常重要的一部分，因为 Webpack 本身只能处理 JavaScript 模块，所有要处理其他类型的资源就需要使用 Loader 转换，这样我们源码不管是 <code>ES201x</code>, <code>CoffeeScript</code>, <code>JSX</code>, <code>Sass</code> 等等都可以使用各自的 Loader 进行翻译并打包，图片资源可以转换为 <code>Base64</code>。下面是我在项目使用到的 Loader  </p>
+
+<pre><code>var config = {  
+  env: process.env.NODE_ENV,
+  isProd: process.env.NODE_ENV === 'production',
+  withCDN: process.env.WITH_CDN === 'with',
+  path: {
+    src: path.resolve(__dirname, 'src'),
+    dist: path.resolve(__dirname, 'dist'),
+    release: path.resolve(__dirname, 'staticPub'),
+    modules: path.resolve(__dirname, 'node_modules'),
+    build: function () {
+      return config.withCDN ? config.path.release : config.path.dist
+    }
+  },
+  autoprefixers: [
+    'Android 2.3',
+    'Android &gt;= 4',
+    'iOS &gt;= 7'
+  ],
+  imgCDNs: [
+    'http://s1.fx.kgimg.com',
+    'http://s2.fx.kgimg.com',
+    'http://s3.fx.kgimg.com'
+  ]
+}
+
+var wConfig = {  
+  module: {
+    loaders: [{
+      test: /\.js[x]?$/,
+      include: config.path.src,
+      loaders: ['babel']
+    }, {
+      test: /\.[s]?css$/,
+      include: config.path.src,
+      loaders: [
+        'style-loader',
+        'css-loader?modules&amp;importLoaders=1&amp;localIdentName=' + (config.isProd ? '[hash:base64:4]' : '[name]__[local]___[hash:base64:3]'),
+        'postcss-loader?parser=postcss-scss'
+      ]
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      include: config.path.src,
+      loaders: [
+        path.join(config.path.src, 'common/loaders/url-domain-loader?limit=256&amp;name=' +
+          (config.isProd
+            ? '/images/[hash].[ext]&amp;domains=' + (config.withCDN ? encodeURIComponent(config.imgCDNs.join(',')) : '')
+            : '../[path][name].[ext]?[hash]'))
+      ]
+    }]
+  },
+  postcss: function (webpack) {
+    return [
+      require('precss')(),
+      require('autoprefixer')({ browsers: config.autoprefixers }),
+      require('postcss-import')({ addDependcyTo: webpack }),
+      require('postcss-functions')({
+        functions: {
+          pxToRem: function (px, ui) {
+            px = parseInt(px)
+            ui = parseInt(ui) || 720
+            return px * 10 / ui + 'rem'
+          }
+        }
+      })
+    ]
+  }
+</code></pre>
+
+<p>上面的配置中使用了 <code>babel-loader</code>, <code>style-loader</code>, <code>css-loader</code>, <code>postcss-loader</code>, <code>url-domain-loader</code>(这个是我修改了 <code>url-loader</code> 得来的，顾名思义这个就是处理资源域名的 <code>loader</code>，解决文中所提到的第一个遇到的问题)，当然 Loader 的名字可以是不带 <code>-loader</code> 的短名。</p>
+
+<ol>
+<li><code>/\.js[x]?$/</code> 这个表示所有的 <code>.js</code>, <code>.jsx</code> 文件都是使用 <code>babel-loader</code> 来处理，<code>babel-loader</code> 本身依赖 <code>babel-core</code>，即使用 Babel 翻译 <code>ES201x</code> 编码。  </li>
+<li><code>/\.[s]?css$/</code> 依此类推处理 <code>.css</code>, <code>.scss</code> 文件，这里使用了多个 Loader 来处理这些资源。首先资源经过 <code>postcss-loader</code> 处理传给 <code>css-loader</code> 加载到 JavaScript 中，最后由 <code>style-loader</code> 将其和 DOM 关联起来。在 <code>postcss-loader</code> 我们又使用了一些 <a href="https://github.com/postcss/postcss">PostCSS</a> 插件来支持 Sass 翻译及多浏览器版本翻译，<a href="https://github.com/jonathantneal/precss">precss</a> 可以支持类似 Sass 的编码，<a href="https://github.com/postcss/postcss-import">postcss-import</a> 用来支持 <code>@import './xx/xx.scss'</code>，<a href="https://github.com/andyjansson/postcss-functions">postcss-functions</a> 这个非常强大，可以将 JavaScript 函数暴露给 CSS 使用，用来支持 <code>precss</code> 中没有函数的缺陷，<code>autoprefixer</code> 用来支持多浏览器版本支持，即属性名前缀或属性值前缀。<code>css-loader</code> 我们使用了 <a href="https://github.com/css-modules/css-modules">CSS Modules</a>， <code>CSS Modules</code> 主要是可以将类名更换为 hash 名来避免类名产品副作用，还有就是可以优化类名长度起到压缩样式文件体积。  </li>
+<li><code>/\.(jpe?g|png|gif|svg)$/i</code> 图片资源，这里使用了一个自定义 Loader 来处理的，通过这个 Loader 来解决文中提到的第一个问题，对图片资源实行多个 CDN 域名，域名通过参数传递进去，下面就是这个自定义 Loader 的全部代码。  </li>
+</ol>
+
+<pre><code>var loaderUtils = require('loader-utils')  
+var mime = require('mime')
+
+var domains = null  
+var index = 0
+
+module.exports = function (content) {  
+  if (this.cacheable) {
+    this.cacheable()
+  }
+  var query = loaderUtils.parseQuery(this.query)
+  var limit = (this.options &amp;&amp; this.options.url &amp;&amp; this.options.url.dataUrlLimit) || 0
+  if (query.limit) {
+    limit = parseInt(query.limit, 10)
+  }
+  var mimetype = query.mimetype || query.minetype || mime.lookup(this.resourcePath)
+  if (limit &lt;= 0 || content.length &lt; limit) {
+    return 'module.exports = ' + JSON.stringify('data:' + (mimetype ? mimetype + ';' : '') + 'base64,' + content.toString('base64'))
+  } else {
+    var fileLoader = require('file-loader')
+    var exp = fileLoader.call(this, content)
+    exp = exp.replace(/\\\\/g, '/')
+    if (!domains &amp;&amp; query.domains) {
+      var ret = decodeURIComponent(query.domains).split(',')
+      domains = ret.length &amp;&amp; (ret)
+    }
+    if (domains) {
+      exp = '__webpack_public_path__ = "' + domains[(index++) % domains.length] + '"; ' + exp
+    }
+    return exp
+  }
+}
+module.exports.raw = true  
+</code></pre>
+
+<p>上面的代码主要工作是：根据 Loader 传过来的参数 <code>limit</code> 验证是否将资源转成 <code>Base64</code> 编码返回或者通过 <code>file-loader</code> 将资源写到磁盘并返回资源的相对路径，在通过 <code>file-loader</code> 拿到相对路径后我们在相对路径签名加上 CDN 域名就可以解决本文中第一个问题。多个 CDN 域名的算法是按资源进入顺序，如配置中有三个域名的话，第一个进入的使用第一个域名....第四个进入的使用第一个域名。这个支持多于名的 Loader 如果不配合缓存编译的话会有点问题，是由于这些资源都是异步处理的，也就是说资源的进入顺序是不确定的，这就会导致如果使用这种方式直接编译的话将会导致源码不变的情况下 hash 值会变，解决方法可以做一个缓存文件记录上次文件名和 CDN 域名以便下次使用，或者根据文件类型加 CDN 域名，或者使用缓存编译。</p>
+
+<h2 id="plugin">Plugin</h2>
+
+<p>Webpack 的插件也非常丰富，有自带的如压缩 JavaScript 插件以及更多的第三方插件，本文中提到的第三个需要解决的问题就是使用的一个第三方插件 <code>webpack-md5-hash</code> 解决的。关于自己写一个插件也比较简单，如下  </p>
+
+<pre><code>function HtmlPlusWebpackPlugin (options) {  
+  // 可以在插件初始化的时候传参数进来
+  this.options = options || {}
+}
+
+HtmlPlusWebpackPlugin.prototype.apply = function (compiler, callback) {  
+  compiler.plugin('make', function (compilation, callback) {
+    console.log('---------------------------------任务开始-------------------------')
+    callback()
+  })
+
+  compiler.plugin('emit', function (compilation, callback) {
+    console.log('---------------------------------生产文件前-------------------------')
+    // webpack config 中的参数都可通过下面两个对象获取
+    console.log(compiler
+    // 继承 compiler 对象
+    console.log(compilation)
+    callback()
+  })
+}
+
+module.exports = HtmlPlusWebpackPlugin  
+</code></pre>
+
+<p>完整的事件为（<code>make</code> -&gt; <code>complie</code> -&gt; <code>after-complie</code> -&gt; <code>emit</code> -&gt; <code>after emit</code>）。</p>
+
+<h2 id="">其他的扩展方式</h2>
+
+<p>最后谈谈其他的一些扩展方式，实际上最开始是想直接找一个已经实现的缓存编译插件或扩展工具来实现，但是在找到 <code>webpack-build</code> 工具后测试发现跟我们所期待的不一样，它是能够缓存，但是一有修改就会全量编译，最后就考虑自己实现一个简单的缓存编译。<code>webpack-build</code> 和 Loader 以及 Plugin 不同的是它是直接接管 Webpack 配置文件后自己进行调用的。然后我自己的扩展方式是通过缓存文件比较得到需要更新的模块后进行替换 Webpack 配置的入口信息。对于使用 Webpack 和之前没有任何区别。当修改了公共目录的资源将全部重新编译，编译过程中将本次目录中的文件修改时间保存到磁盘，还有就是要考虑新建的模块以及编译目录中被删除的模块都要进行编译。下面代码是缓存检查以及 Webpack 配置中的关键源码：</p>
+
+<pre><code>/**
+ * 递归读取文件夹下所有文件修改时间戳
+ * @return {Object} 所有文件时间戳
+ */
+_.allStats = function (dir) {  
+  var ret = {}
+  var files = fs.readdirSync(dir)
+  files.forEach(function (file) {
+    var pathname = dir + '/' + file
+    var stat = fs.statSync(pathname)
+    if (stat.isDirectory()) {
+      ret = Object.assign(ret, _.allStats(pathname))
+    } else {
+      ret[_(pathname)] = stat.mtime.getTime()
+    }
+  })
+  return ret
+}
+
+/**
+ * 读取所有源文件
+ * @return {Object} 缓存信息
+ */
+Cache.prototype.generator = function () {  
+  const that = this
+  var json = {
+    _t: new Date().getTime(),
+    _d: {}
+  }
+  var files = fs.readdirSync(that.options.src)
+  files.forEach(function (file) {
+    var pathname = that.options.src + '/' + file
+    json._d[file] = _.allStats(pathname)
+  })
+  return json
+}
+
+**
+ * 所有需要重新编译的文件夹
+ * @return {[Array]} 所有需要重新编译的文件夹
+ */
+Cache.prototype.diffDirs = function () {  
+  var that = this
+  var ret = []
+  var dotCache = that.read()
+  var curFiles = that._json
+  if (!dotCache || !dotCache._d) {
+    return ret
+  }
+  // if (JSON.stringify(curFiles._d) === JSON.stringify(dotCache._d)) {
+  //   return ret
+  // }
+  Object.keys(curFiles._d).forEach(function (key) {
+    var item = curFiles._d[key]
+    var result = Object.keys(item).find(function (pathname) {
+      return (!dotCache._d[key] || !dotCache._d[key][pathname] || item[pathname] !== dotCache._d[key][pathname] || !_.exists(path.join(that.options.build, key)))
+    })
+    result &amp;&amp; (ret.push(key))
+  })
+  return ret
+}
+  // Webpack 配置文件这边根据缓存数据配置需要编译的模块入口
+  var _start = new Date().getTime()
+  var wCache = new Cache({
+    src: config.path.src,
+    build: config.path.build(),
+    assets: 'assets',
+    common: 'common'
+  })
+  if (wCache.exists) {
+    newCommon = wCache.diffCommon()
+    if (!newCommon) {
+      routes = wCache.diffRoutes(routes)
+    }
+  }
+  var _end = new Date().getTime()
+  console.log('----------------')
+  console.log('缓存检查耗时： ' + (_end - _start) + 'ms')
+  console.log('----------------')
+  wCache.save()
+</code></pre>
+
+<p>参考：</p>
+
+<ol>
+<li><a href="https://webpack.github.io/">https://webpack.github.io</a>  </li>
+<li><a href="http://zhaoda.net/webpack-handbook/index.html">http://zhaoda.net/webpack-handbook/index.html</a>  </li>
+<li><a href="https://github.com/lcxfs1991/blog/issues/1">https://github.com/lcxfs1991/blog/issues/1</a></li>
+</ol>
+        </section>
+
+        <footer class="post-footer">
+
+
+
+            <section class="author">
+                <h4><a href="http://ued.fanxing.com/author/liangjintao-2/">liangjintao</a></h4>
+
+                    <p>Read <a href="http://ued.fanxing.com/author/liangjintao-2/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Webpack%20%E6%89%A9%E5%B1%95%E6%B5%85%E8%B0%88&amp;url=http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ued.fanxing.com/webpack-kuo-zhan-qian-tan/" onclick="window.open(this.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story " style="background-image: url(/content/images/2016/05/create_new.png)" href="http://ued.fanxing.com/reactnative-into-ios/">
+        <section class="post">
+            <h2>reactnative与现有原生ios项目集成</h2>
+            <p>经过一个月的折腾，我们终于将reactnative项目成功地集成到酷狗8.0的ios端，并完成所有原生app与javascript交互的所有功能，接下来将会继续在独立繁星app中做集成，下面是酷狗live项目回顾页的截图： 大概功能就是：视频部分是原生app，视频以下部分是js，js可以通知视频播放哪个视频，视频可以通知js视频播放，或者播放下一个等等。 下面我想通过一个简单的ios项目介绍一下原生ios项目是如何与reactnative集成的。 先贴一下官方教程： Integrating with Existing Apps 植入原生应用…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="http://ued.fanxing.com/git-pre-commitdai-ma-zhi-liang-jian-cha/">
+        <section class="post">
+            <h2>git pre-commit JS代码质量检查</h2>
+            <p>做为开发人员，每个人写代码都会出现BUG，但要防止低级的BUG出现就要对代码进行质量检查，所以当代码进行提交时对代码进行检查非常有必要，而且能统一代码的规范性。 而我们开发时，进行代码提交用得最多就是SVN与Git仓库来管理，而现在我是用git来进行代码管理的，所以现介绍一下用git如何进行代码检查； 首先 安装Git(网上很多，不讲多)，安装jsHint来进行检查，这里我是用nodeJS来进行安装。 安装命令：npm i jshint…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://ued.fanxing.com/">繁星UED</a> © 2016</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org/">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="./Webpack 扩展浅谈_files/jquery.js"></script> <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?543454e19ade9be0fb6c8b469149400f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    <script type="text/javascript" src="./Webpack 扩展浅谈_files/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="./Webpack 扩展浅谈_files/index.js"></script>
+
+
+
+</body></html>

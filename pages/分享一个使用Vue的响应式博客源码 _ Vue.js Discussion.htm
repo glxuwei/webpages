@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<!-- saved from url=(0165)http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3 -->
+<html lang="en-US" class=" " data-dir="ltr" style="direction: ltr;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>分享一个使用Vue的响应式博客源码 | Vue.js Discussion</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="content-type" content="text/html; charset=UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta property="og:site_name" content="Vue.js Discussion">
+	<meta name="keywords" content="Vue.js">
+	<meta name="msapplication-badge" content="frequency=30; polling-uri=http://forum.vuejs.org/sitemap.xml">
+	<meta name="msapplication-square150x150logo" content="/uploads/system/site-logo.png">
+	<meta name="title" content="分享一个使用Vue的响应式博客源码">
+	<meta name="description" content="Jackblog 是使用 Node.js + MongoDB + 其它客户端框架, 开发的个人博客系统,前后端分离,仿简书模板. https://github.com/jackhutu/jackblog-vue 此为Vue版客户端,需要配合API服务端运行. 主要使用的库有 Vue, Vuex, Vue-resource,  Vue-router, Vue-validator 等.  响应式布局. Demo地址: http://vue.jackhu.top 服务端参考: https://github.co...">
+	<meta property="og:title" content="分享一个使用Vue的响应式博客源码">
+	<meta property="og:description" content="Jackblog 是使用 Node.js + MongoDB + 其它客户端框架, 开发的个人博客系统,前后端分离,仿简书模板. https://github.com/jackhutu/jackblog-vue 此为Vue版客户端,需要配合API服务端运行. 主要使用的库有 Vue, Vuex, Vue-resource,  Vue-router, Vue-validator 等.  响应式布局. Demo地址: http://vue.jackhu.top 服务端参考: https://github.co...">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://forum.vuejs.org/topic/2635/分享一个使用vue的响应式博客源码">
+	<meta property="og:image" content="https://www.gravatar.com/avatar/9470913273bdfd97d556dd4817875519?size=192&amp;d=identicon">
+	<meta property="og:image:url" content="https://www.gravatar.com/avatar/9470913273bdfd97d556dd4817875519?size=192&amp;d=identicon">
+	<meta property="article:published_time" content="2016-02-27T04:54:53.552Z">
+	<meta property="article:modified_time" content="2016-03-21T11:53:42.796Z">
+	<meta property="article:section" content="中文">
+	<link rel="stylesheet" type="text/css" href="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/stylesheet.css">
+	
+	<link rel="icon" type="image/x-icon" href="http://forum.vuejs.org/favicon.ico?10a38317-e9cd-493c-b859-24edea01895d">
+	<link rel="manifest" href="http://forum.vuejs.org/manifest.json">
+	<link rel="stylesheet" href="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/railscasts.css">
+	<link rel="alternate" type="application/rss+xml" href="http://forum.vuejs.org/topic/2635.rss">
+	<link rel="up" href="http://forum.vuejs.org/category/10/%E4%B8%AD%E6%96%87">
+	<link rel="next" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81?page=2">
+
+	<!--[if lt IE 9]>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+  		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  		<script>__lt_ie_9__ = 1;</script>
+	<![endif]-->
+
+	<script>
+		var RELATIVE_PATH = "";
+		var config = JSON.parse('{"relative_path":"","version":"1.0.1","siteTitle":"Vue.js Discussion","browserTitle":"Vue.js Discussion","titleLayout":"&#123;pageTitle&#125; | &#123;browserTitle&#125;","showSiteTitle":true,"minimumTitleLength":"3","maximumTitleLength":"255","minimumPostLength":"8","maximumPostLength":"32767","minimumTagsPerTopic":"0","maximumTagsPerTopic":"5","minimumTagLength":3,"maximumTagLength":15,"hasImageUploadPlugin":false,"useOutgoingLinksPage":false,"allowGuestSearching":false,"allowGuestUserSearching":false,"allowGuestHandles":false,"allowFileUploads":false,"allowTopicsThumbnail":false,"usePagination":false,"disableChat":false,"socketioTransports":["polling","websocket"],"websocketAddress":"","maxReconnectionAttempts":5,"reconnectionDelay":1500,"topicsPerPage":20,"postsPerPage":20,"maximumFileSize":"2048","theme:id":"nodebb-theme-persona","theme:src":"","defaultLang":"en_US","userLang":"en_US","loggedIn":false,"cache-buster":"10a38317-e9cd-493c-b859-24edea01895d","requireEmailConfirmation":true,"topicPostSort":"oldest_to_newest","categoryTopicSort":"newest_to_oldest","csrf_token":"GOWmibd5-xAkeMUNXrET4jFR1UvAr8yBZjrM","searchEnabled":true,"bootswatchSkin":"default","composer-default":{},"markdown":{"highlight":1,"theme":"railscasts.css"}}');
+		var app = {
+			template: "topic",
+			user: JSON.parse('{"username":"Guest","userslug":"","picture":"","status":"offline","banned":false,"uid":0,"isAdmin":false,"isGlobalMod":false,"email:confirmed":false}')
+		};
+	</script>
+	<script src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/nodebb.min.js"></script>
+<script>
+	require.config({
+		baseUrl: "/src/modules",
+		waitSeconds: 3,
+		urlArgs: "10a38317-e9cd-493c-b859-24edea01895d",
+		paths: {
+			'forum': '../client',
+			'admin': '../admin',
+			'vendor': '../../vendor',
+			'mousetrap': '../../bower/mousetrap/mousetrap'
+		}
+	});
+</script>
+
+	
+
+	
+		<style type="text/css">.forum-logo{height:40px;margin:5px 10px 5px 0}</style>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="postSelect" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/postSelect.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="forum/topic/delete-posts" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/delete-posts.js"></script><style type="text/css" id="styles-emoji-extended">.emoji { display: inline-block; }
+</style></head>
+
+<body class="page-topic page-topic-2635 page-topic-%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81">
+	<nav id="menu" class=" slideout-menu">
+		<section class="menu-profile">
+			
+		</section>
+
+		<section class="menu-section" data-section="navigation">
+			<h3 class="menu-section-title">Navigation</h3>
+			<ul class="menu-section-list">
+															<li class="">
+						<a href="http://forum.vuejs.org/categories" title="Categories">
+														<i class="fa fa-fw fa-list"></i>
+
+														<span class="visible-xs-inline">Categories</span>
+						</a>
+					</li>
+					
+										<li class="">
+						<a href="http://forum.vuejs.org/recent" title="Recent">
+														<i class="fa fa-fw fa-clock-o"></i>
+
+														<span class="visible-xs-inline">Recent</span>
+						</a>
+					</li>
+										<li class="">
+						<a href="http://forum.vuejs.org/tags" title="Tags">
+														<i class="fa fa-fw fa-tags"></i>
+
+														<span class="visible-xs-inline">Tags</span>
+						</a>
+					</li>
+										<li class="">
+						<a href="http://forum.vuejs.org/popular" title="Popular">
+														<i class="fa fa-fw fa-fire"></i>
+
+														<span class="visible-xs-inline">Popular</span>
+						</a>
+					</li>
+					
+					
+					
+				
+						<a href="http://forum.vuejs.org/search">
+							<i class="fa fa-search fa-fw"></i> Search
+						</a>
+					
+					
+					<li>
+						<a href="http://forum.vuejs.org/login">
+							<i class="fa fa-sign-in visible-xs-inline"></i>
+							<span>Login</span>
+						</a>
+					</li>
+				</ul>
+		</section>
+
+		
+	</nav>
+
+	<main id="panel" class=" slideout-panel">
+		<nav class="navbar navbar-default navbar-fixed-top header" id="header-menu" component="navbar">
+			<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" id="mobile-menu">
+					<span component="notifications/icon" class="notification-icon fa fa-fw fa-bell-o" data-content="0"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+				<a href="http://forum.vuejs.org/">
+					<img alt="" class=" forum-logo" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/site-logo.png">
+				</a>
+								<a href="http://forum.vuejs.org/">
+					<h1 class="navbar-brand forum-title">Vue.js Discussion</h1>
+				</a>
+
+				<div component="navbar/title" class="visible-xs">
+					<span style="display: none;"></span>
+				</div>
+			</div>
+
+			<div id="nav-dropdown" class="hidden-xs">
+												<ul id="logged-out-menu" class="nav navbar-nav navbar-right">
+					
+					<li>
+						<a href="http://forum.vuejs.org/login">
+							<i class="fa fa-sign-in visible-xs-inline"></i>
+							<span>Login</span>
+						</a>
+					</li>
+				</ul>
+								<ul class="nav navbar-nav navbar-right">
+					<li data-original-title="" title="">
+						<form id="search-form" class="navbar-form navbar-right hidden-xs" role="search" method="GET" action="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3">
+							<button id="search-button" type="button" class="btn btn-link"><i class="fa fa-search fa-fw" title="Search"></i></button>
+							<div class="hidden" id="search-fields">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search" name="query" value="">
+									<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#"><i class="fa fa-gears fa-fw advanced-search-link"></i></a>
+								</div>
+								<button type="submit" class="btn btn-default hide">Search</button>
+							</div>
+						</form>
+					</li>
+					<li class="visible-xs" id="search-menu">
+						<a href="http://forum.vuejs.org/search">
+							<i class="fa fa-search fa-fw"></i> Search
+						</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right hidden-xs">
+					<li>
+						<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" id="reconnect" class="hide" title="" data-original-title="Connection to Vue.js Discussion has been lost, attempting to reconnect...">
+							<i class="fa fa-check"></i>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right pagination-block visible-lg visible-md ready">
+					<li class="dropdown">
+						<i class="fa fa-angle-double-up pointer fa-fw pagetop"></i>
+						<i class="fa fa-angle-up pointer fa-fw pageup"></i>
+
+						<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="pagination-text">2 out of 47</span>
+						</a>
+
+						<i class="fa fa-angle-down pointer fa-fw pagedown"></i>
+						<i class="fa fa-angle-double-down pointer fa-fw pagebottom"></i>
+
+						<div class="progress-container">
+							<div class="progress-bar" style="width: 4.25532%;"></div>
+						</div>
+
+						<ul class="dropdown-menu" role="menu">
+  							<input type="text" class="form-control" id="indexInput" placeholder="Enter index">
+  						</ul>
+					</li>
+				</ul>
+
+				<ul id="main-nav" class="nav navbar-nav">
+															<li class="">
+						<a href="http://forum.vuejs.org/categories" title="" data-original-title="Categories">
+														<i class="fa fa-fw fa-list"></i>
+
+														<span class="visible-xs-inline">Categories</span>
+						</a>
+					</li>
+					
+										<li class="">
+						<a href="http://forum.vuejs.org/recent" title="" data-original-title="Recent">
+														<i class="fa fa-fw fa-clock-o"></i>
+
+														<span class="visible-xs-inline">Recent</span>
+						</a>
+					</li>
+										<li class="">
+						<a href="http://forum.vuejs.org/tags" title="" data-original-title="Tags">
+														<i class="fa fa-fw fa-tags"></i>
+
+														<span class="visible-xs-inline">Tags</span>
+						</a>
+					</li>
+										<li class="">
+						<a href="http://forum.vuejs.org/popular" title="" data-original-title="Popular">
+														<i class="fa fa-fw fa-fire"></i>
+
+														<span class="visible-xs-inline">Popular</span>
+						</a>
+					</li>
+					
+					
+					
+				</ul>
+			</div>
+
+			</div>
+		</nav>
+		<div class="container" id="content">
+	<noscript>
+		&lt;div class="alert alert-danger"&gt;
+			&lt;p&gt;
+				Your browser does not seem to support JavaScript. As a result, your viewing experience will be diminished, and you have been placed in &lt;strong&gt;read-only mode&lt;/strong&gt;.
+			&lt;/p&gt;
+			&lt;p&gt;
+				Please download a browser that supports JavaScript, or enable it if it's disabled (i.e. NoScript).
+			&lt;/p&gt;
+		&lt;/div&gt;
+	</noscript><div class="row">
+<div class="topic col-lg-12">
+<ol class="breadcrumb">
+		<li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+		<a href="http://forum.vuejs.org/" itemprop="url">
+			<span itemprop="title">
+				Home
+				
+			</span>
+		</a>
+	</li>
+	<li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+		<a href="http://forum.vuejs.org/category/10/%E4%B8%AD%E6%96%87" itemprop="url">
+			<span itemprop="title">
+				中文
+				
+			</span>
+		</a>
+	</li>
+	<li component="breadcrumb/current" itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb" class="active">
+		
+			<span itemprop="title">
+				分享一个使用Vue的响应式博客源码
+												<a target="_blank" href="http://forum.vuejs.org/topic/2635.rss"><i class="fa fa-rss-square"></i></a>
+			</span>
+		
+	</li>
+</ol>
+
+	<h1 component="post/header" class="hidden-xs" itemprop="name">
+
+		<i class="pull-left fa fa-thumb-tack hidden"></i> <i class="pull-left fa fa-lock hidden"></i> <span class="topic-title" component="topic/title">分享一个使用Vue的响应式博客源码</span>
+
+		<span class="browsing-users hidden hidden-xs hidden-sm pull-right">
+			<span>browsing</span>
+			<div component="topic/browsing/list" class="thread_active_users active-users inline-block"></div>
+			<small class="hidden">
+				<i class="fa fa-users"></i> <span component="topic/browsing/count" class="user-count"></span>
+			</small>
+		</span>
+	</h1>
+
+	<div component="topic/deleted/message" class="alert alert-warning hidden">This topic has been deleted. Only users with topic management privileges can see it.</div>
+
+	<hr class="visible-xs">
+
+	<ul component="topic" class="posts" data-tid="2635">
+					<li component="post" class="" data-index="0" data-pid="6029" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="0" name="0"></a>
+
+				<meta itemprop="datePublished" content="2016-02-27T04:54:53.563Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/1"><span class="timeago" title="Sat Feb 27 2016 12:54:53 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+			
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<h4>Jackblog 是使用 Node.js + MongoDB + 其它客户端框架, 开发的个人博客系统,前后端分离,仿简书模板.</h4>
+<p><a href="https://github.com/jackhutu/jackblog-vue" rel="nofollow">https://github.com/jackhutu/jackblog-vue</a><br>
+此为Vue版客户端,需要配合API服务端运行.<br>
+主要使用的库有 Vue, Vuex, Vue-resource,  Vue-router, Vue-validator 等.  响应式布局.<br>
+Demo地址: <a href="http://vue.jackhu.top/" rel="nofollow">http://vue.jackhu.top</a><br>
+服务端参考:<br>
+<a href="https://github.com/jackhutu/jackblog-api-express" rel="nofollow">https://github.com/jackhutu/jackblog-api-express</a><br>
+或者<br>
+<a href="https://github.com/jackhutu/jackblog-api-koa" rel="nofollow">https://github.com/jackhutu/jackblog-api-koa</a></p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="1">1</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			<div class="post-bar">
+<div class="clearfix">
+	<div class="tags pull-left">
+				<a href="http://forum.vuejs.org/tags/vue-resource">
+		<span class="tag-item" data-tag="vue-resource" style="">vue-resource</span>
+		<span class="tag-topic-count human-readable-number" title="18">18</span></a>
+		<a href="http://forum.vuejs.org/tags/vuex">
+		<span class="tag-item" data-tag="vuex" style="">vuex</span>
+		<span class="tag-topic-count human-readable-number" title="63">63</span></a>
+		<a href="http://forum.vuejs.org/tags/vue-validator">
+		<span class="tag-item" data-tag="vue-validator" style="">vue-validator</span>
+		<span class="tag-topic-count human-readable-number" title="8">8</span></a>
+		<a href="http://forum.vuejs.org/tags/vue-router">
+		<span class="tag-item" data-tag="vue-router" style="">vue-router</span>
+		<span class="tag-topic-count human-readable-number" title="84">84</span></a>
+	</div>
+
+	<div class="topic-main-buttons pull-right">
+		<span class="loading-indicator btn pull-left hidden" done="0">
+			<span class="hidden-xs">Loading More Posts</span> <i class="fa fa-refresh fa-spin"></i>
+		</span>
+
+<div class="stats hidden-xs">
+	<span component="topic/post-count" class="human-readable-number" title="47">47</span><br>
+	<small>Posts</small>
+</div>
+<div class="stats hidden-xs">
+	<span class="human-readable-number" title="13921">13.9k</span><br>
+	<small>Views</small>
+</div>
+
+<div class="btn-group action-bar hidden">
+	<button class="btn btn-primary" component="topic/reply">Reply</button>
+	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu pull-right" role="menu">
+		<li><a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" component="topic/reply-as-topic">Reply as topic</a></li>
+	</ul>
+</div>
+
+<a href="http://forum.vuejs.org/login" class="btn btn-primary">Log in to reply</a>
+
+
+
+		
+
+
+
+
+	</div>
+</div>
+<hr>
+	</div></li>
+			<li component="post" class="" data-index="1" data-pid="6046" data-uid="1" data-username="evan" data-userslug="evan" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="1" name="1"></a>
+
+				<meta itemprop="datePublished" content="2016-02-28T04:20:05.404Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/evan">
+						<img component="user/picture" data-uid="1" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/eca93da2c67aadafe35d477aa8f454b8" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/evan" itemprop="author" data-username="evan" data-uid="1">evan</a>
+		</strong>
+
+<a href="http://forum.vuejs.org/groups/administrators"><small class="label group-label inline-block" style="background-color: #42b983;">Admin</small></a>
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/2"><span class="timeago" title="Sun Feb 28 2016 12:20:05 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+			
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p>不错不错，还用了 vuex</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="2" data-pid="6591" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="2" name="2"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T01:19:01.111Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3"><span class="timeago" title="Thu Mar 03 2016 09:19:01 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+			
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> said:</p>
+<blockquote>
+<p>Vuex</p>
+</blockquote>
+<p>Vuex是什么啊？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="3" data-pid="6596" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="3" name="3"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T02:58:12.166Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/4"><span class="timeago" title="Thu Mar 03 2016 10:58:12 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6591"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 一个类似于redux的状态管理器,  可以让vue发挥更大的威力.  如果vue是太空船,那么vuex就是航天发动机.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="4" data-pid="6598" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="4" name="4"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T03:20:34.990Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/5"><span class="timeago" title="Thu Mar 03 2016 11:20:34 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+			
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> said:</p>
+<blockquote>
+<p>redux</p>
+</blockquote>
+<p>噢噢，原来如此。</p>
+<p>我打算读你这个源码来学习vue，我是个半新手。<br>
+只是了解过mvvm，现在还在用yo，gulp/grunt，这类的工具，webpack看了，但是没看懂，还没用。</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="5" data-pid="6599" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="5" name="5"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T03:25:46.599Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/6"><span class="timeago" title="Thu Mar 03 2016 11:25:46 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6598"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 不错,慢慢来, 学海无涯苦做舟,  码读万遍其意自现.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="6" data-pid="6600" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="6" name="6"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T03:32:15.115Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/7"><span class="timeago" title="Thu Mar 03 2016 11:32:15 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6599"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 我看Github 上，看有客户端和服务端两个，客户端和服务端搭配起来才能跑起来呗？<br>
+客户端用vue的话，服务端二选其一就可以呗？<br>
+koa会比express简单些吗？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="7" data-pid="6603" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="7" name="7"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T05:13:31.077Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/8"><span class="timeago" title="Thu Mar 03 2016 13:13:31 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6600"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 是的, 搭配着用的.  koa和express都很简单,  koa可以看作是新一代的express.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="8" data-pid="6610" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="8" name="8"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T09:54:49.886Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/9"><span class="timeago" title="Thu Mar 03 2016 17:54:49 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+			
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p>我已经把koa的全局环境配置好了，机器是MAC的。<br>
+我把Github上的代码clone，环境也配置好了，我先想办法让blog跑起来:smile:</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="9" data-pid="6616" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="9" name="9"></a>
+
+				<meta itemprop="datePublished" content="2016-03-03T12:36:00.673Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/10"><span class="timeago" title="Thu Mar 03 2016 20:36:00 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6610"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> :thumbsup:</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="10" data-pid="6697" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="10" name="10"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T07:46:14.155Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/11"><span class="timeago" title="Fri Mar 04 2016 15:46:14 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6616"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 您在北京不？能请教点问题吗？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="11" data-pid="6699" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="11" name="11"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T08:16:37.108Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/12"><span class="timeago" title="Fri Mar 04 2016 16:16:37 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6697"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 惭愧! 这辈子没去过首都. 但是有问题尽管说.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="12" data-pid="6702" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="12" name="12"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T08:35:12.395Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/13"><span class="timeago" title="Fri Mar 04 2016 16:35:12 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6699"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 那有兴趣的话，你可以来北京看看，我们公司还在招人，前端后台都在招，做跨境电商的。<br>
+这个 SPA 单页应用如果是要做 SEO 的话，有什么好办法呢？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="13" data-pid="6704" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="13" name="13"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:21:39.198Z">
+				<meta itemprop="dateModified" content="2016-03-04T09:22:11.461Z">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/14"><span class="timeago" title="Fri Mar 04 2016 17:21:39 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon" title="" data-original-title="last edited by jackhutu 6 months ago"></i>
+
+			<small data-editor="jackhutu" component="post/editor" class="hidden">last edited by jackhutu <span class="timeago" title="Fri Mar 04 2016 17:22:11 GMT+0800 (CST)">6 months ago</span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6702"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 谢谢,暂时没有去北京的打算.  SEO的话,需要服务端渲染, 目前vue只有第三方实现.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="14" data-pid="6705" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="14" name="14"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:25:21.383Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/15"><span class="timeago" title="Fri Mar 04 2016 17:25:21 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6704"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 欢迎来玩哈~ 服务端渲染是指的静态化页面吗？第三方实现指的是，需要用其他的东西来支持吗？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="15" data-pid="6706" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="15" name="15"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:31:17.840Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/16"><span class="timeago" title="Fri Mar 04 2016 17:31:17 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6704"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 要是把三个SPA页面连起来，这样的话，是不是三个页面可以分别做SEO呢？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="16" data-pid="6707" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="16" name="16"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:33:15.733Z">
+				<meta itemprop="dateModified" content="2016-03-04T09:36:20.336Z">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/17"><span class="timeago" title="Fri Mar 04 2016 17:33:15 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon" title="" data-original-title="last edited by jackhutu 6 months ago"></i>
+
+			<small data-editor="jackhutu" component="post/editor" class="hidden">last edited by jackhutu <span class="timeago" title="Fri Mar 04 2016 17:36:20 GMT+0800 (CST)">6 months ago</span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6705"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 服务端渲染是指在后端处理好数据和模板, 发送HTML到前端浏览器再渲染.  需要后端语言(如: nodejs)来实现.  <a href="https://www.zhihu.com/question/39149401" rel="nofollow">https://www.zhihu.com/question/39149401</a>  知乎也有讨论,  也就是官方并没有支持.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="17" data-pid="6708" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="17" name="17"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:35:15.960Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/18"><span class="timeago" title="Fri Mar 04 2016 17:35:15 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6706"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 三个页面, 用路由就可以了.  不用分别做SEO.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="18" data-pid="6709" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="18" name="18"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:41:38.302Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/19"><span class="timeago" title="Fri Mar 04 2016 17:41:38 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6708"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 哦，这样啊，以前一直在用jquery，原生js用的也少，现在想把公司网站用VUE重构下，跨度有点大，怕扯到蛋:satisfied: 。不过还是想好好锻炼一下，跨度太大也没办法。:smiley:</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="19" data-pid="6710" data-uid="2679" data-username="jackhutu" data-userslug="jackhutu" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="19" name="19"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T09:44:29.861Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/jackhutu">
+						<img component="user/picture" data-uid="2679" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/9470913273bdfd97d556dd4817875519" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/jackhutu" itemprop="author" data-username="jackhutu" data-uid="2679">jackhutu</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/20"><span class="timeago" title="Fri Mar 04 2016 17:44:29 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6709"><i class="fa fa-reply"></i> @zhaozhe0831</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/zhaozhe0831">@zhaozhe0831</a> 哈, 我看行. 扯到蛋了揉一揉.</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+			<li component="post" class="" data-index="20" data-pid="6713" data-uid="3047" data-username="zhaozhe0831" data-userslug="zhaozhe0831" itemscope="" itemtype="http://schema.org/Comment">
+				<a component="post/anchor" data-index="20" name="20"></a>
+
+				<meta itemprop="datePublished" content="2016-03-04T10:42:57.447Z">
+				<meta itemprop="dateModified" content="">
+
+<div class="clearfix">
+	<div class="icon pull-left">
+		<a href="http://forum.vuejs.org/user/zhaozhe0831">
+						<img component="user/picture" data-uid="3047" src="./分享一个使用Vue的响应式博客源码 _ Vue.js Discussion_files/6b24bcd3ef07df765e12246d19d2318d" align="left" itemprop="image">
+			<i component="user/status" class="fa fa-circle status offline" title="Offline"></i>
+
+		</a>
+	</div>
+
+	<small class="pull-left">
+		<strong>
+			<a href="http://forum.vuejs.org/user/zhaozhe0831" itemprop="author" data-username="zhaozhe0831" data-uid="3047">zhaozhe0831</a>
+		</strong>
+
+
+
+		
+
+		<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<a class="permalink" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/21"><span class="timeago" title="Fri Mar 04 2016 18:42:57 GMT+0800 (CST)">6 months ago</span></a>
+
+			<i class="fa fa-pencil-square pointer edit-icon hidden"></i>
+
+			<small data-editor="" component="post/editor" class="hidden">last edited by  <span class="timeago" title="Invalid Date"></span></small>
+
+						<button component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="6710"><i class="fa fa-reply"></i> @jackhutu</button>
+
+			<span>
+				
+			</span>
+		</div>
+		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
+
+	</small>
+</div>
+
+<br>
+
+<div class="content" component="post/content" itemprop="text">
+	<p><a class="plugin-mentions-a" href="http://forum.vuejs.org/user/jackhutu">@jackhutu</a> 我把依赖都用npm install 安装好了，koa的话，需要怎么配置才可以运行呢？可以推荐我一个合适的教程吗？</p>
+
+</div>
+
+<div class="clearfix">
+	
+
+	<small class="pull-right">
+		<span class="post-tools">
+			<a component="post/reply" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Reply</a>
+			<a component="post/quote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="no-select hidden">Quote</a>
+		</span>
+
+				<span class="votes">
+			<a component="post/upvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-up"></i>
+			</a>
+
+			<span component="post/vote-count" data-votes="0">0</span>
+
+						<a component="post/downvote" href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" class="">
+				<i class="fa fa-chevron-down"></i>
+			</a>
+		</span>
+
+<span component="post/tools" class="dropdown moderator-tools ">
+	<a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" data-toggle="dropdown"><i class="fa fa-fw fa-ellipsis-v"></i></a>
+	<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+</span>
+
+	</small>
+</div>
+
+<hr>
+
+			</li>
+	</ul>
+
+	<div class="post-bar">
+<div class="clearfix">
+	<div class="tags pull-left">
+				<a href="http://forum.vuejs.org/tags/vue-resource">
+		<span class="tag-item" data-tag="vue-resource" style="">vue-resource</span>
+		<span class="tag-topic-count human-readable-number" title="18">18</span></a>
+		<a href="http://forum.vuejs.org/tags/vuex">
+		<span class="tag-item" data-tag="vuex" style="">vuex</span>
+		<span class="tag-topic-count human-readable-number" title="63">63</span></a>
+		<a href="http://forum.vuejs.org/tags/vue-validator">
+		<span class="tag-item" data-tag="vue-validator" style="">vue-validator</span>
+		<span class="tag-topic-count human-readable-number" title="8">8</span></a>
+		<a href="http://forum.vuejs.org/tags/vue-router">
+		<span class="tag-item" data-tag="vue-router" style="">vue-router</span>
+		<span class="tag-topic-count human-readable-number" title="84">84</span></a>
+	</div>
+
+	<div class="topic-main-buttons pull-right">
+		<span class="loading-indicator btn pull-left hidden" done="0">
+			<span class="hidden-xs">Loading More Posts</span> <i class="fa fa-refresh fa-spin"></i>
+		</span>
+
+<div class="stats hidden-xs">
+	<span component="topic/post-count" class="human-readable-number" title="47">47</span><br>
+	<small>Posts</small>
+</div>
+<div class="stats hidden-xs">
+	<span class="human-readable-number" title="13921">13.9k</span><br>
+	<small>Views</small>
+</div>
+
+<div class="btn-group action-bar hidden">
+	<button class="btn btn-primary" component="topic/reply">Reply</button>
+	<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu pull-right" role="menu">
+		<li><a href="http://forum.vuejs.org/topic/2635/%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8vue%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81/3#" component="topic/reply-as-topic">Reply as topic</a></li>
+	</ul>
+</div>
+
+<a href="http://forum.vuejs.org/login" class="btn btn-primary">Log in to reply</a>
+
+
+
+		
+
+
+
+
+	</div>
+</div>
+<hr>
+	</div>
+
+	
+
+	<div class="visible-xs visible-sm pagination-block text-center ready">
+		<div class="progress-bar" style="width: 4.25532%;"></div>
+		<div class="wrapper">
+			<i class="fa fa-2x fa-angle-double-up pointer fa-fw pagetop"></i>
+			<i class="fa fa-2x fa-angle-up pointer fa-fw pageup"></i>
+			<span class="pagination-text">2 out of 47</span>
+			<i class="fa fa-2x fa-angle-down pointer fa-fw pagedown"></i>
+			<i class="fa fa-2x fa-angle-double-down pointer fa-fw pagebottom"></i>
+		</div>
+	</div>
+</div>
+</div>
+<noscript>
+&lt;div component="pagination" class="text-center pagination-container"&gt;
+	&lt;ul class="pagination"&gt;
+		&lt;li class="previous pull-left disabled"&gt;
+			&lt;a href="?page=1" data-page="1"&gt;&lt;i class="fa fa-chevron-left"&gt;&lt;/i&gt; &lt;/a&gt;
+		&lt;/li&gt;
+
+								&lt;li class="page active" &gt;
+				&lt;a href="?page=1" data-page="1"&gt;1&lt;/a&gt;
+			&lt;/li&gt;
+						&lt;li class="page" &gt;
+				&lt;a href="?page=2" data-page="2"&gt;2&lt;/a&gt;
+			&lt;/li&gt;
+						&lt;li class="page" &gt;
+				&lt;a href="?page=3" data-page="3"&gt;3&lt;/a&gt;
+			&lt;/li&gt;
+
+		&lt;li class="next pull-right"&gt;
+			&lt;a href="?page=2" data-page="2"&gt; &lt;i class="fa fa-chevron-right"&gt;&lt;/i&gt;&lt;/a&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</noscript>		<div class="row"><div widget-area="footer" class="col-xs-12"><footer id="footer" class="container footer">
+	<div class="copyright">
+		<a target="_blank" href="http://vuejs.org/">Vue.js</a>
+                | <a target="_blank" href="https://github.com/vuejs/vue">GitHub</a>
+	</div>
+</footer></div></div></div><!-- END container -->
+	</main>
+
+	<div class="hide">
+<script type="text/tpl" data-template="500">
+<div class="alert alert-danger">
+	<strong>Internal error.</strong>
+	<p>Oops! Looks like something went wrong!</p>
+	<p></p>
+	
+
+</div>
+</script>
+	</div>
+
+
+	<div class="topic-search hidden">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default count"></button>
+			<button type="button" class="btn btn-default prev"><i class="fa fa-fw fa-angle-up"></i></button>
+			<button type="button" class="btn btn-default next"><i class="fa fa-fw fa-angle-down"></i></button>
+		</div>
+	</div>
+	<div component="toaster/tray" class="alert-window"></div>
+
+	<script>
+		require(['forum/footer']);
+	</script>
+
+
+<div id="taskbar" class="taskbar navbar-fixed-bottom">
+	<div class="navbar-inner"><ul class="nav navbar-nav pull-right"></ul></div>
+</div></body></html>

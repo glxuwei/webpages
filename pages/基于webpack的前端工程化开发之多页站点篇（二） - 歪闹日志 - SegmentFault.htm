@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://segmentfault.com/a/1190000004516832 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><meta name="renderer" content="webkit"><meta property="qc:admins" content="15317273575564615446375"><meta property="og:image" content="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/touch-icon.png"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><meta name="alexaVerifyID" content="LkzCRJ7rPEUwt6fVey2vhxiw1vQ"><meta name="apple-itunes-app" content="app-id=958101793, app-argument="><title>基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault</title><meta name="description" content="这篇，我们要解决上篇留下的两个问题： webpack如何自动发现entry文件及进行相应的模板配置 如何直接处理后端模板的样式、脚本自动引入问题 目录结构 以express项目为例，使用express-generator构建一个初始项目..."><meta name="keywords" content="webpack,前端工程化"><link rel="search" type="application/opensearchdescription+xml" href="https://segmentfault.com/opensearch.xml" title="SegmentFault"><link rel="shortcut icon" href="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/favicon.ico"><link rel="apple-touch-icon" href="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/touch-icon.png"><meta name="msapplication-TileColor" content="#009a61"><meta name="msapplication-square150x150logo" content="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/touch-icon.png"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新问题" href="https://segmentfault.com/feeds/questions"><link rel="alternate" type="application/atom+xml" title="SegmentFault 最新文章" href="https://segmentfault.com/feeds/blogs"><link rel="stylesheet" href="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/global.css"><link rel="stylesheet" href="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/blog.css"><link rel="stylesheet" href="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/responsive.css"><!--[if lt IE 9]><link rel="stylesheet" href="https://sf-static.b0.upaiyun.com/v-57b589e4/global/css/ie.css"/><script src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/script/html5shiv.js"></script><script src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/script/respond.js"></script><![endif]--><script src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/hm.js"></script><script type="text/javascript" async="" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/vds.js"></script><script async="" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/analytics.js"></script><script src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/debug.js"></script></head><body data-mod="blog" class="blog-post "><!--[if lt IE 9]><div class="alert alert-danger topframe" role="alert">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说 <a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div><![endif]--><img id="icon4weChat" style="height: 0;width: 0;" data-src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/touch-icon-512.png"><img id="icon4weChat" data-src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/touch-icon-512.png"><div class="global-nav sf-header"><nav class="container nav"><div class="hidden-sm hidden-lg hidden-md"><div class="sf-header__logo sf-header__logo--response"><h1><a></a></h1></div><div class="dropdown m-menu"><a href="javascript:void(0);" id="dLabel" class="visible-xs-block m-toptools" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span><span class="mobile-menu__unreadpoint"></span></a><ul class="dropdown-menu" role="menu" aria-labelledby="dLabel"><li class="mobile-menu__item"><a href="https://segmentfault.com/questions/newest">问答</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/blogs">文章</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/user/note">笔记</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/events">活动</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/tags">标签</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/users">榜单</a></li><li class="mobile-menu__item"><a href="https://segmentfault.com/sites">子站</a></li></ul></div><a href="https://segmentfault.com/user/login" class="visible-xs-block pull-right m-ask m-toptools"><span class="glyphicon glyphicon-log-in"></span></a></div><div class="row hidden-xs"><div class="col-sm-9 col-md-7 col-lg-6"><div class="sf-header__logo"><h1><a href="https://segmentfault.com/">SegmentFault</a></h1></div><ul class="menu list-inline pull-left hidden-xs"><li class="menu__item"><a href="https://segmentfault.com/questions">问答</a></li><li class="menu__item"><a href="https://segmentfault.com/blogs">文章</a></li><li class="menu__item"><a href="https://segmentfault.com/notes">笔记</a></li><li class="menu__item"><a href="https://segmentfault.com/jobs">职位</a></li><li class="menu__item"><a href="https://segmentfault.com/events">活动</a></li></ul></div><div class="col-sm-3 col-md-5 col-lg-6 text-right"><form action="https://segmentfault.com/search" class="header-search  hidden-sm hidden-xs mr20"><button class="btn btn-link"><span class="sr-only">搜索</span><span class="glyphicon glyphicon-search"></span></button><input id="searchBox" name="q" type="text" placeholder="输入关键字搜索" class="form-control" value=""></form><ul class="opts list-inline hidden-xs"><li class="opts__item message has-unread"><a target="_blank" href="https://segmentfault.com/tour"><span class="sr-only">消息</span><span id="messageCount" class="fa fa-hand-peace-o"></span></a></li><li class="opts__item"><a href="https://segmentfault.com/user/login" class="SFLogin em ml10" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;Button&#39;, &#39;Click&#39;, &#39;Login&#39;]);">注册 ·
+                                        登录</a></li></ul></div></div></nav></div><div class="global-navTags"><div class="container"><nav class=" nav"><ul class="nav__list"><li class="nav__item"><a href="https://segmentfault.com/"><i class="fa fa-home"></i>home
+                            </a></li><li class="nav__item"><a href="https://segmentfault.com/timeline"><i class="fa fa-list-alt"></i>feed
+                            </a></li><li class="nav__item nav__item--split"><a><span class="split"></span></a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/javascript">javascript</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/php">php</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/python">python</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/java">java</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mysql">mysql</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ios">ios</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/android">android</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/node.js">node.js</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/html5">html5</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/linux">linux</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/c%2B%2B">c++</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/css3">css3</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/git">git</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/golang">golang</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/ruby">ruby</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/vim">vim</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/docker">docker</a></li><li class="nav__item tag-nav__item"><a href="https://segmentfault.com/t/mongodb">mongodb</a></li><li class="nav__item nav__item--more" data-open="0"><a class="nav__item--more-link" href="https://segmentfault.com/tags"><div class="tag__more"><i class="tag__more--icon"></i><i class="tag__more--icon"></i><i class="tag__more--icon"></i></div></a></li></ul><div class="tag-mgr__box hide"><input class="tag-mgr__query" type="text" placeholder="搜索关注的标签" data-tags="null"><div class="mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 0px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr"><ul class="tag-mgr__list"></ul></div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div><a href="https://segmentfault.com/tags" class="btn btn-primary btn-sm tag-mgr__btn">标签管理</a></div></nav></div></div>
+    <div class="wrap">
+    <div class="post-topheader custom-">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <span class="post-topheader__title--icon-symbol">文</span>
+
+                    <div class="post-topheader__info" data-username="歪闹" data-userslug="iwhynot" data-useravatar="https://sfault-avatar.b0.upaiyun.com/190/678/1906786104-55407445de1ab_big64">
+
+                        <h1 class="h3 post-topheader__info--title" id="articleTitle" data-id="1190000004516832">
+
+                                                <a href="https://segmentfault.com/a/1190000004516832"> 基于webpack的前端工程化开发之多页站点篇（二）</a>
+                                            </h1>
+
+                        <ul class="taglist--inline inline-block article__title--tag mr10">
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/webpack/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="webpack" data-id="1040000002490635">webpack</a></li>
+                                                            <li class="tagPopup mb5"><a class="tag" href="https://segmentfault.com/t/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/blogs" data-toggle="popover" data-img="" data-placement="top" data-original-title="前端工程化" data-id="1040000000768704">前端工程化</a></li>
+                                                    </ul>
+
+                        <div class="article__author">
+                        <a href="https://segmentfault.com/u/iwhynot" class="mr5 "><strong>歪闹</strong></a>
+                        3月1日发布
+                                                                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-4 hidden-xs">
+                    <ul class="post-topheader__side list-unstyled">
+                        <li>
+                                                                                                <button type="button" class="btn btn-success btn-sm" data-id="1190000004516832" id="sideLike">推荐
+                                    </button>
+                                                                                        <strong id="sideLiked">8</strong> 推荐
+                        </li>
+                        <li>
+                                                                                                <button type="button" id="sideBookmark" class="btn btn-default btn-sm" data-id="1190000004516832" data-type="article">收藏
+                                    </button>
+                                                                                        <strong id="sideBookmarked">73</strong> 收藏，<strong class="no-stress">3.3k</strong> 浏览
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- end .post-topheader -->
+
+    <div class="container mt30">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 main ">
+
+                                                <div class="article fmt article__content" data-id="1190000004516832" data-license="cc">
+                    
+<p>这篇，我们要解决<a href="https://segmentfault.com/a/1190000004511992">上篇</a>留下的两个问题：</p>
+<ul>
+<li><p>webpack如何自动发现entry文件及进行相应的模板配置</p></li>
+<li><p>如何直接处理后端模板的样式、脚本自动引入问题</p></li>
+</ul>
+<h3 id="articleHeader0">目录结构</h3>
+<p>以express项目为例，使用express-generator构建一个初始项目，然后再添加需要的目录，最终的目录架构如下：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="- website
+    - bin                    #express项目启动文件
+    - lib                    #express项目开发所需的库
+    + routes                #express项目路由
+    - src                    #前端源码开发目录
+        - styles            #css目录，按照页面（模块）、通用、第三方三个级别进行组织
+            + page
+            + common
+            + lib
+        + imgs                #图片资源
+        - scripts            #JS脚本，按照page、components进行组织
+            + page
+            + components
+        + views                #HTML模板
+    - public                #webpack编译打包输出目录的静态文件，express工程的静态目录
+        + styles                
+        + scripts
+        + imgs
+    + views                    #webpack编译输出的模板静态文件，express工程的视图模板 
+    + node_modules            #所使用的nodejs模块
+    package.json            #项目配置
+    webpack.config.js        #webpack配置
+    README.md                #项目说明" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre class="hljs cs"><code>- website
+    - bin                    <span class="hljs-preprocessor">#express项目启动文件</span>
+    - lib                    <span class="hljs-preprocessor">#express项目开发所需的库</span>
+    + routes                <span class="hljs-preprocessor">#express项目路由</span>
+    - src                    <span class="hljs-preprocessor">#前端源码开发目录</span>
+        - styles            <span class="hljs-preprocessor">#css目录，按照页面（模块）、通用、第三方三个级别进行组织</span>
+            + page
+            + common
+            + lib
+        + imgs                <span class="hljs-preprocessor">#图片资源</span>
+        - scripts            <span class="hljs-preprocessor">#JS脚本，按照page、components进行组织</span>
+            + page
+            + components
+        + views                <span class="hljs-preprocessor">#HTML模板</span>
+    - <span class="hljs-keyword">public</span>                <span class="hljs-preprocessor">#webpack编译打包输出目录的静态文件，express工程的静态目录</span>
+        + styles                
+        + scripts
+        + imgs
+    + views                    <span class="hljs-preprocessor">#webpack编译输出的模板静态文件，express工程的视图模板 </span>
+    + node_modules            <span class="hljs-preprocessor">#所使用的nodejs模块</span>
+    package.json            <span class="hljs-preprocessor">#项目配置</span>
+    webpack.config.js        <span class="hljs-preprocessor">#webpack配置</span>
+    README.md                <span class="hljs-preprocessor">#项目说明</span></code></pre>
+<blockquote><p>你同样可以根据个人喜好自由设计目录结构。完整的源码示例前往<a href="https://github.com/vhtml/webpack-MultiplePage" target="_blank">https://github.com/vhtml/webpack-MultiplePage</a>。</p></blockquote>
+<h3 id="articleHeader1">安装开发依赖</h3>
+<p>package.json里最终的声明依赖如下：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="&quot;devDependencies&quot;: {
+    &quot;css-loader&quot;: &quot;^0.23.1&quot;,
+    &quot;extract-text-webpack-plugin&quot;: &quot;^1.0.1&quot;,
+    &quot;file-loader&quot;: &quot;^0.8.5&quot;,
+    &quot;glob&quot;: &quot;^7.0.0&quot;,
+    &quot;html-loader&quot;: &quot;^0.4.3&quot;,
+    &quot;html-webpack-plugin&quot;: &quot;^2.9.0&quot;,
+    &quot;jquery&quot;: &quot;^1.12.0&quot;,
+    &quot;less&quot;: &quot;^2.6.0&quot;,
+    &quot;less-loader&quot;: &quot;^2.2.2&quot;,
+    &quot;style-loader&quot;: &quot;^0.13.0&quot;,
+    &quot;url-loader&quot;: &quot;^0.5.7&quot;,
+    &quot;webpack&quot;: &quot;^1.12.13&quot;,
+    &quot;webpack-dev-server&quot;: &quot;^1.14.1&quot;
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-string">"devDependencies"</span>: {
+    <span class="hljs-string">"css-loader"</span>: <span class="hljs-string">"^0.23.1"</span>,
+    <span class="hljs-string">"extract-text-webpack-plugin"</span>: <span class="hljs-string">"^1.0.1"</span>,
+    <span class="hljs-string">"file-loader"</span>: <span class="hljs-string">"^0.8.5"</span>,
+    <span class="hljs-string">"glob"</span>: <span class="hljs-string">"^7.0.0"</span>,
+    <span class="hljs-string">"html-loader"</span>: <span class="hljs-string">"^0.4.3"</span>,
+    <span class="hljs-string">"html-webpack-plugin"</span>: <span class="hljs-string">"^2.9.0"</span>,
+    <span class="hljs-string">"jquery"</span>: <span class="hljs-string">"^1.12.0"</span>,
+    <span class="hljs-string">"less"</span>: <span class="hljs-string">"^2.6.0"</span>,
+    <span class="hljs-string">"less-loader"</span>: <span class="hljs-string">"^2.2.2"</span>,
+    <span class="hljs-string">"style-loader"</span>: <span class="hljs-string">"^0.13.0"</span>,
+    <span class="hljs-string">"url-loader"</span>: <span class="hljs-string">"^0.5.7"</span>,
+    <span class="hljs-string">"webpack"</span>: <span class="hljs-string">"^1.12.13"</span>,
+    <span class="hljs-string">"webpack-dev-server"</span>: <span class="hljs-string">"^1.14.1"</span>
+}</code></pre>
+<p>可以看出，比上篇多了一个glob依赖，它是一个根据模式匹配获取文件列表的node模块。有关glob的详细用法可以在这里看到——<a href="https://github.com/isaacs/node-glob" target="_blank">https://github.com/isaacs/node-glob</a>。利用glob模块可以很方便的获取src/scripts/page路径下的所有js入口文件。同理，可以实现自动的进行与入口文件相对应的模板配置。</p>
+<h3 id="articleHeader2">webpack配置</h3>
+<p>最终的webpack配置如下（一些注释可能会让你少走许多坑）：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var path = require(&#39;path&#39;);
+var glob = require(&#39;glob&#39;);
+var webpack = require(&#39;webpack&#39;);
+var ExtractTextPlugin = require(&#39;extract-text-webpack-plugin&#39;);
+var HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
+const debug = process.env.NODE_ENV !== &#39;production&#39;;
+
+var entries = getEntry(&#39;src/scripts/page/**/*.js&#39;, &#39;src/scripts/page/&#39;);
+var chunks = Object.keys(entries);
+var config = {
+    entry: entries,
+    output: {
+        path: path.join(__dirname, &#39;public&#39;),
+        publicPath: &#39;/static/&#39;,
+        filename: &#39;scripts/[name].js&#39;,
+        chunkFilename: &#39;scripts/[id].chunk.js?[chunkhash]&#39;
+    },
+    module: {
+        loaders: [ //加载器
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract(&#39;style&#39;, &#39;css&#39;)
+            }, {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract(&#39;css!less&#39;)
+            }, {
+                test: /\.html$/,
+                loader: &quot;html?-minimize&quot;    //避免压缩html,https://github.com/webpack/html-loader/issues/50
+            }, {
+                test: /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: &#39;file-loader?name=fonts/[name].[ext]&#39;
+            }, {
+                test: /\.(png|jpe?g|gif)$/,
+                loader: &#39;url-loader?limit=8192&amp;name=imgs/[name]-[hash].[ext]&#39;
+            }
+        ]
+    },
+    plugins: [
+        new webpack.ProvidePlugin({ //加载jq
+            $: &#39;jquery&#39;
+        }),
+        new CommonsChunkPlugin({
+            name: &#39;vendors&#39;, // 将公共模块提取，生成名为`vendors`的chunk
+            chunks: chunks,
+            minChunks: chunks.length // 提取所有entry共同依赖的模块
+        }),
+        new ExtractTextPlugin(&#39;styles/[name].css&#39;), //单独使用link标签加载css并设置路径，相对于output配置中的publickPath
+        debug ? function() {} : new UglifyJsPlugin({ //压缩代码
+            compress: {
+                warnings: false
+            },
+            except: [&#39;$super&#39;, &#39;$&#39;, &#39;exports&#39;, &#39;require&#39;] //排除关键字
+        }),
+    ]
+};
+
+
+var pages = Object.keys(getEntry(&#39;src/views/**/*.html&#39;, &#39;src/views/&#39;));
+pages.forEach(function(pathname) {
+    var conf = {
+        filename: &#39;../views/&#39; + pathname + &#39;.html&#39;, //生成的html存放路径，相对于path
+        template: &#39;src/views/&#39; + pathname + &#39;.html&#39;, //html模板路径
+        inject: false,    //js插入的位置，true/&#39;head&#39;/&#39;body&#39;/false
+        /*
+        * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，
+        * 如在html标签属性上使用{{...}}表达式，所以很多情况下并不需要在此配置压缩项，
+        * 另外，UglifyJsPlugin会在压缩代码的时候连同html一起压缩。
+        * 为避免压缩html，需要在html-loader上配置&#39;html?-minimize&#39;，见loaders中html-loader的配置。
+         */
+        // minify: { //压缩HTML文件
+        //     removeComments: true, //移除HTML中的注释
+        //     collapseWhitespace: false //删除空白符与换行符
+        // }
+    };
+    if (pathname in config.entry) {
+        conf.favicon = &#39;src/imgs/favicon.ico&#39;;
+        conf.inject = &#39;body&#39;;
+        conf.chunks = [&#39;vendors&#39;, pathname];
+        conf.hash = true;
+    }
+    config.plugins.push(new HtmlWebpackPlugin(conf));
+});
+
+
+module.exports = config;
+
+function getEntry(globPath, pathDir) {
+    var files = glob.sync(globPath);
+    var entries = {},
+        entry, dirname, basename, pathname, extname;
+
+    for (var i = 0; i &lt; files.length; i++) {
+        entry = files[i];
+        dirname = path.dirname(entry);
+        extname = path.extname(entry);
+        basename = path.basename(entry, extname);
+        pathname = path.join(dirname, basename);
+        pathname = pathDir ? pathname.replace(new RegExp(&#39;^&#39; + pathDir), &#39;&#39;) : pathname;
+        entries[pathname] = [&#39;./&#39; + entry];
+    }
+    return entries;
+}" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> glob = <span class="hljs-built_in">require</span>(<span class="hljs-string">'glob'</span>);
+<span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<span class="hljs-keyword">var</span> ExtractTextPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'extract-text-webpack-plugin'</span>);
+<span class="hljs-keyword">var</span> HtmlWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'html-webpack-plugin'</span>);
+<span class="hljs-keyword">var</span> CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+<span class="hljs-keyword">var</span> UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
+<span class="hljs-keyword">const</span> debug = process.env.NODE_ENV !== <span class="hljs-string">'production'</span>;
+
+<span class="hljs-keyword">var</span> entries = getEntry(<span class="hljs-string">'src/scripts/page/**/*.js'</span>, <span class="hljs-string">'src/scripts/page/'</span>);
+<span class="hljs-keyword">var</span> chunks = <span class="hljs-built_in">Object</span>.keys(entries);
+<span class="hljs-keyword">var</span> config = {
+    entry: entries,
+    output: {
+        path: path.join(__dirname, <span class="hljs-string">'public'</span>),
+        publicPath: <span class="hljs-string">'/static/'</span>,
+        filename: <span class="hljs-string">'scripts/[name].js'</span>,
+        chunkFilename: <span class="hljs-string">'scripts/[id].chunk.js?[chunkhash]'</span>
+    },
+    <span class="hljs-built_in">module</span>: {
+        loaders: [ <span class="hljs-comment">//加载器</span>
+            {
+                test: <span class="hljs-regexp">/\.css$/</span>,
+                loader: ExtractTextPlugin.extract(<span class="hljs-string">'style'</span>, <span class="hljs-string">'css'</span>)
+            }, {
+                test: <span class="hljs-regexp">/\.less$/</span>,
+                loader: ExtractTextPlugin.extract(<span class="hljs-string">'css!less'</span>)
+            }, {
+                test: <span class="hljs-regexp">/\.html$/</span>,
+                loader: <span class="hljs-string">"html?-minimize"</span>    <span class="hljs-comment">//避免压缩html,https://github.com/webpack/html-loader/issues/50</span>
+            }, {
+                test: <span class="hljs-regexp">/\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/</span>,
+                loader: <span class="hljs-string">'file-loader?name=fonts/[name].[ext]'</span>
+            }, {
+                test: <span class="hljs-regexp">/\.(png|jpe?g|gif)$/</span>,
+                loader: <span class="hljs-string">'url-loader?limit=8192&amp;name=imgs/[name]-[hash].[ext]'</span>
+            }
+        ]
+    },
+    plugins: [
+        <span class="hljs-keyword">new</span> webpack.ProvidePlugin({ <span class="hljs-comment">//加载jq</span>
+            $: <span class="hljs-string">'jquery'</span>
+        }),
+        <span class="hljs-keyword">new</span> CommonsChunkPlugin({
+            name: <span class="hljs-string">'vendors'</span>, <span class="hljs-comment">// 将公共模块提取，生成名为`vendors`的chunk</span>
+            chunks: chunks,
+            minChunks: chunks.length <span class="hljs-comment">// 提取所有entry共同依赖的模块</span>
+        }),
+        <span class="hljs-keyword">new</span> ExtractTextPlugin(<span class="hljs-string">'styles/[name].css'</span>), <span class="hljs-comment">//单独使用link标签加载css并设置路径，相对于output配置中的publickPath</span>
+        debug ? <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{} : <span class="hljs-keyword">new</span> UglifyJsPlugin({ <span class="hljs-comment">//压缩代码</span>
+            compress: {
+                warnings: <span class="hljs-literal">false</span>
+            },
+            except: [<span class="hljs-string">'$super'</span>, <span class="hljs-string">'$'</span>, <span class="hljs-string">'exports'</span>, <span class="hljs-string">'require'</span>] <span class="hljs-comment">//排除关键字</span>
+        }),
+    ]
+};
+
+
+<span class="hljs-keyword">var</span> pages = <span class="hljs-built_in">Object</span>.keys(getEntry(<span class="hljs-string">'src/views/**/*.html'</span>, <span class="hljs-string">'src/views/'</span>));
+pages.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(pathname)</span> </span>{
+    <span class="hljs-keyword">var</span> conf = {
+        filename: <span class="hljs-string">'../views/'</span> + pathname + <span class="hljs-string">'.html'</span>, <span class="hljs-comment">//生成的html存放路径，相对于path</span>
+        template: <span class="hljs-string">'src/views/'</span> + pathname + <span class="hljs-string">'.html'</span>, <span class="hljs-comment">//html模板路径</span>
+        inject: <span class="hljs-literal">false</span>,    <span class="hljs-comment">//js插入的位置，true/'head'/'body'/false</span>
+        <span class="hljs-comment">/*
+        * 压缩这块，调用了html-minify，会导致压缩时候的很多html语法检查问题，
+        * 如在html标签属性上使用{{...}}表达式，所以很多情况下并不需要在此配置压缩项，
+        * 另外，UglifyJsPlugin会在压缩代码的时候连同html一起压缩。
+        * 为避免压缩html，需要在html-loader上配置'html?-minimize'，见loaders中html-loader的配置。
+         */</span>
+        <span class="hljs-comment">// minify: { //压缩HTML文件</span>
+        <span class="hljs-comment">//     removeComments: true, //移除HTML中的注释</span>
+        <span class="hljs-comment">//     collapseWhitespace: false //删除空白符与换行符</span>
+        <span class="hljs-comment">// }</span>
+    };
+    <span class="hljs-keyword">if</span> (pathname <span class="hljs-keyword">in</span> config.entry) {
+        conf.favicon = <span class="hljs-string">'src/imgs/favicon.ico'</span>;
+        conf.inject = <span class="hljs-string">'body'</span>;
+        conf.chunks = [<span class="hljs-string">'vendors'</span>, pathname];
+        conf.hash = <span class="hljs-literal">true</span>;
+    }
+    config.plugins.push(<span class="hljs-keyword">new</span> HtmlWebpackPlugin(conf));
+});
+
+
+<span class="hljs-built_in">module</span>.exports = config;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getEntry</span><span class="hljs-params">(globPath, pathDir)</span> </span>{
+    <span class="hljs-keyword">var</span> files = glob.sync(globPath);
+    <span class="hljs-keyword">var</span> entries = {},
+        entry, dirname, basename, pathname, extname;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; files.length; i++) {
+        entry = files[i];
+        dirname = path.dirname(entry);
+        extname = path.extname(entry);
+        basename = path.basename(entry, extname);
+        pathname = path.join(dirname, basename);
+        pathname = pathDir ? pathname.replace(<span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">'^'</span> + pathDir), <span class="hljs-string">''</span>) : pathname;
+        entries[pathname] = [<span class="hljs-string">'./'</span> + entry];
+    }
+    <span class="hljs-keyword">return</span> entries;
+}</code></pre>
+<h3 id="articleHeader3">创建开发脚本</h3>
+<p>建立一个开发环境服务器启动脚本server.js:</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="var fs = require(&#39;fs&#39;);
+var webpack = require(&#39;webpack&#39;);
+var WebpackDevServer = require(&#39;webpack-dev-server&#39;);
+var config = require(&#39;./webpack.config&#39;);
+
+var serverPort = 54999,
+    devPort = 8082;
+
+var exec = require(&#39;child_process&#39;).exec;
+var cmdStr = &#39;PORT=&#39; + serverPort + &#39; supervisor ./bin/www&#39;;
+exec(cmdStr);
+
+
+for (var i in config.entry) {
+    config.entry[i].unshift(&#39;webpack-dev-server/client?http://localhost:&#39; + devPort, &quot;webpack/hot/dev-server&quot;)
+}
+config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+
+var proxy = {
+    &quot;*&quot;: &quot;http://localhost:&quot; + serverPort
+};
+//启动服务
+var app = new WebpackDevServer(webpack(config), {
+    publicPath: &#39;/static/&#39;,
+    hot: true,
+    proxy: proxy
+});
+app.listen(devPort, function() {
+    console.log(&#39;dev server on http://0.0.0.0:&#39; + devPort+&#39;\n&#39;);
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<span class="hljs-keyword">var</span> WebpackDevServer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack-dev-server'</span>);
+<span class="hljs-keyword">var</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config'</span>);
+
+<span class="hljs-keyword">var</span> serverPort = <span class="hljs-number">54999</span>,
+    devPort = <span class="hljs-number">8082</span>;
+
+<span class="hljs-keyword">var</span> exec = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).exec;
+<span class="hljs-keyword">var</span> cmdStr = <span class="hljs-string">'PORT='</span> + serverPort + <span class="hljs-string">' supervisor ./bin/www'</span>;
+exec(cmdStr);
+
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> config.entry) {
+    config.entry[i].unshift(<span class="hljs-string">'webpack-dev-server/client?http://localhost:'</span> + devPort, <span class="hljs-string">"webpack/hot/dev-server"</span>)
+}
+config.plugins.push(<span class="hljs-keyword">new</span> webpack.HotModuleReplacementPlugin());
+
+
+<span class="hljs-keyword">var</span> proxy = {
+    <span class="hljs-string">"*"</span>: <span class="hljs-string">"http://localhost:"</span> + serverPort
+};
+<span class="hljs-comment">//启动服务</span>
+<span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> WebpackDevServer(webpack(config), {
+    publicPath: <span class="hljs-string">'/static/'</span>,
+    hot: <span class="hljs-literal">true</span>,
+    proxy: proxy
+});
+app.listen(devPort, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'dev server on http://0.0.0.0:'</span> + devPort+<span class="hljs-string">'\n'</span>);
+});</code></pre>
+<p>然后，只需要在项目目录下执行<code>node server</code>就可以开始进行开发了。</p>
+<p>有些同学会发现一个问题，热加载经常无法生效，这个是由于热加载只能针对有<code>module.exports</code>输出的模块才行，否则会导致热加载失败从而刷新浏览器，而对于入口js文件由于没有模块输出，就会发现总是刷新浏览器了。如果要禁止自动刷新浏览器，可以将server.js中的<code>"webpack/hot/dev-server"</code>改为<code>"webpack/hot/only-dev-server"</code>。</p>
+<p>还有一个蛋疼的问题就是，webpack-dev-server监控文件变化生成的内容是放在内存里的，由于没有输出到打包目录下，则<code>/views</code>目录下的文件没有变化，supervisor之类的工具检测不到变化，从而不会刷新视图。只好在改动模板文件后，执行<code>webpack</code>命令打包一下。于是比较蛋疼的在server.js的最后加上了这段代码：</p>
+<div class="widget-codetool" style="display: none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="fs.watch(&#39;./src/views/&#39;, function() {
+    exec(&#39;webpack --progress --hide-modules&#39;, function(err, stdout, stderr) {
+        if (err) {
+            console.log(stderr);
+        } else {
+            console.log(stdout);
+        }
+    });
+});" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="javascript">fs.watch(<span class="hljs-string">'./src/views/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    exec(<span class="hljs-string">'webpack --progress --hide-modules'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, stdout, stderr)</span> </span>{
+        <span class="hljs-keyword">if</span> (err) {
+            <span class="hljs-built_in">console</span>.log(stderr);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">console</span>.log(stdout);
+        }
+    });
+});</code></pre>
+<p>在检测到有模板改动的时候会自动重新打包，然后只需手动刷新下浏览器即可。<strong>显然这样做是比较低效的</strong>。暂时只能建议开发中不要频繁地改动保存模板。</p>
+<h3 id="articleHeader4">探索之路</h3>
+<p>这里还要说说如何直接处理后端模板的问题。一开始本菜也是对这个问题进行了苦苦的探索，觉得可能真的实现不了，一度要放弃，并打算采用先纯静态打包再改写成后端模板的方式（因为貌似还没有这样的loader可以很智能的处理模板include的问题以及在非html模板中自动引入css和js）。但是这样做真的很蛋疼啊有木有！明明是一件事为什么要拆成两件事去做呢？！</p>
+<p>如果你也进行过这样一番探索，你可能接触过像jade-loader、ejs-loader、ejs-compiled-loader等这样的webpack loader。无奈它们统统都不是我要找的，它们只是编译了模板而没有保留模板原有的生态，也不能自动地引入css和js。我也曾试过自己写loader将ejs模板先转成html模板（只处理include标签，其余原样保留）再用html-loader去处理，但又破坏了模板的可复用性，失去了灵活性。</p>
+<p>好吧，其实只是想原样输出src/views中的模板，然后像上篇中那样自动引入css和js，仅此而已。没想到差一点钻了死胡同，想得过于复杂了。</p>
+<p>我们应该先知道一个事实，html-webpack-plugin插件实现自动引入css和js的原理，是在模板中对应的成对head和body标签中进行解析插入。如果没有head和body标签，它会分别在模板头和尾生成这两个标签并插入link和script标签来引入css和js。而至于你的模板里写了什么，它是不会关心的。明白了这个原理，要完成“大业”就为期不远了。我们应该先改一改写模板的方式，模板结构一定要是类html的，不能是jade这种（还好我并不喜欢用jade）。以artTemplate模板为例，如下：</p>
+<div class="widget-codetool" style="display:none;">
+      <div class="widget-codetool--inner">
+      <span class="selectCode code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="全选"></span>
+      <span type="button" class="copyCode code-tool" data-toggle="tooltip" data-placement="top" data-clipboard-text="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    {{include &#39;./common/meta&#39;}}
+&lt;/head&gt;
+&lt;body&gt;
+    {{include &#39;./common/header&#39;}}
+    &lt;div class=&quot;g-bd&quot;&gt;
+        {{include &#39;./common/_content&#39;}}
+    &lt;/div&gt;
+    {{include &#39;./common/footer&#39;}}
+&lt;/body&gt;
+&lt;/html&gt;" title="" data-original-title="复制"></span>
+      <span type="button" class="saveToNote code-tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="放进笔记"></span>
+      </div>
+      </div><pre><code class="xml"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    {{include './common/meta'}}
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    {{include './common/header'}}
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"g-bd"</span>&gt;</span>
+        {{include './common/_content'}}
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    {{include './common/footer'}}
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+<p>是的，没错，只要保留完整的head、body结构即可。然后根据上述的webpack配置，将与入口js对应的模板插入link和script标签并输出到./views目录中，其余模板原样输出到./views目录或相应的子目录下即可。</p>
+<p>到此，“大业”完成。</p>
+<p>假如你有更好的解决方案，欢迎一起分享。</p>
+
+                </div>
+                                                
+                <div class="clearfix mt10">
+
+                    <ul class="article-operation list-inline pull-left">
+                        <li><a href="https://segmentfault.com/a/1190000004516832" class="text-muted">3月1日发布</a></li>
+                                                                                                                            <li class="dropdown js__content-ops" data-module="article" data-id="1190000004516832" data-typetext="文章">
+                                <a href="javascript:void(0);" class="dropdown-toggle text-muted" data-toggle="dropdown">更多<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-left">
+                                    <li><a href="https://segmentfault.com/a/1190000004516832#911" data-toggle="modal" data-target="#911" data-action="report">举报</a></li>
+                                                                                                                                                                                                    
+                                                                    </ul>
+                            </li>
+                                            </ul>
+                </div>
+
+                <div class="text-center mt10">
+                    
+                        <button type="button" id="mainLike" data-id="1190000004516832" class="btn btn-success btn-lg mr10">
+                            8 推荐
+                        </button>
+                    
+                                            <button type="button" id="mainBookmark" data-type="article" data-id="1190000004516832" class="btn btn-default btn-lg ">
+                            收藏
+                        </button>
+                                    </div>
+
+                                    <div class="recommend-post pt30 mt40 mb30 border-top">
+                        <div class="row">
+                            <div class="col-md-8">
+                                                                <h4 class="mt0">你可能感兴趣的文章</h4>
+                                <ul class="widget-links list-unstyled">
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000003499526" title="基于webpack搭建前端工程解决方案探索">基于webpack搭建前端工程解决方案探索</a>
+                                            <small class="text-muted">
+                                                433 收藏，39.9k
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000003779138" title="阿里云无线&amp;生态如何基于webpack实现前端工程化的">阿里云无线&amp;生态如何基于webpack实现前端工程化的</a>
+                                            <small class="text-muted">
+                                                35 收藏，1.8k
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                            <li class="widget-links__item">
+                                            <a href="https://segmentfault.com/a/1190000005594760" title="精益 React 学习指南 （Lean React）- 2.1 前端工程化概述 ">精益 React 学习指南 （Lean React）- 2.1 前端工程化概述 </a>
+                                            <small class="text-muted">
+                                                18 收藏，1.1k
+                                                浏览
+                                            </small>
+                                        </li>
+                                                                    </ul>
+                                                            </div>
+                            <div class="col-md-4">
+                                                                    <div class="article-license">
+                                                                                                                        <img class="mb5" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/creativecommons-cc.png" height="24"><br>
+                                                                                <div class="license-item text-muted">
+                                            本文采用 <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" class="alert-link">署名-相同方式共享 3.0 中国大陆许可协议</a>，分享、演绎需署名且使用相同方式共享。
+                                        </div>
+
+                                    </div>
+                                                            </div>
+                        </div>
+
+                    </div>
+                                <!-- <ul class="list-unstyled text-muted mt30">
+                                        <li>上一篇：<a href="/a/1190000004511992">基于webpack的前端工程化开发之多页站点篇（一）</a></li>
+                                                        </ul> -->
+
+                <h2 class="h4 post-comment-title">讨论区</h2>
+                <div class="widget-comments" id="comment-1190000004516832" data-id="1190000004516832"><div class="widget-comments__item hover-show " id="1050000004523435"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004523435" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>artTemplate模板 这里没看懂 有列子吗</p> </div><textarea name="text" rows="1" id="commentText-1050000004523435" class="editTextarea mono form-control mb10 hidden">artTemplate模板 这里没看懂 有列子吗</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004523435" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/mr_fu" class="commentUser" data-userid="1030000000358657" data-username="Mr_Fu" data-userslug="mr_fu" data-useravatar="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/user-40.png"><strong>Mr_Fu</strong></a> · <span class="createdDate">3月2日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000000358657" data-id="1050000004523435" data-username="Mr_Fu"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004523435" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004546184"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004546184" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>没有github地址！差评！希望继续更，研究下文件太多编译过慢如何优化的问题。</p> </div><textarea name="text" rows="1" id="commentText-1050000004546184" class="editTextarea mono form-control mb10 hidden">没有github地址！差评！希望继续更，研究下文件太多编译过慢如何优化的问题。</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004546184" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/kodo" class="commentUser" data-userid="1030000003994510" data-username="二哲" data-userslug="kodo" data-useravatar="https://sfault-avatar.b0.upaiyun.com/147/223/147223148-573297d0913c5_medium40"><strong>二哲</strong></a> · <span class="createdDate">3月5日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000003994510" data-id="1050000004546184" data-username="二哲"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004546184" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004546651"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004546651" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>对于分别打包第三方库和公用组件和业务代码这个怎么破？</p> </div><textarea name="text" rows="1" id="commentText-1050000004546651" class="editTextarea mono form-control mb10 hidden">对于分别打包第三方库和公用组件和业务代码这个怎么破？</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004546651" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/weizhao" class="commentUser" data-userid="1030000004546644" data-username="weizhao" data-userslug="weizhao" data-useravatar="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/user-40.png"><strong>weizhao</strong></a> · <span class="createdDate">3月5日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000004546644" data-id="1050000004546651" data-username="weizhao"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004546651" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004546655"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004546655" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>我现在弄得跟楼主差不多，但是对于第三方库和公共业务代码单独打包，这块卡住了，因为这关系到以后的增量更新</p> </div><textarea name="text" rows="1" id="commentText-1050000004546655" class="editTextarea mono form-control mb10 hidden">我现在弄得跟楼主差不多，但是对于第三方库和公共业务代码单独打包，这块卡住了，因为这关系到以后的增量更新</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004546655" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/weizhao" class="commentUser" data-userid="1030000004546644" data-username="weizhao" data-userslug="weizhao" data-useravatar="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/user-40.png"><strong>weizhao</strong></a> · <span class="createdDate">3月5日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000004546644" data-id="1050000004546655" data-username="weizhao"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004546655" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004546662"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004546662" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>还有一个问题就是对于图片服务器多域名的配置，怎么破？</p> </div><textarea name="text" rows="1" id="commentText-1050000004546662" class="editTextarea mono form-control mb10 hidden">还有一个问题就是对于图片服务器多域名的配置，怎么破？</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004546662" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/weizhao" class="commentUser" data-userid="1030000004546644" data-username="weizhao" data-userslug="weizhao" data-useravatar="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/user-40.png"><strong>weizhao</strong></a> · <span class="createdDate">3月5日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000004546644" data-id="1050000004546662" data-username="weizhao"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004546662" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000004641287"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000004641287" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p><code>html-loader</code> 本身有嵌入模板的能力啊（<a href="https://github.com/webpack/html-loader#interpolation" target="_blank">文档</a>），也处理了模板内图片等资源引用的问题，使用 <code>ejs</code> 或者 <code>handlebars</code> 要解决这个比较麻烦的样子</p> </div><textarea name="text" rows="1" id="commentText-1050000004641287" class="editTextarea mono form-control mb10 hidden">`html-loader` 本身有嵌入模板的能力啊（[文档](https://github.com/webpack/html-loader#interpolation)），也处理了模板内图片等资源引用的问题，使用 `ejs` 或者 `handlebars` 要解决这个比较麻烦的样子</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000004641287" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/youtbe" class="commentUser" data-userid="1030000004439721" data-username="youtbe" data-userslug="youtbe" data-useravatar="https://sfault-avatar.b0.upaiyun.com/206/155/2061550897-56e14d113ccf2_medium40"><strong>youtbe</strong></a> · <span class="createdDate">3月19日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000004439721" data-id="1050000004641287" data-username="youtbe"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000004641287" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000005168790"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000005168790" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>通过glop获取入口文件，现有index.js,about.js入口文件，已开启watch，这时候我加了一个more.js，webpack watch识别不了，需要重新开启才有效，只能这么处理吗？感觉有点不太友好，不知道有没有更好的方案。</p> </div><textarea name="text" rows="1" id="commentText-1050000005168790" class="editTextarea mono form-control mb10 hidden">通过glop获取入口文件，现有index.js,about.js入口文件，已开启watch，这时候我加了一个more.js，webpack watch识别不了，需要重新开启才有效，只能这么处理吗？感觉有点不太友好，不知道有没有更好的方案。</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000005168790" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/qzhou" class="commentUser" data-userid="1030000000342019" data-username="Zane_FE" data-userslug="qzhou" data-useravatar="https://sfault-avatar.b0.upaiyun.com/319/512/3195129407-55d67cbbb5c37_medium40"><strong>Zane_FE</strong></a> · <span class="createdDate">5月20日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000000342019" data-id="1050000005168790" data-username="Zane_FE"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000005168790" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000005349251"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000005349251" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>node server 启动报错，请问之前会正常浏览？</p> </div><textarea name="text" rows="1" id="commentText-1050000005349251" class="editTextarea mono form-control mb10 hidden">node server 启动报错，请问之前会正常浏览？</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000005349251" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/vincentdu" class="commentUser" data-userid="1030000004593345" data-username="vincentdu" data-userslug="vincentdu" data-useravatar="https://sfault-avatar.b0.upaiyun.com/303/642/3036426111-574650c99c845_medium40"><strong>vincentdu</strong></a> · <span class="createdDate">5月26日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000004593345" data-id="1050000005349251" data-username="vincentdu"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000005349251" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000005804387"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000005804387" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>感觉这是为了用 webpack 而用 webpack 的节奏。我之前也想过办法这么干，但最终发现多页面，后端模版根本不适合用 webpack 来做，还不如 gulp 来的方便。</p> </div><textarea name="text" rows="1" id="commentText-1050000005804387" class="editTextarea mono form-control mb10 hidden">感觉这是为了用 webpack 而用 webpack 的节奏。我之前也想过办法这么干，但最终发现多页面，后端模版根本不适合用 webpack 来做，还不如 gulp 来的方便。</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000005804387" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/moqiao" class="commentUser" data-userid="1030000000752945" data-username="moqiao" data-userslug="moqiao" data-useravatar="https://sfault-avatar.b0.upaiyun.com/252/007/2520071475-55a3ba275cd4a_medium40"><strong>moqiao</strong></a> · <span class="createdDate">6月26日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000000752945" data-id="1050000005804387" data-username="moqiao"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000005804387" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div><div class="widget-comments__item hover-show " id="1050000006205286"><div class="votes widget-vote"><button class="like  hover-show-obj" data-id="1050000006205286" type="button" data-do="like" data-type="comment"></button><span class="count">&nbsp;</span>    </div><div class="comment-content wordbreak">          <div class="content fmt"><p>为什么修改html文件不会自动刷新，别人的文章里面介绍的貌似可以刷新的</p> </div><textarea name="text" rows="1" id="commentText-1050000006205286" class="editTextarea mono form-control mb10 hidden">为什么修改html文件不会自动刷新，别人的文章里面介绍的貌似可以刷新的</textarea><p class="comment-meta">            <a href="https://segmentfault.com/c/1050000006205286" class="text-muted"></a>&nbsp;<a href="https://segmentfault.com/u/ymqy" class="commentUser" data-userid="1030000003992751" data-username="雨桥明夜" data-userslug="ymqy" data-useravatar="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/user-40.png"><strong>雨桥明夜</strong></a> · <span class="createdDate">8月8日</span><span class="pull-right commentTools hover-show-obj"> <a href="https://segmentfault.com/a/1190000004516832#" class="commentReply mr5" data-userid="1030000003992751" data-id="1050000006205286" data-username="雨桥明夜"><span class="flipx glyphicon glyphicon-share-alt" aria-hidden="true"></span></a><a href="https://segmentfault.com/a/1190000004516832#911" class="ml10" data-toggle="modal" data-target="#911" data-type="comment" data-id="1050000006205286" data-typetext="评论" data-placement="top" title="举报"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></a></span></p></div></div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                
+
+    <div class="widget-comments__form row">
+        
+                            <form class="clearfix SFLogin" method="POST">
+                    <div class="form-group mb0 widget-comments__form--input">
+                        <input name="id" type="hidden" value="1190000004516832">
+                        <textarea rows="1" name="text" class="SFLogin form-control mono" id="commentText-1190000004516832" data-id="1190000004516832" placeholder="使用评论询问更多信息或提出修改意见，请不要在评论里回答问题" style="overflow: hidden; word-wrap: break-word; height: 28px;"></textarea>
+
+                    </div>
+                    <div class="widget-comments__btn">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-default postComment" data-id="1190000004516832">提交评论
+                            </button>
+                            <span class="widget-comments__btn--tips"><a href="javascript:void(0);" class="toggle-comment-helper" title="语法提示">
+                            <i class="fa fa-question-circle"></i>
+                        </a></span>
+                        </div>
+                    </div>
+                </form>
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible mb0 mt10 fmt comment-helper" data-rank="" style="" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right:0;"><span aria-hidden="true">×</span></button>
+                        评论支持部分 Markdown 语法：<code>**bold**</code> <code>_italic_</code>
+                        <code>[link](http://example.com)</code> <code>&gt; 引用</code> <code>`code`</code> <code>-
+                        列表</code>。<br>同时，被你 @ 的用户也会收到通知
+                    </div>
+                </div>
+            
+        </div><!-- /.widget-comments__form -->
+            </div><!-- /.widget-comments -->
+
+    
+
+                                    
+                
+            </div><!-- /.main -->
+
+
+            <div class="col-xs-12 col-md-3 side">
+                <div class="sfad-sidebar">
+      <div class="sfad-item">
+    <ins><a href="https://sponsor.segmentfault.com/ck.php?oaparams=2__bannerid=69__zoneid=2__cb=788018701c__oadest=https%3A%2F%2Fwww.teambition.com%2F%3Futm_source%3Dsegmentfault%26utm_medium%3Dbanner" target="_blank"><img src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/9168fdfb9ca9177fd3ee892dd8a10f20.jpg" width="255" height="165" alt="Teambition 高效协作" title="Teambition 高效协作" border="0"></a><div id="beacon_788018701c" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></ins>
+    <button class="close" type="button" aria-hidden="true">×</button>
+</div>
+
+  </div>
+
+
+                <div class="widget-box no-border">
+                    <p class="text-muted">本文隶属于专栏</p>
+                    <h4 class="fz16"><a href="https://segmentfault.com/blog/iwhynot">歪闹日志</a></h4>
+
+                    <p class="wordbreak">歪闹的学习日志</p>
+
+
+                    <div class="article__widget--author">
+                        <a href="https://segmentfault.com/u/iwhynot">
+                            <img class="avatar-40" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/1906786104-55407445de1ab_big64" alt="歪闹">
+                        </a>
+                        <a href="https://segmentfault.com/u/iwhynot">
+                            歪闹
+                        </a>
+                        <p class="text-muted mb0">作者</p>
+
+                                                    <div style="margin-top: 20px;">
+                                                                    <button type="button mb20" class="btn btn-default follow-article" data-do="follow" data-type="blog" data-id="1200000004511987">关注专栏
+                                    </button>
+                                                            </div>
+                        
+
+                    </div>
+
+                </div>
+
+
+                                    <div class="widget-box">
+                        <h2 class="h4 widget-box__title">系列文章</h2>
+                        <ul class="widget-links list-unstyled">
+                                                            <li class="widget-links__item"><a title="基于webpack的前端工程化开发之多页站点篇（一）" href="https://segmentfault.com/a/1190000004511992">基于webpack的前端工程化开发之多页站点篇（一）</a>
+                                    <small class="text-muted">
+                                                                                    118 收藏，
+                                                                                4.4k 浏览
+                                    </small>
+                                </li>
+                                                    </ul>
+                    </div>
+                
+                    <div data-type="widget" data-api="/api/bookmarkArchive/hots" data-api-overwrite="/api/bookmarkArchive/1190000004516832/related">
+        <script type="text/template">
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right"
+                                                          href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    <% _.each(data,function(d){ %>
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-<%= d.id%19 %> mr10" src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/pattern/<%= d.id%10 ? d.id%10 : 10 %>.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="<%- d.url %>"><%= d.name %></a>
+                            <p class="mb0">
+                                <span><%- d.num %></span> 个条目 <span class="division">|</span> <span><%- d.followers %></span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </script>
+    
+            <div class="widget-box widget-box--bookmark no-border">
+                <h4 class="widget-box__title">相关收藏夹 <a id="widgetBookmarkRefresh" class="userstab pull-right" href="javascript:;">换一组</a></h4>
+                <ul class="widget-links list-unstyled media">
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-18 mr10" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/9.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000005173449">web工程化</a>
+                            <p class="mb0">
+                                <span>4</span> 个条目 <span class="division">|</span> <span>1</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-14 mr10" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/1.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000005701911">React</a>
+                            <p class="mb0">
+                                <span>8</span> 个条目 <span class="division">|</span> <span>0</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="widget-links__item">
+                        <img class="pull-left pattern pattern-10 mr10" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/9.svg" width="32">
+                        <div class="media-body">
+                            <a target="_blank" class="ellipsis mr0" href="https://segmentfault.com/bookmark/1230000003857539">react-webpack</a>
+                            <p class="mb0">
+                                <span>7</span> 个条目 <span class="division">|</span> <span>3</span> 人关注
+                            </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+
+
+                <div class="widget-share__full" data-text="基于webpack的前端工程化开发之多页站点篇（二）" data-url="https://segmentfault.com/a/1190000004516832" data-shorturl="http://sfau.lt/b5s7ci"><div style="margin-bottom:10px;">分享扩散：</div><div class="widget-share-network sharer-0" style="display: block;"><ul class="sn-inline"><li data-network="weibo"><a href="javascript:void(0);" class="entypo-weibo icon-sn-weibo share-1" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至新浪微博">新浪微博</a></li><li data-network="wechart"><a href="javascript:void(0);" class="entypo-wechart icon-sn-weixin share-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至微信">微信</a></li><li data-network="twitter"><a href="javascript:void(0);" class="entypo-twitter icon-sn-twitter share-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Twitter">Twitter</a></li><li data-network="facebook"><a href="javascript:void(0);" class="entypo-facebook icon-sn-facebook share-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="分享至 Facebook">Facebook</a></li></ul></div><a type="button" class="btn btn-sm shareMore btn-sn-more" data-toggle="popover" data-placement="top" data-url="https://segmentfault.com/a/1190000004516832" data-shorturl="http://sfau.lt/b5s7ci"><span class="icon-sn-dotted" data-original-title="" title=""></span><strong class="visible-xs-inline">•••</strong></a></div>
+
+                <div class="post-nav hidden-xs side-outline hidden-sm fixed" style="display: block; width: 255px; top: 0px;">
+                    <div class="panel panel-default widget-outline">
+                        <div class="panel-heading">文章目录</div>
+                        <div class="panel-body">
+                            <div class="nav-body" style="top: 0px;">
+                                <div class="highlight-title" style="display: block; top: 54px; height: 27px;"></div>
+                                <ul class="articleIndex"><li class=""><a href="https://segmentfault.com/a/1190000004516832#articleHeader0">目录结构</a></li><li class=""><a href="https://segmentfault.com/a/1190000004516832#articleHeader1">安装开发依赖</a></li><li class="active"><a href="https://segmentfault.com/a/1190000004516832#articleHeader2">webpack配置</a></li><li class=""><a href="https://segmentfault.com/a/1190000004516832#articleHeader3">创建开发脚本</a></li><li class=""><a href="https://segmentfault.com/a/1190000004516832#articleHeader4">探索之路</a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.side -->
+        </div>
+    </div>
+</div>
+
+<div id="shareToWeiboModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">分享</h4>
+            </div>
+            <div class="modal-body">
+                <p class="sfModal-content">
+                    分享到微博？
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default dont-likeweibo" data-dismiss="modal">取消</button>
+                <a href="https://segmentfault.com/a/1190000004516832" id="shareLink" class="btn btn-primary done-btn" target="_blank" onclick="$(&#39;#shareToWeiboModal&#39;).modal(&#39;hide&#39;)">分享</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+<script type="text/template" id="regNext">
+        <div class="row flex-vertical-center">
+        <div class="col-md-12">
+            <p class="mb0" style="font-size: 14px; margin-right:50px; font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace;">
+                    void segment(int <img width="22" src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/emojis/mengbi.jpg"/> ){    segment();    } 
+            </p>
+            <button class="btn btn-primary SFLogin mr10"
+                    onclick='ga("send", "event", "join button", "clicked", "footer welcome popup");'>segment
+            </button>
+            <button class="btn  btn-default  tomorrow"><img width="22" src="https://sf-static.b0.upaiyun.com/v-57b589e4/global/img/emojis/mengbi.jpg"/></button>
+        </div>
+        
+    </div>
+</script>
+
+<div class="widget-register widget-welcome-question mt20 hidden-xs widget-welcome widget-register-slideUp">
+    <div class="container">
+        <div class="row flex-vertical-center">
+            <div class="col-sm-12 col-md-8">
+                <p class="mb0">
+                                                                你好！看起来你挺喜欢这个内容，但是你还没有注册帐号。 <br><br>当你创建了帐号，我们能准确地追踪你关注的问题，在有新答案或内容的时候收到网页和邮件通知。<br>还能直接向作者咨询更多细节。如果上面的内容有帮助，记得点赞 (♥◠‿◠)ﾉ 表示感谢。
+                                    </p>
+
+            </div>
+            <div class="col-sm-12 col-lg-3 col-lg-offset-1 col-md-4">
+                <button class="btn btn-primary btn-lg SFLogin  mr10" onclick="ga(&quot;send&quot;, &quot;event&quot;, &quot;join button&quot;, &quot;clicked&quot;, &quot;footer welcome popup&quot;);">立即注册
+                </button>
+                <button class="btn btn-lg btn-default  tomorrow">明天提醒我</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal widget-911" id="911" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><span data-model="action"></span><span data-model="type"></span></h4>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <!-- 后台返回信息 -->
+          <p class="alert alert-warning" data-model="returnMsg"></p>
+          <div data-role="base">
+            <p>
+              <strong class="required">我要<span data-model="action"></span>该<span data-model="type"></span>，理由是：</strong>
+            </p>
+            <ul class="list-unstyled" data-model="list"></ul>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default pull-left" type="button" data-role="back" style="display:none">返回重选</button>
+                <button class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+        <button class="btn btn-primary" data-role="submit" type="button">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<footer id="footer">
+    <div class="container">
+        <div class="row hidden-xs">
+            <dl class="col-sm-2 site-link">
+                <dt>网站相关</dt>
+                <dd><a href="https://segmentfault.com/about">关于我们</a></dd>
+                <dd><a href="https://segmentfault.com/tos">服务条款</a></dd>
+                <dd><a href="https://segmentfault.com/faq">帮助中心</a></dd>
+                <dd><a href="https://segmentfault.com/repu">声望与权限</a></dd>
+                <dd><a href="https://segmentfault.com/markdown">编辑器语法</a></dd>
+                <dd><a href="https://weekly.segmentfault.com/">每周精选</a></dd>
+                <dd><a href="https://segmentfault.com/app">App 下载</a></dd>
+            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>联系合作</dt>
+                <dd><a href="https://segmentfault.com/contact">联系我们</a></dd>
+                <dd><a href="https://segmentfault.com/hiring">加入我们</a></dd>
+                <dd><a href="https://segmentfault.com/link">合作伙伴</a></dd>
+                <dd><a href="https://segmentfault.com/press">媒体报道</a></dd>
+                <dd><a href="https://board.segmentfault.com/">建议反馈</a></dd>
+                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>常用链接</dt>
+                                                <dd><a href="https://chrome.google.com/webstore/detail/segmentfault-%E7%AC%94%E8%AE%B0/pjklfdmleagfaekibdccmhlhellefcfo" target="_blank">笔记插件: Chrome</a></dd>
+                                                                <dd><a href="https://addons.mozilla.org/zh-CN/firefox/addon/sf-note-ext/" target="_blank">笔记插件: Firefox</a></dd>
+                                                                <dd>订阅：<a href="https://segmentfault.com/feeds">问答</a> / <a href="https://segmentfault.com/feeds/blogs">文章</a></dd>
+                                                                <dd><a href="https://mirrors.segmentfault.com/" target="_blank">文档镜像</a></dd>
+                                                                <dd><a href="https://segmentfault.com/blog/interview" target="_blank">社区访谈</a></dd>
+                                                                <dd><a href="https://segmentfault.com/d-day" target="_blank">D-DAY 技术沙龙</a></dd>
+                                                                <dd><a href="https://segmentfault.com/hackathon" target="_blank">黑客马拉松 Hackathon</a></dd>
+                                                                <dd><a href="https://namebeta.com/" target="_blank">域名搜索注册</a></dd>
+                                            </dl>
+            <dl class="col-sm-2 site-link">
+                <dt>关注我们</dt>
+                                <dd><a href="https://github.com/SegmentFault" target="_blank">Github</a></dd>
+                                <dd><a href="https://twitter.com/segment_fault" target="_blank">Twitter</a></dd>
+                                <dd><a href="http://weibo.com/segmentfault" target="_blank">新浪微博</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_team" target="_blank">团队日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault" target="_blank">产品技术日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/community_admin" target="_blank">社区运营日志</a></dd>
+                                <dd><a href="https://segmentfault.com/blog/segmentfault_news" target="_blank">市场运营日志</a></dd>
+                            </dl>
+            <dl class="col-sm-4 site-link" id="license">
+                <dt>内容许可</dt>
+                <dd>除特别说明外，用户内容均采用 <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/cn/">知识共享署名-相同方式共享 3.0 中国大陆许可协议</a> 进行许可
+                </dd>
+                <dd>本站由 <a target="_blank" href="https://www.upyun.com/?utm_source=segmentfault&amp;utm_medium=link&amp;utm_campaign=upyun&amp;md=segmentfault">又拍云</a> 提供 CDN 存储服务
+                </dd>
+            </dl>
+        </div>
+        <div class="copyright">
+            Copyright © 2011-2016 SegmentFault. 当前呈现版本 16.08.11<br>
+            <a href="http://www.miibeian.gov.cn/" rel="nofollow">浙ICP备 15005796号-2</a> &nbsp;
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602002000" rel="nofollow">浙公网安备 33010602002000号</a>
+        </div>
+        <p class="text-center">
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="mobile" href="javascript:;">移动版</a>
+            <a class="js__view--selector hidden-sm hidden-md hidden-lg" data-action="desktop" href="javascript:;">桌面版</a>
+        </p>
+    </div>
+</footer>
+
+<div id="fixedTools" class="hidden-xs hidden-sm">
+    <a id="backtop" class="border-bottom" href="https://segmentfault.com/a/1190000004516832#">回顶部</a>
+
+    <div class="qrcodeWraper">
+        <a href="https://segmentfault.com/app#qrcode"><span class="glyphicon glyphicon-qrcode"></span></a>
+        <img id="qrcode" class="border" alt="sf-wechat" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/appQrcode.png">
+
+        <p class="qrcode-text">扫扫下载 App</p>
+    </div>
+</div>
+
+<div class="app-promotion-bar">
+    <a href="javascript:;"><i class="fa fa-close close"></i></a>
+    <div class="icon"></div>
+    <h5 class="title h5">SegmentFault</h5>
+    <p class="describe">一起探索更多未知</p>
+    <a class="download-btn btn btn-sm btn-primary" href="https://segmentfault.com/app#qrcode">下载 App</a>
+</div>
+
+<script id="loginModal" type="text/template">
+<div class="row bg-white login-modal">
+    <div class="col-md-4 col-sm-12 col-md-push-7 login-wrap">
+        <h1 class="h4 text-muted login-title">用户登录</h1>
+        <form action="/api/user/login" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="email" class="form-control" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="密码">
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    <label><input name="remember" type="checkbox" value="1" checked> 记住登录状态</label>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right pl20 pr20" onclick='ga("send", "event", "email login button", "clicked", "login modal");'>登录</button>
+            </div>
+        </form>
+        <p class="h4 text-muted visible-xs-block h4">快速登录</p>
+        <div class="widget-login mt30">
+            <p class="text-muted mt5 mr10 pull-left hidden-xs">快速登录</p>
+            <a href="/user/oauth/google" class="btn btn-default btn-sm btn-sn-google" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "google"});'><span class="icon-sn-bg-google"></span> <strong class="visible-xs-inline">Google 账号</strong></a>
+            <a href="/user/oauth/github" class="btn btn-default btn-sm btn-sn-github" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "github"});");'><span class="icon-sn-bg-github"></span> <strong class="visible-xs-inline">Github 账号</strong></a>
+            <a href="/user/oauth/weibo" class="btn btn-default btn-sm btn-sn-weibo" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "weibo"});'><span class="icon-sn-bg-weibo"></span> <strong class="visible-xs-inline">新浪微博账号</strong></a>
+            <a href="/user/oauth/qq" class="btn btn-default btn-sm btn-sn-qq" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span class="icon-sn-bg-qq"></span> <strong class="visible-xs-inline">QQ 账号</strong></a>
+            <a href="/user/oauth/weixin" class="btn btn-default btn-sm btn-sn-weixin" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "qq"});'><span class="icon-sn-bg-weixin"></span> <strong class="visible-xs-inline">微信账号</strong></a>
+            <button id="loginShowMore" href="javascript:void(0);" class="btn mb5 btn-default btn-sm btn-sn-dotted"><span class="icon-sn-bg-dotted"></span><strong class="visible-xs-inline">•••</strong></button>
+            <a href="/user/oauth/twitter" class="btn btn-default btn-sn-twitter btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "twitter"});'><span class="icon-sn-bg-twitter"></span> <strong class="visible-xs-inline">Twitter 账号</strong></a>
+            <a href="/user/oauth/facebook" class="btn btn-default btn-sn-facebook btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "facebook"});'><span class="icon-sn-bg-facebook"></span> <strong class="visible-xs-inline">Facebook 账号</strong></a>
+            <a href="/user/oauth/douban" class="btn btn-default btn-sn-douban btn-sm hidden" onclick='ga("send", "event", "3rd login button", "clicked", "login modal", {media: "douban"});'><span class="icon-sn-bg-douban"></span> <strong class="visible-xs-inline">豆瓣账号</strong></a>
+        </div>
+    </div>
+    <div class="login-vline hidden-xs hidden-sm"></div>
+    <div class="col-md-4 col-md-pull-3 col-sm-12 login-wrap">
+        <h1 class="h4 text-muted login-title">创建新账号</h1>
+        <form action="/api/user/register" method="POST" role="form" class="mt30">
+            <div class="form-group">
+                <label for="name" class="control-label">用户名</label>
+                <input type="text" class="form-control" name="name" required placeholder="字母、数字等，用户名唯一">
+            </div>
+            <div class="form-group">
+                <label for="mail" class="control-label">Email</label>
+                <input type="hidden" style="display:none" name="mail">
+                <input type="email" autocomplete="off" class="form-control register-mail" name="mail" required placeholder="hello@segmentfault.com">
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">密码</label>
+                <input type="password" class="form-control" name="password" required placeholder="不少于 6 位">
+            </div>
+            <div class="form-group" style="display:none;">
+                <label class="required control-label">验证码</label>
+                <input type="text" class="form-control" id="captcha" name="captcha" placeholder="请输入下方的验证码">
+                <div class="mt10"><a id="loginReloadCaptcha"  href="javascript:void(0)"><img data-src="/user/captcha?w=240&h=50" class="captcha" width="240" height="50" /></a></div>
+            </div>
+            <div class="form-group clearfix">
+                <div class="checkbox pull-left">
+                    同意并接受<a href="/tos" target="_blank">《服务条款》</a>
+                </div>
+                <button type="submit" class="btn btn-primary pl20 pr20 pull-right" onclick='ga("send", "event", "email register button", "clicked", "login modal");'>注册</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="text-center text-muted mt30">
+    <a href="/user/forgot" class="ml5">找回密码</a>
+</div>
+</script>
+
+
+
+<script>
+    (function (w) {
+        w.SF = {
+            staticUrl: "https://sf-static.b0.upaiyun.com/v-57b589e4"
+        };
+        w.SF.token = (function () {
+    var _ewR8D = //'N'
+'b61'+'861'//'Oh'
++//'9FJ'
+'0bf'+'5'//'dB8'
++//'rbo'
+'f'+'156'//'CX'
++'e8'//'5F'
++'84'//'dB'
++''///*'31q'*/'31q'
++'9e'//'b9U'
++//'78D'
+'78D'+//'m'
+'b0'+'4e'//'p'
++'a'//'CvN'
++/* 'hiM'//'hiM' */''+//'EN'
+'5b'+'6'//'e2'
++//'LEz'
+'80c'+'2'//'iA'
+, _Lwbo8F1 = [[20,23]];
+
+    for (var i = 0; i < _Lwbo8F1.length; i ++) {
+        _ewR8D = _ewR8D.substring(0, _Lwbo8F1[i][0]) + _ewR8D.substring(_Lwbo8F1[i][1]);
+    }
+
+    return _ewR8D;
+})();;
+    })(window);
+
+                var lock = {
+        type: "",
+        text: '',
+        table: {"ban_post":[1,"\u4f60\u5df2\u7ecf\u88ab\u7981\u8a00, \u65e0\u6cd5\u8fdb\u884c\u6b64\u64cd\u4f5c, \u5982\u6709\u7591\u4e49\u8bf7\u63d0\u4ea4\u7533\u8bc9, \u6216\u8005\u53d1\u90ae\u4ef6\u5230pr@segmentfault.com"]}
+    };
+</script>
+
+    <script crossorigin="" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/assets.js"></script>
+    <script crossorigin="" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/post.min.js"></script>
+
+<script async="" src="./基于webpack的前端工程化开发之多页站点篇（二） - 歪闹日志 - SegmentFault_files/asyncjs.php"></script>
+
+<script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-918487-8']);
+    _gaq.push(['_trackPageview']);
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            
+        
+
+            
+
+    ga('create', 'UA-918487-8', 'auto', {
+        'userID'
+    : 0,
+        'createdTime'
+    : 0,
+        'now'
+    : 1471599896 });
+    ga('set', 'dimension1', 'guest');
+    ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function() {
+        _vds.push(['setAccountId', '5411b7ab1ae040ed9a4eb4a120a06ead']);
+        (function() {
+            var vds = document.createElement('script');
+            vds.type = 'text/javascript';
+            vds.async = true;
+            vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(vds, s);
+        })();
+    })();
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e23800c454aa573c0ccb16b52665ac26";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+<div id="noteWidget" class="noteWidget hidden hidden-xs">
+    <div class="noteWidget-header clearfix">
+        <h2 class="h4 pull-left">记笔记</h2>
+        <ul class="list-inline pull-right mb0">
+            <li id="noteWidgetMinimize"><span class="icon-minimize"></span></li><li id="noteWidgetZoom"><span class="icon-zoom"></span></li><li id="noteWidgetClose"><span class="icon-close"></span></li>
+        </ul>
+    </div>
+    <form method="POST" action="https://segmentfault.com/api/notes/add" role="form">
+        <div class="form-group">
+            <label for="title" class="sr-only">标题</label>
+            <input type="hidden" value="" id="draftId">
+            <input type="text" name="title" data-error="" autocomplete="off" class="form-control" placeholder="笔记描述" value="">
+        </div>
+        <div class="editor-config clearfix">
+            <select name="lang" class="form-control pull-left input-sm">
+                <optgroup label="文本语法">
+                    <option value="text" data-mode="text">纯文本</option>
+                    <option value="markdown" data-mode="markdown">Markdown</option>
+                    <option value="javascript" data-mode="javascript">Javascript</option>
+                    <option value="css" data-mode="css">CSS</option>
+                    <option value="html5" data-mode="htmlmixed">HTML</option>
+                    <option value="php" data-mode="php">PHP</option>
+                    <option value="python" data-mode="python">Python</option>
+                    <option value="ruby" data-mode="ruby">Ruby</option>
+                    <option value="go" data-mode="go">Go</option>
+                    <option value="c" data-mode="clike">C/C++</option>
+                    <option value="java" data-mode="java">Java</option>
+                    <option value="bash" data-mode="shell">Shell/Bash</option>
+                </optgroup>
+            </select>
+            <div class="pull-right hidden-xs">
+                <select name="indentWithTabs" class="form-control inline-block input-sm">
+                    <optgroup label="缩进模式">
+                        <option value="false">空格缩进</option>
+                        <option value="true">Tabs 缩进</option>
+                    </optgroup>
+                </select>
+                <select name="tabSize" class="form-control inline-block input-sm">
+                    <optgroup label="缩进大小">
+                        <option value="2">2</option>
+                        <option value="4" selected="">4</option>
+                    </optgroup>
+                </select>
+                <select name="lineWrap" class="form-control inline-block input-sm">
+                    <optgroup label="换行方式">
+                        <option value="true">自动换行</option>
+                        <option value="false">不换行</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <textarea id="codeMirror" class="form-control" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div>
+        <div class="mt20 clearfix">
+            <div class="pull-right">
+                <span class="text-muted hidden" id="editorStatus">已保存</span>
+                <a id="dropIt" href="javascript:void(0);" class="mr10 hidden">[舍弃]</a>
+                <button data-type="note" id="publishIt2" class="btn btn-default ml10" data-id="" data-do="add" data-url="" data-text="保存私密笔记" data-name="">保存私密笔记</button>
+                <button data-type="note" id="publishIt" class="btn btn-primary ml10" data-id="" data-do="add" data-url="" data-text="保存公开笔记" data-name="">保存公开笔记</button>
+                </div>
+            </div>
+        </form></div>
+    
+<div id="atwho-container"><div id="atwho-ground-commentText-1190000004516832"><div class="atwho-view" id="at-view-64"><ul class="atwho-view-ul"></ul></div></div></div><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; transition: none; height: 0px !important; min-height: 0px !important; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; word-spacing: 0px; text-indent: 0px; white-space: pre-wrap; line-height: 21px; width: 649px;" class="autosizejs" id="autosizejs"></textarea></body></html>
