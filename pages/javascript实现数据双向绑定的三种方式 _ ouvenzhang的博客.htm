@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)http://jixianqianduan.com/frontend-javascript/2015/11/29/js-data-two-ways-binding.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="0FNbiBWk1FugWYo-RiGxQyIHebGeLoXp3HB7AxIFKy8">
+    <meta name="baidu-site-verification" content="tYoUqpkCCv">
+    <meta name="baidu-site-verification" content="IGN97NW90O">
+    
+    <title>javascript实现数据双向绑定的三种方式 | ouvenzhang的博客</title>
+
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="http://jixianqianduan.com/frontend-javascript/2015/11/29/cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="http://jixianqianduan.com/frontend-javascript/2015/11/29/1.url.cn">
+
+    <meta name="description" itemprop="description" content="javascript实现数据双向绑定的三种方式,javascript,数据双向绑定,mvvm ">
+    <meta itemprop="name" content="javascript实现数据双向绑定的三种方式">
+    <meta itemprop="image" content="http://ouvens.github.io/blog/assets/logo.png">
+    <meta itemprop="keywords" name="keywords" content="javascript实现数据双向绑定的三种方式,javascript,数据双向绑定,mvvm ">
+
+    
+    <meta name="author" content="ouvenzhang">
+    <meta name="copyright" content="© ouvenzhang 2016">
+    <meta name="protocol" content="1">
+    
+
+    <!-- External libraries -->
+    <link rel="stylesheet" href="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/iconfont.css">
+    <link rel="stylesheet" href="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/monokai_sublime.min.css">
+    <link rel="stylesheet" href="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/lightbox.css">
+
+    <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+    <link rel="shortcut icon" href="http://jixianqianduan.com/assets/favicon.ico" type="image/x-icon">
+  	<link rel="icon" href="http://jixianqianduan.com/assets/favicon.ico" type="image/x-icon">
+    
+  	<meta name="msapplication-TileColor" content="#ffffff">
+  	<meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/icons/icon.png">
+
+  	<!-- Site styles -->
+    <link rel="stylesheet" href="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/main.css">
+
+    <link rel="alternate" type="application/rss+xml" title="极限前端" href="http://ouvens.github.io//feed.xml">
+    <script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/hm.js"></script><script>
+    // 访问统计
+    var domain = 'jixianqianduan.com';
+    var oldDomain = 'ouvens.github.io';
+    if(location.host === domain){
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?b536b128dc21c3d18fdc028f0609e3f0";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    }else if(location.host === oldDomain){
+        window.location.href = location.href.replace(oldDomain, domain);
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?041efd2cb345ca1b9dbdbb2383cb716d";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    }
+
+    // 链接提交
+
+    if(location.protocol === 'https'){
+        !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,t=document.referrer;if(!e.test(r)){var o="https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif";t?(o+="?r="+encodeURIComponent(document.referrer),r&&(o+="&l="+r)):r&&(o+="?l="+r);var i=new Image;i.src=o}}(window);
+    }else{
+        !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+    }
+
+
+    </script>
+<style type="text/css">.gc-comments-item-bd {
+		  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		  font-size: 1em;
+		  line-height: 1.6;
+		  word-wrap: break-word;
+		}
+		.gc-comments-item-bd:before {
+		  display: table;
+		  content: "";
+		}
+		.gc-comments-item-bd:after {
+		  display: table;
+		  clear: both;
+		  content: "";
+		}
+		.gc-comments-item-bd > *:first-child {
+		  margin-top: 0 !important;
+		}
+		.gc-comments-item-bd > *:last-child {
+		  margin-bottom: 0 !important;
+		}
+		.gc-comments-item-bd a:not([href]) {
+		  color: inherit;
+		  text-decoration: none;
+		}
+		.gc-comments-item-bd .absent {
+		  color: #c00;
+		}
+		.gc-comments-item-bd .anchor {
+		  display: inline-block;
+		  padding-right: 2px;
+		  margin-left: -18px;
+		}
+		.gc-comments-item-bd .anchor:focus {
+		  outline: none;
+		}
+		.gc-comments-item-bd h1, .gc-comments-item-bd h2, .gc-comments-item-bd h3, .gc-comments-item-bd h4, .gc-comments-item-bd h5, .gc-comments-item-bd h6 {
+		  margin-top: 1em;
+		  margin-bottom: 16px;
+		  font-weight: bold;
+		  line-height: 1.4;
+		}
+		.gc-comments-item-bd h1 .octicon-link, .gc-comments-item-bd h2 .octicon-link, .gc-comments-item-bd h3 .octicon-link, .gc-comments-item-bd h4 .octicon-link, .gc-comments-item-bd h5 .octicon-link, .gc-comments-item-bd h6 .octicon-link {
+		  color: #000;
+		  vertical-align: middle;
+		  visibility: hidden;
+		}
+		.gc-comments-item-bd h1:hover .anchor, .gc-comments-item-bd h2:hover .anchor, .gc-comments-item-bd h3:hover .anchor, .gc-comments-item-bd h4:hover .anchor, .gc-comments-item-bd h5:hover .anchor, .gc-comments-item-bd h6:hover .anchor {
+		  text-decoration: none;
+		}
+		.gc-comments-item-bd h1:hover .anchor .octicon-link, .gc-comments-item-bd h2:hover .anchor .octicon-link, .gc-comments-item-bd h3:hover .anchor .octicon-link, .gc-comments-item-bd h4:hover .anchor .octicon-link, .gc-comments-item-bd h5:hover .anchor .octicon-link, .gc-comments-item-bd h6:hover .anchor .octicon-link {
+		  visibility: visible;
+		}
+		.gc-comments-item-bd h1 tt,
+		    .gc-comments-item-bd h1 code, .gc-comments-item-bd h2 tt,
+		    .gc-comments-item-bd h2 code, .gc-comments-item-bd h3 tt,
+		    .gc-comments-item-bd h3 code, .gc-comments-item-bd h4 tt,
+		    .gc-comments-item-bd h4 code, .gc-comments-item-bd h5 tt,
+		    .gc-comments-item-bd h5 code, .gc-comments-item-bd h6 tt,
+		    .gc-comments-item-bd h6 code {
+		  font-size: inherit;
+		}
+		.gc-comments-item-bd h1 {
+		  padding-bottom: .3em;
+		  font-size: 2.25em;
+		  line-height: 1.2;
+		  border-bottom: 1px solid #eee;
+		}
+		.gc-comments-item-bd h1 .anchor {
+		  line-height: 1;
+		}
+		.gc-comments-item-bd h2 {
+		  padding-bottom: .3em;
+		  font-size: 1.75em;
+		  line-height: 1.225;
+		  border-bottom: 1px solid #eee;
+		}
+		.gc-comments-item-bd h2 .anchor {
+		  line-height: 1;
+		}
+		.gc-comments-item-bd h3 {
+		  font-size: 1.5em;
+		  line-height: 1.43;
+		}
+		.gc-comments-item-bd h3 .anchor {
+		  line-height: 1.2;
+		}
+		.gc-comments-item-bd h4 {
+		  font-size: 1.25em;
+		}
+		.gc-comments-item-bd h4 .anchor {
+		  line-height: 1.2;
+		}
+		.gc-comments-item-bd h5 {
+		  font-size: 1em;
+		}
+		.gc-comments-item-bd h5 .anchor {
+		  line-height: 1.1;
+		}
+		.gc-comments-item-bd h6 {
+		  font-size: 1em;
+		  color: #777;
+		}
+		.gc-comments-item-bd h6 .anchor {
+		  line-height: 1.1;
+		}
+		.gc-comments-item-bd p,
+		  .gc-comments-item-bd blockquote,
+		  .gc-comments-item-bd ul, .gc-comments-item-bd ol, .gc-comments-item-bd dl,
+		  .gc-comments-item-bd table,
+		  .gc-comments-item-bd pre {
+		  margin-top: 0;
+		  margin-bottom: 16px;
+		}
+		.gc-comments-item-bd hr {
+		  height: 4px;
+		  padding: 0;
+		  margin: 16px 0;
+		  background-color: #e7e7e7;
+		  border: 0 none;
+		}
+		.gc-comments-item-bd ul,
+		  .gc-comments-item-bd ol {
+		  padding-left: 2em;
+		}
+		.gc-comments-item-bd ul.no-list,
+		    .gc-comments-item-bd ol.no-list {
+		  padding: 0;
+		  list-style-type: none;
+		}
+		.gc-comments-item-bd ul ul,
+		  .gc-comments-item-bd ul ol,
+		  .gc-comments-item-bd ol ol,
+		  .gc-comments-item-bd ol ul {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		}
+		.gc-comments-item-bd li > p {
+		  margin-top: 16px;
+		}
+		.gc-comments-item-bd dl {
+		  padding: 0;
+		}
+		.gc-comments-item-bd dl dt {
+		  padding: 0;
+		  margin-top: 16px;
+		  font-size: 1em;
+		  font-style: italic;
+		  font-weight: bold;
+		}
+		.gc-comments-item-bd dl dd {
+		  padding: 0 16px;
+		  margin-bottom: 16px;
+		}
+		.gc-comments-item-bd blockquote {
+		  padding: 0 15px;
+		  color: #777;
+		  border-left: 4px solid #ddd;
+		}
+		.gc-comments-item-bd blockquote > :first-child {
+		  margin-top: 0;
+		}
+		.gc-comments-item-bd blockquote > :last-child {
+		  margin-bottom: 0;
+		}
+		.gc-comments-item-bd table {
+		  display: block;
+		  width: 100%;
+		  overflow: auto;
+		  word-break: normal;
+		  word-break: keep-all;
+		}
+		.gc-comments-item-bd table th {
+		  font-weight: bold;
+		}
+		.gc-comments-item-bd table th, .gc-comments-item-bd table td {
+		  padding: 6px 13px;
+		  border: 1px solid #ddd;
+		}
+		.gc-comments-item-bd table tr {
+		  background-color: #fff;
+		  border-top: 1px solid #ccc;
+		}
+		.gc-comments-item-bd table tr:nth-child(2n) {
+		  background-color: #f8f8f8;
+		}
+		.gc-comments-item-bd img {
+		  max-width: 100%;
+		  box-sizing: content-box;
+		  background-color: #fff;
+		}
+		.gc-comments-item-bd img[align=right] {
+		  padding-left: 20px;
+		}
+		.gc-comments-item-bd img[align=left] {
+		  padding-right: 20px;
+		}
+		.gc-comments-item-bd .emoji {
+		  max-width: none;
+		}
+		.gc-comments-item-bd span.frame {
+		  display: block;
+		  overflow: hidden;
+		}
+		.gc-comments-item-bd span.frame > span {
+		  display: block;
+		  float: left;
+		  width: auto;
+		  padding: 7px;
+		  margin: 13px 0 0;
+		  overflow: hidden;
+		  border: 1px solid #ddd;
+		}
+		.gc-comments-item-bd span.frame span img {
+		  display: block;
+		  float: left;
+		}
+		.gc-comments-item-bd span.frame span span {
+		  display: block;
+		  padding: 5px 0 0;
+		  clear: both;
+		  color: #333;
+		}
+		.gc-comments-item-bd span.align-center {
+		  display: block;
+		  overflow: hidden;
+		  clear: both;
+		}
+		.gc-comments-item-bd span.align-center > span {
+		  display: block;
+		  margin: 13px auto 0;
+		  overflow: hidden;
+		  text-align: center;
+		}
+		.gc-comments-item-bd span.align-center span img {
+		  margin: 0 auto;
+		  text-align: center;
+		}
+		.gc-comments-item-bd span.align-right {
+		  display: block;
+		  overflow: hidden;
+		  clear: both;
+		}
+		.gc-comments-item-bd span.align-right > span {
+		  display: block;
+		  margin: 13px 0 0;
+		  overflow: hidden;
+		  text-align: right;
+		}
+		.gc-comments-item-bd span.align-right span img {
+		  margin: 0;
+		  text-align: right;
+		}
+		.gc-comments-item-bd span.float-left {
+		  display: block;
+		  float: left;
+		  margin-right: 13px;
+		  overflow: hidden;
+		}
+		.gc-comments-item-bd span.float-left span {
+		  margin: 13px 0 0;
+		}
+		.gc-comments-item-bd span.float-right {
+		  display: block;
+		  float: right;
+		  margin-left: 13px;
+		  overflow: hidden;
+		}
+		.gc-comments-item-bd span.float-right > span {
+		  display: block;
+		  margin: 13px auto 0;
+		  overflow: hidden;
+		  text-align: right;
+		}
+		.gc-comments-item-bd code,
+		  .gc-comments-item-bd tt {
+		  padding: 0;
+		  padding-top: .2em;
+		  padding-bottom: .2em;
+		  margin: 0;
+		  font-size: 85%;
+		  background-color: rgba(0, 0, 0, .04);
+		  border-radius: 3px;
+		}
+		.gc-comments-item-bd code:before, .gc-comments-item-bd code:after,
+		    .gc-comments-item-bd tt:before,
+		    .gc-comments-item-bd tt:after {
+		  letter-spacing: -.2em;
+		  content: "\00a0";
+		}
+		.gc-comments-item-bd code br,
+		    .gc-comments-item-bd tt br {
+		  display: none;
+		}
+		.gc-comments-item-bd del code {
+		  text-decoration: inherit;
+		}
+		.gc-comments-item-bd pre > code {
+		  padding: 0;
+		  margin: 0;
+		  font-size: 100%;
+		  word-break: normal;
+		  white-space: pre;
+		  background: transparent;
+		  border: 0;
+		}
+		.gc-comments-item-bd .highlight {
+		  margin-bottom: 16px;
+		}
+		.gc-comments-item-bd .highlight pre,
+		  .gc-comments-item-bd pre {
+		  padding: 16px;
+		  overflow: auto;
+		  font-size: 85%;
+		  line-height: 1.45;
+		  background-color: #f7f7f7;
+		  border-radius: 3px;
+		}
+		.gc-comments-item-bd .highlight pre {
+		  margin-bottom: 0;
+		  word-break: normal;
+		}
+		.gc-comments-item-bd pre {
+		  word-wrap: normal;
+		}
+		.gc-comments-item-bd pre code,
+		  .gc-comments-item-bd pre tt {
+		  display: inline;
+		  max-width: initial;
+		  padding: 0;
+		  margin: 0;
+		  overflow: initial;
+		  line-height: inherit;
+		  word-wrap: normal;
+		  background-color: transparent;
+		  border: 0;
+		}
+		.gc-comments-item-bd pre code:before, .gc-comments-item-bd pre code:after,
+		    .gc-comments-item-bd pre tt:before,
+		    .gc-comments-item-bd pre tt:after {
+		  content: normal;
+		}
+		.gc-comments-item-bd kbd {
+		  display: inline-block;
+		  padding: 3px 5px;
+		  font-size: 11px;
+		  line-height: 10px;
+		  color: #555;
+		  vertical-align: middle;
+		  background-color: #fcfcfc;
+		  border: solid 1px #ccc;
+		  border-bottom-color: #bbb;
+		  border-radius: 3px;
+		  box-shadow: inset 0 -1px 0 #bbb;
+		}
+
+		.gc-comments-item-bd .pl-c {
+		    color:#969896
+		}
+		.gc-comments-item-bd .pl-c1,
+		.gc-comments-item-bd .pl-s .pl-v {
+		    color:#0086b3
+		}
+		.gc-comments-item-bd .pl-e,
+		.gc-comments-item-bd .pl-en {
+		    color:#795da3
+		}
+		.gc-comments-item-bd .pl-s .pl-s1,
+		.gc-comments-item-bd .pl-smi {
+		    color:#333
+		}
+		.gc-comments-item-bd .pl-ent {
+		    color:#63a35c
+		}
+		.gc-comments-item-bd .pl-k {
+		    color:#a71d5d
+		}
+		.gc-comments-item-bd .pl-pds,
+		.gc-comments-item-bd .pl-s,
+		.gc-comments-item-bd .pl-s .pl-pse .pl-s1,
+		.gc-comments-item-bd .pl-sr,
+		.gc-comments-item-bd .pl-sr .pl-cce,
+		.gc-comments-item-bd .pl-sr .pl-sra,
+		.gc-comments-item-bd .pl-sr .pl-sre {
+		    color:#183691
+		}
+		.gc-comments-item-bd .pl-v {
+		    color:#ed6a43
+		}
+		.gc-comments-item-bd .pl-id {
+		    color:#b52a1d
+		}
+		.gc-comments-item-bd .pl-ii {
+		    background-color:#b52a1d;
+		    color:#f8f8f8
+		}
+		.gc-comments-item-bd .pl-sr .pl-cce {
+		    color:#63a35c;
+		    font-weight:bold
+		}
+		.gc-comments-item-bd .pl-ml {
+		    color:#693a17
+		}
+		.gc-comments-item-bd .pl-mh,
+		.gc-comments-item-bd .pl-mh .pl-en,
+		.gc-comments-item-bd .pl-ms {
+		    color:#1d3e81;
+		    font-weight:bold
+		}
+		.gc-comments-item-bd .pl-mq {
+		    color:#008080
+		}
+		.gc-comments-item-bd .pl-mi {
+		    color:#333;
+		    font-style:italic
+		}
+		.gc-comments-item-bd .pl-mb {
+		    color:#333;
+		    font-weight:bold
+		}
+		.gc-comments-item-bd .pl-md {
+		    background-color:#ffecec;
+		    color:#bd2c00
+		}
+		.gc-comments-item-bd .pl-mi1 {
+		    background-color:#eaffea;
+		    color:#55a532
+		}
+		.gc-comments-item-bd .pl-mdr {
+		    color:#795da3;
+		    font-weight:bold
+		}
+		.gc-comments-item-bd .pl-mo {
+		    color:#1d3e81
+		}.gc-comments {
+		    font:1em/1.5 Lantinghei SC,Microsoft Yahei,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif
+		}
+		.gc-comments a {
+		    color:#333;
+		    text-decoration: none;
+		}
+		.gc-comments-item {
+		    border-radius: 2px;
+		    border:1px solid #ccc;
+		    margin-bottom:10px;
+		}
+		.gc-comments-item-hd {
+		    border-top-left-radius: 2px;
+		    border-top-right-radius: 2px;
+		    position: relative;
+		    padding: 10px;
+		    padding-left: 40px;
+		    line-height: 16px;
+		    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#f9f9f9)); background: -moz-linear-gradient(top, #fcfcfc, #f9f9f9);  background: -o-linear-gradient(top, #fcfcfc, #f9f9f9); background: linear-gradient(top, #fcfcfc, #f9f9f9); border-bottom: 1px solid #ccc;
+		}
+		.gc-comments-item-hd-avatar {
+		    position: absolute;
+		    left:10px;
+		    top:5px;
+		    width: 22px;height: 22px;
+		    border-radius: 3px;
+		    vertical-align: middle;
+		    padding:1px;
+		    background-color: white;
+		    border:1px solid #CCC;
+		}
+		.gc-comments-item-hd-user {
+		    font-weight: bold;
+		    margin-left: .5em;
+		    margin-right: .5em;
+		}
+		a.gc-comments-item-hd-date {
+		    color:#999;
+		    font-size:0.8em;
+		}
+		.gc-comments-item-bd {
+		    padding-left: 1em;
+		    padding-right: 1em;
+		    font-size: 1em;
+		    background-color:white;
+		}
+		.gc-comments-title {
+		    font-size:1.6em;
+		    line-height:1.6em;
+		}
+		.gc-comments-info {
+		    background-image: -webkit-linear-gradient(top,#fcf8e3 0,#f8efc0 100%);
+		    background-image: linear-gradient(to bottom,#fcf8e3 0,#f8efc0 100%);
+		    background-repeat: repeat-x;
+		    border-color: #f5e79e;
+		    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+		    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.05);
+		    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.05);
+		    color: #8a6d3b;
+		    background-color: #fcf8e3;
+		    padding: 15px;
+		    margin-bottom: 20px;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		    border-color: #faebcc;
+		}
+		.gc-comments-info a{
+		    color:#428bca;
+		}
+		.gc-comments-loading {
+		  width: 60px;
+		  height: 60px;
+		  position: relative;
+		  margin-left: auto;
+		  margin-right: auto;
+		  font-size: .8em;
+		  line-height: 60px;
+		  text-align: center;
+		  color:#DDD;
+		}
+		 
+		.gc-comments-loading:before,
+		.gc-comments-loading:after{
+		content: ' ';
+		  width: 100%;
+		  height: 100%;
+		  border-radius: 50%;
+		  background-color: #6cc644;
+		  opacity: 0.6;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		   
+		  -webkit-animation: gccommentsloadinganiamte 2.0s infinite ease-in-out;
+		  animation: gccommentsloadinganiamte 2.0s infinite ease-in-out;
+		}
+		 
+		.gc-comments-loading:after {
+		  -webkit-animation-delay: -1.0s;
+		  animation-delay: -1.0s;
+		}
+		 
+		@-webkit-keyframes gccommentsloadinganiamte {
+		  0%, 100% { -webkit-transform: scale(0.0) }
+		  50% { -webkit-transform: scale(1.0) }
+		}
+		 
+		@keyframes gccommentsloadinganiamte {
+		  0%, 100% {
+		    transform: scale(0.0);
+		    -webkit-transform: scale(0.0);
+		  } 50% {
+		    transform: scale(1.0);
+		    -webkit-transform: scale(1.0);
+		  }
+		}</style></head>
+
+    <body>
+        <div class="navigation" role="banner">
+    <div class="navigation-wrapper">
+    <a href="http://jixianqianduan.com/" class="logo">
+    	
+      <img src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/logo.png" alt="极限前端">
+      
+    </a>
+    <span class="search-input" id="search-input">
+      <input type="text" value="" class="search-text" placeholder="输入搜索关键字">
+      <i class="icon-font i-search search-btn"></i>
+    </span>
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+    	<i class="icon-font i-list fa fa-bars"></i>
+    </a>
+    <span class="nav" role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu">
+      	
+          
+          <li class="nav-link">
+            <a href="http://jixianqianduan.com/about/">关于</a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link">
+            <a href="http://jixianqianduan.com/category/">所有文章</a>
+          </li>
+          
+        
+          
+          <li class="nav-link">
+            <a href="http://jixianqianduan.com/tags/">标签分类</a>
+          </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          <li id="github-info" class="nav-link" title="https://github.com/ouvens">
+            <a class="github-info" href="https://github.com/ouvens" target="_blank">github地址</a>
+          </li>
+      </ul>
+    </span>
+  </div>
+</div>
+
+            <div class="page-content">
+        <div class="post">
+<div class="post-header-container has-cover">
+	<header class="post-header">
+	  <h1 class="title">javascript实现数据双向绑定的三种方式</h1>
+	  <p class="info">by <strong>ouven</strong></p>
+	</header>
+</div>
+<div class="wrapper">
+
+
+
+<div class="post-meta">
+	<div class="post-date">2015年11月29日</div>
+	<div class="post-categories">
+	 in  
+		<a target="_blank" href="http://jixianqianduan.com/category/?cate=frontend-javascript">Frontend-javascript</a>
+	  
+	</div>
+</div>	
+
+<article class="post-content">
+  <h3 id="section">前端数据的双向绑定方法</h3>
+
+<p>  前端的视图层和数据层有时需要实现双向绑定(two-way-binding)，例如mvvm框架，数据驱动视图，视图状态机等，研究了几个目前主流的数据双向绑定框架，总结了下。目前实现数据双向绑定主要有以下三种。</p>
+
+<p><a href="https://github.com/ouvens/demo-file/tree/master/two-ways-binding">github演示例子</a></p>
+
+<h4 id="section-1">1、手动绑定</h4>
+<p>比较老的实现方式，有点像观察者编程模式，主要思路是通过在数据对象上定义get和set方法(当然还有其它方法)，调用时手动调用get或set数据，改变数据后出发UI层的渲染操作；以视图驱动数据变化的场景主要应用与input、select、textarea等元素，当UI层变化时，通过监听dom的change，keypress，keyup等事件来出发事件改变数据层的数据。整个过程均通过函数调用完成。</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code class="hljs xml"><span class="cp"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">html</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">lang</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"en"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">charset</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"UTF-8"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span></span>data-binding-method-set<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">input</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-value</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">type</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"text"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"input"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">div</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-text</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"el"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span></span><span class="javascript">
+        </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elems</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="p"><span class="javascript">[</span></span><span class="nb"><span class="javascript"><span class="hljs-built_in">document</span></span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">getElementById</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'el'</span></span></span><span class="p"><span class="javascript">),</span></span><span class="javascript"> </span><span class="nb"><span class="javascript"><span class="hljs-built_in">document</span></span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">getElementById</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'input'</span></span></span><span class="p"><span class="javascript">)];</span></span><span class="javascript">
+
+        </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">data</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="p"><span class="javascript">{</span></span><span class="javascript">
+            </span><span class="na"><span class="javascript">value</span></span><span class="p"><span class="javascript">:</span></span><span class="javascript"> </span><span class="s1"><span class="javascript"><span class="hljs-string">'hello!'</span></span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">};</span></span><span class="javascript">
+
+        </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">command</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="p"><span class="javascript">{</span></span><span class="javascript">
+            </span><span class="na"><span class="javascript">text</span></span><span class="p"><span class="javascript">:</span></span><span class="javascript"> </span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span>{</span></span><span class="javascript">
+                </span><span class="k"><span class="javascript"><span class="hljs-keyword">this</span></span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">innerHTML</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">str</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript">
+            </span><span class="p"><span class="javascript">},</span></span><span class="javascript">
+            </span><span class="na"><span class="javascript">value</span></span><span class="p"><span class="javascript">:</span></span><span class="javascript"> </span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span>{</span></span><span class="javascript">
+                </span><span class="k"><span class="javascript"><span class="hljs-keyword">this</span></span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">setAttribute</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'value'</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">str</span></span><span class="p"><span class="javascript">);</span></span><span class="javascript">
+            </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">};</span></span><span class="javascript">
+
+        </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">scan</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span>{</span></span><span class="javascript">        
+            </span><span class="cm"><span class="javascript"><span class="hljs-comment">/**
+             * 扫描带指令的节点属性
+             */</span></span></span><span class="javascript">
+            </span><span class="k"><span class="javascript"><span class="hljs-keyword">for</span></span></span><span class="p"><span class="javascript">(</span></span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">i</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="mi"><span class="javascript"><span class="hljs-number">0</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">len</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elems</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">length</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">i</span></span><span class="javascript"> </span><span class="o"><span class="javascript">&lt;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">len</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">i</span></span><span class="o"><span class="javascript">++</span></span><span class="p"><span class="javascript">){</span></span><span class="javascript">
+                </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elem</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elems</span></span><span class="p"><span class="javascript">[</span></span><span class="nx"><span class="javascript">i</span></span><span class="p"><span class="javascript">];</span></span><span class="javascript">
+                </span><span class="nx"><span class="javascript">elem</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">command</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="p"><span class="javascript">[];</span></span><span class="javascript">
+                </span><span class="k"><span class="javascript"><span class="hljs-keyword">for</span></span></span><span class="p"><span class="javascript">(</span></span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">j</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="mi"><span class="javascript"><span class="hljs-number">0</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">len1</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elem</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">attributes</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">length</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">j</span></span><span class="javascript"> </span><span class="o"><span class="javascript">&lt;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">len1</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">j</span></span><span class="o"><span class="javascript">++</span></span><span class="p"><span class="javascript">){</span></span><span class="javascript">
+                    </span><span class="kd"><span class="javascript"><span class="hljs-keyword">var</span></span></span><span class="javascript"> </span><span class="nx"><span class="javascript">attr</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">elem</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">attributes</span></span><span class="p"><span class="javascript">[</span></span><span class="nx"><span class="javascript">j</span></span><span class="p"><span class="javascript">];</span></span><span class="javascript">
+                    </span><span class="k"><span class="javascript"><span class="hljs-keyword">if</span></span></span><span class="p"><span class="javascript">(</span></span><span class="nx"><span class="javascript">attr</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">nodeName</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">indexOf</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'q-'</span></span></span><span class="p"><span class="javascript">)</span></span><span class="javascript"> </span><span class="o"><span class="javascript">&gt;=</span></span><span class="javascript"> </span><span class="mi"><span class="javascript"><span class="hljs-number">0</span></span></span><span class="p"><span class="javascript">){</span></span><span class="javascript">
+                        </span><span class="cm"><span class="javascript"><span class="hljs-comment">/**
+                         * 调用属性指令，这里可以使用数据改变检测
+                         */</span></span></span><span class="javascript">
+                        </span><span class="nx"><span class="javascript">command</span></span><span class="p"><span class="javascript">[</span></span><span class="nx"><span class="javascript">attr</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">nodeName</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">slice</span></span><span class="p"><span class="javascript">(</span></span><span class="mi"><span class="javascript"><span class="hljs-number">2</span></span></span><span class="p"><span class="javascript">)].</span></span><span class="nx"><span class="javascript">call</span></span><span class="p"><span class="javascript">(</span></span><span class="nx"><span class="javascript">elem</span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">data</span></span><span class="p"><span class="javascript">[</span></span><span class="nx"><span class="javascript">attr</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">nodeValue</span></span><span class="p"><span class="javascript">]);</span></span><span class="javascript">
+                        </span><span class="nx"><span class="javascript">elem</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">command</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">push</span></span><span class="p"><span class="javascript">(</span></span><span class="nx"><span class="javascript">attr</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">nodeName</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">slice</span></span><span class="p"><span class="javascript">(</span></span><span class="mi"><span class="javascript"><span class="hljs-number">2</span></span></span><span class="p"><span class="javascript">));</span></span><span class="javascript">
+                    </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+                </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+            </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+
+        </span><span class="cm"><span class="javascript"><span class="hljs-comment">/**
+         * 设置数据后扫描
+         */</span></span></span><span class="javascript">
+        </span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="javascript"><span class="hljs-function"> </span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-title">mvSet</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-params">key</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">,</span></span></span></span><span class="javascript"><span class="hljs-function"><span class="hljs-params"> </span></span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-params">value</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span>{</span></span><span class="javascript">
+            </span><span class="nx"><span class="javascript">data</span></span><span class="p"><span class="javascript">[</span></span><span class="nx"><span class="javascript">key</span></span><span class="p"><span class="javascript">]</span></span><span class="javascript"> </span><span class="o"><span class="javascript">=</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">value</span></span><span class="p"><span class="javascript">;</span></span><span class="javascript">
+            </span><span class="nx"><span class="javascript">scan</span></span><span class="p"><span class="javascript">();</span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">}</span></span><span class="javascript">
+        </span><span class="cm"><span class="javascript"><span class="hljs-comment">/**
+         * 数据绑定监听
+         */</span></span></span><span class="javascript">
+        </span><span class="nx"><span class="javascript">elems</span></span><span class="p"><span class="javascript">[</span></span><span class="mi"><span class="javascript"><span class="hljs-number">1</span></span></span><span class="p"><span class="javascript">].</span></span><span class="nx"><span class="javascript">addEventListener</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'keyup'</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span><span class="nx"><span class="javascript"><span class="hljs-function"><span class="hljs-params">e</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span>{</span></span><span class="javascript">
+            </span><span class="nx"><span class="javascript">mvSet</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'value'</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="nx"><span class="javascript">e</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">target</span></span><span class="p"><span class="javascript">.</span></span><span class="nx"><span class="javascript">value</span></span><span class="p"><span class="javascript">);</span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">},</span></span><span class="javascript"> </span><span class="kc"><span class="javascript"><span class="hljs-literal">false</span></span></span><span class="p"><span class="javascript">);</span></span><span class="javascript">
+
+        </span><span class="nx"><span class="javascript">scan</span></span><span class="p"><span class="javascript">();</span></span><span class="javascript">
+
+        </span><span class="cm"><span class="javascript"><span class="hljs-comment">/**
+         * 改变数据更新视图
+         */</span></span></span><span class="javascript">
+        </span><span class="nx"><span class="javascript">setTimeout</span></span><span class="p"><span class="javascript">(</span></span><span class="kd"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span><span class="p"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span>{</span></span><span class="javascript">
+            </span><span class="nx"><span class="javascript">mvSet</span></span><span class="p"><span class="javascript">(</span></span><span class="s1"><span class="javascript"><span class="hljs-string">'value'</span></span></span><span class="p"><span class="javascript">,</span></span><span class="javascript"> </span><span class="s1"><span class="javascript"><span class="hljs-string">'fuck'</span></span></span><span class="p"><span class="javascript">);</span></span><span class="javascript">
+        </span><span class="p"><span class="javascript">},</span></span><span class="mi"><span class="javascript"><span class="hljs-number">1000</span></span></span><span class="p"><span class="javascript">)</span></span><span class="javascript">
+
+    </span><span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span>
+
+</code></pre>
+</div>
+
+<h4 id="section-2">2、脏检查机制</h4>
+
+<p>  以典型的mvvm框架angularjs为代表，angular通过检查脏数据来进行UI层的操作更新。关于angular的脏检测，有几点需要了解些：
+- 脏检测机制并不是使用定时检测。
+- 脏检测的时机是在数据发生变化时进行。
+- angular对常用的dom事件，xhr事件等做了封装， 在里面触发进入angular的digest流程。
+- 在digest流程里面， 会从rootscope开始遍历， 检查所有的watcher。
+（关于angular的具体设计可以看其他文档，这里只讨论数据绑定），那我们看下脏检测该如何去做：主要是通过设置的数据来需找与该数据相关的所有元素，然后再比较数据变化，如果变化则进行指令操作</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code class="hljs xml"><span class="cp"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">html</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">lang</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"en"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">charset</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"UTF-8"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span></span>data-binding-drity-check<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span></span>
+
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">input</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-event</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">ng-bind</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">type</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"text"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"input"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">div</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-event</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"text"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">ng-bind</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"el"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span></span><span class="http">
+
+<span class="javascript">    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getElementById</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'el'</span></span></span></span><span class="p"><span class="http"><span class="javascript">),</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getElementById</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'input'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)];</span></span></span><span class="http"><span class="javascript">
+    
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'hello!'</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">};</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">text</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">this</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">innerHTML</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">str</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">this</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">setAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'value'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">str</span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">};</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">scan</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">elems</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+         * 扫描带指令的节点属性
+         */</span></span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{};</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeName</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">indexOf</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'q-event'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&gt;=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+                     * 调用属性指令
+                     */</span></span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'ng-bind'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">||</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">undefined</span></span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+                     * 进行数据初始化
+                     */</span></span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">call</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="p"><span class="http"><span class="javascript">]);</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">]</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 脏循环检测
+     * @param  {[type]} elems [description]
+     * @return {[type]}       [description]
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">digest</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">elems</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+         * 扫描带指令的节点属性
+         */</span></span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeName</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">indexOf</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'q-event'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&gt;=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+                     * 调用属性指令
+                     */</span></span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'ng-bind'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">||</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">undefined</span></span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+
+                    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+                     * 进行脏数据检测，如果数据改变，则重新执行指令，否则跳过
+                     */</span></span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">]</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">!==</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="p"><span class="http"><span class="javascript">]){</span></span></span><span class="http"><span class="javascript">
+
+                        </span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">call</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="p"><span class="http"><span class="javascript">]);</span></span></span><span class="http"><span class="javascript">
+                        </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">]</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">dataKey</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 初始化数据
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="nx"><span class="http"><span class="javascript">scan</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 可以理解为做数据劫持监听
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-title">$digest</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">value</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span>{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">list</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">querySelectorAll</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'[ng-bind='</span></span></span></span><span class="o"><span class="http"><span class="javascript">+</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">+</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">']'</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">digest</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">list</span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 输入框数据绑定监听
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">addEventListener</span></span></span><span class="p"><span class="http"><span class="javascript">){</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">1</span></span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">addEventListener</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'keyup'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">e</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">$digest</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'ng-bind'</span></span></span></span><span class="p"><span class="http"><span class="javascript">));</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">false</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">else</span></span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">1</span></span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">attachEvent</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'onkeyup'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">e</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">$digest</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'ng-bind'</span></span></span></span><span class="p"><span class="http"><span class="javascript">));</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">false</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="nx"><span class="http"><span class="javascript">setTimeout</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'fuck'</span></span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+         * 这里问啥还要执行$digest这里关键的是需要手动调用$digest方法来启动脏检测
+         */</span></span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">$digest</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'value'</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">2000</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span>
+</code></pre>
+</div>
+
+<h4 id="hijacking">3、前端数据劫持(Hijacking)</h4>
+
+<p>  第三种方法则是avalon等框架使用的数据劫持方式。基本思路是使用Object.defineProperty对数据对象做属性get和set的监听，当有数据读取和赋值操作时则调用节点的指令，这样使用最通用的=等号赋值就可以了。具体实现如下：</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code class="hljs xml"><span class="cp"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">html</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">lang</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"en"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">meta</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">charset</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"UTF-8"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span></span>data-binding-hijacking<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span></span>
+
+<span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">input</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-value</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">type</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"text"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"input"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">div</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">q-text</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"value"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attribute">id</span>=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-value">"el"</span></span></span><span class="nt"><span class="hljs-tag">&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+    <span class="nt"><span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span></span><span class="http">
+
+<span class="javascript">
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getElementById</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'el'</span></span></span></span><span class="p"><span class="http"><span class="javascript">),</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">getElementById</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'input'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)];</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'hello!'</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">};</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">text</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">this</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">innerHTML</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">str</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="na"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">str</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">this</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">setAttribute</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'value'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">str</span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">};</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">scan</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+         * 扫描带指令的节点属性
+         */</span></span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">i</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">[];</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">for</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">length</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&lt;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">len1</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="o"><span class="http"><span class="javascript">++</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">attributes</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">j</span></span></span><span class="p"><span class="http"><span class="javascript">];</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeName</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">indexOf</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'q-'</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">&gt;=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">0</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+                     * 调用属性指令
+                     */</span></span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeName</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">slice</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">2</span></span></span></span><span class="p"><span class="http"><span class="javascript">)].</span></span></span><span class="nx"><span class="http"><span class="javascript">call</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeValue</span></span></span><span class="p"><span class="http"><span class="javascript">]);</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">elem</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">command</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">push</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">attr</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">nodeName</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">slice</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">2</span></span></span></span><span class="p"><span class="http"><span class="javascript">));</span></span></span><span class="http"><span class="javascript">
+
+                </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">bValue</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 定义属性设置劫持
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-keyword">var</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">defineGetAndSet</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">obj</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">,</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params"> </span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">propName</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">try</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">Object</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">defineProperty</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">obj</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">propName</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+
+                </span></span><span class="na"><span class="http"><span class="javascript">get</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">return</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">bValue</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="na"><span class="http"><span class="javascript">set</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">newValue</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">bValue</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">newValue</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+                    </span></span><span class="nx"><span class="http"><span class="javascript">scan</span></span></span><span class="p"><span class="http"><span class="javascript">();</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript">
+
+                </span></span><span class="na"><span class="http"><span class="javascript">enumerable</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">true</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript">
+                </span></span><span class="na"><span class="http"><span class="javascript">configurable</span></span></span><span class="p"><span class="http"><span class="javascript">:</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">true</span></span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="p"><span class="http"><span class="javascript">});</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript"> </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">catch</span></span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">error</span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript"> </span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-built_in">console</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">log</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s2"><span class="http"><span class="javascript"><span class="hljs-string">"browser not supported."</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 初始化数据
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="nx"><span class="http"><span class="javascript">scan</span></span></span><span class="p"><span class="http"><span class="javascript">();</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 可以理解为做数据劫持监听
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="nx"><span class="http"><span class="javascript">defineGetAndSet</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'value'</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="cm"><span class="http"><span class="javascript"><span class="hljs-comment">/**
+     * 数据绑定监听
+     */</span></span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">if</span></span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="nb"><span class="http"><span class="javascript"><span class="hljs-built_in">document</span></span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">addEventListener</span></span></span><span class="p"><span class="http"><span class="javascript">){</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">1</span></span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">addEventListener</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'keyup'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">e</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">false</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="k"><span class="http"><span class="javascript"><span class="hljs-keyword">else</span></span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">elems</span></span></span><span class="p"><span class="http"><span class="javascript">[</span></span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">1</span></span></span></span><span class="p"><span class="http"><span class="javascript">].</span></span></span><span class="nx"><span class="http"><span class="javascript">attachEvent</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'onkeyup'</span></span></span></span><span class="p"><span class="http"><span class="javascript">,</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">(</span></span></span></span></span><span class="nx"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">e</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">)</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+            </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="nx"><span class="http"><span class="javascript">e</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">target</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="kc"><span class="http"><span class="javascript"><span class="hljs-literal">false</span></span></span></span><span class="p"><span class="http"><span class="javascript">);</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">}</span></span></span><span class="http"><span class="javascript">
+
+    </span></span><span class="nx"><span class="http"><span class="javascript">setTimeout</span></span></span><span class="p"><span class="http"><span class="javascript">(</span></span></span><span class="kd"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span></span></span><span class="p"><span class="http"><span class="javascript"><span class="hljs-function"><span class="hljs-params">()</span></span></span></span></span><span class="http"><span class="javascript"><span class="hljs-function"> </span></span></span><span class="p"><span class="http"><span class="javascript">{</span></span></span><span class="http"><span class="javascript">
+        </span></span><span class="nx"><span class="http"><span class="javascript">data</span></span></span><span class="p"><span class="http"><span class="javascript">.</span></span></span><span class="nx"><span class="http"><span class="javascript">value</span></span></span><span class="http"><span class="javascript"> </span></span><span class="o"><span class="http"><span class="javascript">=</span></span></span><span class="http"><span class="javascript"> </span></span><span class="s1"><span class="http"><span class="javascript"><span class="hljs-string">'fuck'</span></span></span></span><span class="p"><span class="http"><span class="javascript">;</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="p"><span class="http"><span class="javascript">},</span></span></span><span class="http"><span class="javascript"> </span></span><span class="mi"><span class="http"><span class="javascript"><span class="hljs-number">2000</span></span></span></span><span class="p"><span class="http"><span class="javascript">)</span></span></span><span class="http"><span class="javascript">
+    </span></span><span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></span>
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span>
+
+<span class="nt"><span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span>
+
+</code></pre>
+</div>
+
+<p>  但值得注意的是defineProperty支持IE8以上的浏览器，这里可以使用__<strong>defineGetter</strong>__ 和 <strong>__defineSetter</strong>__ 来做兼容但是浏览器兼容性的原因，直接用defineProperty就可以了。至于IE8浏览器仍需要使用其它方法来做hack。如下代码可以对IE8进行hack，defineProperty支持IE8。例如使用es5-shim.js就可以了。（IE8以下浏览器忽略）</p>
+
+<h4 id="section-3">4、小结</h4>
+<p>  首先这里的例子只是简单的实现，读者可以深入感受三种方式的异同点，复杂的框架也是通过这样的基本思路滚雪球滚大的。</p>
+
+<p><a href="https://github.com/ouvens/demo-file/tree/master/two-ways-binding">演示例子</a></p>
+
+<p>参考：</p>
+
+<p>https://gist.github.com/brettz9/4093766#file_html5_dataset.js
+https://github.com/xufei/blog/issues/10</p>
+
+</article>
+
+
+<div class="tags">
+	<strong>Tags:</strong> <a target="_blank" href="http://jixianqianduan.com/tags/?tag=javascript">javascript</a>,&nbsp;<a target="_blank" href="http://jixianqianduan.com/tags/?tag=%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A">数据双向绑定</a>,&nbsp;<a target="_blank" href="http://jixianqianduan.com/tags/?tag=mvvm">mvvm</a>
+</div>
+
+
+	<script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/github.comment.js"></script>
+	<div class="gc-comments" data-repos="ouvens/ouvens.github.io" data-issues="3">
+	    <div class="gc-comments-title">
+	        评论
+	    <div style="display:inline-block;position:relative;top:0.15em;height:20px;"><iframe style="display:inline;" src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/github-btn.html" frameborder="0" scrolling="0" width="120px" height="20px"></iframe></div></div>
+	    <div class="gc-comments-info">
+	        想在此留下评论，请访问 <a href="https://github.com/ouvens/ouvens.github.io/issues/3">https://github.com/ouvens/ouvens.github.io/issues/3</a> 提交评论
+	    </div>
+	<div class="gc-comments-loading" style="display: none;">Loading</div><div class="gc-comments-item">
+		    <div class="gc-comments-item-hd">
+		        <img class="gc-comments-item-hd-avatar" src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/14261588">
+		        <a href="https://github.com/Cow258" class="gc-comments-item-hd-user">Cow258</a>
+		        <a href="https://github.com/ouvens/ouvens.github.io/issues/3#issuecomment-255603897" class="gc-comments-item-hd-date">2016-10-24 02:07:48</a>
+		    </div>
+		    <div class="gc-comments-item-bd">
+		        <p></p><p>Win10 64 Pro Node.js 6.9.1</p>
+
+<p>1.块级作用域<br>
+第1次 ES5: 21ms,ES6: 12ms<br>
+之後 ES5: 10ms,ES6: 11ms</p>
+
+<p>2.Class<br>
+ES5: 2ms,ES6: 3ms</p>
+
+<p>3.Map<br>
+ES5: 7ms,ES6: 75ms</p>
+
+<p>4.字符串模板<br>
+ES5: 5ms,ES6: 14ms</p><p></p>
+		    </div>
+		</div></div>
+</div>
+</div>
+
+
+    </div>
+    
+<div class="qr-code qr-code-pay" title="加个微信交流交流">
+    <img src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/qr-code-person.jpg" width="200" height="200" alt="公众号">
+    <p>加我赏红包，哈哈哈</p>
+</div>
+
+<div class="qr-code qr-code-wx" title="定期获取更新动态">
+    <img src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/qrcode.jpg" width="200" height="200" alt="公众号">
+    <p>欢迎关注 <strong>极限前端</strong> 公众号</p>
+</div>
+
+
+    
+<footer class="site-footer">
+  <div class="wrapper">
+    <h3 class="footer-heading">极限前端</h3>
+    <div class="site-navigation">
+    	<p><strong>站内</strong></p>
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="http://jixianqianduan.com/about/">关于</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          </li><li class="nav-link"><a href="http://jixianqianduan.com/category/">所有文章</a>
+        
+        
+        
+          </li><li class="nav-link"><a href="http://jixianqianduan.com/tags/">标签分类</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </li></ul>
+    </div>
+    <div class="site-contact">
+    	<p><strong>相关链接</strong></p>
+        <ul class="social-media-list">
+      	<li>
+      		<a href="mailto:ouvenzhang@tencent.com">
+	      		<i class="icon-font i-star"></i>
+	      		<span class="username">ouvenzhang@tencent.com</span>
+      		</a>
+      	</li>
+
+      	
+	      	
+	      	<li>
+	           <a href="https://github.com/ouvens" title="Fork me on GitHub">
+	               <i class="icon-font i-heart"></i>
+	               <span class="username">ouvens</span>
+	           </a>
+	        </li>
+	      	
+      	
+
+      </ul>
+    </div>
+    <div class="site-signature">
+    	<p class="rss-subscribe text"><strong>订阅<a href="http://jixianqianduan.com/feed.xml">via RSS</a></strong></p>
+      <p class="text">极限前端, 极限前端社区, ouven的博客, ouvenzhang的博客, www.jixianqianduan.com, github地址, 前端技术, 讲述前端高效技术与前沿。</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/jquery.min.js"></script>
+
+<script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/highlight.min.js"></script>
+<script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/lightbox.min.js"></script>
+
+<script src="./javascript实现数据双向绑定的三种方式 _ ouvenzhang的博客_files/main.js"></script>
+
+    
+
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="http://jixianqianduan.com/frontend-javascript/2015/11/29/js-data-two-ways-binding.html"><div class="lb-nav"><a class="lb-prev" href="http://jixianqianduan.com/frontend-javascript/2015/11/29/js-data-two-ways-binding.html"></a><a class="lb-next" href="http://jixianqianduan.com/frontend-javascript/2015/11/29/js-data-two-ways-binding.html"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.css88.com/archives/5906/comment-page-1 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="keywords" content="web前端开发, 前端开发工程师, 前端资源, CSS, JavaScript, Ajax, jQuery, html,html5,css3,浏览器兼容, 前端开发工具, 前端招聘, jQuery API, CSS整形和优化工具 , JS压缩工具 , JS格式化工具 , CSS参考手册 ,HTML参考手册">
+    <meta name="description" content="web前端开发，专注前端开发，关注用户体验，关注国内外最新最好的前端开发技术和前端开发资讯的专业博客">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>JSDoc中文文档（翻译） – WEB前端开发        -
+        专注前端开发，关注用户体验</title>
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="http://www.css88.com/xmlrpc.php">
+    <!-- <link href="http://www.css88.com/wp-content/plugins/wp-google-code-prettify-button/js/prettify.css" type="text/css"
+           rel="stylesheet"/>
+     <script type="text/javascript"
+             src="http://www.css88.com/wp-content/plugins/wp-google-code-prettify-button/js/prettify.js"></script>-->
+    <link rel="alternate" type="application/rss+xml" title="WEB前端开发 » Feed" href="http://www.css88.com/feed">
+<link rel="alternate" type="application/rss+xml" title="WEB前端开发 » 评论Feed" href="http://www.css88.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="WEB前端开发 » JSDoc中文文档（翻译）评论Feed" href="http://www.css88.com/archives/5906/feed">
+		<script async="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/analytics.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.css88.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.2"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="wordpress-popular-posts-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/wpp.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/wp-syntax.css" type="text/css" media="all">
+<link rel="stylesheet" id="base-style-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="skeleton-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/skeleton.css" type="text/css" media="all">
+<link rel="stylesheet" id="layout-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/layout.css" type="text/css" media="all">
+<link rel="stylesheet" id="plugin_stylesheet-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/prettify.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/pagenavi-css.css" type="text/css" media="all">
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/jquery.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/prettify.js"></script>
+<link rel="https://api.w.org/" href="http://www.css88.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.css88.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.css88.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.5.2">
+<link rel="canonical" href="http://www.css88.com/archives/5906/comment-page-1#comments">
+<link rel="shortlink" href="http://www.css88.com/?p=5906">
+<link rel="alternate" type="application/json+oembed" href="http://www.css88.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.css88.com%2Farchives%2F5906">
+<link rel="alternate" type="text/xml+oembed" href="http://www.css88.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.css88.com%2Farchives%2F5906&amp;format=xml">
+    <!--[if lt IE 9]>
+    <script src="http://www.css88.com/wp-content/themes/css88-wp/js/modernizr.js" type="text/javascript"></script>
+    <![endif]-->
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		
+</head>
+
+<body class="single single-post postid-5906 single-format-standard custom-background group-blog">
+<div id="page" class="hfeed site">
+    
+    <header id="masthead" class="site-header" role="banner">
+
+        <div class="site-branding clearfix">
+
+            
+            <div class=" branding">
+                                    <h1 class="site-title"><a href="http://www.css88.com/" rel="home">WEB前端开发</a></h1>
+                    <h2 class="site-description"><a href="http://www.css88.com/" rel="home">专注前端开发，关注用户体验</a></h2>
+                            </div>
+            <div class="out_action">
+
+                <!--<a href="http://weibo.com/148246293" target="_blank" class="out_action_link"><span
+                        class="iconfont">&#x3432;</span></a>-->
+                <a href="http://t.qq.com/feiwen8772" target="_blank" class="out_action_link"><span class="iconfont">㐶</span></a>
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=148246293&amp;site=qq&amp;menu=yes" class="out_action_link" target="_blank"><span class="iconfont">㐳</span></a>
+            </div>
+            <!--<div class="banner-con">
+                <a href="http://online.zhufengpeixun.cn/" target="_blank">
+                    <img alt="" id="guangg-top" src="http://css88.b0.upaiyun.com/css88/2016/08/zfpx.png">
+                </a>
+            </div>-->
+            <!-- .container branding-->
+        </div>
+        <!-- .site-branding-->
+
+        <div class=" navmenu">
+            <div class="filter-drop-spacer" style="height: 53px;"></div><nav id="site-navigation" class="main-navigation fix" role="navigation">
+                <h1 class="menu-toggle">Menu</h1>
+                <a class="skip-link screen-reader-text" href="http://www.css88.com/archives/5906/comment-page-1#content">Skip to content</a>
+
+                <div class="menu_navigation clearfix">
+                                        <div class="menu">
+                        <ul class=" nav-menu">
+                            <li class="current_page_item"><a href="http://www.css88.com/">首页</a></li>
+                            <li class="page_item"><a href="http://top.css88.com/" target="_blank">前端头条</a></li>
+                            <li class="page_item page-item-2572"><a href="http://www.css88.com/jqueryapi">jQuery API
+                                    中文文档</a></li>
+                            <li class="page_item page-item-4397"><a href="http://www.miaov.com/2013/download/video_download.html" target="_blank">前端视频教程</a><em></em></li>
+                            <!--<li class="page_item page-item-4397"><a href="http://www.css88.com/nav/"
+                                                                                                target="_blank">前端资源导航</a></li>
+                            <li class="page_item"><a href="http://www.css88.com/imooc/"
+                                                     target="_blank">在线教程</a>
+                            </li>-->
+
+                            <li class="page_item page-item-4397"><a href="http://www.yidengxuetang.com/recruit/" target="_blank">前端精英课程</a><em></em></li>
+                            <li class="page_item page-item-4397"><a href="http://gold.xitu.io/welcome/frontend/?utm_source=css88&amp;utm_medium=navigation&amp;utm_content=ganhuo&amp;utm_campaign=q3_personal" target="_blank">前端干货精选</a><em></em></li>
+                            <li class="page_item page-item-3651"><a href="http://www.css88.com/zhaopin">广告投放</a></li>                         <li class="page_item page-item-3651"><a href="http://mashupcloud.cn/">免费后端云</a><em></em></li>
+                            <li class="page_item page-item-2"><a href="http://www.css88.com/about">关于我</a></li>
+
+                        </ul>
+                    </div>
+                    <!--<div class="out_action">
+
+                        <a href="http://weibo.com/148246293" target="_blank" class="out_action_link"><span
+                                class="iconfont">&#x3432;</span></a>
+
+                    </div>-->
+                </div>
+            </nav>
+            <!-- #site-navigation -->
+        </div>
+        <!-- .container navmenu-->
+
+    </header>
+    <!-- #masthead -->
+
+    <div id="home-page-widgets" style="position: relative;">
+        <div class="container">
+            <div class="container-row">
+
+                <!-- <div class="col-md-12">
+    <div class="alert alert-warning top">The four boxes below are Image Text Widgets that have been added to the <em>Home Page Top Area</em>. Add your own by going to the <a href="http://www.css88.com/wp-admin/widgets.php">Widgets admin page</a> or remove this section completely under the <em>Layout panel</em> on the <a href="http://www.css88.com/wp-admin/customize.php">Theme Options page</a>.</div>
+    </div> 
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a
+                        href="http://www.css88.com/imooc/" target="_blank">
+                        <img id="guangg-logo-01" src="http://css88.b0.upaiyun.com/css88/2014/09/imooc.png" alt="前端免费教程"
+                             class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">前端免费教程</h3>
+
+                        <div class="textwidget">
+                            <p>
+                                慕课网（IMOOC）是学习编程最简单的免费平台。慕课网提供了丰富的移动端开发、php开发、web前端、html5教程以及css3视频教程等课程资源。它富有交互性及趣味性，并且你可以和朋友一起编程。</p>
+                        </div>
+                    </a>
+                </aside>-->
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a href="http://mashupcloud.cn/" target="_blank">
+                        <img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/mashupcloud1.jpg" alt="MASHUPCLOUD 聚云网" class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">私活儿神器</h3>
+
+                        <div class="textwidget">
+                            <p>MASHUPCLOUD 聚云网</p>
+                        </div>
+                    </a>
+                </aside>
+                <!--<aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a
+                        href="http://www.css88.com/book/css/" target="_blank">
+                        <img id="guangg-logo-05" src="http://css88.b0.upaiyun.com/css88/2014/03/css.png" alt=""
+                             class="img-circle aligncenter">
+
+
+                        <h3 class="home-widget-title">CSS参考手册<small>(包含CSS3)</small></h3>
+
+                        <div class="textwidget">
+                            <p>CSS3参考手册 - 最新最全的CSS参考手册，CSS3属性集合，CSS3 Properties, CSS3, CSS3手册, CSS3参考手册</p>
+                        </div>
+                    </a>
+                </aside>-->
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a href="http://www.css88.com/jqapi-1.9/" target="_blank">
+                        <img id="guangg-logo-02" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/jquery.png" alt="" class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">jQuery API中文文档</h3>
+
+                        <div class="textwidget">
+                            <p>适用jQuery 1.0 – jQuery 1.10.2,jQuery 2.0 – jQuery 2.0.3，翻译至官方文档，并且跟随官方文档持续更新。</p>
+                        </div>
+                    </a>
+                </aside>
+
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a href="http://www.yidengxuetang.com/recruit/" target="_blank">
+                        <img id="guangg-logo-03" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/02.jpg" alt="跟牛人学前端" class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">跟牛人学前端</h3>
+
+                        <div class="textwidget">
+                            <p>跟牛人学前端</p>
+                        </div>
+                    </a>
+                </aside>
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a href="http://www.miaov.com/" target="_blank">
+                        <img id="guangg-logo-04" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/logo.jpg" alt="" class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">前端最新课程体系</h3>
+
+                        <div class="textwidget">
+                            <p>妙味课堂2016年JavaScript课程大纲震撼升级、全栈来袭！</p>
+                        </div>
+                    </a>
+                </aside>
+                <!--
+                                                                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a
+                        href="http://www.css88.com/jquery-ui-api/" target="_blank">
+                        <img src="http://css88.b0.upaiyun.com/css88/2014/04/jqueryui.png" alt="jQuery UI API中文文档"
+                             class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">jQuery UI API中文文档</h3>
+
+                        <div class="textwidget">
+                            <p>适用适用jQuery UI 1.10。</p>
+                        </div>
+                    </a>
+                </aside>-->
+                <!-- <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a
+                        href="http://www.css88.com/doc/zeptojs_api/" target="_blank">
+                        <img src="http://css88.b0.upaiyun.com/css88/2014/03/zepto.png" alt=""
+                             class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">zepto.js 中文文档</h3>
+
+                        <div class="textwidget">
+                            <p>Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。 如果你会用jquery，那么你也会用zepto。</p>
+                        </div>
+                    </a>
+                </aside> -->
+
+                <aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a href="http://gold.xitu.io/welcome/frontend/?utm_source=css88&amp;utm_medium=image&amp;utm_content=juejin&amp;utm_campaign=q3_personal" target="_blank">
+                        <img id="guangg-logo-05" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/gold-xitu.png" alt="" class="img-circle aligncenter">
+
+                        <h3 class="home-widget-title">前端最新干货</h3>
+
+                        <div class="textwidget">
+                            <p>前端最新干货</p>
+                        </div>
+                    </a>
+                </aside>
+                <!--<aside class="home-widget col-md-3 bavotasan_custom_text_widget"><a
+                                                        href="https://h5.jianxun.io/20160321-qianlima?utm_source=event&utm_medium=site_ad&utm_campaign=qianlima&utm_content=css88_rightbanner&utm_term=wangzhan"
+                                                        target="_blank">
+                                                        <img src="https://www.jianxun.io/ad/20151101/css88-topbanner.jpg" width="130" height="130"
+                                                             alt=""
+                                                             class="img-circle aligncenter">
+
+                                                        <h3 class="home-widget-title">高端程序员招聘指北</h3>
+                                                    </a>
+                                                </aside>-->
+            </div>
+
+            <div class="container-tool clearfix">
+                <ul class="clearfix">
+                    <!--<li><a href="http://www.css88.com/jqapi-1.9/" target="_blank">jQuery API中文文档</a></li>-->
+                    
+                    <li><a href="http://www.css88.com/book/css/" target="_blank">CSS参考手册<span style="font-size:12px">(包含css3)</span></a></li>
+                    <li><a href="http://www.css88.com/doc/lodash/" target="_blank">lodash中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/sass/" target="_blank">Sass中文文档</a></li>
+                    <li><a href="http://www.css88.com/tool/css3Preview/" target="_blank">CSS3代码生成(演示)</a></li>
+                    <li><a href="http://www.css88.com/jquery-ui-api/" target="_blank">jQuery UI API中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/zeptojs_api/" target="_blank">zepto.js 中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/backbone/" target="_blank">Backbone.js 中文文档</a></li>
+                    <li><a href="http://bootstrap.css88.com/" target="_blank">Bootstrap 中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/underscore/" target="_blank">Underscore.js 中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/less/" target="_blank">Less.js 中文文档</a></li>
+                    <li><a href="http://www.css88.com/doc/jsdoc/index.html" target="_blank">JSDoc中文文档</a></li>
+                    <li><a href="http://www.css88.com/tool/hack/" target="_blank">浏览器HACKS</a></li>
+                    <li><a href="http://www.css88.com/tool/html2js/" target="_blank">HTML 2 JS 工具</a></li>
+                    <li><a href="http://www.css88.com/tool/js_beautify/" target="_blank">Javascript格式化工具</a></li>
+                    <li><a href="http://www.css88.com/tool/csstidy/" target="_blank">CSS整理与优化工具</a></li>
+                    <li><a href="http://www.css88.com/nav/" target="_blank">更多前端资源导航</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="wide contenitor">
+        <div id="content" class="site-content container">
+
+    <div id="primary" class="content-area twelve columns">
+        <main id="main" class="site-main" role="main">
+
+
+            <div class="top-post-link">
+                <a href="http://www.zhinengshe.com/" target="_blank"><img id="guangg-banner-01" alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/CSS88-729X80.jpg"></a>
+            </div>
+            <div class="basebreadcrumb">您的位置：<a href="http://www.css88.com/">首页</a> » 分类: <a href="http://www.css88.com/archives/category/js-and-ria" rel="category tag">JS</a> &amp; <a href="http://www.css88.com/archives/category/develop-message/develop-tool" rel="category tag">前端工具</a> » 文章: JSDoc中文文档（翻译）</div>
+            
+                
+<article id="post-5906" class="post-5906 post type-post status-publish format-standard hentry category-js-and-ria category-develop-tool tag-jsdoc tag-321">
+	<header class="entry-header">
+   
+       <h1 class="entry-title">JSDoc中文文档（翻译）</h1>
+
+		<div class="entry-meta">
+			<span class="posted-on">发表于 <a href="http://www.css88.com/archives/5906" rel="bookmark"><time class="entry-date published" datetime="2016-02-18T16:04:50+00:00">2016年02月18日</time><time class="updated" datetime="2016-02-18T16:05:27+00:00">2016年02月18日</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://www.css88.com/archives/author/admin">愚人码头</a></span></span>    被浏览 11,551 次
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+
+	<p class="top-post-top-link amazeui-link-header"><strong>小编推荐：</strong><a href="http://gold.xitu.io/welcome/frontend/?utm_source=css88&amp;utm_medium=word&amp;utm_content=ganhuo&amp;utm_campaign=q3_personal" target="_blank">掘金</a>是一个高质量的技术社区，从 ECMAScript 6 到 Vue.js，性能优化到开源类库，让你不错过前端开发的每一个技术干货。各大应用市场搜索「掘金」即可下载APP，技术干货尽在掌握..</p>
+	<div class="entry-content">
+    		<p>JSDoc中文文档：<a href="http://www.css88.com/doc/jsdoc/index.html" target="_blank">http://www.css88.com/doc/jsdoc/index.html</a></p>
+<h3>什么是JSDoc</h3>
+<p>JSDoc是一个根据javascript文件中注释信息，生成JavaScript应用程序或库、模块的API文档 的工具。你可以使用他记录如：命名空间，类，方法，方法参数等。类似JavaDoc和PHPDoc。现在很多编辑器或IDE中还可以通过JSDoc直接或使用插件生成智能提示。从而使开发者很容易了解整个类和其中的属性和方法，并且快速知道如何使用，从而提高开发效率，降低维护成本。</p>
+<h3>使用JSDoc</h3>
+<p>JSDoc本质是代码注释，所以使用起来非常方便，但是他有一定的格式和规则，只要了解这些，那么后面的事情，比如生产文档，生成智能提示都可以通过工具来完成。</p>
+<h3>JSDoc注释</h3>
+<p>JSDoc注释一般应该放置在方法或函数声明之前，它必须以/ **开始，以便由JSDoc解析器识别。其他任何以/*，/***或者超过3个星号的注释，都将被JSDoc解析器忽略。例如一下代码：<span id="more-5906"></span></p>
+<pre class="prettyprint lang-js linenums:1 prettyprinted"><ol class="linenums"><li value="1" class="L0"><span class="com">/**</span></li><li class="L1"><span class="com"> * Book类，代表一个书本.</span></li><li class="L2"><span class="com"> * @constructor</span></li><li class="L3"><span class="com"> * @param {string} title - 书本的标题.</span></li><li class="L4"><span class="com"> * @param {string} author - 书本的作者.</span></li><li class="L5"><span class="com"> */</span></li><li class="L6"><span class="kwd">function</span><span class="pln"> </span><span class="typ">Book</span><span class="pun">(</span><span class="pln">title</span><span class="pun">,</span><span class="pln"> author</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></li><li class="L7"><span class="pln">    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">title</span><span class="pun">=</span><span class="pln">title</span><span class="pun">;</span></li><li class="L8"><span class="pln">    </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">author</span><span class="pun">=</span><span class="pln">author</span><span class="pun">;</span></li><li class="L9"><span class="pun">}</span></li><li class="L0"><span class="typ">Book</span><span class="pun">.</span><span class="pln">prototype</span><span class="pun">={</span></li><li class="L1"><span class="pln">    </span><span class="com">/**</span></li><li class="L2"><span class="com">     * 获取书本的标题</span></li><li class="L3"><span class="com">     * @returns {string|*}</span></li><li class="L4"><span class="com">     */</span></li><li class="L5"><span class="pln">    getTitle</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(){</span></li><li class="L6"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">title</span><span class="pun">;</span></li><li class="L7"><span class="pln">    </span><span class="pun">},</span></li><li class="L8"><span class="pln">    </span><span class="com">/**</span></li><li class="L9"><span class="com">     * 设置书本的页数</span></li><li class="L0"><span class="com">     * @param pageNum {number} 页数</span></li><li class="L1"><span class="com">     */</span></li><li class="L2"><span class="pln">    setPageNum</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">pageNum</span><span class="pun">){</span></li><li class="L3"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">pageNum</span><span class="pun">=</span><span class="pln">pageNum</span><span class="pun">;</span></li><li class="L4"><span class="pln">    </span><span class="pun">}</span></li><li class="L5"><span class="pun">};</span></li></ol></pre>
+<h3>JSDoc注释标签</h3>
+<p>看了上面的代码注释是不是一目了然呢，获取你会疑惑上面以@开头的标签是什么意思。<br>
+在JSDoc 注释有一套标准的注释标签，一般以@开头。这里解释一下每个标签的意思。</p>
+<h3>关于别名</h3>
+<p>因为JSDoc也经历好几个版本，所以考虑向后兼容，所以存在别名，另一个方面，别名对于一部分人来说更加直观。<br>
+比如@param有两个别名：</p>
+<p>@arg<br>
+@argument<br>
+关于别名详细说明可以查看上面描述。</p>
+<h3>JSDoc注释标签的使用</h3>
+<p>JSDoc注释标签的使用起来还是比较灵活的，具体请查看JSDoc中文文档：<a href="http://www.css88.com/doc/jsdoc/index.html" target="_blank">http://www.css88.com/doc/jsdoc/index.html</a></p>
+			</div><!-- .entry-content -->
+	<div class="my-wallet">
+
+		<div class="my-wallet-con">
+			<h3>(￥_￥)打赏喝个咖啡<small>期待你的鼓励</small></h3>
+				<div class="my-wallet-con-wrap">
+			<img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/wechat-pay1.png" width="180" class="my-wallet-img" alt="">
+			                <img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/alipay-pay1.png" width="180" class="my-wallet-img" alt=""></div> </div>
+
+	            </div>
+	<div class="top-post-link amazeui-link-header"><a href="http://www.yidengxuetang.com/recruit/" target="_blank"><img class="alignnone size-full" id="guangg-banner-02" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/yideng728-90.jpg" alt="yideng728-90" width="728" height="90"></a></div>
+	<footer class="entry-meta">
+		This entry was posted in <a href="http://www.css88.com/archives/category/js-and-ria" rel="category tag">JS</a>, <a href="http://www.css88.com/archives/category/develop-message/develop-tool" rel="category tag">前端工具</a> and tagged <a href="http://www.css88.com/archives/tag/jsdoc" rel="tag">JSDoc</a>, <a href="http://www.css88.com/archives/tag/%e4%b8%ad%e6%96%87%e6%96%87%e6%a1%a3" rel="tag">中文文档</a>. Bookmark the <a href="http://www.css88.com/archives/5906" rel="bookmark">permalink</a>.
+			</footer><!-- .entry-meta -->
+</article><!-- #post-## -->
+                <div class="related-wrap">       
+                    <div class="related-left">
+
+                        <a href="https://h5.jianxun.io/20160818-jianzisheng/?utm_source=ad&amp;utm_medium=blog_ad&amp;utm_campaign=css88&amp;utm_content=pos_body_bottom&amp;utm_term=jialezhang" target="_blank"><img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/c88300X250@1x.png" style="border-radius:5px;"></a>
+
+                    </div>
+                    <div class="related">
+                        <h3>您可能感兴趣的文章</h3>
+                        <ul class="fixed">
+    <li><span>09-12</span><a href="http://www.css88.com/archives/6245" title="Zepto.js (1.2.0) API 中文文档">Zepto.js (1.2.0) API 中文文档</a></li>
+	    <li><span>08-31</span><a href="http://www.css88.com/archives/6224" title="lodash 中文文档 v4.15.0">lodash 中文文档 v4.15.0</a></li>
+	    <li><span>03-22</span><a href="http://www.css88.com/archives/5944" title="Sass (3.4.21) 中文文档">Sass (3.4.21) 中文文档</a></li>
+	    <li><span>09-19</span><a href="http://www.css88.com/archives/5150" title="Underscore.js 1.7.0  中文文档">Underscore.js 1.7.0  中文文档</a></li>
+	    <li><span>05-12</span><a href="http://www.css88.com/archives/4798" title="[chrome插件]一键打开jQuery API中文文档插件">[chrome插件]一键打开jQuery API中文文档插件</a></li>
+	    <li><span>04-29</span><a href="http://www.css88.com/archives/4737" title="jQuery UI API中文文档">jQuery UI API中文文档</a></li>
+	    <li><span>04-02</span><a href="http://www.css88.com/archives/4566" title="jQuery imgareaselect 插件中文文档">jQuery imgareaselect 插件中文文档</a></li>
+	    <li><span class="en">09-12</span><a href="http://www.css88.com/archives/6236" title="JavaScript中undefined和null的区别">JavaScript中undefined和null的区别</a><small>(0)</small></li>
+	    <li><span class="en">09-10</span><a href="http://www.css88.com/archives/6233" title="NodeList.js – 跟jQuery一样简单的使用原生 DOM APIs">NodeList.js – 跟jQuery一样简单的使用原生 DOM APIs</a><small>(0)</small></li>
+	    <li><span class="en">09-10</span><a href="http://www.css88.com/archives/6228" title="JS判断浏览器iOS（iPhone）、Android手机移动端">JS判断浏览器iOS（iPhone）、Android手机移动端</a><small>(1)</small></li>
+	</ul>                    </div>
+
+                </div>
+                <div class="share clearfix">
+                    <div style="padding:5px 10px">
+                        <script type="text/javascript" charset="utf-8">
+                            (function () {
+                                var _w = 142 , _h = 32;
+                                var param = {
+                                    url: location.href,
+                                    type: '4',
+                                    count: '', /**是否显示分享数，1显示(可选)*/
+                                    appkey: '', /**您申请的应用appkey,显示分享来源(可选)*/
+                                    title: document.title, /**分享的文字内容(可选，默认为所在页面的title)*/
+                                    pic: '', /**分享图片的路径(可选)*/
+                                    ralateUid: '', /**关联用户的UID，分享微博会@该用户(可选)*/
+                                    rnd: new Date().valueOf()
+                                }
+                                var temp = [];
+                                for (var p in param) {
+                                    temp.push(p + '=' + encodeURIComponent(param[p] || ''))
+                                }
+                                document.write('<iframe allowTransparency="true" style="float:left; vertical-align: middle;" frameborder="0" scrolling="no" src="http://hits.sinajs.cn/A1/weiboshare.html?' + temp.join('&') + '" width="' + _w + '" height="' + _h + '"></iframe>')
+                            })()
+                        </script><iframe allowtransparency="true" style="float:left; vertical-align: middle;" frameborder="0" scrolling="no" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/weiboshare.html" width="142" height="32"></iframe>
+                        <a href="javascript:void(0)" onclick="postToWb();" class="tmblog" style="float:left;margin-left:15px;vertical-align: middle;"><img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/b32.png"></a>
+                        <script type="text/javascript">
+                            function postToWb() {
+                                var _t = encodeURI(document.title);
+                                var _url = encodeURIComponent(document.location);
+                                var _appkey = encodeURI("appkey");//你从腾讯获得的appkey
+                                var _pic = encodeURI('');//（例如：var _pic='图片url1|图片url2|图片url3....）
+                                var _site = '';//你的网站地址
+                                var _u = 'http://v.t.qq.com/share/share.php?title=' + _t + '&url=' + _url + '&appkey=' + _appkey + '&site=' + _site + '&pic=' + _pic;
+                                window.open(_u, '转播到腾讯微博', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+                            }
+                        </script>
+                        <!-- 将以下代码放在<head>之后或者</body>标签之前。 -->
+
+
+                        <!-- 请将以下代码放在您希望呈现 +1 按钮的位置。 -->
+                        <g:plusone></g:plusone>
+                    </div>
+                </div><!--end share-->
+                	<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="http://www.css88.com/archives/5902" rel="prev"><span class="meta-nav">←</span> Sublime Text 3常用快捷键</a></div><div class="nav-next"><a href="http://www.css88.com/archives/5916" rel="next">JavaScript中的继承方式 <span class="meta-nav">→</span></a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+                
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			3 thoughts on “<span>JSDoc中文文档（翻译）</span>”		</h2>
+
+		
+		<ol class="comment-list">
+					<li id="comment-211262" class="comment even thread-even depth-1">
+			<article id="div-comment-211262" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/07f8b54cd12de40c77b9916648b6fbf7" srcset="https://secure.gravatar.com/avatar/07f8b54cd12de40c77b9916648b6fbf7?s=64&amp;d=mm&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn"><a href="http://javake.cn/" rel="external nofollow" class="url">星情</a></b><span class="says">说道：</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.css88.com/archives/5906/comment-page-1#comment-211262">
+							<time datetime="2016-02-18T17:36:08+00:00">
+								2016年02月18日 17:36							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>翻译得挺好的，赞！</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-213269" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-213269" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/125887f8c69124812af871ba7c0084e8" srcset="https://secure.gravatar.com/avatar/125887f8c69124812af871ba7c0084e8?s=64&amp;d=mm&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn"><a href="http://www.lovetutu.cn/" rel="external nofollow" class="url">兔兔的奶爸</a></b><span class="says">说道：</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.css88.com/archives/5906/comment-page-1#comment-213269">
+							<time datetime="2016-02-29T10:33:51+00:00">
+								2016年02月29日 10:33							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p><a href="http://usejsdoc.org/" rel="nofollow">http://usejsdoc.org/</a> 这个网站有详细的使用文档</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-213723" class="comment even thread-even depth-1">
+			<article id="div-comment-213723" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/4723f29c633fe2ce2238c45b5ba23adb" srcset="https://secure.gravatar.com/avatar/4723f29c633fe2ce2238c45b5ba23adb?s=64&amp;d=mm&amp;r=g 2x" class="avatar avatar-32 photo" height="32" width="32">						<b class="fn"><a href="http://www.jiangweishan.com/" rel="external nofollow" class="url">Web前端之家</a></b><span class="says">说道：</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="http://www.css88.com/archives/5906/comment-page-1#comment-213723">
+							<time datetime="2016-03-01T13:47:37+00:00">
+								2016年03月1日 13:47							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>这个收藏下了</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+		
+	
+	
+					<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.css88.com/archives/5906/comment-page-1#respond" style="display:none;">取消回复</a></small></h3>				<form action="http://www.css88.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+					<p class="comment-notes"><span id="email-notes">电子邮件地址不会被公开。</span> 必填项已用<span class="required">*</span>标注</p><p class="comment-form-comment"><label for="comment">评论</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">姓名 <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
+<p class="comment-form-email"><label for="email">电子邮件 <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required="true" required="required"></p>
+<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="发表评论"> <input type="hidden" name="comment_post_ID" value="5906" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="87deab87d8"></p><p style="display: none;"></p>				<input type="hidden" id="ak_js" name="ak_js" value="1474619832291"></form>
+					</div><!-- #respond -->
+		
+</div><!-- #comments -->
+
+            
+        </main>
+        <!-- #main -->
+    </div><!-- #primary -->
+
+<div id="secondary" class="widget-area four columns" role="complementary">
+    
+
+    <aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://www.css88.com/">
+				<label>
+					<span class="screen-reader-text">搜索：</span>
+					<input type="search" class="search-field" placeholder="搜索…" value="" name="s">
+				</label>
+				<input type="submit" class="search-submit" value="搜索">
+			</form></aside><aside id="text-3" class="widget widget_text">			<div class="textwidget"><div style="text-align: center;">
+<a href="https://h5.jianxun.io/20160818-jianzisheng/?utm_source=ad&amp;utm_medium=blog_ad&amp;utm_campaign=css88&amp;utm_content=pos_right&amp;utm_term=jialezhang" target="_blank" style="margin-top:10px"><img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/c88250X120@1x.png" style="width: 100%;border-radius:5px;"></a>
+<a href="http://www.zhinengshe.com/" target="_blank" style="margin-top:10px"><img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/zns-t.jpg" style="width: 100%;border-radius:5px;"></a>
+
+
+<!--<a href="http://100offer.com/join/css88?utm_source=css88&utm_medium=dis&utm_campaign=css88" target="_blank"><img alt="" src="http://css88.b0.upaiyun.com/css88/2015/09/250x120.png" style="width: 100%;border-radius:5px;"/>
+<a href="http://j.jikexueyuan.com/train/webdeveloper?hmsr=css88_ba_jiuye_web_0504" target="_blank"  style="margin-top:10px" ><img alt="" src="http://css88.b0.upaiyun.com/css88/2016/05/geek-css88-250x120-0504.jpg" style="width: 100%;border-radius:5px;"/></a>
+<a href="http://web.wuxianedu.com/yideng/" target="_blank"  style="margin-top:10px" ><img alt="" src="http://css88.b0.upaiyun.com/css88/2016/05/banner06.png" style="width: 100%;border-radius:5px;"/></a>-->
+<!--<div>
+<script type="text/javascript">
+    /*site-right-1*/
+    var cpro_id = "u2376946";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+<a style="margin-top:10px" href="http://www.liepin.com/event/landingpage/lp1.shtml?mscid=css_88_1" target="_blank"><img alt="" src="http://css88.b0.upaiyun.com/css88/2015/06/liepin-250_120.jpg" style="width: 250px;border-radius:5px; height: 120px;"/></a>
+<a href="http://www.liepin.com/event/landingpage/lp1.shtml?mscid=css_88_1" target="_blank"><img alt="" src="http://css88.b0.upaiyun.com/css88/2014/09/250×250.jpg" style="width: 250px;border-radius:5px; height: 250px;"/></a>-->
+
+</div>
+		</div></aside><aside id="text-5" class="widget widget_text">			<div class="textwidget"><!--<div id="lagouBox" style="height:368px">
+<script type="text/javascript" src="http://api.lagou.com/js/cooperation/css88.min.js"></script>
+--></div>
+		</aside><aside id="categories-4" class="widget widget_categories"><h3 class="widget-title">分类目录</h3>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://www.css88.com/archives/category/xhtmlcss" title="(x)html+css">html+css</a>
+<ul class="children">
+	<li class="cat-item cat-item-183"><a href="http://www.css88.com/archives/category/xhtmlcss/html5css3">html5+css3</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.css88.com/archives/category/js-and-ria" title="JS与RIA">JS</a>
+<ul class="children">
+	<li class="cat-item cat-item-228"><a href="http://www.css88.com/archives/category/js-and-ria/jq">jQuery</a>
+</li>
+	<li class="cat-item cat-item-428"><a href="http://www.css88.com/archives/category/js-and-ria/react">React</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.css88.com/archives/category/develop-message">前端资源</a>
+<ul class="children">
+	<li class="cat-item cat-item-6"><a href="http://www.css88.com/archives/category/develop-message/develop-tool">前端工具</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="http://www.css88.com/archives/category/develop-message/recruitment" title="前端招聘">前端招聘</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.css88.com/archives/category/develop-message/noneclass">杂谈</a>
+</li>
+	<li class="cat-item cat-item-114"><a href="http://www.css88.com/archives/category/develop-message/magazine" title="前端志">前端日报</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.css88.com/archives/category/develop-message/resource">开发资源</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.css88.com/archives/category/develop-message/design">设计素材</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-303"><a href="http://www.css88.com/archives/category/node-js">Node.js</a>
+</li>
+	<li class="cat-item cat-item-307"><a href="http://www.css88.com/archives/category/%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae">开源项目</a>
+</li>
+		</ul>
+</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">近期评论</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">猜猜我是谁</span>发表在《<a href="http://www.css88.com/archives/6190/comment-page-1#comment-273871">前端开发装逼手册</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href="http://www.css88.com/" rel="external nofollow" class="url">愚人码头</a></span>发表在《<a href="http://www.css88.com/archives/6245/comment-page-1#comment-273402">Zepto.js (1.2.0) API 中文文档</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href="http://www.jiangweishan.com/" rel="external nofollow" class="url">Web前端之家</a></span>发表在《<a href="http://www.css88.com/archives/6245/comment-page-1#comment-273191">Zepto.js (1.2.0) API 中文文档</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href="http://www.css88.com/" rel="external nofollow" class="url">愚人码头</a></span>发表在《<a href="http://www.css88.com/archives/5180/comment-page-1#comment-273116">javascript常用方法函数收集</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href="http://www.huangxiaolong.net/" rel="external nofollow" class="url">小龙lo</a></span>发表在《<a href="http://www.css88.com/archives/5180/comment-page-1#comment-273078">javascript常用方法函数收集</a>》</li></ul></aside><aside id="tag_cloud-4" class="widget widget_tag_cloud"><h3 class="widget-title">标签</h3><div class="tagcloud"><a href="http://www.css88.com/archives/tag/%e4%b8%ad%e6%96%87%e6%96%87%e6%a1%a3" class="tag-link-321 tag-link-position-1" title="8个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">中文文档</a>
+<a href="http://www.css88.com/archives/tag/html5" class="tag-link-195 tag-link-position-2" title="8个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">HTML5</a>
+<a href="http://www.css88.com/archives/tag/chrome" class="tag-link-167 tag-link-position-3" title="5个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F96; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Chrome</a>
+<a href="http://www.css88.com/archives/tag/%e8%b0%83%e8%af%95" class="tag-link-13 tag-link-position-4" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">调试</a>
+<a href="http://www.css88.com/archives/tag/viewport" class="tag-link-492 tag-link-position-5" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6CC; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">viewport</a>
+<a href="http://www.css88.com/archives/tag/ietester" class="tag-link-15 tag-link-position-6" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">ieTester</a>
+<a href="http://www.css88.com/archives/tag/haslayout" class="tag-link-85 tag-link-position-7" title="5个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F96; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">hasLayout</a>
+<a href="http://www.css88.com/archives/tag/jquery%e5%85%a5%e9%97%a8" class="tag-link-120 tag-link-position-8" title="6个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jQuery入门</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af" class="tag-link-218 tag-link-position-9" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #B0D686; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端</a>
+<a href="http://www.css88.com/archives/tag/javascript" class="tag-link-39 tag-link-position-10" title="30个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">JavaScript</a>
+<a href="http://www.css88.com/archives/tag/jquery" class="tag-link-32 tag-link-position-11" title="51个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #B0D686; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jquery</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af%e5%bc%80%e5%8f%91%e5%b7%a5%e7%a8%8b%e5%b8%88" class="tag-link-62 tag-link-position-12" title="6个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端开发工程师</a>
+<a href="http://www.css88.com/archives/tag/css-sprites" class="tag-link-30 tag-link-position-13" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">css Sprites</a>
+<a href="http://www.css88.com/archives/tag/jquery%e6%8f%92%e4%bb%b6" class="tag-link-98 tag-link-position-14" title="26个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jQuery插件</a>
+<a href="http://www.css88.com/archives/tag/css-hack" class="tag-link-71 tag-link-position-15" title="6个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">css hack</a>
+<a href="http://www.css88.com/archives/tag/webkit" class="tag-link-203 tag-link-position-16" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #B0D686; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">WebKit</a>
+<a href="http://www.css88.com/archives/tag/png" class="tag-link-49 tag-link-position-17" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #B0D686; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">PNG</a>
+<a href="http://www.css88.com/archives/tag/node-js" class="tag-link-457 tag-link-position-18" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Node.js</a>
+<a href="http://www.css88.com/archives/tag/jquery-api" class="tag-link-234 tag-link-position-19" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jQuery API</a>
+<a href="http://www.css88.com/archives/tag/sass" class="tag-link-465 tag-link-position-20" title="5个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Sass</a>
+<a href="http://www.css88.com/archives/tag/api" class="tag-link-354 tag-link-position-21" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">API</a>
+<a href="http://www.css88.com/archives/tag/ie8" class="tag-link-22 tag-link-position-22" title="5个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">IE8</a>
+<a href="http://www.css88.com/archives/tag/ie6" class="tag-link-90 tag-link-position-23" title="5个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">IE6</a>
+<a href="http://www.css88.com/archives/tag/react" class="tag-link-458 tag-link-position-24" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">React</a>
+<a href="http://www.css88.com/archives/tag/meta" class="tag-link-23 tag-link-position-25" title="2个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">meta</a>
+<a href="http://www.css88.com/archives/tag/border-radius" class="tag-link-179 tag-link-position-26" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">border-radius</a>
+<a href="http://www.css88.com/archives/tag/ajax" class="tag-link-65 tag-link-position-27" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Ajax</a>
+<a href="http://www.css88.com/archives/tag/css" class="tag-link-20 tag-link-position-28" title="23个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F96; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">css</a>
+<a href="http://www.css88.com/archives/tag/css3" class="tag-link-174 tag-link-position-29" title="29个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F96; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">css3</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af%e5%bc%80%e5%8f%91%e5%b7%a5%e5%85%b7" class="tag-link-24 tag-link-position-30" title="24个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端开发工具</a>
+<a href="http://www.css88.com/archives/tag/underscore-js" class="tag-link-350 tag-link-position-31" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Underscore.js</a>
+<a href="http://www.css88.com/archives/tag/github" class="tag-link-308 tag-link-position-32" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">github</a>
+<a href="http://www.css88.com/archives/tag/%e5%8a%a8%e7%94%bb" class="tag-link-204 tag-link-position-33" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #B0D686; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">动画</a>
+<a href="http://www.css88.com/archives/tag/recruitment" class="tag-link-456 tag-link-position-34" title="24个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端招聘</a>
+<a href="http://www.css88.com/archives/tag/jquery%e9%80%89%e6%8b%a9%e5%99%a8" class="tag-link-122 tag-link-position-35" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #37A7FF; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jQuery选择器</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af%e5%bc%80%e5%8f%91" class="tag-link-53 tag-link-position-36" title="9个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端开发</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af%e7%bc%96%e7%a0%81%e8%a7%84%e8%8c%83" class="tag-link-422 tag-link-position-37" title="4个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端编码规范</a>
+<a href="http://www.css88.com/archives/tag/%e6%8f%92%e4%bb%b6" class="tag-link-33 tag-link-position-38" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #E6CC6E; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">插件</a>
+<a href="http://www.css88.com/archives/tag/console" class="tag-link-337 tag-link-position-39" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #C9C; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">console</a>
+<a href="http://www.css88.com/archives/tag/ie6-bug" class="tag-link-45 tag-link-position-40" title="15个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6CC; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">IE6 BUG</a>
+<a href="http://www.css88.com/archives/tag/jquery%e7%82%b9%e6%bb%b4" class="tag-link-227 tag-link-position-41" title="6个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">jQuery点滴</a>
+<a href="http://www.css88.com/archives/tag/%e5%bc%80%e5%8f%91%e4%ba%ba%e5%91%98%e5%b7%a5%e5%85%b7" class="tag-link-41 tag-link-position-42" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">开发人员工具</a>
+<a href="http://www.css88.com/archives/tag/%e5%89%8d%e7%ab%af%e5%90%8d%e8%a8%80%e8%b6%a3%e8%a8%80" class="tag-link-117 tag-link-position-43" title="3个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #6C9; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">前端名言趣言</a>
+<a href="http://www.css88.com/archives/tag/%e6%8b%9b%e8%81%98" class="tag-link-16 tag-link-position-44" title="20个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F99; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">招聘</a>
+<a href="http://www.css88.com/archives/tag/underscore" class="tag-link-297 tag-link-position-45" title="6个话题" style="display: inline-block;font-size: 14px; *display: inline; *zoom: 1; color: #fff; padding: 1px 5px; margin: 0 5px 5px 0; background-color: #F96; border-radius: 3px; -webkit-transition: background-color .4s linear; -moz-transition: background-color .4s linear; transition: background-color .4s linear;">Underscore</a></div>
+</aside>    <div class="widget_fix" style="position: static;">
+        <aside id="text-4" class="widget widget_text">			<div class="textwidget"><!-- <aside id="adsbygoogle1" class="widget"><script type="text/javascript">
+    /*site-right-fixed*/
+    var cpro_id = "u2376952";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+-->
+<a href="http://www.zhinengshe.com/" target="_blank" style="margin-top:10px"><img alt="" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/zns-b.jpg" style="width: 100%;border-radius:5px;"></a></div>
+		</aside>        <aside class="widget widget_text">
+            <div class="textwidget"><h3>近期最热文章</h3>
+                <ul>
+                    <li><a href="http://www.css88.com/archives/6228" title="JS判断浏览器iOS（iPhone）、Android手机移动端">JS判断浏览器iOS（iPhone）、Android手机移动端</a> - <span style="font-size:12px">1,549</span></li><li><a href="http://www.css88.com/archives/6224" title="lodash 中文文档 v4.15.0">lodash 中文文档 v4.15.0</a> - <span style="font-size:12px">1,522</span></li><li><a href="http://www.css88.com/archives/6236" title="JavaScript中undefined和null的区别">JavaScript中undefined和null的区别</a> - <span style="font-size:12px">1,440</span></li><li><a href="http://www.css88.com/archives/6245" title="Zepto.js (1.2.0) API 中文文档">Zepto.js (1.2.0) API 中文文档</a> - <span style="font-size:12px">1,396</span></li><li><a href="http://www.css88.com/archives/6233" title="NodeList.js – 跟jQuery一样简单的使用原生 DOM APIs">NodeList.js – 跟jQuery一样简单的使用原生 DOM APIs</a> - <span style="font-size:12px">954</span></li><li><a href="http://www.css88.com/archives/6256" title=":target 伪类使用技巧">:target 伪类使用技巧</a> - <span style="font-size:12px">733</span></li>                </ul>  </div>
+        		</aside>
+
+    </div>
+</div><!-- #secondary -->
+
+</div><!-- #content -->
+</div><!-- wide contenitor-->
+<footer id="colophon" class="site-footer" role="contentinfo">
+    <div class="widget-footer container">
+        
+    </div>
+    <!-- .widget-footer -->
+    <div class="site-info">
+        © 2016 <a href="http://www.css88.com/" target="_blank" title="WEB前端开发">
+            WEB前端开发        </a>
+        <span class="sep"> | </span>
+
+        Powered by <a href="http://wordpress.org/" rel="generator">
+            WordPress</a>    <span class="sep"> | </span>      <a href="http://www.upyun.com/?md=css88" target="_blank">  <img alt="本站静态文件存储由UPYUN提供" width="50" style=" vertical-align:middle; " src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/upyun_logo.png"> 本站静态文件存储由UPYUN提供</a>
+    </div>
+    <div style=" text-align: center; padding:20px 0;">
+        		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33011002011108"><img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/beian-gov-cn.png" style="vertical-align: middle;">浙公网安备
+                            33011002011108号</a> | 浙ICP备14026063号
+    </div>
+    <!-- .site-info -->
+</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/form.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/www.css88.com\/wp-admin\/admin-ajax.php","post_id":"5906"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/postviews-cache.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/navigation.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/skip-link-focus-fix.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/sticky-nav.js"></script>
+<script type="text/javascript" src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/wp-embed.min.js"></script>
+<script src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/jquery.fixbox_original.js"></script>
+<script type="text/javascript">
+    jQuery(".widget_fix").fixbox({
+        isFixdeHeight: false,
+        distanceToTop:80,
+        distanceToBottom: 100,
+        threshold: 0,
+        isFixdeDocHeight: false});
+    //运行示例
+    (function () {
+            var example =jQuery('#example'),
+                content = example.find('textarea').val(),
+                btnRun = example.find('.g-btn-sure');
+
+            if (example.length) {
+
+                //运行代码
+
+                    btnRun.on({
+                        click: function (e) {
+                            e.preventDefault();
+                            var codeWin = window.open();
+                            codeWin.document.write(content);
+                            codeWin.document.close();
+                        }
+                    });
+
+            }
+        })();
+</script>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-3448069-1', 'css88.com');
+    ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff8be45191941378fa9c93900b0d0be23' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/h.js" type="text/javascript"></script>
+<style>
+        .cry-face-dia {  width: 100%;  height: 100%;  position: fixed;  display: none;  background-color: rgba(51, 51, 51, 0.3);     top: 0; }
+        .cry-face-con {  height: 580px;  width: 646px;  position: absolute;  top: 50%;  margin-top: -310px;  left: 50%;  margin-left: -343px;  padding: 20px;  border-radius: 5px;  background-color: #E5E5E5;}
+        .cry-face-con-close {  position: absolute;  top: 10px;  right: 10px;}
+    </style>
+<div class="cry-face-dia" id="cry-face-dia">
+    <div class="cry-face-con"><img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/donotblock.png" height="580" width="646" alt="本站依靠外链和广告维持，请勿屏蔽，万分感谢！">
+        <div class="cry-face-con-close">
+            <a href="javascript:void 0;" title="关闭" id="cry-face-con-close"><img src="./JSDoc中文文档（翻译） – WEB前端开发 - 专注前端开发，关注用户体验_files/donotblock-close.png" alt=""></a></div>
+    </div>
+</div>
+<script>
+    var isWebkit = function() {
+    return document.body.style.WebkitBoxShadow !== undefined;
+    };
+
+    var browser={
+        versions:function(){
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+                iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+                qq: u.match(/\sQQ/i) == " qq" //是否QQ
+            };
+        }(),
+        language:(navigator.browserLanguage || navigator.language).toLowerCase()
+    } ;
+
+      window.addEventListener('load', function (event) {
+        setTimeout(function () {
+           if(browser.versions.mobile||browser.versions.android||browser.versions.ios){
+               return
+           }
+            if(browser.versions.webKit){cryFace();}
+        }, 4000);
+      });
+    function cryFace(){
+
+        if(jQuery("#guangg-banner-01").is(":hidden")||jQuery("#guangg-banner-02").is(":hidden")||jQuery("#guangg-top").is(":hidden")||jQuery("#guangg-logo-02").is(":hidden")){
+            jQuery("#cry-face-dia").show();
+        }
+        jQuery("#cry-face-con-close").click(function (e) {
+            jQuery("#cry-face-dia").hide();
+        });
+
+    }
+</script>
+
+</body></html>

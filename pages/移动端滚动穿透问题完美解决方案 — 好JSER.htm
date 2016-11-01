@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://hao.jser.com/archive/10642/ -->
+<html class="no-js" lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>移动端滚动穿透问题完美解决方案 — 好JSER</title>
+  	<!--[if lt IE 9]>
+  	<script src="http://7xaw6e.com1.z0.glb.clouddn.com/wp-content/themes/alexis/js/html5.js"></script>
+  	<![endif]-->
+	<link rel="stylesheet" id="wp-pagenavi-css" href="./移动端滚动穿透问题完美解决方案 — 好JSER_files/pagenavi-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="alexis-style-css" href="./移动端滚动穿透问题完美解决方案 — 好JSER_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="fontawesome-css" href="./移动端滚动穿透问题完美解决方案 — 好JSER_files/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="./移动端滚动穿透问题完美解决方案 — 好JSER_files/css" type="text/css" media="all">
+<script async="" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/analytics.js"></script><script type="text/javascript">
+var duoshuoQuery = {"short_name":"haojser","sso":{"login":"http:\/\/hao.jser.com\/wp-login.php?action=duoshuo_login","logout":"http:\/\/hao.jser.com\/wp-login.php?action=logout&_wpnonce=0d4155efa1"},"theme":"default","stylePatch":"wordpress\/Alexis"};
+duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+</script>
+<script type="text/javascript" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/embed.js" charset="UTF-8" async="async"></script>
+<script type="text/javascript" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/jquery.min.js"></script>
+<script type="text/javascript" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/jquery-migrate.min.js"></script>
+<link rel="prev" title="[译]开始对Angular App进行单元测试（1）" href="http://hao.jser.com/archive/10641/">
+<link rel="next" title="javascript中的数组" href="http://hao.jser.com/archive/10644/">
+<link rel="canonical" href="http://hao.jser.com/archive/10642/">
+<link rel="shortlink" href="http://hao.jser.com/?p=10642">
+	<!--custom CSS--> 
+	<style type="text/css">	    	    	  
+		.header, 
+		.menu .menu-item  a,
+		.menu .menu-item a:hover,
+		.sub-item .menu-item a,  
+		.sub-item .menu-item a:hover, 
+		.menu-click:hover, 
+		.label.right,
+		input[type="submit"] { 
+			background-color: #3683c5; 
+		}
+
+		.header a { 
+			color: #fff; 
+		}
+		
+		a,
+		a:hover,
+		.widget_categories li, 
+		.widget_archive li { 
+			color: #3683c5; 
+		}
+
+		.pagination a, 
+		.entry-tags a, 
+		input[type="submit"]:hover { 
+			color: #3683c5!important; 
+		}
+
+		.pagination a, 
+		.pagination a:hover,  
+		.entry-tags a, 
+		.comment-reply-link,  
+		a:hover[class^='tag-link-'],
+		input[type="submit"], 
+		input[type="submit"]:hover { 
+			border:1px solid #3683c5; 
+		}
+
+		.pagination a:hover, 
+		.entry-tags a:hover, 
+		.comment-reply-link:hover { 
+			background-color: #3683c5!important; 
+			color: #fff!important;   
+		}
+
+		blockquote { 
+			border-left: 2px solid #3683c5; 
+		}
+
+		input[type="submit"]:hover { 
+			background: transparent!important; 
+		}
+
+		.menu-click:hover { 
+			border-top:1px solid rgba(255,255,255,0.2); 
+		}	
+		
+		::selection {
+    		background-color:#3683c5;
+
+		}
+		::-moz-selection {
+    		background-color:#3683c5;
+		}
+	</style>
+	<!--/custom CSS-->
+      <link type="text/css" rel="stylesheet" href="./移动端滚动穿透问题完美解决方案 — 好JSER_files/embed.default.css"></head>
+<body class="single single-post postid-10642 single-format-standard">
+	<!--start:NAVIGATION -->
+	<header class="header">
+		<div class="logo">
+			<h1><a href="http://hao.jser.com/" title="好JSER">好JSER</a></h1>
+		</div>
+		<a class="hamburger" href="http://hao.jser.com/archive/10642/#menu"><i class="fa fa-bars"></i></a>
+		<nav class="menu" role="navigation">
+			<ul class="menu-list"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4953"><a href="http://hao.jser.com/">首页</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-4955"><a href="http://hao.jser.com/category/uncategorized/">未分类</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4956"><a href="http://hao.jser.com/category/jquery/">jQuery专栏</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4957"><a href="http://hao.jser.com/category/js-basis/">javascript基础知识</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4958"><a href="http://hao.jser.com/category/js-advance/">javascript进阶知识</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4959"><a href="http://hao.jser.com/category/os-libs/">开源库类</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4999"><a href="http://hao.jser.com/category/nodejs/">node.js</a></li>
+</ul>		</nav>
+	</header>
+	<!--end: NAVIGATION -->		
+	<!--start:CONTAINER -->
+	<div class="container">		<div class="row" role="main">
+			<div class="col-8">
+							
+								<article class="post-10642 post type-post status-publish format-standard hentry category-uncategorized" id="post-10642">
+					<h1 class="entry-title">移动端滚动穿透问题完美解决方案</h1>
+					<p class="entry-meta">2016年6月2日 / by <a href="http://hao.jser.com/author/segmentfault/" title="由segmentfault发布" rel="author">segmentfault</a></p>
+					<hr>
+					<div class="entry-content">
+						<h2>问题</h2>
+<p>众所周知，移动端当有 fixed 遮罩背景和弹出层时，在屏幕上滑动能够滑动背景下面的内容，这就是著名的滚动穿透问题</p>
+<p>之前搜索了一圈，找到下面两种方案<br>&lt;!– more –&gt;</p>
+<h2>css 之 <code>overflow: hidden</code><br>
+</h2>
+<pre><code>.modal-open {
+  &amp;, body {
+    overflow: hidden;
+    height: 100%;
+  }
+}</code></pre>
+<p>页面弹出层上将 <code>.modal-open</code> 添加到 html 上，禁用 html 和 body 的滚动条<br>但是这个方案有两个缺点：</p>
+<ul>
+<li>
+<p>由于 html 和 body的滚动条都被禁用，弹出层后页面的滚动位置会丢失，需要用 js 来还原</p>
+</li>
+<li>
+<p>页面的背景还是能够有滚的动的效果</p>
+</li>
+</ul>
+<h2>js 之 touchmove + preventDefault</h2>
+<pre><code>modal.addEventListener('touchmove', function(e) {
+  e.preventDefault();
+}, false);</code></pre>
+<p>这样用 js 阻止滚动后看起来效果不错了，但是也有一个缺点：</p>
+<ul>
+<li>
+<p>弹出层里不能有其它需要滚动的内容（如大段文字需要固定高度，显示滚动条也会被阻止）</p>
+</li>
+</ul>
+<p>上面两个方案都有缺点，今天用英文关键字 google 了一下，才发现原来还有更好的方案</p>
+<h2>解决方案 <code>position: fixed</code><br>
+</h2>
+<pre><code>body.modal-open {
+    position: fixed;
+    width: 100%;
+}</code></pre>
+<p>如果只是上面的 css，滚动条的位置同样会丢失<br>所以如果需要保持滚动条的位置需要用 js 保存滚动条位置关闭的时候还原滚动位置<br>这样上面3个缺点都解决了，至此滚动穿透就<strong>完美解决</strong>了</p>
+<p><a href="http://uedsky.com/demo/modal-scroll.html">完整的示例</a></p>
+<h2>参考</h2>
+<ul>
+<li>
+<p><a href="https://github.com/twbs/bootstrap/issues/15852">https://github.com/twbs/bootstrap/issues/15852</a></p>
+</li>
+<li>
+<p><a href="https://github.com/mathiasbynens/document.scrollingElement">https://github.com/mathiasbynens/document.scrollingElement</a></p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/q/1010000002942948">https://segmentfault.com/q/1010000002942948</a></p>
+</li>
+</ul>
+<blockquote><p>原文地址：<a href="http://uedsky.com/2016-06/mobile-modal-scroll/">http://uedsky.com/2016-06/mobile-modal-scroll/</a><br>获取最佳阅读体验并参与讨论，请访问原文</p>
+</blockquote>
+					</div>
+					<div class="pagelink"></div>
+					<p class="entry-tags"></p>
+					<hr>
+					<div class="pagelink">
+                    <span class="nav-left"><a href="http://hao.jser.com/archive/10641/" rel="prev"><i class="fa fa-angle-left"></i> [译]开始对Angular App进行单元测试（1）</a></span>                    <span class="nav-right"><a href="http://hao.jser.com/archive/10644/" rel="next">javascript中的数组 <i class="fa fa-angle-right"></i></a></span>                    </div>
+				</article>
+				<div style="margin: 30px 0;">
+<ul id="tags_related">
+<li>* 暂无相关文章</li></ul></div>
+<!--
+				<div class="author-bio">
+					<h4><a href="http://hao.jser.com/author/segmentfault/" title="由segmentfault发布" rel="author">segmentfault</a></h4>
+					<p><a rel="nofollow" target="_blank" href="http://segmentfault.com/a/1190000005617307">http://segmentfault.com/a/1190000005617307</a></p>
+				</div>-->
+				<a name="comments"></a>
+
+<div class="ds-thread" data-thread-key="10642" data-author-key="13" data-title="移动端滚动穿透问题完美解决方案" data-url="http://hao.jser.com/archive/10642/" id="ds-thread"><div id="ds-reset"><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);">0条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post ds-post-placeholder">还没有评论，沙发等你来抢</li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://haojser.duoshuo.com/login/weixin/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://haojser.duoshuo.com/login/weibo/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://haojser.duoshuo.com/login/qq/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://haojser.duoshuo.com/login/renren/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://haojser.duoshuo.com/login/douban/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://haojser.duoshuo.com/login/kaixin/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://haojser.duoshuo.com/login/baidu/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://haojser.duoshuo.com/login/google/?sso=1&amp;redirect_uri=http%3A%2F%2Fhao.jser.com%2Fwp-login.php%3Faction%3Dduoshuo_login%26redirect_to%3Dhttp%253A%252F%252Fhao.jser.com%252Farchive%252F10642%252F" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6291372932975297281">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57d225a032a8b"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">好JSER正在使用多说</a></p></div></div>
+
+<script type="text/javascript">
+	if (typeof DUOSHUO !== 'undefined')
+		DUOSHUO.EmbedThread('.ds-thread');
+</script>
+							</div>	
+			<!--start:SIDEBAR -->
+<aside class="col-4" role="complementary">	    
+	<div id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" action="http://hao.jser.com/">
+	<input type="search" name="s" id="s" class="search" value="type &amp; press ENTER" onfocus="if (this.value == &#39;type &amp; press ENTER&#39;) { this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) { this.value = &#39;type &amp; press ENTER&#39;;}" autocomplete="off">
+</form></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="widget-title">近期文章</h4>		<ul>
+					<li>
+				<a href="http://hao.jser.com/archive/12275/">切图崽的自我修养－部署WEB服务流程梳理</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12274/">js学习过程中的小问题</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12273/">第七元素</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12272/">模块化你的JS代码</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12271/">重新认识script标签</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12270/">[译注] MVVM 模式</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12269/">对象创建与继承—-《JavaScript高程3》</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12268/">利用模板将HTML从JavaScript中抽离</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12267/">使用macaca进行移动端hybird自动化测试(三)</a>
+						</li>
+					<li>
+				<a href="http://hao.jser.com/archive/12266/">你不知道的jQuery（一）</a>
+						</li>
+				</ul>
+		</div><div id="tag_cloud-3" class="widget widget_tag_cloud"><h4 class="widget-title">标签</h4><div class="tagcloud"><a href="http://hao.jser.com/tag/chinese-font/" class="tag-link-51" title="10个话题" style="font-size: 10.162601626016pt;">中文字体</a>
+<a href="http://hao.jser.com/tag/event/" class="tag-link-81" title="18个话题" style="font-size: 12.894308943089pt;">事件</a>
+<a href="http://hao.jser.com/tag/animation/" class="tag-link-132" title="7个话题" style="font-size: 8.5691056910569pt;">动画</a>
+<a href="http://hao.jser.com/tag/prototype/" class="tag-link-120" title="6个话题" style="font-size: 8pt;">原型</a>
+<a href="http://hao.jser.com/tag/%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0/" class="tag-link-185" title="14个话题" style="font-size: 11.756097560976pt;">学习笔记</a>
+<a href="http://hao.jser.com/tag/data-struct/" class="tag-link-146" title="7个话题" style="font-size: 8.5691056910569pt;">数据结构</a>
+<a href="http://hao.jser.com/tag/%e6%95%b0%e7%bb%84/" class="tag-link-186" title="19个话题" style="font-size: 13.121951219512pt;">数组</a>
+<a href="http://hao.jser.com/tag/module/" class="tag-link-21" title="6个话题" style="font-size: 8pt;">模块化</a>
+<a href="http://hao.jser.com/tag/algorithm/" class="tag-link-147" title="6个话题" style="font-size: 8pt;">算法</a>
+<a href="http://hao.jser.com/tag/threading/" class="tag-link-273" title="8个话题" style="font-size: 9.1382113821138pt;">线程</a>
+<a href="http://hao.jser.com/tag/inheritance/" class="tag-link-70" title="6个话题" style="font-size: 8pt;">继承</a>
+<a href="http://hao.jser.com/tag/design-pattern/" class="tag-link-63" title="29个话题" style="font-size: 15.170731707317pt;">设计模式</a>
+<a href="http://hao.jser.com/tag/closure/" class="tag-link-33" title="8个话题" style="font-size: 9.1382113821138pt;">闭包</a>
+<a href="http://hao.jser.com/tag/interview/" class="tag-link-4" title="43个话题" style="font-size: 16.991869918699pt;">面试</a>
+<a href="http://hao.jser.com/tag/ajax/" class="tag-link-216" title="9个话题" style="font-size: 9.7073170731707pt;">ajax</a>
+<a href="http://hao.jser.com/tag/android/" class="tag-link-48" title="8个话题" style="font-size: 9.1382113821138pt;">Android</a>
+<a href="http://hao.jser.com/tag/angular/" class="tag-link-20" title="13个话题" style="font-size: 11.414634146341pt;">angular</a>
+<a href="http://hao.jser.com/tag/backbone/" class="tag-link-129" title="36个话题" style="font-size: 16.19512195122pt;">backbone</a>
+<a href="http://hao.jser.com/tag/cheap-jerseys/" class="tag-link-280" title="8个话题" style="font-size: 9.1382113821138pt;">cheap jerseys</a>
+<a href="http://hao.jser.com/tag/cocos2d-js/" class="tag-link-125" title="15个话题" style="font-size: 11.983739837398pt;">cocos2d-js</a>
+<a href="http://hao.jser.com/tag/coffeescript/" class="tag-link-173" title="13个话题" style="font-size: 11.414634146341pt;">coffeescript</a>
+<a href="http://hao.jser.com/tag/console/" class="tag-link-277" title="6个话题" style="font-size: 8pt;">console</a>
+<a href="http://hao.jser.com/tag/css/" class="tag-link-13" title="6个话题" style="font-size: 8pt;">css</a>
+<a href="http://hao.jser.com/tag/css3/" class="tag-link-54" title="10个话题" style="font-size: 10.162601626016pt;">css3</a>
+<a href="http://hao.jser.com/tag/dom/" class="tag-link-121" title="25个话题" style="font-size: 14.373983739837pt;">dom</a>
+<a href="http://hao.jser.com/tag/ecmascript/" class="tag-link-3" title="32个话题" style="font-size: 15.626016260163pt;">ECMAScript</a>
+<a href="http://hao.jser.com/tag/express/" class="tag-link-267" title="8个话题" style="font-size: 9.1382113821138pt;">express</a>
+<a href="http://hao.jser.com/tag/html5/" class="tag-link-5" title="120个话题" style="font-size: 22pt;">html5</a>
+<a href="http://hao.jser.com/tag/ie6/" class="tag-link-268" title="13个话题" style="font-size: 11.414634146341pt;">ie6</a>
+<a href="http://hao.jser.com/tag/javascript-good-parts/" class="tag-link-179" title="6个话题" style="font-size: 8pt;">JavaScript语言精粹</a>
+<a href="http://hao.jser.com/tag/jquery/" class="tag-link-19" title="16个话题" style="font-size: 12.325203252033pt;">jquery</a>
+<a href="http://hao.jser.com/tag/knockout/" class="tag-link-52" title="11个话题" style="font-size: 10.617886178862pt;">Knockout</a>
+<a href="http://hao.jser.com/tag/mvc/" class="tag-link-56" title="19个话题" style="font-size: 13.121951219512pt;">mvc</a>
+<a href="http://hao.jser.com/tag/node-js/" class="tag-link-136" title="22个话题" style="font-size: 13.80487804878pt;">node.js</a>
+<a href="http://hao.jser.com/tag/npm/" class="tag-link-135" title="7个话题" style="font-size: 8.5691056910569pt;">npm</a>
+<a href="http://hao.jser.com/tag/php/" class="tag-link-111" title="18个话题" style="font-size: 12.894308943089pt;">php</a>
+<a href="http://hao.jser.com/tag/promise/" class="tag-link-219" title="6个话题" style="font-size: 8pt;">promise</a>
+<a href="http://hao.jser.com/tag/r-lang/" class="tag-link-264" title="8个话题" style="font-size: 9.1382113821138pt;">R语言</a>
+<a href="http://hao.jser.com/tag/react-js/" class="tag-link-126" title="12个话题" style="font-size: 10.959349593496pt;">react.js</a>
+<a href="http://hao.jser.com/tag/settimeout/" class="tag-link-234" title="10个话题" style="font-size: 10.162601626016pt;">setTimeout</a>
+<a href="http://hao.jser.com/tag/sizzle/" class="tag-link-188" title="7个话题" style="font-size: 8.5691056910569pt;">sizzle</a>
+<a href="http://hao.jser.com/tag/swift/" class="tag-link-158" title="11个话题" style="font-size: 10.617886178862pt;">swift</a>
+<a href="http://hao.jser.com/tag/this/" class="tag-link-115" title="10个话题" style="font-size: 10.162601626016pt;">this</a>
+<a href="http://hao.jser.com/tag/underscore/" class="tag-link-178" title="8个话题" style="font-size: 9.1382113821138pt;">underscore</a>
+<a href="http://hao.jser.com/tag/zepto/" class="tag-link-276" title="12个话题" style="font-size: 10.959349593496pt;">zepto</a></div>
+</div><div id="text-2" class="widget widget_text"><h4 class="widget-title">推荐</h4>			<div class="textwidget"><p><a href="http://learn.jser.com/" target="_blank">全栈教程</a><br><br>
+<a href="http://run.jser.com/" target="_blank">在线执行代码</a><br></p>
+</div>
+		</div>		                
+</aside>
+<!--END: SIDEBAR -->
+		</div> <!-- row -->				
+	</div>
+	<!--end: CONTAINER -->	
+	<!--start:FOOTER -->
+	<footer id="footer" class="row" role="contentinfo">
+		<div class="col-6">		
+			Powered by <a href="http://wordpress.org/">WordPress</a> /			<a href="http://www.jser.com/">Jser</a>			
+		</div>
+  		<div class="col-6 text-right">
+			<a href="http://hao.jser.com/" rel="home">好JSER</a> 
+			© 2013
+  		</div>
+	</footer>
+	<!--end: FOOTER -->
+	<script type="text/javascript" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./移动端滚动穿透问题完美解决方案 — 好JSER_files/global.js"></script>
+
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50180202-1', 'jser.com');
+  ga('send', 'pageview');
+
+</script>
+
+<!--41 queries in 0.147 seconds.-->
+
+
+
+
+</body></html>

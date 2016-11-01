@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/wdlhao/p/5807157.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/5807157"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/bundle-Minyx2_Lite.css">
+<link id="mobile-style" media="only screen and (max-device-width: 980px)" type="text/css" rel="stylesheet" href="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/bundle-Minyx2_Lite-mobile.css">
+<link type="text/css" rel="stylesheet" href="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/227004.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wdlhao/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wdlhao/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wdlhao/wlwmanifest.xml">
+<script type="text/javascript" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/encoder.js"></script><script src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wdlhao', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/blog-common.js" type="text/javascript"></script>
+<script src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/bundle-Minyx2_Lite.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                <div id="blog_stats">
+Posts - 105, 
+Articles - 1, 
+Comments - 39
+<!----></div>
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com/">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/wdlhao/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/login.aspx?ReturnUrl=http://www.cnblogs.com/wdlhao/p/5807157.html">Login</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/wdlhao/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e6%b5%81%e6%b5%aa%e7%9a%84%e8%af%97%e4%ba%ba">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/wdlhao/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/wdlhao/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/wdlhao/">流浪的诗人</a>
+            <!-- 子标题 -->
+            <small>
+                </small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+<div id="post_detail">
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/wdlhao/p/5807157.html">webpack入门和实战(二)：全面理解和运用loader和plugins</a></h2>
+    <small>2016-08-26 08:43 by 流浪的诗人, <span id="post_view_count">537</span> 阅读, <span id="post_comment_count">2</span> 评论, <a href="http://www.cnblogs.com/wdlhao/p/5807157.html#" onclick="AddToWz(5807157);return false;">收藏</a>,  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5807157" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><div>
+<div><a name="_labelTop"></a>您的阅读目录：</div>
+<ul>
+<li><a name="_labelTop" href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe1">一、理解webpack加载器loader</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe2">二、理解less-loader加载器的使用</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe3">三、理解babel-loader加载器的使用</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe4">四、webpack命令行常见使用的操作</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe5">五、用webpack内置组件UglifyJsPlugin来压缩js和css</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe6">六、html-webpack-plugin(生成自定义html页面)</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe7">七、extract-text-webpack-plugin(独立打包样式文件)</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe8">八、webpack打包多个资源文件</a></li>
+<li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labe9">九、webpack对图片的打包</a></li>
+</ul>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe1"></a></div>
+<div class="ptitle">一、理解webpack加载器loader</div>
+<div><strong>1.1、什么是loader？</strong></div>
+<div>webpack的设计理念，所有资源都是“模块”，webpack内部实现了一套资源加载机制。loaders 用于转换应用程序的资源文件，他们是运行在nodejs下的函数 使用参数来获取一个资源的来源并且返回一个新的来源(资源的位置)，例如你可以使用loader加载器可以快速编译预处理器(less,sass,coffeeScript)。</div>
+<div><strong>1.2、使用loader</strong></div>
+<div>
+<div>
+<ul>
+<li>安装loader</li>
+</ul>
+</div>
+$ npm&nbsp;install xxx-loader&nbsp;--save-dev</div>
+<div>加载器包括：style-loader、css-loader、less-loader、sass-loader、jsx-loader、url-loader、babel-loader、file-loader等等；各个加载器都有自己的功能，你可以根据项目需要来安装相应的加载器；</div>
+<div>
+<div>
+<ul>
+<li>配置loader</li>
+</ul>
+</div>
+<p>安装完各个loader后，我们就需要配置一下我们的webpack.config.js，载入我们的loader。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;"> webpack.config.js</span>
+module.exports =<span style="color: #000000;"> {
+    entry: path.join(__dirname, </span><span style="color: #800000;">'</span><span style="color: #800000;">src/entry.js</span><span style="color: #800000;">'</span><span style="color: #000000;">),
+    output: {
+        path: path.join(__dirname, </span><span style="color: #800000;">'</span><span style="color: #800000;">out</span><span style="color: #800000;">'</span><span style="color: #000000;">),
+        publicPath: </span><span style="color: #800000;">"</span><span style="color: #800000;">./out/</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+        filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">bundle.js</span><span style="color: #800000;">'</span><span style="color: #000000;">
+    },
+    </span><span style="color: #008000;">//</span><span style="color: #008000;"> 新添加的module属性</span>
+<span style="color: #000000;">    module: {
+        loaders: [
+            {test: </span>/\.js$/, loader: <span style="color: #800000;">"</span><span style="color: #800000;">babel</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+            {test: </span>/\.css$/, loader: <span style="color: #800000;">"</span><span style="color: #800000;">style!css</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+            {test: </span>/\.(jpg|png)$/, loader: <span style="color: #800000;">"</span><span style="color: #800000;">url?limit=8192</span><span style="color: #800000;">"</span><span style="color: #000000;">},
+            {test: </span>/\.scss$/, loader: <span style="color: #800000;">"</span><span style="color: #800000;">style!css!sass</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+        ]
+    }
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>我们主要看看module的loaders。loaders是一个数组，里面的每一个对象都用正则表达式，对应着一种配对方案。Webpack提供了一套加载器，比如css-loader,less-loader,style-loader，url-loader等，用于将不同的文件加载到js文件中，比如url-loader用于在js中加载png/jpg格式的图片文件；css/style loader用于加载css文件；less-loader加载器是将less编译成css文件；不同的处理器通过<code>!</code>分隔并串联起来。这里的loader是可以省略掉<code>-loader</code>这样的，也就是原本应该写成<code>style-loader!css-loader!sass-loader.</code></p>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe2"></a></div>
+<div class="ptitle">二、理解less-loader加载器的使用</div>
+<div>我们先来理解下less-loader加载器，其他的sass-loader也是一个意思，less-loader加载器是把css代码转化到style标签内，动态插入到head标签内；</div>
+<div>我们先来看看我项目的结构如下：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825153952538-320617961.png" alt=""></div>
+<div>
+<p>因此你需要根据package.json来初始化本项目的依赖模块，执行命令：npm install;</p>
+<p>其中less/main.less 文件如下代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">@base:red;
+body{
+    margin:10px;
+    background</span>-<span style="color: #000000;">color:@base;
+}</span></pre>
+</div>
+<p>现在我想通过html-webpack-plugin插件动态生成 html页面及引入index.js 和 生成 index.js文件；</p>
+<p>webpack.config.js代码配置如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义了一些文件夹的路径</span>
+<span style="color: #0000ff;">var</span> ROOT_PATH =<span style="color: #000000;"> path.resolve(__dirname);
+</span><span style="color: #0000ff;">var</span> SRC_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">src</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> BUILD_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">build</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+
+module.exports </span>=<span style="color: #000000;"> {
+  entry: SRC_PATH </span>+ <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">build.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    path: BUILD_PATH
+  },
+  module: {
+    loaders: [
+      {test: </span>/\.less$/,loader: <span style="color: #800000;">"</span><span style="color: #800000;">style!css!less</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+    ]
+  },
+  resolve: {
+    extensions: [</span><span style="color: #800000;">''</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.js</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.jsx</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+  },
+  plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      title: </span><span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    })
+  ]
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>在项目的根目录运行webpack,即可动态生成html文件和js文件，打开生成后的index.html即可看到css生效了，且css被动态内链到head标签内了。</p>
+</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825154142929-464991123.png" alt=""></div>
+<div>
+<p>上面是使用webpack打包；现在我们再来看看使用第二种方案来打包~</p>
+<p><span style="color: #008080; background-color: #ffffff;"><strong>使用gulp来进行打包</strong></span></p>
+<p>我们知道使用gulp来打包的话，那么我们需要在根目录下需要新建&nbsp;Gulpfile.js；同时需要安装依赖包gulp和gulp-webpack,执行命令：npm install&nbsp;gulp&nbsp;gulp-webpack --save-dev</p>
+<p>因此我们这边Gulpfile.js的源码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> gulp = require(<span style="color: #800000;">'</span><span style="color: #800000;">gulp</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> webpack = require(<span style="color: #800000;">"</span><span style="color: #800000;">gulp-webpack</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> webpackConfig = require(<span style="color: #800000;">"</span><span style="color: #800000;">./webpack.config.js</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+gulp.task(</span><span style="color: #800000;">'</span><span style="color: #800000;">webpack</span><span style="color: #800000;">'</span><span style="color: #000000;">, function () {
+    </span><span style="color: #0000ff;">var</span> myConfig =<span style="color: #000000;"> Object.create(webpackConfig);
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> gulp
+        .src(</span><span style="color: #800000;">'</span><span style="color: #800000;">./js/index.js</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        .pipe(webpack(myConfig))
+        .pipe(gulp.dest(</span><span style="color: #800000;">'</span><span style="color: #800000;">./build</span><span style="color: #800000;">'</span><span style="color: #000000;">));
+});
+</span><span style="color: #008000;">//</span><span style="color: #008000;"> 注册缺省任务</span>
+gulp.task(<span style="color: #800000;">'</span><span style="color: #800000;">default</span><span style="color: #800000;">'</span>, [<span style="color: #800000;">'</span><span style="color: #800000;">webpack</span><span style="color: #800000;">'</span>]);</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>然后修改一下webpack.config.js代码，只需要将output中push屏蔽掉，如下所示：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">build.js</span><span style="color: #800000;">"</span>
+   <span style="color: #008000;">//</span><span style="color: #008000;"> path: BUILD_PATH</span>
+},</pre>
+</div>
+<p>即可，然后再在命令行中输入gulp即可生成build/build.js和index.html了,如下所示：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825154413694-351417305.png" alt=""></p>
+</div>
+<div><strong>less-loader项目源码地址</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613213" target="_blank">http://download.csdn.net/detail/wdlhao/9613213</a></div>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe3"></a></div>
+<div class="ptitle">三、理解babel-loader加载器的使用</div>
+<div>
+<div>babel-loader加载器能将ES6的代码转换成ES5代码，这使我们现在可以使用ES6了。</div>
+<div>我们先来看看我项目的结构如下：</div>
+</div>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825154529882-2132460116.png" alt=""></p>
+<div>首先安装babel-loader。执行命令：npm&nbsp;install&nbsp;babel-loader&nbsp;–save-dev</div>
+<div>当然你也需要根据package.json来初始化本项目的其他依赖模块，执行命令：npm install;</div>
+<div>如上安装完后，我们在根目录node_modules会生成文件，如下所示：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825154641554-1285042134.png" alt=""></div>
+<div>src/js/a.js，完全是遵照es6的语法，代码如下：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">es6的语法</span>
+let LOADER = <span style="color: #0000ff;">true</span><span style="color: #000000;">; 
+</span><span style="color: #008000;">//</span><span style="color: #008000;">module.exports = LOADER;</span>
+
+<span style="color: #0000ff;">class</span><span style="color: #000000;"> Project {
+  constructor(name) {
+    </span><span style="color: #0000ff;">this</span>.name =<span style="color: #000000;"> name;
+  }
+  start() {
+    </span><span style="color: #0000ff;">return</span> <span style="color: #800000;">"</span><span style="color: #800000;">Project </span><span style="color: #800000;">"</span> + <span style="color: #0000ff;">this</span>.name + <span style="color: #800000;">"</span><span style="color: #800000;"> starting</span><span style="color: #800000;">"</span><span style="color: #000000;">;
+  }
+}
+</span><span style="color: #0000ff;">var</span> project = <span style="color: #0000ff;">new</span> Project(<span style="color: #800000;">"</span><span style="color: #800000;">Journal</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+let projectName </span>= project.start(); <span style="color: #008000;">//</span><span style="color: #008000;"> "Project Journal starting"</span>
+module.exports = <span style="color: #800000;">"</span><span style="color: #800000;">安装es6语法输出：</span><span style="color: #800000;">"</span>+LOADER+<span style="color: #800000;">"</span><span style="color: #800000;">,</span><span style="color: #800000;">"</span>+projectName;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>src/js/index.js,执行入口,用于输出es6代码结果,代码如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">var</span> aMoudle = require(<span style="color: #800000;">'</span><span style="color: #800000;">./a</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+console.log(aMoudle);</span></pre>
+</div>
+<p>现在我们可以在webpack.config.js里面moudle.loaders配置加载器了,代码如下：</p>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义了一些文件夹的路径</span>
+<span style="color: #0000ff;">var</span> ROOT_PATH =<span style="color: #000000;"> path.resolve(__dirname);
+</span><span style="color: #0000ff;">var</span> SRC_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">src</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> BUILD_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">build</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+module.exports </span>=<span style="color: #000000;"> {
+  entry: SRC_PATH </span>+ <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">build.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    path: BUILD_PATH
+  },
+  module: {
+    loaders: [
+      {test: </span>/\.js$/, loader: <span style="color: #800000;">'</span><span style="color: #800000;">babel</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+    ]
+  },
+  resolve: {
+    extensions: [</span><span style="color: #800000;">''</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.js</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.jsx</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+  },
+  plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      title: </span><span style="color: #800000;">'</span><span style="color: #800000;">Hello babel-loader</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    })
+  ]
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>最后生成的build/index.html代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;Hello babel-loader&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;script type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span> src=<span style="color: #800000;">"</span><span style="color: #800000;">build.js?906bc2a0e6ca45cdeddd</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>index.html在控制台的打印效果为：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825154850960-1253664671.png" alt=""></p>
+<div>说明用babel-loader加载器来执行es6代码，执行成功。</div>
+<div><strong>babel-loader项目源码地址：</strong><a href="http://download.csdn.net/detail/wdlhao/9613208" target="_blank">http://download.csdn.net/detail/wdlhao/9613208</a></div>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe4"></a></div>
+<div class="ptitle">四、webpack命令行常见使用的操作</div>
+<div>&nbsp;安装&nbsp;<code>webpack</code>&nbsp;后，可以使用&nbsp;<code>webpack</code>&nbsp;这个命令行工具。主要命令：&nbsp;<code>webpack &lt;entry&gt; &lt;output&gt;</code>&nbsp;。可以切换到包含webpack.config.js的目录运行命令：</div>
+<div>
+<div>
+<div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack: 启动&nbsp;执行一次开发时的编译</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp;&nbsp;webpack &nbsp;-w:如果你想当改变一个文件而让webpack实时编译</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack -p:&nbsp;执行一次生成环境的编译（压缩）</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; &nbsp;webpack &nbsp;-d:对文件进行解压缩，提供source&nbsp;map，方便调式代码方便调试文件</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack&nbsp;--config&nbsp;customconfig.js:如果你想把默认的配置文件webpack.config.js改成自定义文件</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack --watch&nbsp;:在开发时持续监控增量编译（很快）</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack --display-error-details&nbsp;显示更多报错信息</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack --display-chunks&nbsp;展示编译后的分块</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; &nbsp;webpack --colors&nbsp;显示静态资源的颜色</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack --progress&nbsp;显示编译进度</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack --display-reasons&nbsp;显示更多引用模块原因</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack&nbsp;--profile&nbsp;输出性能数据，可以看到每一步的耗时&nbsp;</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack&nbsp;--display-modules&nbsp;默认情况下node_modules下的模块会被隐藏，加上这个参数可以显示这些被隐藏的模块</li>
+</ul>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack&nbsp;--sort-chunks-by,--sort-assets-by,--sort-modules-by&nbsp;将modules/chunks/assets进行列表排序</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>&nbsp; &nbsp; webpack -help，查看webpack帮忙文档</li>
+</ul>
+<div>现在我们以babel-loader项目为例，展示webpack常用命令行的使用方法;</div>
+<div>
+<p><strong>我们下面来了解下&nbsp;webpack&nbsp;-w,如下所示：</strong></p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825220928413-1554344751.png" alt=""></p>
+<p>比如我在js文件里面随便增加一点代码后，保存后，再刷新页面即可可以看到代码生效了，无需重新运行webpack或者gulp，使用webpack -w 可以实时打包。</p>
+<p>&nbsp;<strong>webpack -p 的含义是对进行打包后的文件进行压缩代码；</strong>比如我在之前使用chrome看打包后的代码如下：</p>
+<p>&nbsp;<img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825220958788-1170987636.png" alt=""></p>
+<p>如上可以看到，代码是未压缩的，但是当我在控制台命令行中运行&nbsp;webpack&nbsp;-p&nbsp;命令后，如下所示：</p>
+<div>&nbsp;<img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221031054-1837313632.png" alt=""></div>
+<div>我们现在再到控制台上看下代码变成已经压缩后的代码了，如下所示：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221053054-1838008333.png" alt=""></div>
+<div><strong>webpack&nbsp;&nbsp;-d&nbsp;是提供未压缩之前的源码&nbsp;方便代码中的调式；</strong>如下所示：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221135804-714775539.png" alt=""></div>
+<p>当我运行如上所示后，我们再来看看刚才已经压缩后的代码变成什么样子呢？如下所示：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221156069-1430392728.png" alt=""></p>
+<div>如上代码可以看到&nbsp;我们进行压缩后的代码，通过运行&nbsp;webpack&nbsp;-d&nbsp;命令后，即可还原未压缩的代码，这样的话就可以方便我们线上调式代码了。同时生成了一个map文件，bulid.js.map主要是方便调试。</div>
+<div><strong>webpack --watch&nbsp;:在开发时持续监控增量编译（很快）与webpack -w效果一样。</strong>如图为修改了代码之后的表现：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221229710-93611870.png" alt=""></div>
+<div><strong>webpack --display-chunks&nbsp;展示编译后的分块</strong></div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221315304-1624551275.png" alt=""></div>
+<div><strong>webpack&nbsp;--display-modules&nbsp;显示node_modules下的隐藏模块</strong></div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221408976-344262210.png" alt=""></div>
+<div><strong>webpack -help，查看webpack帮忙文档</strong></div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825221338491-1028478209.png" alt=""></div>
+<div>&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe5"></a></div>
+<div class="ptitle">五、用webpack内置组件UglifyJsPlugin来压缩js和css</div>
+<div>webpack已经内嵌了uglifyJS来完成对JS与CSS的压缩混淆，无需引用额外的插件。<br>压缩代码如下：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">new</span> webpack.optimize.UglifyJsPlugin({    <span style="color: #008000;">//</span><span style="color: #008000;">压缩代码</span>
+<span style="color: #000000;">   compress: {
+       warnings: </span><span style="color: #0000ff;">false</span><span style="color: #000000;">
+   },
+   except: [</span><span style="color: #800000;">'</span><span style="color: #800000;">$super</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">$</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">exports</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">require</span><span style="color: #800000;">'</span>]    <span style="color: #008000;">//</span><span style="color: #008000;">排除关键字</span>
+})</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这里需要注意的是压缩的时候需要排除一些关键字，不能混淆，比如$或者require，如果混淆的话就会影响到代码的正常运行。<br>webpack.config.js代码改为如下：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;6fc5beed-6a2a-4f62-8e1e-6de35b5571a4&#39;)"><img id="code_img_closed_6fc5beed-6a2a-4f62-8e1e-6de35b5571a4" class="code_img_closed" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_6fc5beed-6a2a-4f62-8e1e-6de35b5571a4" class="code_img_opened" style="" onclick="cnblogs_code_hide(&#39;6fc5beed-6a2a-4f62-8e1e-6de35b5571a4&#39;,event)" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_6fc5beed-6a2a-4f62-8e1e-6de35b5571a4" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> webpack = require(<span style="color: #800000;">"</span><span style="color: #800000;">webpack</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+
+module.exports </span>=<span style="color: #000000;"> {
+  entry: {
+    </span><span style="color: #800000;">'</span><span style="color: #800000;">index</span><span style="color: #800000;">'</span>:<span style="color: #800000;">'</span><span style="color: #800000;">./src/index.js</span><span style="color: #800000;">'</span><span style="color: #000000;">
+  },
+  output: {
+    path: path.resolve(__dirname, </span><span style="color: #800000;">"</span><span style="color: #800000;">./build</span><span style="color: #800000;">"</span><span style="color: #000000;">),
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">[name].js</span><span style="color: #800000;">"</span><span style="color: #000000;">
+  },
+  module: {
+    loaders: [
+        {test: </span>/.css$/, loader: <span style="color: #800000;">'</span><span style="color: #800000;">style!css</span><span style="color: #800000;">'</span><span style="color: #000000;">}
+    ]
+  },
+   </span><span style="color: #008000;">//</span><span style="color: #008000;">添加我们的插件 会自动生成一个html文件</span>
+<span style="color: #000000;">  plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      title: </span><span style="color: #800000;">'</span><span style="color: #800000;">inner plugin:UglifyJsPlugin</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify:{ </span><span style="color: #008000;">//</span><span style="color: #008000;">压缩HTML文件</span>
+        removeComments:<span style="color: #0000ff;">true</span>,    <span style="color: #008000;">//</span><span style="color: #008000;">移除HTML中的注释</span>
+        collapseWhitespace:<span style="color: #0000ff;">true</span>    <span style="color: #008000;">//</span><span style="color: #008000;">删除空白符与换行符</span>
+<span style="color: #000000;">      }
+    }),
+    </span><span style="color: #0000ff;">new</span> webpack.optimize.UglifyJsPlugin({    <span style="color: #008000;">//</span><span style="color: #008000;">压缩代码</span>
+<span style="color: #000000;">       compress: {
+           warnings: </span><span style="color: #0000ff;">false</span><span style="color: #000000;">
+       },
+       except: [</span><span style="color: #800000;">'</span><span style="color: #800000;">$super</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">$</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">exports</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">require</span><span style="color: #800000;">'</span>]    <span style="color: #008000;">//</span><span style="color: #008000;">排除关键字</span>
+<span style="color: #000000;">    })
+  ]
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">View Code</span></div>
+<div>继续运行下webpack可以看到js已经被压缩了；注意：但是貌似对es6的语法不能压缩~</div>
+<div>根据内置组件webpack进行代码混淆，主要是针对生成后的js代码，如index.js,代码如下:</div>
+<p>&nbsp;<img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825155357351-917340882.png" alt=""></p>
+<p>根据外部组件html-webpack-plugin中minify进行代码压缩，主要是针对index.html，用于清除里面的注释、空白符与换行符等。结果如下：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825155443647-35710447.png" alt=""></p>
+<p><strong>压缩js和css项目的源码地址</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613216" target="_blank">http://download.csdn.net/detail/wdlhao/9613216</a></p>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe6"></a></div>
+<div class="ptitle">六、html-webpack-plugin(生成自定义html页面)</div>
+<div>这个插件用来简化创建服务于 webpack bundle 的 HTML 文件，尤其是对于在文件名中包含了 hash 值，而这个值在每次编译的时候都发生变化的情况。你既可以让这个插件来帮助你自动生成 HTML 文件，也可以使用 lodash 模板加载生成的 bundles，或者自己加载这些 bundles。自动生成满足要求的html文件。</div>
+<div>使用 npm 安装这个插件：npm install html-webpack-plugin --save-dev</div>
+<div>首先来看看项目的目录结构如下：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825160225632-1044519147.png" alt=""></div>
+<div>运行命令 npm install 把依赖包加载出来；</div>
+<div>接着在 webpack.config.js配置如下：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义了一些文件夹的路径</span>
+<span style="color: #0000ff;">var</span> ROOT_PATH =<span style="color: #000000;"> path.resolve(__dirname);
+</span><span style="color: #0000ff;">var</span> SRC_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">src</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> BUILD_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">build</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+
+module.exports </span>=<span style="color: #000000;"> {
+  entry: SRC_PATH </span>+ <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  output: {
+    path: BUILD_PATH,
+    filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.js</span><span style="color: #800000;">'</span><span style="color: #008000;">//</span><span style="color: #008000;">输出的文件名 合并以后的js会命名为index.js</span>
+<span style="color: #000000;">  },
+  </span><span style="color: #008000;">//</span><span style="color: #008000;">添加我们的插件 会按要求自动生成一个html文件</span>
+<span style="color: #000000;">  module: {
+    loaders: [
+        {test: </span>/.less$/, loader: <span style="color: #800000;">"</span><span style="color: #800000;">style!css!less</span><span style="color: #800000;">"</span><span style="color: #000000;">}
+    ]
+  },
+  plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      title: </span><span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span><span style="color: #008000;">//</span><span style="color: #008000;">生成新的html页面的title;</span>
+<span style="color: #000000;">    })
+  ]
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div>在项目中的根目录下 运行 webpack 就能生成build文件夹了，里面会自动生成 两个文件 index.html和index.js文件；<br>index.html代码如下：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;Hello World app&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;script type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span> src=<span style="color: #800000;">"</span><span style="color: #800000;">index.js</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>标题title就是我们配置上的;且合并了依赖的js文件；我们可以直接在本地访问index.html 可以看到能打印出依赖的文件js代码了；可以看到可以解决依赖的问题；</p>
+<p>html-webpack-plugin&nbsp;还支持如下配置：</p>
+</div>
+</div>
+<div>
+<div>
+<ul>
+<li><strong>title</strong>:&nbsp;用于生成的HTML文件的标题。</li>
+<li><strong>filename</strong>:&nbsp;用于生成的HTML文件的名称，默认是index.html。你可以在这里指定子目录。</li>
+<li><strong>template</strong>:&nbsp;模板文件路径，支持加载器，比如 html!./index.html</li>
+<li><strong>inject</strong>:&nbsp;true | 'head' | 'body' | false ,注入所有的资源到特定的 template 或者 templateContent 中，如果设置为 true&nbsp;或者 body，所有的 javascript 资源将被放置到 body 元素的底部，'head' 将放置到 head 元素中。</li>
+<li><strong>favicon</strong>:&nbsp;添加特定的 favicon 路径到输出的 HTML 文件中。</li>
+<li><strong>minify</strong>:{ //压缩HTML文件　<br><span style="line-height: 1.5;">　　removeComments:true, //移除HTML中的注释</span><span style="line-height: 1.5;">&nbsp;<br></span><span style="line-height: 1.5;">　　collapseWhitespace:true //删除空白符与换行符<br></span>}</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+<ul>
+<li><strong>hash</strong>:&nbsp;true | false, 如果为 true, 将添加一个唯一的 webpack 编译 hash 到所有包含的脚本和 CSS 文件，对于解除 cache 很有用。</li>
+<li><strong>cache</strong>:&nbsp;true | false，如果为 true, 这是默认值，仅仅在文件修改之后才会发布文件。</li>
+<li><strong>showErrors</strong>:&nbsp;true | false, 如果为 true, 这是默认值，错误信息会写入到 HTML 页面中</li>
+<li><strong>chunks</strong>:&nbsp;允许只添加某些块 (比如，仅仅 unit test 块)</li>
+<li><strong>chunksSortMode</strong>:&nbsp;允许控制块在添加到页面之前的排序方式，支持的值：'none' | 'default' | {function}-default:'auto'</li>
+<li><strong>excludeChunks</strong>:&nbsp;允许跳过某些块，(比如，跳过单元测试的块)</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div>下面的示例演示了如何使用这些配置：</div>
+<div>filename：重命名输出文件及设置；inject：设置输出文件位置；hash:决定是否生成hash值；favicon；favicon路径</div>
+<div>webpack.config.js代码如下：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"> plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      favicon:</span><span style="color: #800000;">'</span><span style="color: #800000;">./src/img/favicon.ico</span><span style="color: #800000;">'</span>,  <span style="color: #008000;">//</span><span style="color: #008000;">favicon路径</span>
+      title: <span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span>,<span style="color: #008000;">//</span><span style="color: #008000;">生成新的html页面的title;</span>
+      filename: <span style="color: #800000;">'</span><span style="color: #800000;">home/home.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    })
+  ]</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>然后再在命令行中继续运行webpack命令，可以看到在build下会生成2个目录， 第一个是home/home.html; 第二个是 index.js<br>再来看下home.html代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;Hello World app&lt;/title&gt;
+  &lt;link rel=<span style="color: #800000;">"</span><span style="color: #800000;">shortcut icon</span><span style="color: #800000;">"</span> href=<span style="color: #800000;">"</span><span style="color: #800000;">favicon.ico</span><span style="color: #800000;">"</span>&gt;&lt;/head&gt;
+  &lt;body&gt;
+  &lt;script type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span> src=<span style="color: #800000;">"</span><span style="color: #800000;">../index.js?f19ff1a103d13247bfb5</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>我们发现在body里面自动添加了外链的js文件并且该js文件带有唯一的hash编码，hash编码可以更好的实现js文件的缓存，加快渲染速度。</p>
+<p><strong>webpack-html-webpack-plugin(default)源码地址为</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613219" target="_blank">http://download.csdn.net/detail/wdlhao/9613219</a></p>
+<p><strong>minify是用来压缩和清洁html代码</strong></p>
+<p>在webpack.config.js中添加，代码如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      favicon:</span><span style="color: #800000;">'</span><span style="color: #800000;">./src/img/favicon.ico</span><span style="color: #800000;">'</span>,  <span style="color: #008000;">//</span><span style="color: #008000;">favicon路径</span>
+      title: <span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span>,<span style="color: #008000;">//</span><span style="color: #008000;">生成新的html页面的title;</span>
+      filename: <span style="color: #800000;">'</span><span style="color: #800000;">home/home.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify:{ </span><span style="color: #008000;">//</span><span style="color: #008000;">压缩HTML文件</span>
+           removeComments:<span style="color: #0000ff;">true</span>,    <span style="color: #008000;">//</span><span style="color: #008000;">移除HTML中的注释</span>
+           collapseWhitespace:<span style="color: #0000ff;">true</span>    <span style="color: #008000;">//</span><span style="color: #008000;">删除空白符与换行符</span>
+<span style="color: #000000;">      }
+    })
+  ]</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;查看html生成后的文件可以看到已经被压缩了,形式上变成一行了。如图：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825161358538-1849052568.png" alt=""></p>
+<p><strong>webpack-html-webpack-plugin(minify)源码地址为</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613212" target="_blank">http://download.csdn.net/detail/wdlhao/9613212</a></p>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe7"></a></div>
+<p class="ptitle">七、理解 extract-text-webpack-plugin(独立打包样式文件)</p>
+<div>执行安装命令：&nbsp;npm install extract-text-webpack-plugin&nbsp;<br>然后再webpack.config.js 加入加载器配置项如下代码：</div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> ExtractTextPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">extract-text-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义了一些文件夹的路径</span>
+<span style="color: #0000ff;">var</span> ROOT_PATH =<span style="color: #000000;"> path.resolve(__dirname);
+</span><span style="color: #0000ff;">var</span> SRC_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">src</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> BUILD_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">build</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+
+module.exports </span>=<span style="color: #000000;"> {
+  entry: SRC_PATH </span>+ <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+  output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">build.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    path: BUILD_PATH
+  },
+  module: {
+    loaders: [
+      test:</span>/\.less$/<span style="color: #000000;">,
+      loader: ExtractTextPlugin.extract(
+            </span><span style="color: #800000;">'</span><span style="color: #800000;">css?sourceMap!</span><span style="color: #800000;">'</span> +
+            <span style="color: #800000;">'</span><span style="color: #800000;">less?sourceMap</span><span style="color: #800000;">'</span><span style="color: #000000;">
+      )
+    ]
+  },
+  resolve: {
+    extensions: [</span><span style="color: #800000;">''</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.js</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.jsx</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+  },
+  plugins: [
+   </span><span style="color: #008000;">//</span><span style="color: #008000;"> 内联css提取到单独的styles的css</span>
+    <span style="color: #0000ff;">new</span> ExtractTextPlugin(<span style="color: #800000;">"</span><span style="color: #800000;">index.css</span><span style="color: #800000;">"</span><span style="color: #000000;">),
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+      title: </span><span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    })
+  ]
+};</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div><span style="color: #333333;"><span style="font-family: Georgia, &#39;Times New Roman&#39;, Times, sans-serif;">在项目的根目录运行 webpack 即可生效；会在build目录下 生成 index.css文件，且在打包后的index.html会自动引入link标签的css；<br></span></span></div>
+<div><span style="color: #333333;"><span style="font-family: Georgia, &#39;Times New Roman&#39;, Times, sans-serif;">如下所示：</span></span></div>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span style="color: #800000;">"</span><span style="color: #800000;">UTF-8</span><span style="color: #800000;">"</span>&gt;
+    &lt;title&gt;Hello World app&lt;/title&gt;
+  &lt;link href=<span style="color: #800000;">"</span><span style="color: #800000;">index.css?3a51e24a9f1f95dd46e0</span><span style="color: #800000;">"</span> rel=<span style="color: #800000;">"</span><span style="color: #800000;">stylesheet</span><span style="color: #800000;">"</span>&gt;&lt;/head&gt;
+  &lt;body&gt;
+  &lt;script type=<span style="color: #800000;">"</span><span style="color: #800000;">text/javascript</span><span style="color: #800000;">"</span> src=<span style="color: #800000;">"</span><span style="color: #800000;">build.js?3a51e24a9f1f95dd46e0</span><span style="color: #800000;">"</span>&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div>
+<div>
+<div>
+<div><strong>extract-text-webpack-plugin项目的源码地址</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613209" target="_blank">http://download.csdn.net/detail/wdlhao/9613209</a></div>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe8"></a></div>
+<div class="ptitle">八、webpack打包多个资源文件</div>
+</div>
+</div>
+</div>
+<div>
+<div>我们在开发页面的时候，有时候需要有多个入口文件，做到文件是按需加载，这样就可以使用缓存提升性能；那么我们接下来需要如何配置呢？现在我们继续做demo，现在比如我现在的项目文件结构如下：</div>
+<div><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825161610772-714929103.png" alt=""></div>
+<div>我们直接看 webpack.config.js配置代码变成如下：</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">entry: {
+    </span><span style="color: #800000;">'</span><span style="color: #800000;">index</span><span style="color: #800000;">'</span>:SRC_PATH + <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    </span><span style="color: #800000;">'</span><span style="color: #800000;">main</span><span style="color: #800000;">'</span>:SRC_PATH + <span style="color: #800000;">"</span><span style="color: #800000;">/js/main.js</span><span style="color: #800000;">"</span><span style="color: #000000;">
+  },
+  output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">[name].bundle.js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    path: BUILD_PATH
+  },</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>从上面的配置代码我们可以看到&nbsp;entry现在变成了一个对象了，而对象名也就是key会作为下面output的filename属性的[name]。当然entry也可以是一个数组。</p>
+<p>因此我们直接 webpack运行下即可&nbsp;在build文件下&nbsp;生成2个入口文件&nbsp;如上面的截图所示,现在我们可以根据不同的页面&nbsp;引入不同的入口文件，实现按需加载文件。</p>
+<p><strong>webpack打包多个资源文件源码地址如下</strong>：<a href="http://download.csdn.net/detail/wdlhao/9613221">http://download.csdn.net/detail/wdlhao/9613221</a></p>
+<div style="text-align: right;"><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#_labelTop">回到顶部</a><a name="_labe9"></a></div>
+<div class="ptitle">九、webpack对图片的打包</div>
+<div>
+<div>
+<p>我现在的项目文件结构如下：</p>
+</div>
+</div>
+<div>&nbsp;<img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825161817538-72853045.png" alt=""></div>
+<p>图片是 url-loader来加载的，我们既可以在css文件里url的属性；</p>
+<p>首先先安装 url-loader插件:&nbsp;npm install --save-dev url-loader</p>
+<p>首先在src/js/index.js文件里面加入如下代码：</p>
+<div class="cnblogs_code">
+<pre>require(<span style="color: #800000;">'</span><span style="color: #800000;">../less/main.less</span><span style="color: #800000;">'</span>);</pre>
+</div>
+<p>首先在src/less/main.less文件里面加入如下代码：</p>
+<div>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">@color: red;
+body {
+    background:@color;
+    background:url(</span><span style="color: #800000;">'</span><span style="color: #800000;">../images/1.png</span><span style="color: #800000;">'</span>) no-<span style="color: #000000;">repeat;
+}</span></pre>
+</div>
+<div>src/images/1.png,自己添加的图片；build文件夹是执行webpack之后的生成的内容；</div>
+<div>webpack.config.js所有代码如下：</div>
+<div>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;af675519-6beb-43d4-838c-87e17bf87cff&#39;)"><img id="code_img_closed_af675519-6beb-43d4-838c-87e17bf87cff" class="code_img_closed" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_af675519-6beb-43d4-838c-87e17bf87cff" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide(&#39;af675519-6beb-43d4-838c-87e17bf87cff&#39;,event)" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_af675519-6beb-43d4-838c-87e17bf87cff" class="cnblogs_code_hide">
+<pre><span style="color: #0000ff;">var</span> path = require(<span style="color: #800000;">'</span><span style="color: #800000;">path</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> HtmlwebpackPlugin = require(<span style="color: #800000;">'</span><span style="color: #800000;">html-webpack-plugin</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> webpack = require(<span style="color: #800000;">"</span><span style="color: #800000;">webpack</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;">定义了一些文件夹的路径</span>
+<span style="color: #0000ff;">var</span> ROOT_PATH =<span style="color: #000000;"> path.resolve(__dirname);
+</span><span style="color: #0000ff;">var</span> SRC_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">src</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">var</span> BUILD_PATH = path.resolve(ROOT_PATH, <span style="color: #800000;">'</span><span style="color: #800000;">build</span><span style="color: #800000;">'</span><span style="color: #000000;">);
+
+module.exports </span>=<span style="color: #000000;"> {
+  entry: {
+     </span><span style="color: #800000;">"</span><span style="color: #800000;">index</span><span style="color: #800000;">"</span>: SRC_PATH + <span style="color: #800000;">"</span><span style="color: #800000;">/js/index.js</span><span style="color: #800000;">"</span><span style="color: #000000;">
+  },
+  output: {
+    filename: </span><span style="color: #800000;">"</span><span style="color: #800000;">[name].js</span><span style="color: #800000;">"</span><span style="color: #000000;">,
+    path: BUILD_PATH
+  },
+  module: {
+    loaders: [
+      </span><span style="color: #008000;">//</span><span style="color: #008000;">.css 文件使用 style-loader 和 css-loader 来处理</span>
+<span style="color: #000000;">      {
+        test: </span>/\.less$/<span style="color: #000000;">,
+        loader:</span><span style="color: #800000;">'</span><span style="color: #800000;">style!css!less?sourceMap</span><span style="color: #800000;">'</span><span style="color: #000000;">
+      },
+      {
+        test: </span>/\.js$/<span style="color: #000000;">, 
+        loader: </span><span style="color: #800000;">'</span><span style="color: #800000;">babel</span><span style="color: #800000;">'</span><span style="color: #000000;">
+      },
+      {
+        test: </span>/.(png|jpg)$/<span style="color: #000000;">, 
+        loader: </span><span style="color: #800000;">'</span><span style="color: #800000;">url?limit=8192&amp;name=images/[hash:8].[name].[ext]</span><span style="color: #800000;">'</span><span style="color: #008000;">//</span><span style="color: #008000;">这种写法主要是用来设置图片的存放路径及图片的生成名字如，build/images/43243234234.1.png</span>
+<span style="color: #000000;">      }
+      }
+    ]
+  },
+  resolve: {
+    extensions: [</span><span style="color: #800000;">''</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.js</span><span style="color: #800000;">'</span>, <span style="color: #800000;">'</span><span style="color: #800000;">.jsx</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+  },
+  plugins: [
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlwebpackPlugin({
+        title: </span><span style="color: #800000;">'</span><span style="color: #800000;">Hello World app</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+        filename: </span><span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+        inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        hash: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    })
+  ]
+};</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>执行webpack后，在浏览器中查看显示效果，如图所示：</p>
+<p><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/755150-20160825161950366-544703325.png" alt=""></p>
+<p>至此运用url-loader实现图片打包，并且能够在css中正确运用打包后的图片。</p>
+</div>
+</div>
+<span style="font-family: &#39;Microsoft Yahei&#39;;"><span style="color: #333333;"><strong>webpack对图片的打包的源码地址为：<a href="http://download.csdn.net/detail/wdlhao/9613223" target="_blank">http://download.csdn.net/detail/wdlhao/9613223</a></strong></span></span></div>
+<div>&nbsp;</div>
+</div>
+</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<div>&nbsp;</div></div><div id="MySignature" style="display: block;"><div style="width: 97%; height: 200px; border: 1px dashed #00bfff; line-height: 32px; font-size: 16px; padding: 10px 20px 0;">
+<p>你的关注和支持是对我最大的动力~</p>
+<p>书山有路群[一个非常活跃的读书分享群,每周都有新书分享]：452450927</p>
+<p>微博：<a href="http://weibo.com/u/2241641312">http://weibo.com/u/2241641312</a></p>
+<p>出处：<a href="http://www.cnblogs.com/wdlhao/">http://www.cnblogs.com/wdlhao/</a></p>
+<p>github:<a href="https://github.com/wdlhao">https://github.com/wdlhao</a></p>
+本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面
+</div></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5807157,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;1ef84f86-97f5-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wdlhao/" target="_blank"><img src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/20150509131333.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/wdlhao/">流浪的诗人</a><br>
+            <a href="http://home.cnblogs.com/u/wdlhao/followees">关注 - 11</a><br>
+            <a href="http://home.cnblogs.com/u/wdlhao/followers">粉丝 - 49</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;1ef84f86-97f5-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5807157,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">6</span>
+    </div>
+    <div class="buryit" onclick="votePost(5807157,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+        <div class="clear"></div>
+        <div id="post_next_prev"><a href="http://www.cnblogs.com/wdlhao/p/5801918.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/wdlhao/p/5801918.html" title="发布于2016-08-25 08:53">webpack入门和实战(一)：webpack配置及技巧</a><br><a href="http://www.cnblogs.com/wdlhao/p/5810955.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/wdlhao/p/5810955.html" title="发布于2016-08-29 08:50">git入门学习(一)：github for windows上传本地项目到github</a><br></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/wdlhao/category/872064.html" target="_blank">webpack</a></li>
+        <li class="icon_bullet" id="EntryTag">标签: <a href="http://www.cnblogs.com/wdlhao/tag/grunt/">grunt</a>, <a href="http://www.cnblogs.com/wdlhao/tag/webpack/">webpack</a>, <a href="http://www.cnblogs.com/wdlhao/tag/gulp/">gulp</a>, <a href="http://www.cnblogs.com/wdlhao/tag/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/">打包工具</a>, <a href="http://www.cnblogs.com/wdlhao/tag/%E6%A8%A1%E5%9D%97%E5%8C%96/">模块化</a></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=227004,cb_entryId=5807157,cb_blogApp=currentBlogApp,cb_blogUserGuid='1ef84f86-97f5-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2016/8/26 8:43:00';loadViewCount(cb_entryId);</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a class="addcomment" href="http://www.cnblogs.com/wdlhao/p/5807157.html#comment_tip">Add your comment</a>
+<h3 id="comments"></h3>
+<div class="feedbackNoItems"></div>
+
+
+<ol class="commentlist" id="commentList">	
+
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#3496944" class="layer">#1楼</a><a name="3496944" id="comment_anchor_3496944"></a></cite> <a id="a_comment_author_3496944" href="http://www.cnblogs.com/stoneniqiu/" target="_blank">stoneniqiu</a> <a href="http://msg.cnblogs.com/send/stoneniqiu" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2016-08-26 08:49</span></small>
+			</h5>
+			<div id="comment_body_3496944" class="blog_comment_body">先顶，感觉有点复杂。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3496944,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3496944,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3496944_avatar" style="display:none;">http://pic.cnblogs.com/face/417688/20140604115833.png</span>
+			<div class="opt_comment"><span class="comment_actions"></span></div>
+		</li>
+	
+		<li class="alt">
+			<h5>
+				<cite><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#3497003" class="layer">#2楼</a><a name="3497003" id="comment_anchor_3497003"></a><span id="comment-maxId" style="display:none;">3497003</span><span id="comment-maxDate" style="display:none;">2016/8/26 9:36:06</span></cite> <a id="a_comment_author_3497003" href="http://home.cnblogs.com/u/83630/" target="_blank">xwy</a> <a href="http://msg.cnblogs.com/send/xwy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><small> <span class="comment_date">2016-08-26 09:36</span></small>
+			</h5>
+			<div id="comment_body_3497003" class="blog_comment_body">顶，感觉超详细</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3497003,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3497003,&#39;Bury&#39;,this)">反对(0)</a></div>
+			<div class="opt_comment"><span class="comment_actions"></span></div>
+		</li>
+	
+</ol>
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/wdlhao/p/5807157.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://group.cnblogs.com/topic/75389.html" target="_blank">【活动】优达学城正式发布“无人驾驶车工程师”课程</a><br><a href="http://www.rongcloud.cn/live" target="_blank">【推荐】移动直播百强八成都在用融云即时通讯云</a><br><a href="http://www.gcpowertools.com.cn/products/componentone_studio_enterprise.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=C1&amp;utm_campaign=community" target="_blank">【推荐】别再闷头写代码！找对工具，事半功倍，全能开发工具包用起来</a><br><a href="http://netease.im/promotion/1013?hmsr=bky10&amp;from=bky10" target="_blank">【福利】网易云信1周年接入开发者突破10万，送红包活动火热开展中</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://q.cnblogs.com/" target="_blank"><img width="300" height="250" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/q-cnblogs-com-20160923.png" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/555162/" target="_blank">昨天360手机N4A发布后，我们更想聊聊“360做手机”这事儿</a><br> ·  <a href="http://news.cnblogs.com/n/555161/" target="_blank">阿里云开放AliSQL数据库源码下载 核心产品最高降50%</a><br> ·  <a href="http://news.cnblogs.com/n/555159/" target="_blank">「抄袭」看腾讯？起开，让专业的来！</a><br> ·  <a href="http://news.cnblogs.com/n/555158/" target="_blank">人脸识别将无处不在：连手机都不用带，你就带着这张人脸就可以了</a><br> ·  <a href="http://news.cnblogs.com/n/555157/" target="_blank">曾鸣在湖畔大学讲：“战略”是什么、如何定、谁来定</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/24442-20161011141820868-1378717477.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br> ·  <a href="http://kb.cnblogs.com/page/551422/" target="_blank">没那么难，谈CSS的设计模式</a><br> ·  <a href="http://kb.cnblogs.com/page/550625/" target="_blank">程序猿媳妇儿注意事项</a><br> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news"><div class="about">
+   <table>
+     <tbody><tr><td>新浪微博</td><td>gitHub</td></tr>
+     <tr>
+       <td>
+<a href="http://weibo.com/2241641312/profile" target="_blank"><img border="0" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/weibo.gif"></a>
+      </td>
+       <td>
+<a href="https://github.com/wdlhao" target="_blank"><img border="0" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/github.gif"></a>
+      </td>
+     </tr>
+   </tbody></table>
+  <p>
+    <span class="title">qq邮箱：</span>
+    <a href="http://www.cnblogs.com/wdlhao/p/5807157.html#">906144643@qq.com</a>
+  </p>
+  <p>
+    <span class="title">书山有路群：</span>
+    <a href="http://www.cnblogs.com/wdlhao/p/5807157.html#">452450927</a>
+  </p>
+</div><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/wdlhao/">流浪的诗人</a><br>园龄：<a href="http://home.cnblogs.com/u/wdlhao/" title="入园时间：2015-05-08">1年5个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/wdlhao/followers/">49</a><br>关注：<a href="http://home.cnblogs.com/u/wdlhao/followees/">11</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;1ef84f86-97f5-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="./webpack入门和实战(二)：全面理解和运用loader和plugins - 流浪的诗人 - 博客园_files/btnsearch.gif" id="btnZzk" class="submit" onclick="zzk_go();return false;">
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword"></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            <div id="side-recent-posts">
+        <h2>最新随笔</h2>
+        <ul class="bullet">
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5900360.html">npm常用命令小结</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5853867.html">详解javascript,ES5标准中新增的几种高效Object操作方法</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5811310.html">git入门学习(二)：新建分支/上传代码/删除分支</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5810955.html">git入门学习(一)：github for windows上传本地项目到github</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html">webpack入门和实战(二)：全面理解和运用loader和plugins</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5801918.html">webpack入门和实战(一)：webpack配置及技巧</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5764456.html">熟练掌握js中this的用法,解析this在不同应用场景的作用</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5751211.html">用css3绘制你需要的几何图形</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5743770.html">js中Prototype属性解释及常用方法</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/p/5733884.html">Nodejs之MEAN栈开发（九）---- 用户评论的增加/删除/修改</a></li>
+        </ul>
+    </div><div id="side-recent-comments">
+        <h2>最新评论</h2>
+        <ul class="voice">
+                <li>
+                    <a href="http://www.cnblogs.com/wdlhao/p/5853867.html#3506625">Re:详解javascript,ES5标准中新增的几种高效Object操作方法</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/wdlhao/p/5853867.html#3506625">
+                        非常有用的静态方法~
+                        -- 幻天芒
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498756">Re:git入门学习(一)：github for windows上传本地项目到github</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498756">
+                        正需要这样一篇文章，谢谢
+                        -- WesTward
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498488">Re:git入门学习(一)：github for windows上传本地项目到github</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498488">
+                        刚刚看了，有用。赞一个。
+                        -- 一树繁花
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498426">Re:git入门学习(一)：github for windows上传本地项目到github</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/wdlhao/p/5810955.html#3498426">
+                        直接git-bash，或者TortoiseGit，亦或者编辑器插件方便一些
+                        -- unofficial
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.cnblogs.com/wdlhao/p/5801918.html#3498069">Re:webpack入门和实战(一)：webpack配置及技巧</a>
+                    <br>
+                    <a class="child" href="http://www.cnblogs.com/wdlhao/p/5801918.html#3498069">
+                        学习
+                        -- lk_
+                    </a>
+                </li>
+        </ul>
+    </div></div>
+            <div id="sideRight">
+            <div id="side-archives">
+        <h2>随笔档案</h2>
+        <ul class="date">
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/09.html">2016年9月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/08.html">2016年8月(9)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/06.html">2016年6月(6)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/05.html">2016年5月(9)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/04.html">2016年4月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/03.html">2016年3月(11)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/02.html">2016年2月(1)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2016/01.html">2016年1月(15)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2015/12.html">2015年12月(11)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2015/11.html">2015年11月(20)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2015/10.html">2015年10月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2015/06.html">2015年6月(2)</a></li>
+                <li><a href="http://www.cnblogs.com/wdlhao/archive/2015/05.html">2015年5月(15)</a></li>
+        </ul>
+    </div>    
+    
+    
+    
+    
+
+
+</div>
+            <div id="sideLeft">
+            <div id="side-calendar">
+        <h2>日历</h2>
+        <div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/09/01&#39;);return false;">&lt;</a></td><td align="center">2016年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/11/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalTodayDay" align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div>
+    </div><div id="side-categories">
+        <h2>随笔分类</h2>
+        <ul class="folder">
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/853258.html">AngularJS(4)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/873376.html">git(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/688081.html">html5 &amp;&amp; css3(22)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/688079.html">javascript(56)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/688080.html">jquery(13)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/758657.html">Linux(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/776312.html">lua(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/827709.html">mobile phone(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/886192.html">NodeJs(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/688085.html">php(1)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/872064.html">webpack(2)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/757783.html">web服务器(6)</a>
+                </li>
+                <li>
+                    
+                    <a href="http://www.cnblogs.com/wdlhao/category/790149.html">新的blogs链接(1)</a>
+                </li>
+        </ul>
+    </div><div id="side-top-posts-custom">
+    <h2>推荐排行榜</h2>
+    <div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/wdlhao/p/5751211.html">1. 用css3绘制你需要的几何图形(24)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5623957.html">2. 全面理解JavaScript中的闭包的含义及用法(14)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5603570.html">3. 区别和详解：jQuery extend()和jQuery.fn.extend()(14)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5801918.html">4. webpack入门和实战(一)：webpack配置及技巧(9)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5807157.html">5. webpack入门和实战(二)：全面理解和运用loader和plugins(6)</a></li></ul></div>
+</div><div id="side-top-posts">
+    <h2>阅读排行榜</h2>
+    <div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/wdlhao/p/4519343.html">1. layer.msg(msg, time, parme)设置图标问题(2776)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5599296.html">2. H5基于iScroll实现下拉刷新，上拉加载更多....(2242)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5751211.html">3. 用css3绘制你需要的几何图形(1897)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5810955.html">4. git入门学习(一)：github for windows上传本地项目到github(814)</a></li><li><a href="http://www.cnblogs.com/wdlhao/p/5801918.html">5. webpack入门和实战(一)：webpack配置及技巧(773)</a></li></ul></div>
+</div></div>
+            
+                <div id="sideContainer"></div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright ©2016 流浪的诗人
+</p>
+<p>
+<a href="http://www.cnblogs.com/">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+<!--PageEndHtml Block Begin-->
+<div id="MySignature">
+<p class="footer"> 
+你的关注和支持是我写作的最大动力~ <br>
+书山有路群：452450927<br>
+出处：<a href="http://www.cnblogs.com/wdlhao/" target="_blank">http://www.cnblogs.com/wdlhao/</a><br>
+github:<a href="https://github.com/wdlhao">https://github.com/wdlhao</a><br>
+本文版权归作者和博客园共有，欢迎转载，但未经作者同意必须保留此段声明，且在文章页面
+</p>
+</div>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

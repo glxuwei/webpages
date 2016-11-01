@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://zhaoda.net/webpack-handbook/loader.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Loader | Webpack 中文指南</title>
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://zhaoda.net/webpack-handbook/gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="http://zhaoda.net/webpack-handbook/gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/style.css">
+    
+        
+        <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/website(1).css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="http://zhaoda.net/webpack-handbook/configuration.html">
+    
+    
+    <link rel="prev" href="http://zhaoda.net/webpack-handbook/usage.html">
+    
+
+        
+    <script src="./Loader _ Webpack 中文指南_files/ca-pub-9798300025848807.js"></script><script src="./Loader _ Webpack 中文指南_files/hm.js"></script><script src="./Loader _ Webpack 中文指南_files/embed.js" data-timestamp="1473661358973"></script><link rel="stylesheet" href="./Loader _ Webpack 中文指南_files/loading.8023a7350e47171f7bb79707886cd7c5.css"></head>
+    <body>
+        
+        
+    <div class="book without-animation with-summary font-size-2 font-family-1" data-level="2.3" data-chapter-title="Loader" data-filepath="loader.md" data-basepath="." data-revision="Tue Aug 16 2016 23:18:24 GMT+0800 (CST)">
+    
+
+<div class="book-summary"><div class="book-search" role="search"><input type="text" class="form-control" placeholder="Type to search"></div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="preface.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/preface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        前言
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="module-system.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/module-system.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        模块系统
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="what-is-webpack.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/what-is-webpack.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        重复的轮子
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="start.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/start.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        准备开始
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="install.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="usage.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/usage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="loader.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/loader.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Loader
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="configuration.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        配置文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="plugin.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/plugin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="development.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/development.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        开发环境
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="troubleshooting.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/troubleshooting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        故障处理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="advanced.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/advanced.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        高级
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="commonjs.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/commonjs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        CommonJS 规范
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="amd.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/amd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        AMD 规范
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="reference.html">
+            
+                
+                    <a href="http://zhaoda.net/webpack-handbook/reference.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        参考链接
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-align-justify"></i></a><a class="btn pull-right js-toolbar-action" aria-label="GitHub" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-github"></i></a><a class="btn pull-left js-toolbar-action" aria-label="" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-edit"></i> 编辑本页</a><a class="btn pull-left js-toolbar-action" aria-label="Search" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-search"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-weibo"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="http://zhaoda.net/webpack-handbook/loader.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="http://zhaoda.net/webpack-handbook/">Webpack 中文指南</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="loader">Loader</h1>
+<p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。</p>
+<p>Loader 可以理解为是模块和资源的转换器，它本身是一个函数，接受源文件作为参数，返回转换的结果。这样，我们就可以通过 <code>require</code> 来加载任何类型的模块或文件，比如 CoffeeScript、 JSX、 LESS 或图片。</p>
+<p>先来看看 loader 有哪些特性？</p>
+<ul>
+<li>Loader 可以通过管道方式链式调用，每个 loader 可以把资源转换成任意格式并传递给下一个 loader ，但是最后一个 loader 必须返回 JavaScript。</li>
+<li>Loader 可以同步或异步执行。</li>
+<li>Loader 运行在 node.js 环境中，所以可以做任何可能的事情。</li>
+<li>Loader 可以接受参数，以此来传递配置项给 loader。</li>
+<li>Loader 可以通过文件扩展名（或正则表达式）绑定给不同类型的文件。</li>
+<li>Loader 可以通过 <code>npm</code> 发布和安装。</li>
+<li>除了通过 <code>package.json</code> 的 <code>main</code> 指定，通常的模块也可以导出一个 loader 来使用。</li>
+<li>Loader 可以访问配置。</li>
+<li>插件可以让 loader 拥有更多特性。</li>
+<li>Loader 可以分发出附加的任意文件。</li>
+</ul>
+<p>Loader 本身也是运行在 node.js 环境中的 JavaScript 模块，它通常会返回一个函数。大多数情况下，我们通过 npm 来管理 loader，但是你也可以在项目中自己写 loader 模块。</p>
+<p>按照惯例，而非必须，loader 一般以 <code>xxx-loader</code> 的方式命名，<code>xxx</code> 代表了这个 loader 要做的转换功能，比如 <code>json-loader</code>。</p>
+<p>在引用 loader 的时候可以使用全名 <code>json-loader</code>，或者使用短名 <code>json</code>。这个命名规则和搜索优先级顺序在 webpack 的 <code>resolveLoader.moduleTemplates</code> api 中定义。</p>
+<pre><code>Default: ["*-webpack-loader", "*-web-loader", "*-loader", "*"]
+</code></pre><p>Loader 可以在 <code>require()</code> 引用模块的时候添加，也可以在 webpack 全局配置中进行绑定，还可以通过命令行的方式使用。</p>
+<p>接上一节的例子，我们要在页面中引入一个 CSS 文件 style.css，首页将 style.css 也看成是一个模块，然后用 <code>css-loader</code> 来读取它，再用 <code>style-loader</code> 把它插入到页面中。</p>
+<pre><code class="lang-css"><span class="hljs-comment">/* style.css */</span>
+<span class="hljs-tag">body</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> yellow</span></span>; }</span>
+</code></pre>
+<p>修改 entry.js：</p>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">"!style!css!./style.css"</span>) <span class="hljs-comment">// 载入 style.css</span>
+<span class="hljs-built_in">document</span>.write(<span class="hljs-string">'It works.'</span>)
+<span class="hljs-built_in">document</span>.write(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./module.js'</span>))
+</code></pre>
+<p>安装 loader：</p>
+<pre><code class="lang-bash">npm install css-loader style-loader
+</code></pre>
+<p>重新编译打包，刷新页面，就可以看到黄色的页面背景了。</p>
+<p>如果每次 <code>require</code> CSS 文件的时候都要写 loader 前缀，是一件很繁琐的事情。我们可以根据模块类型（扩展名）来自动绑定需要的 loader。</p>
+<p>将 entry.js 中的 <code>require("!style!css!./style.css")</code> 修改为 <code>require("./style.css")</code> ，然后执行：</p>
+<pre><code class="lang-bash">$ webpack entry.js bundle.js --module-bind <span class="hljs-string">'css=style!css'</span>
+
+<span class="hljs-comment"># 有些环境下可能需要使用双引号</span>
+$ webpack entry.js bundle.js --module-bind <span class="hljs-string">"css=style!css"</span>
+</code></pre>
+<p>显然，这两种使用 loader 的方式，效果是一样的。</p>
+
+                    
+                    </section>
+                
+                
+                <div class="page-inner-bottom"><script async="" src="./Loader _ Webpack 中文指南_files/adsbygoogle.js"></script><!-- 自适应高反差黑色 --><ins class="adsbygoogle" style="display: block; height: 90px;" data-ad-client="ca-pub-9798300025848807" data-ad-slot="8607007877" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:770px;background-color:transparent"><iframe width="770" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./Loader _ Webpack 中文指南_files/saved_resource.html"></iframe></ins></ins></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><p></p><div id="disqus_thread"><iframe id="dsq-app1" name="dsq-app1" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Loader _ Webpack 中文指南_files/saved_resource(1).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 1666px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div><script>(function() {var d = document, s = d.createElement('script');s.src = '//webpack-handbook.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the &lt;a href="https://disqus.com/?ref_noscript" rel="nofollow"&gt;comments powered by Disqus.&lt;/a&gt;</noscript></div></div>
+            </div>
+        </div>
+
+        
+        <a href="http://zhaoda.net/webpack-handbook/usage.html" class="navigation navigation-prev " aria-label="Previous page: 使用"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="http://zhaoda.net/webpack-handbook/configuration.html" class="navigation navigation-next " aria-label="Next page: 配置文件" style="margin-right: 15px;"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="./Loader _ Webpack 中文指南_files/app.js"></script>
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/plugin.js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/plugin(1).js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/plugin(2).js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/plugin(3).js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/lunr.min.js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/search.js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/buttons.js"></script>
+    
+
+    
+    <script src="./Loader _ Webpack 中文指南_files/buttons(1).js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"github":{"url":"https://github.com/zhaoda/webpack-handbook"},"editlink":{"base":"https://github.com/zhaoda/webpack-handbook/edit/master/content","label":"编辑本页","multilingual":false},"baidu":{"token":"a9787f0ab45d5e237bab522431d0a7ec"},"sharing":{"weibo":true,"twitter":false,"facebook":false,"google":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"ad":{"contentBottom":"%3Cscript%20async%20src%3D%22//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js%22%3E%3C/script%3E%3C%21--%20%u81EA%u9002%u5E94%u9AD8%u53CD%u5DEE%u9ED1%u8272%20--%3E%3Cins%20class%3D%22adsbygoogle%22%20style%3D%22display%3Ablock%22%20data-ad-client%3D%22ca-pub-9798300025848807%22%20data-ad-slot%3D%228607007877%22%20data-ad-format%3D%22auto%22%3E%3C/ins%3E%3Cscript%3E%28adsbygoogle%20%3D%20window.adsbygoogle%20%7C%7C%20%5B%5D%29.push%28%7B%7D%29%3B%3C/script%3E%3C/p%3E%3Cdiv%20id%3D%22disqus_thread%22%3E%3C/div%3E%3Cscript%3E%28function%28%29%20%7Bvar%20d%20%3D%20document%2C%20s%20%3D%20d.createElement%28%27script%27%29%3Bs.src%20%3D%20%27//webpack-handbook.disqus.com/embed.js%27%3Bs.setAttribute%28%27data-timestamp%27%2C%20+new%20Date%28%29%29%3B%28d.head%20%7C%7C%20d.body%29.appendChild%28s%29%3B%7D%29%28%29%3B%3C/script%3E%3Cnoscript%3EPlease%20enable%20JavaScript%20to%20view%20the%20%3Ca%20href%3D%22https%3A//disqus.com/%3Fref_noscript%22%20rel%3D%22nofollow%22%3Ecomments%20powered%20by%20Disqus.%3C/a%3E%3C/noscript%3E"},"sitemap":{"hostname":"http://zhaoda.net/"},"prism":{},"highlight":{},"search":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>var _hmt = _hmt || [];(function() {var hm = document.createElement('script');hm.src = '//hm.baidu.com/hm.js?a9787f0ab45d5e237bab522431d0a7ec';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm, s);})();</script>
+    
+    
+
+<iframe style="display: none;" src="./Loader _ Webpack 中文指南_files/saved_resource(2).html"></iframe></body></html>

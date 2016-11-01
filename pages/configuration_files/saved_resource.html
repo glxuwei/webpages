@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0210)https://disqus.com/embed/comments/?base=default&version=0bbdb6fb3c78a109f10740edce81394b&f=webpack&t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&t_d=configuration&t_t=configuration&s_o=default -->
+<html lang="en" dir="ltr" class="js no-touch localstorage sessionstorage contenteditable use-opacity-transitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Disqus Comments</title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <style>
+        .alert--warning {
+            border-radius: 3px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            background-color: #FFE070;
+            color: #A47703;
+        }
+
+        .alert--warning a,
+        .alert--warning a:hover,
+        .alert--warning strong {
+            color: #A47703;
+            font-weight: bold;
+        }
+
+        .alert--error p,
+        .alert--warning p {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        
+        </style>
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        #error {
+            display: none;
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        
+    </style>
+
+<link rel="stylesheet" href="./lounge.b0d3097b9af2aea963f18ecf4edbea4a.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="remote/config" src="./config.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="common.bundle" src="./common.bundle.8f6c9a4747df456b9de6b7a38e23341e.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lounge.bundle" src="./lounge.bundle.154b860b3da74bd6884ccce5bf92befe.js"></script><style id="css_1473215640332"></style><!--<base target="_parent">--><base href="." target="_parent"><link rel="stylesheet" href="./discovery.ec9371c4ef39ecee074c2acf24d5e0e2.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ga" src="https://ssl.google-analytics.com/ga.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="discovery/main" src="./discovery.bundle.40e79a6e25f6d95ea88301548969b038.js"></script></head>
+<body>
+    
+
+    
+    <div id="error" class="alert--error">
+        <p>We were unable to load Disqus. If you are a moderator please see our <a href="https://docs.disqus.com/help/83/"> troubleshooting guide</a>. </p>
+    </div>
+
+    
+    <script type="text/json" id="disqus-forumData">{"session":{"canModerate":false,"audienceSyncVerified":false,"mustVerify":false,"canReply":true,"mustVerifyEmail":false},"features":{},"forum":{"category":"Tech","description":"","founder":"146931801","twitterName":"","url":"http://webpack.github.io/docs/","raw_description":"","guidelines":null,"favicon":{"permalink":"https://disqus.com/api/forums/favicons/webpack.jpg","cache":"//a.disquscdn.com/uploads/forums/349/5159/favicon.png"},"raw_guidelines":null,"language":"en","daysThreadAlive":0,"installCompleted":true,"avatar":{"small":{"permalink":"https://disqus.com/api/forums/avatars/webpack.jpg?size=32","cache":"//a.disquscdn.com/1472143463/images/noavatar32.png"},"large":{"permalink":"https://disqus.com/api/forums/avatars/webpack.jpg?size=92","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png"}},"channel":null,"daysAlive":0,"pk":"3495159","signedUrl":"http://disq.us/?url=http%3A%2F%2Fwebpack.github.io%2Fdocs%2F&key=OSvcs3H4yAkM8sHbDSRvDw","settings":{"supportLevel":1,"adsDRNativeEnabled":false,"disable3rdPartyTrackers":false,"moderatorText":"","adsProductVideoEnabled":false,"adsPositionTopEnabled":false,"ssoRequired":false,"unapproveLinks":false,"linkAffiliationEnabled":false,"adsProductLinksThumbnailsEnabled":false,"adsProductStoriesEnabled":false,"organicDiscoveryEnabled":true,"allowMedia":true,"discoveryMax":false,"discoveryLocked":false,"adsVideoEnabled":false,"adsEnabled":false,"allowAnonPost":true,"hasCustomAvatar":false,"adultContent":false,"promotedDiscoveryEnabled":false,"allowAnonVotes":false,"mustVerify":true,"colorScheme":"auto","adsSettingsLocked":false,"mustVerifyEmail":true,"audienceSyncEnabled":false,"typeface":"auto","adsPositionBottomEnabled":false,"mediaembedEnabled":true,"adsProductLinksEnabled":false,"validateAllPosts":false,"discoveryThumbnailsEnabled":false,"isVIP":false,"adsPositionInthreadEnabled":false},"id":"webpack","createdAt":"2015-03-04T13:37:34.681104","name":"webpack"}}</script>
+
+    
+    <script type="text/json" id="disqus-threadData">{"cursor":{"hasPrev":false,"prev":null,"total":9,"hasNext":false,"next":"1:0:0"},"code":0,"response":{"lastModified":1471916531,"posts":[{"dislikes":0,"numReports":1,"likes":6,"message":"\u003cp>When trying the different SourceMap configuations, I was unable to find the distinction between some of them. For instance: `eval` and `cheap-eval-source-map`. The code quality is that the cheap-eval-source-map doesn't generate column information? But the output looks the same in the browser. Is there a difference between \"generated code\" and \"transformed code\"?\u003c/p>\u003cp>And why is the new default going to be cheap-module-eval-source-map? This makes debugging in the browser fairly difficult because you do not get to work with the transformed/generated code. You can *look* at it but you cannot place breakpoints on it (unless I'm doing something seriously wrong).\u003c/p>","id":"2423600223","isDeleted":false,"author":{"username":"disqus_glapjLPOxY","about":"","name":"Adam Beck","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.193173,"profileUrl":"https://disqus.com/by/disqus_glapjLPOxY/","url":"","reputation":1.193173,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2013-12-15T03:19:38","id":"86144074","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/disqus_glapjLPOxY.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar32.png"},"isCustom":false,"permalink":"https://disqus.com/api/users/avatars/disqus_glapjLPOxY.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png","large":{"permalink":"https://disqus.com/api/users/avatars/disqus_glapjLPOxY.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2015-12-23T20:00:56","parent":null,"isApproved":true,"isFlagged":true,"raw_message":"When trying the different SourceMap configuations, I was unable to find the distinction between some of them. For instance: `eval` and `cheap-eval-source-map`. The code quality is that the cheap-eval-source-map doesn't generate column information? But the output looks the same in the browser. Is there a difference between \"generated code\" and \"transformed code\"?\n\nAnd why is the new default going to be cheap-module-eval-source-map? This makes debugging in the browser fairly difficult because you do not get to work with the transformed/generated code. You can *look* at it but you cannot place breakpoints on it (unless I'm doing something seriously wrong).","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":0,"points":6,"isEdited":true},{"dislikes":0,"numReports":0,"likes":1,"message":"\u003cp>\u003ca href=\"https://webpack.github.io/docs/configuration.html#resolve-root\" rel=\"nofollow\">https://webpack.github.io/docs...\u003c/a>\u003c/p>\u003cp>\"It must be an absolute path\" , and then in the example is using relative paths.\u003c/p>","id":"2706303196","isDeleted":false,"author":{"username":"uxofontaine","about":"","name":"Ux\u00edo","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.232222,"profileUrl":"https://disqus.com/by/uxofontaine/","url":"","reputation":1.232222,"location":"","isPrivate":true,"signedUrl":"","isPrimary":true,"joinedAt":"2016-06-01T13:24:34","id":"210121379","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/uxofontaine.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar32.png"},"isCustom":false,"permalink":"https://disqus.com/api/users/avatars/uxofontaine.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png","large":{"permalink":"https://disqus.com/api/users/avatars/uxofontaine.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-06-01T13:27:00","parent":null,"isApproved":true,"isFlagged":false,"raw_message":"https://webpack.github.io/docs/configuration.html#resolve-root\n\n\"It must be an absolute path\" , and then in the example is using relative paths.","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":0,"points":1,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>path.resolve(...) turns a relative path into an absolute path\u003c/p>","id":"2806511143","isDeleted":false,"author":{"username":"Alleung234","about":"","name":"Alex Leung","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.241614,"profileUrl":"https://disqus.com/by/Alleung234/","url":"","reputation":1.241614,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2015-07-19T18:29:22","id":"166049064","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/Alleung234.jpg","cache":"//a.disquscdn.com/uploads/users/16604/9064/avatar32.jpg?1470698795"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/Alleung234.jpg","cache":"//a.disquscdn.com/uploads/users/16604/9064/avatar92.jpg?1470698795","large":{"permalink":"https://disqus.com/api/users/avatars/Alleung234.jpg","cache":"//a.disquscdn.com/uploads/users/16604/9064/avatar92.jpg?1470698795"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-07-27T16:43:43","parent":2706303196,"isApproved":true,"isFlagged":false,"raw_message":"path.resolve(...) turns a relative path into an absolute path","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":1,"points":0,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>The wording/example  is unnecessary confusing. I know what path.resolve() does, and I still was momentarily confused.\u003c/p>","id":"2853886645","isDeleted":false,"author":{"username":"rpolevoi","about":"","name":"rpolevoi","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.2361309999999999,"profileUrl":"https://disqus.com/by/rpolevoi/","url":"","reputation":1.2361309999999999,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2011-11-21T18:12:15","id":"19340734","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/rpolevoi.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar32.png"},"isCustom":false,"permalink":"https://disqus.com/api/users/avatars/rpolevoi.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png","large":{"permalink":"https://disqus.com/api/users/avatars/rpolevoi.jpg","cache":"//a.disquscdn.com/1472143463/images/noavatar92.png"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-08-23T01:42:10","parent":2806511143,"isApproved":true,"isFlagged":false,"raw_message":"The wording/example  is unnecessary confusing. I know what path.resolve() does, and I still was momentarily confused.","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":2,"points":0,"isEdited":false},{"dislikes":0,"numReports":0,"likes":1,"message":"\u003cp>what extra optimization \"-p\" does?\u003cbr>does it remove any console.log and alerts from the code?\u003c/p>\u003cp>how can i find in the website what it does?\u003cbr>thanks\u003c/p>","id":"2617385323","isDeleted":false,"author":{"username":"maorbane","about":"","name":"MAor Bane","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.232222,"profileUrl":"https://disqus.com/by/maorbane/","url":"","reputation":1.232222,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2016-04-11T07:59:06","id":"203939898","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/maorbane.jpg","cache":"//a.disquscdn.com/uploads/users/20393/9898/avatar32.jpg?1460361651"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/maorbane.jpg","cache":"//a.disquscdn.com/uploads/users/20393/9898/avatar92.jpg?1460361651","large":{"permalink":"https://disqus.com/api/users/avatars/maorbane.jpg","cache":"//a.disquscdn.com/uploads/users/20393/9898/avatar92.jpg?1460361651"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-04-11T08:00:50","parent":null,"isApproved":true,"isFlagged":false,"raw_message":"what extra optimization \"-p\" does?\ndoes it remove any console.log and alerts from the code?\n\nhow can i find in the website what it does?\nthanks","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":0,"points":1,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>Did you find a Solution to remove console.log ? Let me know\u003c/p>","id":"2723049306","isDeleted":false,"author":{"username":"disqus_UGGz6LoXk6","about":"","name":"Sijan Shrestha","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.232124,"profileUrl":"https://disqus.com/by/disqus_UGGz6LoXk6/","url":"","reputation":1.232124,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2016-06-10T09:46:57","id":"211121042","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/disqus_UGGz6LoXk6.jpg","cache":"//a.disquscdn.com/uploads/users/21112/1042/avatar32.jpg?1465552064"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/disqus_UGGz6LoXk6.jpg","cache":"//a.disquscdn.com/uploads/users/21112/1042/avatar92.jpg?1465552064","large":{"permalink":"https://disqus.com/api/users/avatars/disqus_UGGz6LoXk6.jpg","cache":"//a.disquscdn.com/uploads/users/21112/1042/avatar92.jpg?1465552064"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-06-10T09:47:42","parent":2617385323,"isApproved":true,"isFlagged":false,"raw_message":"Did you find a Solution to remove console.log ? Let me know","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":1,"points":0,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>Hi there, I am not sure if you ever found your solution, but I wanted to point you and anyone else at some directions. For webpack there is a loader called strip-loader[1], and for babel, if you are using it, there is a remove console transform[2].\u003c/p>\u003cp>  [1] \u003ca href=\"https://github.com/yahoo/strip-loader\" rel=\"nofollow\">https://github.com/yahoo/strip...\u003c/a>\u003cbr>  [2] \u003ca href=\"https://babeljs.io/docs/plugins/transform-remove-console/\" rel=\"nofollow\">https://babeljs.io/docs/plugin...\u003c/a>\u003c/p>\u003cp>I would probably go with the babel variant as it is \"official\"-ly part of Babel while yahoo's webpack loader has some outstanding, unresponded to issues. It may still work fine for your needs, in case you are not using Babel.\u003c/p>","id":"2814272895","isDeleted":false,"author":{"username":"jhegman","about":"","name":"Jasmine Hegman","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.252505,"profileUrl":"https://disqus.com/by/jhegman/","url":"","reputation":1.252505,"location":"Arizona","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2011-08-28T20:23:59","id":"16174927","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/jhegman.jpg","cache":"//a.disquscdn.com/uploads/users/1617/4927/avatar32.jpg?1472697933"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/jhegman.jpg","cache":"//a.disquscdn.com/uploads/users/1617/4927/avatar92.jpg?1472697933","large":{"permalink":"https://disqus.com/api/users/avatars/jhegman.jpg","cache":"//a.disquscdn.com/uploads/users/1617/4927/avatar92.jpg?1472697933"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-08-01T02:08:44","parent":2723049306,"isApproved":true,"isFlagged":false,"raw_message":"Hi there, I am not sure if you ever found your solution, but I wanted to point you and anyone else at some directions. For webpack there is a loader called strip-loader[1], and for babel, if you are using it, there is a remove console transform[2].\n\n  [1] https://github.com/yahoo/strip-loader\n  [2] https://babeljs.io/docs/plugins/transform-remove-console/\n\nI would probably go with the babel variant as it is \"official\"-ly part of Babel while yahoo's webpack loader has some outstanding, unresponded to issues. It may still work fine for your needs, in case you are not using Babel.","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":2,"points":0,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>Can I configure webpack to run tools that are available in the CLI when using webpack.config.js? I want to have multiple environments, and in production I'll likely have a webpack.prod.config.js that has --optimize-minimize (among other things) set.\u003c/p>","id":"2798432193","isDeleted":false,"author":{"username":"disqus_6n0N9wgi1s","about":"","name":"Kevin","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.2381259999999998,"profileUrl":"https://disqus.com/by/disqus_6n0N9wgi1s/","url":"","reputation":1.2381259999999998,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2014-01-05T10:49:26","id":"89256255","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/disqus_6n0N9wgi1s.jpg","cache":"//a.disquscdn.com/uploads/users/8925/6255/avatar32.jpg?1470525827"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/disqus_6n0N9wgi1s.jpg","cache":"//a.disquscdn.com/uploads/users/8925/6255/avatar92.jpg?1470525827","large":{"permalink":"https://disqus.com/api/users/avatars/disqus_6n0N9wgi1s.jpg","cache":"//a.disquscdn.com/uploads/users/8925/6255/avatar92.jpg?1470525827"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-07-23T01:34:18","parent":null,"isApproved":true,"isFlagged":false,"raw_message":"Can I configure webpack to run tools that are available in the CLI when using webpack.config.js? I want to have multiple environments, and in production I'll likely have a webpack.prod.config.js that has --optimize-minimize (among other things) set.","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":0,"points":0,"isEdited":false},{"dislikes":0,"numReports":0,"likes":0,"message":"\u003cp>Hello, i have a question for you.\u003c/p>\u003cp>When i compiled the program, webpack generated a file in the address indicated in the output,\u003c/p>\u003cp>but i dont know where webpack obtained the information who is contained in the file\u003c/p>","id":"2528321737","isDeleted":false,"author":{"username":"juligonzlezpoum","about":"","name":"Juli Gonz\u00e1lez Poum\u00e9","disable3rdPartyTrackers":false,"isPowerContributor":false,"isAnonymous":false,"rep":1.235932,"profileUrl":"https://disqus.com/by/juligonzlezpoum/","url":"","reputation":1.235932,"location":"","isPrivate":false,"signedUrl":"","isPrimary":true,"joinedAt":"2016-02-22T14:23:20","id":"197698529","avatar":{"small":{"permalink":"https://disqus.com/api/users/avatars/juligonzlezpoum.jpg","cache":"//a.disquscdn.com/uploads/users/19769/8529/avatar32.jpg?1456151219"},"isCustom":true,"permalink":"https://disqus.com/api/users/avatars/juligonzlezpoum.jpg","cache":"//a.disquscdn.com/uploads/users/19769/8529/avatar92.jpg?1456151219","large":{"permalink":"https://disqus.com/api/users/avatars/juligonzlezpoum.jpg","cache":"//a.disquscdn.com/uploads/users/19769/8529/avatar92.jpg?1456151219"}}},"media":[],"isSpam":false,"isDeletedByAuthor":false,"createdAt":"2016-02-22T14:26:58","parent":null,"isApproved":true,"isFlagged":false,"raw_message":"Hello, i have a question for you. \n\nWhen i compiled the program, webpack generated a file in the address indicated in the output, \n\nbut i dont know where webpack obtained the information who is contained in the file","isHighlighted":false,"canVote":false,"thread":"3567331748","forum":"webpack","depth":0,"points":0,"isEdited":false}],"thread":{"feed":"https://webpack.disqus.com/configuration_95/latest.rss","identifiers":[],"dislikes":0,"likes":5,"message":"","id":"3567331748","isDeleted":false,"category":"3573055","author":"146931801","userScore":0,"userSubscription":false,"isSpam":false,"signedLink":"https://disq.us/?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&key=3PO9iDJ-tgANCjQpThaEnw","createdAt":"2015-03-04T19:31:34","hasStreaming":false,"raw_message":"","isClosed":false,"link":"https://webpack.github.io/docs/configuration.html","slug":"configuration_95","forum":"webpack","clean_title":"configuration","posts":9,"moderators":[146931801],"title":"configuration","highlightedPost":null}},"order":"popular"}</script>
+
+    
+
+    <div id="fixed-content"></div>
+
+
+    
+        
+<script type="text/json" id="disqus-urls">{
+    "root":"//disqus.com",
+    "next":"//a.disquscdn.com/next/current/embed"
+}</script>
+
+        <script src="./lounge.load.0bbdb6fb3c78a109f10740edce81394b.js" id="bootstrap-script" data-app="lounge" async=""></script>
+    
+
+
+<iframe style="display: none;" src="./saved_resource(2).html"></iframe><div id="layout" data-tracking-area="layout">
+
+<div id="onboard" data-tracking-area="onboard"></div>
+
+<div id="highlighted-post" data-tracking-area="highlighted" class="highlighted-post" style="display: none;"></div>
+
+<div id="global-alert"></div>
+
+<header id="main-nav" data-tracking-area="main-nav">
+<nav class="nav nav-primary">
+<ul>
+<li class="nav-tab nav-tab--primary tab-conversation active" data-role="post-count"><a class="publisher-nav-color">
+<span class="comment-count">
+9 comments
+</span>
+
+<span class="comment-count-placeholder">
+Comments
+</span>
+</a>
+</li>
+<li class="nav-tab nav-tab--primary tab-community">
+<a href="https://disqus.com/home/forums/webpack/" class="publisher-nav-color" data-action="community-sidebar" data-forum="webpack" id="community-tab">
+<span class="community-name">
+<strong>webpack</strong>
+
+</span>
+
+<strong class="community-name-placeholder">Community</strong>
+</a>
+</li>
+<li class="nav-tab nav-tab--primary dropdown user-menu" data-role="logout"><a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="dropdown-toggle-wrapper">
+
+<span>
+Login
+</span>
+
+</span> <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+
+
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="auth:disqus">Disqus</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="auth:facebook">Facebook</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="auth:twitter">Twitter</a>
+</li>
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="auth:google">Google</a>
+</li>
+
+
+
+</ul>
+</li>
+<li class="nav-tab nav-tab--primary notification-menu unread" data-role="notification-menu"><a href="https://disqus.com/home/inbox/" class="notification-container" data-action="home" data-home-path="home/inbox/">
+<span class="notification-icon icon-comment" aria-hidden=""></span>
+<span class="notification-count" data-role="notification-count">1</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+
+<section id="conversation" data-role="main" data-tracking-area="main">
+<div class="nav nav-secondary" data-tracking-area="secondary-nav">
+<ul>
+<li id="recommend-button" class="nav-tab nav-tab--secondary recommend dropdown">
+<div class="thread-likes"><a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="recommend" title="Recommend this discussion" class="dropdown-toggle ">
+<span class="icon-heart"></span>
+<span class="label label-default">Recommend</span>
+<span class="label label-recommended">Recommended</span>
+<span class="label label-count">5</span>
+</a>
+<ul class="dropdown-menu dropdown-menu--coachmark">
+<li>
+<h2 class="coachmark__heading">Discussion Recommended!</h2>
+<p class="coachmark__description">Recommending means this is a discussion worth sharing. It gets shared to your followers' Disqus feeds, and gives the creator kudos!</p>
+<a href="https://disqus.com/home/?utm_source=disqus_embed&amp;utm_content=recommend_btn" class="btn btn-primary coachmark__button" target="_blank">
+ Find More Discussions 
+</a>
+</li>
+</ul>
+</div></li>
+<li id="thread-share-menu" class="nav-tab nav-tab--secondary dropdown share-menu hidden-sm"><a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="dropdown-toggle" data-toggle="dropdown" title="Share">
+<span class="icon-export"></span>
+<span class="label">Share</span>
+</a>
+<ul class="share-menu dropdown-menu">
+<li>
+<div class="share-menu__label">Share this discussion on</div>
+<ul>
+<li class="twitter">
+<a data-action="share:twitter" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#">Twitter</a>
+</li>
+<li class="facebook">
+<a data-action="share:facebook" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#">Facebook</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-role="post-sort" class="nav-tab nav-tab--secondary dropdown sorting pull-right">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="dropdown-toggle" data-toggle="dropdown">
+Sort by Best
+
+
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu pull-right">
+<li class="selected">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="sort" data-sort="popular">Best<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="sort" data-sort="desc">Newest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="sort" data-sort="asc">Oldest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="posts">
+<div id="form" class="textarea-wrapper--top-level"><form class="reply">
+<div class="postbox">
+<div role="alert"></div>
+<div class="avatar">
+<span class="user">
+<img data-role="user-avatar" src="./noavatar92.7b2fde640943965cc88df0cdee365907.png" alt="Avatar">
+</span>
+</div>
+
+<div class="textarea-wrapper" data-role="textarea" dir="auto"><div><span class="placeholder">Join the discussion…</span><div class="textarea" tabindex="0" role="textbox" aria-multiline="true" contenteditable="PLAINTEXT-ONLY" data-role="editable" aria-label="Join the discussion…" style="overflow: auto; max-height: 350px;"><p><br></p></div><div style="display: none;"><ul class="user-mention__list">
+<li class="header user-mention__header">
+<h5>in this conversation</h5>
+</li>
+</ul>
+</div></div>
+<div data-role="drag-drop-placeholder" class="media-drag-hover" style="display: none">
+<div class="drag-text">
+⬇ Drag and drop your images here to upload them.
+</div>
+</div>
+<div class="media-preview empty" data-role="media-preview"><ul data-role="media-legacy-list"></ul>
+<ul data-role="media-progress-list"></ul>
+<ul data-role="media-rich-list"></ul>
+<div class="media-expanded empty" data-role="media-preview-expanded">
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-role="media-preview-expanded-image" alt="Media preview placeholder">
+</div>
+</div>
+<div class="edit-alert" role="postbox-alert"></div>
+<div class="post-actions">
+<ul class="wysiwyg">
+<li class="wysiwyg__item" data-role="media-uploader"><a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" tabindex="-1" data-action="attach" class="attach" title="Upload Images"><span>Attach</span></a>
+<input type="file" data-role="media-upload" tabindex="-1" accept="image/*">
+</li>
+</ul>
+</div>
+</div>
+
+<div data-role="login-form"><div><section class="auth-section logged-out">
+<div class="connect">
+<h6>Log in with</h6>
+<ul data-role="login-menu" class="services login-buttons">
+
+<li class="auth-disqus">
+<button type="button" data-action="auth:disqus" title="Disqus" class="connect__button"><i class="icon-disqus"></i></button>
+</li>
+<li class="auth-facebook">
+<button type="button" data-action="auth:facebook" title="Facebook" class="connect__button"><i class="icon-facebook-circle"></i></button>
+</li>
+<li class="auth-twitter">
+<button type="button" data-action="auth:twitter" title="Twitter" class="connect__button"><i class="icon-twitter-circle"></i></button>
+</li>
+<li class="auth-google">
+<button type="button" data-action="auth:google" title="Google" class="connect__button"><i class="icon-google-plus-circle"></i></button>
+</li>
+</ul>
+</div>
+<div class="guest">
+<h6 class="guest-form-title">
+<span class="register-text"> or sign up with Disqus </span>
+<span class="guest-text"> or pick a name </span>
+</h6>
+
+<div class="help-tooltip__wrapper help-icon">
+<div id="rules" class="tooltip show help-tooltip">
+<h3 class="help-tooltip__heading">Disqus is a discussion network</h3>
+<ul class="help-tooltip__list">
+<li><span>Disqus never moderates or censors. The rules on this community are its own.</span></li>
+<li><span>Your email is safe with us. It's only used for moderation and optional notifications.</span></li>
+<li><span>Don't be a jerk or do anything illegal. Everything is easier that way.</span></li>
+</ul>
+<p class="clearfix"><a href="https://docs.disqus.com/kb/terms-and-policies/" class="btn btn-small help-tooltip__button" target="_blank">Read full terms and conditions</a></p>
+</div>
+</div>
+
+<p class="input-wrapper">
+<input dir="auto" type="text" placeholder="Name" name="display_name" id="view49_display_name" maxlength="30" class="input--text">
+</p>
+
+<div class="guest-details " data-role="guest-details">
+<p class="input-wrapper">
+<input dir="auto" type="email" placeholder="Email" name="email" id="view49_email" class="input--text">
+</p>
+
+<p class="input-wrapper">
+<input dir="auto" type="password" class="register-text input--text" placeholder="Password" name="password" id="view49_password">
+</p>
+
+<div class="acceptance-wrapper register-text">
+By signing up, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+<div class="acceptance-wrapper guest-text">
+By posting, you agree to the Disqus <a target="_blank" href="https://help.disqus.com/customer/portal/articles/1753105-basic-rules-for-disqus-powered-profiles-and-discussions">Basic Rules</a>, <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466260-terms-of-service">Terms of Service</a>, and <a target="_blank" href="https://help.disqus.com/customer/portal/articles/466259-privacy-policy">Privacy Policy</a>.
+</div>
+
+<div class="guest-checkbox">
+<label>
+<input type="checkbox" name="author-guest">
+I'd rather post as a guest
+</label>
+</div>
+
+<div class="proceed" data-role="submit-btn-container">
+<button type="submit" class="proceed__button btn submit" aria-label="Post"><span class="icon-proceed"></span><div class="spinner"></div></button>
+<button type="submit" class="proceed__button btn next" aria-label="Next"><span class="icon-proceed"></span><div class="spinner"></div></button>
+</div>
+</div>
+</div>
+</section>
+
+</div></div>
+</div>
+</form></div>
+
+<button class="alert alert--realtime" style="display: none" data-role="realtime-notification">
+</button>
+
+<div id="no-posts" style="display:none"></div>
+
+<ul id="post-list" class="post-list"><li class="post" id="post-2423600223"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/disqus_glapjLPOxY/" class="user" data-action="profile" data-username="disqus_glapjLPOxY">
+<img data-role="user-avatar" data-user="86144074" src="./noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/disqus_glapjLPOxY/" data-action="profile" data-username="disqus_glapjLPOxY" data-role="username">Adam Beck</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2423600223" data-role="relative-time" class="time-ago" title="Thursday, December 24, 2015 4:00 AM">8 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>When trying the different SourceMap configuations, I was unable to find the distinction between some of them. For instance: `eval` and `cheap-eval-source-map`. The code quality is that the cheap-eval-source-map doesn't generate column information? But the output looks the same in the browser. Is there a difference between "generated code" and "transformed code"?</p><p>And why is the new default going to be cheap-module-eval-source-map? This makes debugging in the browser fairly difficult because you do not get to work with the transformed/generated code. You can *look* at it but you cannot place breakpoints on it (unless I'm doing something seriously wrong).</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-6" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">6</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/142y5wf" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2423600223">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-2706303196"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/uxofontaine/" class="user" data-action="profile" data-username="uxofontaine">
+<img data-role="user-avatar" data-user="210121379" src="./noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/uxofontaine/" data-action="profile" data-username="uxofontaine" data-role="username">Uxío</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2706303196" data-role="relative-time" class="time-ago" title="Wednesday, June 1, 2016 9:27 PM">3 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p><a href="https://webpack.github.io/docs/configuration.html#resolve-root" rel="nofollow">https://webpack.github.io/docs...</a></p><p>"It must be an absolute path" , and then in the example is using relative paths.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-1" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">1</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/18r9gws" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2706303196">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-2806511143"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/Alleung234/" class="user" data-action="profile" data-username="Alleung234">
+<img data-role="user-avatar" data-user="166049064" src="./avatar92.jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/Alleung234/" data-action="profile" data-username="Alleung234" data-role="username">Alex Leung</a></span>
+
+<span><a href="https://webpack.github.io/docs/configuration.html#comment-2706303196" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Uxío</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2806511143" data-role="relative-time" class="time-ago" title="Thursday, July 28, 2016 12:43 AM">a month ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>path.resolve(...) turns a relative path into an absolute path</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1aex9uv" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2806511143">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-2853886645"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/rpolevoi/" class="user" data-action="profile" data-username="rpolevoi">
+<img data-role="user-avatar" data-user="19340734" src="./noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/rpolevoi/" data-action="profile" data-username="rpolevoi" data-role="username">rpolevoi</a></span>
+
+<span><a href="https://webpack.github.io/docs/configuration.html#comment-2806511143" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Alex Leung</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2853886645" data-role="relative-time" class="time-ago" title="Tuesday, August 23, 2016 9:42 AM">15 days ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>The wording/example  is unnecessary confusing. I know what path.resolve() does, and I still was momentarily confused.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1b74p11" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2853886645">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-2617385323"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/maorbane/" class="user" data-action="profile" data-username="maorbane">
+<img data-role="user-avatar" data-user="203939898" src="./avatar92(1).jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/maorbane/" data-action="profile" data-username="maorbane" data-role="username">MAor Bane</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2617385323" data-role="relative-time" class="time-ago" title="Monday, April 11, 2016 4:00 PM">5 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>what extra optimization "-p" does?<br>does it remove any console.log and alerts from the code?</p><p>how can i find in the website what it does?<br>thanks</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-1" data-action="upvote" title="">
+
+<span class="updatable count" data-role="likes">1</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/17abnfv" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2617385323">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-2723049306"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/disqus_UGGz6LoXk6/" class="user" data-action="profile" data-username="disqus_UGGz6LoXk6">
+<img data-role="user-avatar" data-user="211121042" src="./avatar92(2).jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/disqus_UGGz6LoXk6/" data-action="profile" data-username="disqus_UGGz6LoXk6" data-role="username">Sijan Shrestha</a></span>
+
+<span><a href="https://webpack.github.io/docs/configuration.html#comment-2617385323" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> MAor Bane</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2723049306" data-role="relative-time" class="time-ago" title="Friday, June 10, 2016 5:47 PM">3 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Did you find a Solution to remove console.log ? Let me know</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1918eai" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2723049306">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-2814272895"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/jhegman/" class="user" data-action="profile" data-username="jhegman">
+<img data-role="user-avatar" data-user="16174927" src="./avatar92(3).jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/jhegman/" data-action="profile" data-username="jhegman" data-role="username">Jasmine Hegman</a></span>
+
+<span><a href="https://webpack.github.io/docs/configuration.html#comment-2723049306" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Sijan Shrestha</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2814272895" data-role="relative-time" class="time-ago" title="Monday, August 1, 2016 10:08 AM">a month ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hi there, I am not sure if you ever found your solution, but I wanted to point you and anyone else at some directions. For webpack there is a loader called strip-loader[1], and for babel, if you are using it, there is a remove console transform[2].</p><p>  [1] <a href="https://github.com/yahoo/strip-loader" rel="nofollow">https://github.com/yahoo/strip...</a><br>  [2] <a href="https://babeljs.io/docs/plugins/transform-remove-console/" rel="nofollow">https://babeljs.io/docs/plugin...</a></p><p>I would probably go with the babel variant as it is "official"-ly part of Babel while yahoo's webpack loader has some outstanding, unresponded to issues. It may still work fine for your needs, in case you are not using Babel.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1ajjmv3" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2814272895">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-2798432193"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/disqus_6n0N9wgi1s/" class="user" data-action="profile" data-username="disqus_6n0N9wgi1s">
+<img data-role="user-avatar" data-user="89256255" src="./avatar92(4).jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/disqus_6n0N9wgi1s/" data-action="profile" data-username="disqus_6n0N9wgi1s" data-role="username">Kevin</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2798432193" data-role="relative-time" class="time-ago" title="Saturday, July 23, 2016 9:34 AM">a month ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Can I configure webpack to run tools that are available in the CLI when using webpack.config.js? I want to have multiple environments, and in production I'll likely have a webpack.prod.config.js that has --optimize-minimize (among other things) set.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/1aa443l" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2798432193">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-2528321737"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="https://disqus.com/by/juligonzlezpoum/" class="user" data-action="profile" data-username="juligonzlezpoum">
+<img data-role="user-avatar" data-user="197698529" src="./avatar92(5).jpg" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header class="comment__header">
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="https://disqus.com/by/juligonzlezpoum/" data-action="profile" data-username="juligonzlezpoum" data-role="username">Juli González Poumé</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="https://webpack.github.io/docs/configuration.html#comment-2528321737" data-role="relative-time" class="time-ago" title="Monday, February 22, 2016 10:26 PM">7 months ago</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hello, i have a question for you.</p><p>When i compiled the program, webpack generated a file in the address indicated in the output,</p><p>but i dont know where webpack obtained the information who is contained in the file</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer class="comment__footer">
+<menu class="comment-footer__menu">
+<li class="voting" data-role="voting">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" data-action="downvote" title="Vote down">
+
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="reply" data-role="reply-link">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="reply">
+<span class="text">Reply</span></a></li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+<li class="comment__share">
+<a class="toggle"><span class="text">Share ›</span></a>
+<ul class="comment-share__buttons">
+<li class="twitter">
+<button class="share__button" data-action="share:twitter">Twitter</button>
+</li>
+<li class="facebook">
+<button class="share__button" data-action="share:facebook">Facebook</button>
+</li>
+<li class="link">
+<input class="share__button" value="http://disq.us/p/15tapjd" name="Link" title="Click to copy post link" data-action="copy-link" readonly="">
+</li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:2528321737">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" class="realtime-button"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+<div class="load-more" data-role="more" style="display:none">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" data-action="more-posts" class="btn load-more__button">Load more comments</a>
+</div>
+</div>
+
+</section>
+
+<div id="placement-bottom" data-tracking-area="discovery-south"><div class="post-list" style="height: auto; visibility: visible;"><div style="display: block; width: 100%;"><div id="discovery-main-c113" class="discovery-main">
+
+<section id="col-organic-c131" class="col-organic">
+<header class="discovery-col-header">
+<h2>Also on <strong>webpack</strong>
+</h2>
+</header>
+<ul class="discovery-posts" data-role="discovery-posts"><li class="discovery-post post-0" id="discovery-link-organic-3582155242">
+<a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fusage-with-grunt.html%3AyYkQRdYMSTFBuCM9TKYw9hUmX0Q&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3582155242&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3582155242" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="usage with grunt">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+usage with grunt
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+7 comments
+</li>
+<li class="time">a year ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fusage-with-grunt.html%3AyYkQRdYMSTFBuCM9TKYw9hUmX0Q&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3582155242&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3582155242" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="./avatar92(6).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">Rich Burdon</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">How about a simpler example: why is it necessary to reconfigure everything in the Gruntfile? I already have a webpack.config.js file that says everything about my project. I just want Grunt to trigger that.</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-1" id="discovery-link-organic-3569164674">
+<a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Foptimization.html%3AaLJsxSH1bOTBw-Qt3aNpXPQbxx8&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3569164674&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3569164674" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="optimization">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+optimization
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+3 comments
+</li>
+<li class="time">2 years ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Foptimization.html%3AaLJsxSH1bOTBw-Qt3aNpXPQbxx8&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3569164674&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3569164674" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="./avatar92(7).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">Sitian Liu</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"> Hey, it is not set. try using https://webpack.github.io/docs... to inject NODE_ENV, here is an example in:  ```  NODE_ENV = isProd? 'production' : 'development';  definePlugin = new webpack.DefinePlugin({   'process.env': {     # This has effect on the react lib size     'NODE_ENV': …</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-2" id="discovery-link-organic-3576956483">
+<a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fdev-tools.html%3A9NCi4kg3o2IxdRqS8y-h5B7q1do&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3576956483&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3576956483" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="dev tools">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+dev tools
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">a year ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fdev-tools.html%3A9NCi4kg3o2IxdRqS8y-h5B7q1do&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3576956483&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3576956483" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="./noavatar92.png">
+<p><span class="user" data-role="discovery-top-comment-author">黄书伟</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">anything else? 呵呵哒~~~</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-3" id="discovery-link-organic-3575468532">
+<a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fhot-module-replacement.html%3AHC7ntEetbynGDwu83rIQxOIeRaU&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3575468532&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3575468532" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="hot module replacement">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+hot module replacement
+</span>
+</h3>
+
+<ul class="meta">
+<li class="comments">
+16 comments
+</li>
+<li class="time">2 years ago</li>
+</ul>
+</header>
+
+</a><a href="http://disq.us/url?url=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fhot-module-replacement.html%3AHC7ntEetbynGDwu83rIQxOIeRaU&amp;imp=2usltho2q5ee6t&amp;prev_imp&amp;forum_id=3495159&amp;forum=webpack&amp;thread_id=3567331748&amp;thread=3575468532&amp;zone=thread&amp;area=bottom&amp;object_type=thread&amp;object_id=3575468532" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="./avatar92(8).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">nova line</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">Please explain clearly and add some useful examples.</span></p>
+</a>
+
+</li>
+</ul>
+</section>
+
+</div>
+</div></div></div>
+
+<div id="footer" data-tracking-area="footer" class="disqus-footer__wrapper">
+<ul class="disqus-footer">
+<li class="disqus-footer__logo"><a href="https://disqus.com/" rel="nofollow" title="Powered by Disqus" class="disqus-footer__link">Powered by Disqus</a></li>
+<li id="thread-subscribe-button" class="email disqus-footer__item"> 
+<div class="default">
+<a href="https://disqus.com/embed/comments/?base=default&amp;version=0bbdb6fb3c78a109f10740edce81394b&amp;f=webpack&amp;t_u=https%3A%2F%2Fwebpack.github.io%2Fdocs%2Fconfiguration.html&amp;t_d=configuration&amp;t_t=configuration&amp;s_o=default#" rel="nofollow" data-action="subscribe" title="Subscribe and get email updates from this discussion" class="disqus-footer__link"><i aria-hidden="true" class="icon icon-mail"></i><span class="clip">Subscribe</span> <i aria-hidden="true" class="icon icon-checkmark"></i></a>
+</div>
+<div class="form">
+<div class="input-wrapper"><input id="thread-subscribe-email" type="email" placeholder="yourname@email.com" class="disqus-footer__input input--text"></div>
+</div>
+</li>
+<li class="install disqus-footer__item">
+<a href="https://publishers.disqus.com/engage?utm_source=webpack&amp;utm_medium=Disqus-Footer" rel="nofollow" target="_blank" class="disqus-footer__link">
+<i aria-hidden="true" class="icon icon-disqus"></i>
+<span class="clip hidden-sm">Add Disqus to your site</span>
+<span class="clip visible-sm hidden-xs">Add Disqus</span>
+<span class="clip visible-xs">Add</span>
+</a>
+</li>
+<li class="privacy disqus-footer__item">
+<a href="https://help.disqus.com/customer/portal/articles/1657951?utm_source=disqus&amp;utm_medium=embed-footer&amp;utm_content=privacy-btn" rel="nofollow" target="_blank" class="disqus-footer__link">
+<i aria-hidden="true" class="icon icon-lock"></i>
+<span class="clip">Privacy</span>
+</a>
+</li>
+</ul>
+</div>
+</div><iframe src="./match.html" style="display: none;"></iframe><img src="./saved_resource" style="display: none;"><img src="./tpid=c2uslthp3ovjvt3" style="display: none;"><img src="./23096" style="display: none;"><iframe src="./sync.html" style="display: none;"></iframe></body></html>

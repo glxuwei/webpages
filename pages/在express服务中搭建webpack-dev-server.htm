@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://www.boiajs.com/2015/08/25/webpack-dev-server-and-express-server -->
+<html xmlns:wb="http://open.weibo.com/wb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>在express服务中搭建webpack-dev-server</title><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><meta property="wb:webmaster" content="e45f8f6e936c4ad3"><meta name="360-site-verification" content="1ec39b0cc8169fcdc4cb992fe8bdf406"><meta name="keywords" content="前端, 前端开发, web前端, web前端开发, 前端开发工程师, 前端开发攻城师,设计, 开发, 前端资源, CSS, JavaScript, Ajax, jQuery, html,html5,css3,浏览器兼容, 前端开发工具, git, CSS整形和优化工具 , JS格式化工具 , CSS参考手册 ,HTML参考手册 , 多重搜索 , nodejs , node , boostrap , sublime, mac, iterm, angular, vim, 单元测试, unit test, linux, hexo"><link rel="stylesheet" href="./在express服务中搭建webpack-dev-server_files/main.css"><script src="./在express服务中搭建webpack-dev-server_files/wb.js" type="text/javascript" charset="utf-8"></script><script charset="UTF-8" src="./在express服务中搭建webpack-dev-server_files/query"></script><script type="text/javascript" src="./在express服务中搭建webpack-dev-server_files/highlight.js"></script><script>hljs.initHighlightingOnLoad();
+</script></head><body><div class="header"><div class="g-wrap clearfix"><div class="navbar g-navbar left-nav"><ul><li role="menuitem"><a href="http://www.boiajs.com/" title="首页">首页</a></li><li role="menuitem"><a href="http://www.boiajs.com/tags" title="标签">标签</a></li><li role="menuitem"><a href="http://www.boiajs.com/archives" title="所有文章">所有文章</a></li><li role="menuitem"><a href="http://www.boiajs.com/about" title="关于我">关于我</a></li><li role="menuitem"><form action="http://www.boiajs.com/" method="get"><input id="keyword" type="text" name="q" placeholder="搜索文章" class="search-input"></form></li></ul></div><div class="navbar g-navbar right-nav"><ul><li role="menuitem"><a href="http://www.boiajs.com/login" title="登录"><span>登录</span></a></li></ul></div></div></div><div id="content" class="clearfix"><div class="g-wrap clearfix"><div class="main-content"><div class="content-inner"><article id="webpack-dev-server-and-express-server" class="article article-type-post"><div class="article-inner"><input type="hidden" class="isFancy"><header itemprop="articleBody" class="article-header"><h1 class="article-title">在express服务中搭建webpack-dev-server</h1><div class="article-meta clearfix"><div class="article-info">发表于&nbsp;<span class="post-time">2015-08-25</span></div><div class="seperator">/</div><div class="article-info"><span>标签:&nbsp;</span><span class="tag-name"><a href="http://www.boiajs.com/tag/webpack">webpack</a></span></div><div class="seperator">/</div><div class="article-info"><span>阅读次数:&nbsp;</span><span class="post-click-count">4987</span></div></div></header><div class="article-entry"><p>用过webpack和react的人都知道react-hot-loader很强大，它不像<a href="http://livereload.com/">livereload</a>更新代码会刷新浏览器，作为前端大多数人不太明白热加载的概念，所谓热加载，就是在不丢失变量、浏览器缓存的情况下动态更新dom。react的理念就是view，在你修改了一个组件后，它只会更新这一块组件的信息，其他组件的state都不会变。(livereload更新css也不会刷新页面)</p>
+<p>webpack开启dev服务器并不复杂，但如果你的应用已经跑在某个服务下，比如说node、python或者react-route，这就需要增加一个dev服务。</p>
+<h3 id="-">准备</h3>
+<p>首先我们需要安装一些包:</p>
+<pre><code class="hljs">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack
+npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack-<span class="hljs-built_in">dev</span>-server
+npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> react-hot-loader
+npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> proxy-middleware
+</code></pre><!-- more -->
+<h3 id="webpackdev-server-js">webpackdev.server.js</h3>
+<p>touch一个文件，我们需要把webpack-dev服务单独拿出来，只有在dev环境下才会开启</p>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<span class="hljs-keyword">var</span> WebpackDevServer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack-dev-server'</span>);
+<span class="hljs-keyword">var</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./webpack.config.js'</span>);
+<span class="hljs-keyword">var</span> proxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">'proxy-middleware'</span>);
+<span class="hljs-keyword">var</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">'url'</span>);
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">app</span>) </span>{
+  <span class="hljs-comment">// 使用8081端口</span>
+  app.use(<span class="hljs-string">'/assets'</span>, proxy(url.parse(<span class="hljs-string">'http://localhost:8081/assets'</span>)));
+
+  <span class="hljs-keyword">var</span> server = <span class="hljs-keyword">new</span> WebpackDevServer(webpack(config), {
+    contentBase: __dirname,
+    hot: <span class="hljs-literal">true</span>,
+    quiet: <span class="hljs-literal">false</span>,
+    noInfo: <span class="hljs-literal">false</span>,
+    publicPath: <span class="hljs-string">'/assets/'</span>,
+    stats: { colors: <span class="hljs-literal">true</span> }
+  }).listen(<span class="hljs-number">8081</span>, <span class="hljs-string">'localhost'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'socketio listen 8081'</span>)
+  });
+}
+</code></pre><p>dev-server端口是8081，这很重要，其实它开了一个8081的socket服务。</p>
+<h3 id="webpack-config-js">webpack.config.js</h3>
+<p><code>webpack.config.js</code>是webpack的默认配置文件</p>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<span class="hljs-keyword">var</span> node_modules_dir = path.resolve(__dirname, <span class="hljs-string">'node_modules'</span>);
+
+<span class="hljs-keyword">var</span> config = {
+  entry: {    
+    <span class="hljs-string">'demo'</span>: [<span class="hljs-string">'./src/main.js'</span>,<span class="hljs-string">'webpack/hot/dev-server'</span>,<span class="hljs-string">'webpack-dev-server/client?http://localhost:8081'</span>]
+  },
+  output: {
+    path: __dirname,
+    filename: <span class="hljs-string">'[name].js'</span>,
+    publicPath: <span class="hljs-string">"http://localhost:8081/assets/"</span>
+  },
+  <span class="hljs-module"><span class="hljs-keyword">module</span>: </span>{
+    loaders: [{
+      test: <span class="hljs-regexp">/\.js$/</span>,
+      exclude: [node_modules_dir],
+      loaders: [<span class="hljs-string">'react-hot-loader'</span>, <span class="hljs-string">'babel-loader'</span>]
+    }]
+  },
+  resolve: {
+    extensions: [<span class="hljs-string">''</span>, <span class="hljs-string">'.js'</span>, <span class="hljs-string">'.jsx'</span>]
+  },
+  plugins: [
+    <span class="hljs-keyword">new</span> webpack.HotModuleReplacementPlugin(),
+    <span class="hljs-keyword">new</span> webpack.NoErrorsPlugin()
+  ]
+};
+</code></pre><h3 id="index-html">index.html</h3>
+<p>我们还需要在html中引入js</p>
+<pre><code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://localhost:8080/assets/demo.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre><p>现在就差一个node server了。</p>
+<h3 id="index-js">index.js</h3>
+<p><code>index.js</code>是我们服务的入口文件，入口文件用来开启node服务</p>
+<pre><code class="hljs"><span class="hljs-keyword">var</span> express = require(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> app = express();
+
+<span class="hljs-keyword">if</span>(process.env.NODE_ENV <span class="hljs-keyword">is</span> <span class="hljs-string">'dev'</span>) {
+  require(<span class="hljs-string">'./webpackdev.server'</span>)(app)
+}
+
+app.<span class="hljs-keyword">get</span>(<span class="hljs-string">'/'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(req, res)</span> </span>{
+  res.sendFile(__dirname + <span class="hljs-string">'/index.html'</span>);
+})
+
+app.listen(<span class="hljs-number">8080</span>);
+</code></pre><p>现在运行命令<code>NODE_ENV=dev node index.js</code>，打开浏览器输入<code>localhost:8080</code>就可以跑起来了。</p>
+<h3 id="-">参考</h3>
+<p><a href="http://stackoverflow.com/questions/26203725/how-to-allow-for-webpack-dev-server-to-allow-entry-points-from-react-router">how-to-allow-for-webpack-dev-server-to-allow-entry-points-from-react-router</a>
+<a href="http://ctheu.com/2015/05/14/using-react-hot-loader-with-a-webpack-dev-server-and-a-node-server/">using-react-hot-loader-with-a-webpack-dev-server-and-a-node-server</a></p>
+</div></div><div id="comment-form" class="comment-form"><h2 class="comments-header clearfix"><span class="post-count">0 评论</span><span class="user-menu"></span></h2><div>请<a href="http://www.boiajs.com/login" class="link">登录</a>后评论</div></div><div id="comments" class="comments"><div class="comments-content"></div></div></article></div></div><div class="sidebar"><div class="newest-posts widget"><h2><div class="title">最新文章</div></h2><div class="content"><div class="item-list"><ul><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/12/01/chrome-debug-skill-console-api" title="chrome调试技巧—console api">chrome调试技巧—console api</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/27/iterm2-theme-font-powerline" title="让你的iterm飞起来">让你的iterm飞起来</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/25/zsh-good-features" title="我最喜欢的zsh特性">我最喜欢的zsh特性</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/14/vim-marks" title="vim必会之marks">vim必会之marks</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/11/iterm2-weird-technique" title="iterm2中的奇技淫巧">iterm2中的奇技淫巧</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/10/how-to-solve-node-sass-install-build-error" title="从node-sass在linux安装失败谈谈解决一个问题的思路">从node-sass在linux安装失败谈谈解决一个问题的思路</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/11/06/gem-and-npm-move-taobao" title="gem和npm迁移到淘宝源">gem和npm迁移到淘宝源</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/10/31/node-github-login-v3" title="node对接github登录(v3)">node对接github登录(v3)</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/10/25/node-weibo-oauth2" title="node对接微博登录(Oauth2)">node对接微博登录(Oauth2)</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/10/01/blog-migrate-node-summary" title="博客迁移到NodeJS总结">博客迁移到NodeJS总结</a></span></li></ul></div></div></div><div class="hot-posts widget"><h2><div class="title">最热门文章</div></h2><div class="content"><div class="item-list"><ul><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2014/12/30/pm2-begin-nodejs-production" title="pm2部署nodejs线上环境">pm2部署nodejs线上环境</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2015/08/25/webpack-dev-server-and-express-server" title="在express服务中搭建webpack-dev-server">在express服务中搭建webpack-dev-server</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2014/12/17/vim-ctrlp" title="vim每日插件之ctrlp">vim每日插件之ctrlp</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2014/12/29/linux-install-autojump" title="linux下安装oh-my-zsh和autojump">linux下安装oh-my-zsh和autojump</a></span></li><li class="views-row text-ellipsis"><span><a href="http://www.boiajs.com/2014/11/23/vim-easymotion" title="vim每日插件之easymotion">vim每日插件之easymotion</a></span></li></ul></div></div></div><div class="social widget"><h2><div class="title">社交</div></h2><div class="content text-center"><a target="_blank" href="https://github.com/boiawang" title="github" class="github"><img src="./在express服务中搭建webpack-dev-server_files/github.png" width="40"></a><a target="_blank" href="http://www.weibo.com/boiawang" title="weibo" class="weibo"><img src="./在express服务中搭建webpack-dev-server_files/weibo.png" width="40"></a><a target="_blank" href="http://www.boiajs.com/atom.xml" title="rss" class="rss"><img src="./在express服务中搭建webpack-dev-server_files/rss.png" width="40"></a><a target="_blank" href="https://www.facebook.com/wang.boia" title="facebook" class="facebook"><img src="./在express服务中搭建webpack-dev-server_files/facebook.png" width="40"></a></div></div></div></div></div><footer id="footer"><div class="outer"><div id="footer-info"><div class="footer-left">Power By NodeJS © 2014-2015 Boia Wang 浙ICP备15004542号</div><div class="footer-right hide"><script type="text/javascript">var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F608e7d606350ca774780745d3471d653' type='text/javascript'%3E%3C/script%3E"));</script><script src="./在express服务中搭建webpack-dev-server_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=608e7d606350ca774780745d3471d653" target="_blank"><img border="0" src="./在express服务中搭建webpack-dev-server_files/21.gif" width="20" height="20"></a></div></div></div></footer></body></html>

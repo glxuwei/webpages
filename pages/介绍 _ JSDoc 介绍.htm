@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://www.css88.com/doc/jsdoc/index.html -->
+<html lang="zh-hans"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>介绍 | JSDoc 介绍</title>
+        
+        <meta name="description" content="JSDoc是一个根据javascript文件中注释信息，生成JavaScript应用程序或库、模块的API文档 的工具。你可以使用他记录如：命名空间，类，方法，方法参数等。类似JavaDoc和PHPDoc。现在很多编辑器或IDE中还可以通过JSDoc直接或使用插件生成智能提示。从而使开发者很容易了解整个类和其中的属性和方法，并且快速知道如何使用，从而提高开发效率，降低维护成本。">
+        <meta name="generator" content="GitBook 2.6.6">
+        
+        
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.css88.com/doc/jsdoc/gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="http://www.css88.com/doc/jsdoc/gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="./介绍 _ JSDoc 介绍_files/style.css">
+    
+        
+        <link rel="stylesheet" href="./介绍 _ JSDoc 介绍_files/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="./介绍 _ JSDoc 介绍_files/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="./介绍 _ JSDoc 介绍_files/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="./介绍 _ JSDoc 介绍_files/website(1).css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="http://www.css88.com/doc/jsdoc/about-namepaths.html">
+    
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book without-animation with-summary font-size-2 font-family-1" data-level="0" data-chapter-title="介绍" data-filepath="README.md" data-basepath="." data-revision="Thu Feb 18 2016 15:35:53 GMT+0800 (CST)" data-innerlanguage="">
+    
+
+<div class="book-summary"><div class="book-search" role="search"><input type="text" class="form-control" placeholder="Type to search"></div>
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="http://www.css88.com/doc/jsdoc/index.html" target="blank" class="custom-link">JSDoc 中文文档</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter active" data-level="0" data-path="index.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1">
+            
+            <span><b>1.</b> 入门（Getting Started）</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="about-namepaths.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-namepaths.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        JSDoc 3中使用名称路径
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="about-commandline.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-commandline.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        JSDoc中的命令行参数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="about-configuring-jsdoc.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-configuring-jsdoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        用conf.json配置JSDoc
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="about-configuring-default-template.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-configuring-default-template.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        配置JSDoc的默认模板
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="about-block-inline-tags.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-block-inline-tags.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                        块标签和内联标签
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="about-plugins.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-plugins.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                        关于JSDoc插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="plugins-markdown.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/plugins-markdown.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                        使用Markdown插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="about-tutorials.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-tutorials.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                        Tutorials 教程
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="about-including-package.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-including-package.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                        包含Package（包）文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="about-including-readme.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/about-including-readme.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                        包含 README 文件
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2">
+            
+            <span><b>2.</b> JSDoc 示例</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="howto-es2015-classes.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/howto-es2015-classes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        ES 2015 Classes(类)
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="howto-es2015-modules.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/howto-es2015-modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        ES 2015 Modules（模块）
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="howto-commonjs-modules.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/howto-commonjs-modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        CommonJS Modules（模块）
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="howto-amd-modules.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/howto-amd-modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        AMD Modules（模块）
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="tags.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        块标签（Block Tags）
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="tags-abstract.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-abstract.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        @abstract
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="tags-access.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-access.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        @access
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="tags-alias.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-alias.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        @alias
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="tags-augments.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-augments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        @augments
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="tags-author.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-author.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        @author
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="tags-borrows.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-borrows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        @borrows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="tags-callback.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-callback.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        @callback
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="tags-class.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-class.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        @class
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="tags-classdesc.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-classdesc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        @classdesc
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="tags-constant.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-constant.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.10.</b>
+                        
+                        @constant
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="tags-constructs.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-constructs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                        @constructs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="tags-copyright.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-copyright.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.12.</b>
+                        
+                        @copyright
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="tags-default.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-default.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        @default
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.14" data-path="tags-deprecated.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-deprecated.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                        @deprecated
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.15" data-path="tags-description.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-description.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.15.</b>
+                        
+                        @description
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.16" data-path="tags-enum.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-enum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.16.</b>
+                        
+                        @enum
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.17" data-path="tags-event.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-event.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.17.</b>
+                        
+                        @event
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.18" data-path="tags-example.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-example.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.18.</b>
+                        
+                        @example
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.19" data-path="tags-exports.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-exports.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.19.</b>
+                        
+                        @exports
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.20" data-path="tags-external.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-external.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.20.</b>
+                        
+                        @external
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.21" data-path="tags-file.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-file.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.21.</b>
+                        
+                        @file
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.22" data-path="tags-fires.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-fires.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.22.</b>
+                        
+                        @fires
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.23" data-path="tags-function.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-function.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.23.</b>
+                        
+                        @function
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.24" data-path="tags-global.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-global.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.24.</b>
+                        
+                        @global
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.25" data-path="tags-ignore.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-ignore.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.25.</b>
+                        
+                        @ignore
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.26" data-path="tags-implements.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-implements.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.26.</b>
+                        
+                        @implements
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.27" data-path="tags-inheritdoc.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-inheritdoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.27.</b>
+                        
+                        @inheritdoc
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.28" data-path="tags-inner.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-inner.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.28.</b>
+                        
+                        @inner
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.29" data-path="tags-instance.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-instance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.29.</b>
+                        
+                        @instance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.30" data-path="tags-interface.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-interface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.30.</b>
+                        
+                        @interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.31" data-path="tags-kind.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-kind.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.31.</b>
+                        
+                        @kind
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.32" data-path="tags-lends.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-lends.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.32.</b>
+                        
+                        @lends
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.33" data-path="tags-license.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-license.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.33.</b>
+                        
+                        @license
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.34" data-path="tags-listens.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-listens.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.34.</b>
+                        
+                        @listens
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.35" data-path="tags-member.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-member.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.35.</b>
+                        
+                        @member
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.36" data-path="tags-memberof.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-memberof.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.36.</b>
+                        
+                        @memberof
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.37" data-path="tags-mixes.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-mixes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.37.</b>
+                        
+                        @mixes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.38" data-path="tags-mixin.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-mixin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.38.</b>
+                        
+                        @mixin
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.39" data-path="tags-module.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-module.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.39.</b>
+                        
+                        @module
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.40" data-path="tags-name.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-name.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.40.</b>
+                        
+                        @name
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.41" data-path="tags-namespace.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-namespace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.41.</b>
+                        
+                        @namespace
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.42" data-path="tags-override.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-override.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.42.</b>
+                        
+                        @override
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.43" data-path="tags-param.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-param.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.43.</b>
+                        
+                        @param
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.44" data-path="tags-private.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-private.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.44.</b>
+                        
+                        @private
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.45" data-path="tags-property.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-property.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.45.</b>
+                        
+                        @property
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.46" data-path="tags-protected.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-protected.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.46.</b>
+                        
+                        @protected
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.47" data-path="tags-public.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-public.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.47.</b>
+                        
+                        @public
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.48" data-path="tags-readonly.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-readonly.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.48.</b>
+                        
+                        @readonly
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.49" data-path="tags-requires.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-requires.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.49.</b>
+                        
+                        @requires
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.50" data-path="tags-returns.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-returns.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.50.</b>
+                        
+                        @returns
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.51" data-path="tags-see.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-see.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.51.</b>
+                        
+                        @see
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.52" data-path="tags-since.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-since.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.52.</b>
+                        
+                        @since
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.53" data-path="tags-static.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-static.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.53.</b>
+                        
+                        @static
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.54" data-path="tags-summary.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-summary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.54.</b>
+                        
+                        @summary
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.55" data-path="tags-this.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-this.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.55.</b>
+                        
+                        @this
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.56" data-path="tags-throws.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-throws.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.56.</b>
+                        
+                        @throws
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.57" data-path="tags-todo.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-todo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.57.</b>
+                        
+                        @todo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.58" data-path="tags-tutorial.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-tutorial.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.58.</b>
+                        
+                        @tutorial
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.59" data-path="tags-type.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-type.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.59.</b>
+                        
+                        @type
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.60" data-path="tags-typedef.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-typedef.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.60.</b>
+                        
+                        @typedef
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.61" data-path="tags-variation.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-variation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.61.</b>
+                        
+                        @variation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.62" data-path="tags-version.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-version.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.62.</b>
+                        
+                        @version
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="inline-tags.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/inline-tags.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        内联标签（Inline Tags）
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="tags-inline-link.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-inline-link.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        @link
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="tags-inline-tutorial.html">
+            
+                
+                    <a href="http://www.css88.com/doc/jsdoc/tags-inline-tutorial.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        @tutorial
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-align-justify"></i></a><a class="btn pull-left js-toolbar-action" aria-label="Search" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-search"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="http://www.css88.com/doc/jsdoc/index.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="http://www.css88.com/doc/jsdoc/">JSDoc 介绍</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="jsdoc-介绍">JSDoc 介绍</h1>
+<h2 id="什么是jsdoc">什么是JSDoc</h2>
+<p>JSDoc是一个根据javascript文件中注释信息，生成JavaScript应用程序或库、模块的API文档 的工具。你可以使用他记录如：命名空间，类，方法，方法参数等。类似JavaDoc和PHPDoc。现在很多编辑器或IDE中还可以通过JSDoc直接或使用插件生成智能提示。从而使开发者很容易了解整个类和其中的属性和方法，并且快速知道如何使用，从而提高开发效率，降低维护成本。</p>
+<h2 id="使用jsdoc">使用JSDoc</h2>
+<p>JSDoc本质是代码注释，所以使用起来非常方便，但是他有一定的格式和规则，只要了解这些，那么后面的事情，比如生产文档，生成智能提示都可以通过工具来完成。</p>
+<h3 id="jsdoc注释">JSDoc注释</h3>
+<p>JSDoc注释一般应该放置在方法或函数声明之前，它必须以<code>/ **</code>开始，以便由JSDoc解析器识别。其他任何以<code>/*</code>，<code>/***</code>或者超过3个星号的注释，都将被JSDoc解析器忽略。例如一下代码：</p>
+<pre><code>/**
+ * Book类，代表一个书本.
+ * @constructor
+ * @param {string} title - 书本的标题.
+ * @param {string} author - 书本的作者.
+ */
+function Book(title, author) {
+    this.title=title;
+    this.author=author;
+}
+Book.prototype={
+    /**
+     * 获取书本的标题
+     * @returns {string|*}
+     */
+    getTitle:function(){
+        return this.title;
+    },
+    /**
+     * 设置书本的页数
+     * @param pageNum {number} 页数
+     */
+    setPageNum:function(pageNum){
+        this.pageNum=pageNum;
+    }
+};
+</code></pre><h3 id="jsdoc注释标签">JSDoc注释标签</h3>
+<p>看了上面的代码注释是不是一目了然呢，获取你会疑惑上面以<code>@</code>开头的标签是什么意思。
+在JSDoc 注释有一套标准的注释标签，一般以<code>@</code>开头。这里解释一下每个标签的意思。</p>
+<h4 id="关于别名">关于别名</h4>
+<p>因为JSDoc也经历好几个版本，所以考虑向后兼容，所以存在别名，另一个方面，别名对于一部分人来说更加直观。
+比如<code>@param</code>有两个别名：</p>
+<ul>
+<li>@arg</li>
+<li>@argument</li>
+</ul>
+<p>关于别名详细说明可以查看上面描述。</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="http://www.css88.com/doc/jsdoc/about-namepaths.html" class="navigation navigation-next navigation-unique" aria-label="Next page: JSDoc 3中使用名称路径" style="margin-right: 15px;"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="./介绍 _ JSDoc 介绍_files/hm.js"></script><script async="" src="./介绍 _ JSDoc 介绍_files/analytics.js"></script><script async="" src="./介绍 _ JSDoc 介绍_files/livereload.js"></script><script src="./介绍 _ JSDoc 介绍_files/app.js"></script>
+
+    
+    <script src="./介绍 _ JSDoc 介绍_files/lunr.min.js"></script>
+    
+
+    
+    <script src="./介绍 _ JSDoc 介绍_files/search.js"></script>
+    
+
+    
+    <script src="./介绍 _ JSDoc 介绍_files/buttons.js"></script>
+    
+
+    
+    <script src="./介绍 _ JSDoc 介绍_files/buttons(1).js"></script>
+    
+
+    
+    <script src="./介绍 _ JSDoc 介绍_files/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"introduction":"封面","diy-introduction":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73963507-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f8be45191941378fa9c93900b0d0be23";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+        
+    
+    
+
+</body></html>

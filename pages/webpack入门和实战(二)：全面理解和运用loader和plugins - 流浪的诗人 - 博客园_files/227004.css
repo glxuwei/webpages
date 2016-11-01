@@ -1,0 +1,54 @@
+#cnblogs_post_body .ptitle{
+background-color: #2BB353;
+color: #ffffff;
+font-size: 20px;
+padding: 3px 0;
+}
+#cnblogs_post_body .stitle{
+	text-align: left;
+	background-color: #1ED24D;
+	line-height: 30px;
+	font-weight: bolder;
+        text-indent: 15px;
+	color: white;
+}
+.tips{
+    margin: 10px 0;
+    padding: 15px 20px 15px 60px;
+    background: #CAFF70 url('http://images.cnblogs.com/cnblogs_com/IPrograming/353645/o_o_yellow-pin.png') no-repeat 9px 0px;
+    font-size: 15px;
+    font-family: 'Microsoft Yahei';
+    box-shadow: 0 0 8px #aaa;
+    clear: both;
+}
+a:hover {
+    text-decoration: underline
+}
+.clearfix:after {
+    display: table;
+    clear: both;
+    content: ""
+}
+.clearfix {
+    zoom:1
+}
+.clear {
+    clear: both;
+    height: 0;
+    font: 0/0 Arial;
+    visibility: hidden
+}
+.about table{
+   text-align:center;
+   font-weight:bolder;     
+}
+.about table tr td img{
+   width:100%;
+}
+.about p .title{
+  font-weight:bolder;
+}
+#MySignature{
+  background-color: antiquewhite;
+  line-height:15px !important;
+}
