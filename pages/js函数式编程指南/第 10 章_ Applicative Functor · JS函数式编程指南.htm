@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>第 10 章: Applicative Functor · JS函数式编程指南</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="author" content="Linghao Li">
+        
+        
+    
+    <link rel="stylesheet" href="./第 10 章_ Applicative Functor · JS函数式编程指南_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./第 10 章_ Applicative Functor · JS函数式编程指南_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 10 章_ Applicative Functor · JS函数式编程指南_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 10 章_ Applicative Functor · JS函数式编程指南_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 10 章_ Applicative Functor · JS函数式编程指南_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+    
+    
+
+    <link rel="prev" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html"><link rel="next" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html"></head>
+    <body>
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" class="custom-link">JS函数式编程指南</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html">
+            
+                    
+                    第 1 章: 我们在做什么？
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#介绍">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子">
+            
+                    
+                    一个简单例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html">
+            
+                    
+                    第 2 章: 一等公民的函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览">
+            
+                    
+                    快速概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#为何钟爱一等公民">
+            
+                    
+                    为何钟爱一等公民
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    第 3 章: 纯函数的好处
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#再次强调“纯”">
+            
+                    
+                    再次强调“纯”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#副作用可能包括">
+            
+                    
+                    副作用可能包括...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#八年级数学">
+            
+                    
+                    八年级数学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#追求“纯”的理由">
+            
+                    
+                    追求“纯”的理由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html">
+            
+                    
+                    第 4 章: 柯里化（curry）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry">
+            
+                    
+                    不可或缺的 curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不仅仅是双关语咖喱">
+            
+                    
+                    不仅仅是双关语／咖喱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">
+            
+                    
+                    第 5 章: 代码组合（compose）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#函数饲养">
+            
+                    
+                    函数饲养
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">
+            
+                    
+                    pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#debug">
+            
+                    
+                    debug
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#范畴学">
+            
+                    
+                    范畴学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html">
+            
+                    
+                    第 6章: 示例应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#声明式代码">
+            
+                    
+                    声明式代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#一个函数式的-flickr">
+            
+                    
+                    一个函数式的 flickr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#有原则的重构">
+            
+                    
+                    有原则的重构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html">
+            
+                    
+                    第 7 章: Hindley-Milner 类型签名
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型">
+            
+                    
+                    初识类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#神秘的传奇故事">
+            
+                    
+                    神秘的传奇故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#缩小可能性范围">
+            
+                    
+                    缩小可能性范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#自由定理">
+            
+                    
+                    自由定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">
+            
+                    
+                    第 8 章: 特百惠
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器">
+            
+                    
+                    强大的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#第一个-functor">
+            
+                    
+                    第一个 functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#薛定谔的-maybe">
+            
+                    
+                    薛定谔的 Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#“纯”错误处理">
+            
+                    
+                    “纯”错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#王老先生有作用">
+            
+                    
+                    王老先生有作用...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#异步任务">
+            
+                    
+                    异步任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#一点理论">
+            
+                    
+                    一点理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">
+            
+                    
+                    第 9 章: Monad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#pointed-functor">
+            
+                    
+                    pointed functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#混合比喻">
+            
+                    
+                    混合比喻
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#chain-函数">
+            
+                    
+                    chain 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#理论">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.11" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html">
+            
+                    
+                    第 10 章: Applicative Functor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor">
+            
+                    
+                    应用 applicative functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#瓶中之船">
+            
+                    
+                    瓶中之船
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#协调于激励">
+            
+                    
+                    协调于激励
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#lift">
+            
+                    
+                    lift
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#免费开瓶器">
+            
+                    
+                    免费开瓶器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#定律">
+            
+                    
+                    定律
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">第 10 章: Applicative Functor</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="applicative-functor">Applicative Functor</h1>
+<h2 id="应用-applicative-functor">应用 applicative functor</h2>
+<p>考虑到其函数式的出身，<strong>applicative functor</strong> 这个名称堪称简单明了。函数式程序员最为人诟病的一点就是，总喜欢搞一些稀奇古怪的命名，比如 <code>mappend</code> 或者 <code>liftA4</code>。诚然，此类名称出现在数学实验室是再自然不过的，但是放在其他任何语境下，这些概念就都像是扮作达斯维达去汽车餐馆搞怪的人。（译者注：此处需要做些解释，1. 汽车餐馆（drive-thru）指的是那种不需要顾客下车就能提供服务的地方，比如麦当劳、星巴克等就会有这种 drive-thru；2. 达斯维达（Darth Vader）是《星球大战》系列主要反派角色，在美国大众文化中的有着广泛的影响力，其造型是很多人致敬模仿的对象；3. 由于 2 的缘故，美国一些星战迷会扮作 Darth Vader 去 drive-thru 点单，YouTube 上有不少这种<a href="https://www.youtube.com/watch?v=eKVJZAMUh_A" target="_blank">搞怪视频</a>；4. 作者使用这个“典故”是为了说明函数式里很多概念的名称有些“故弄玄虚”，而 applicative functor 是少数比较“正常”的。）</p>
+<p>无论如何，applicative 这个名字应该能够向我们表明一些事实，告诉我们作为一个接口，它能为我们带来什么：那就是让不同 functor 可以相互应用（apply）的能力。</p>
+<p>然而，你可能为会问了，为何一个正常的、理性的人，比如你自己，会做这种“让不同 functor 相互应用”的事？而且，“相互应用”到底<em>是什么意思</em>？</p>
+<p>要回答这些问题，我们可以从下面这个场景讲起，可能你已经碰到过这种场景了。假设有两个同类型的 functor，我们想把这两者作为一个函数的两个参数传递过去来调用这个函数。简单的例子比如让两个 <code>Container</code> 的值相加：</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 这样是行不通的，因为 2 和 3 都藏在瓶子里。</span>
+add(Container.of(<span class="hljs-number">2</span>), Container.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">//NaN</span>
+
+<span class="hljs-comment">// 使用可靠的 map 函数试试</span>
+<span class="hljs-keyword">var</span> container_of_add_2 = map(add, Container.of(<span class="hljs-number">2</span>));
+<span class="hljs-comment">// Container(add(2))</span>
+</code></pre>
+<p>这时候我们创建了一个 <code>Container</code>，它内部的值是一个局部调用的（partially applied）的函数。确切点讲就是，我们想让 <code>Container(add(2))</code> 中的 <code>add(2)</code> 应用到 <code>Container(3)</code> 中的 <code>3</code> 上来完成调用。也就是说，我们想把一个 functor 应用到另一个上。</p>
+<p>巧的是，完成这种任务的工具已经存在了，即 <code>chain</code> 函数。我们可以先 <code>chain</code> 然后再 <code>map</code> 那个局部调用的 <code>add(2)</code>，就像这样：</p>
+<pre><code class="lang-js">Container.of(<span class="hljs-number">2</span>).chain(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">two</span>) </span>{
+  <span class="hljs-keyword">return</span> Container.of(<span class="hljs-number">3</span>).map(add(two));
+});
+</code></pre>
+<p>只不过，这种方式有一个问题，那就是 monad 的顺序执行问题：所有的代码都只会在前一个 monad 执行完毕之后才执行。想想看，我们的这两个值足够强健且相互独立，如果仅仅为了满足 monad 的顺序要求而延迟 <code>Container(3)</code> 的创建，我觉得是非常没有必要的。</p>
+<p>事实上，当遇到这种问题的时候，要是能够无需借助这些不必要的函数和变量，以一种简明扼要的方式把一个 functor 的值应用到另一个上去就好了。</p>
+<h2 id="瓶中之船">瓶中之船</h2>
+<p><img src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/ship_in_a_bottle.jpg" alt="http://hollycarden.deviantart.com"></p>
+<p><code>ap</code> 就是这样一种函数，能够把一个 functor 的函数值应用到另一个 functor 的值上。把这句话快速地说上 5 遍。</p>
+<pre><code class="lang-js">Container.of(add(<span class="hljs-number">2</span>)).ap(Container.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">// Container(5)</span>
+
+<span class="hljs-comment">// all together now</span>
+Container.of(<span class="hljs-number">2</span>).map(add).ap(Container.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">// Container(5)</span>
+</code></pre>
+<p>这样就大功告成了，而且代码干净整洁。可以看到，<code>Container(3)</code> 从嵌套的 monad 函数的牢笼中释放了出来。需要再次强调的是，本例中的 <code>add</code> 是被 <code>map</code> 所局部调用（partially apply）的，所以 <code>add</code> 必须是一个 curry 函数。</p>
+<p>可以这样定义一个 <code>ap</code> 函数：</p>
+<pre><code class="lang-js">Container.prototype.ap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">other_container</span>) </span>{
+  <span class="hljs-keyword">return</span> other_container.map(<span class="hljs-keyword">this</span>.__value);
+}
+</code></pre>
+<p>记住，<code>this.__value</code> 是一个函数，将会接收另一个 functor 作为参数，所以我们只需 <code>map</code> 它。由此我们可以得出 applicative functor 的定义：</p>
+<blockquote>
+<p>applicative functor 是实现了 <code>ap</code> 方法的 pointed functor</p>
+</blockquote>
+<p>注意 <code>pointed</code> 这个前提，这是非常重要的一个前提，下面的例子会说明这一点。</p>
+<p>讲到这里，我已经感受到你的疑虑了（也或者是困惑和恐惧）；心态开放点嘛，<code>ap</code> 还是很有用的。在深入理解这个概念之前，我们先来探索一个特性。</p>
+<pre><code class="lang-js">F.of(x).map(f) == F.of(f).ap(F.of(x))
+</code></pre>
+<p>这行代码翻译成人类语言就是，map 一个 <code>f</code> 等价于 <code>ap</code> 一个值为 <code>f</code> 的 functor。或者更好的译法是，你既可以把 <code>x</code> 放到容器里然后调用 <code>map(f)</code>，也可以同时让 <code>f</code> 和 <code>x</code> 发生 lift（参看第 8 章），然后对他们调用 <code>ap</code>。这让我们能够以一种从左到右的方式编写代码：</p>
+<pre><code class="lang-js">Maybe.of(add).ap(Maybe.of(<span class="hljs-number">2</span>)).ap(Maybe.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">// Maybe(5)</span>
+
+Task.of(add).ap(Task.of(<span class="hljs-number">2</span>)).ap(Task.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">// Task(5)</span>
+</code></pre>
+<p>细心的读者可能发现了，上述代码中隐约有普通函数调用的影子。没关系，我们稍后会学习 <code>ap</code> 的 pointfree 版本；暂时先把这当作此类代码的推荐写法。通过使用 <code>of</code>，每一个值都被输送到了各个容器里的奇幻之地，就像是在另一个平行世界里，每个程序都可以是异步的或者是 null 或者随便什么值，而且不管是什么，<code>ap</code> 都能在这个平行世界里针对这些值应用各种各样的函数。这就像是在一个瓶子中造船。</p>
+<p>你注意到没？上例中我们使用了 <code>Task</code>，这是 applicative functor 主要的用武之地。现在我们来看一个更深入的例子。</p>
+<h2 id="协调与激励">协调与激励</h2>
+<p>假设我们要创建一个旅游网站，既需要获取游客目的地的列表，还需要获取地方事件的列表。这两个请求就是相互独立的 api 调用。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// Http.get :: String -&gt; Task Error HTML</span>
+
+<span class="hljs-keyword">var</span> renderPage = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">destinations, events</span>) </span>{ <span class="hljs-comment">/* render page */</span>  });
+
+Task.of(renderPage).ap(Http.get(<span class="hljs-string">'/destinations'</span>)).ap(Http.get(<span class="hljs-string">'/events'</span>))
+<span class="hljs-comment">// Task("&lt;div&gt;some page with dest and events&lt;/div&gt;")</span>
+</code></pre>
+<p>两个请求将会同时立即执行，当两者的响应都返回之后，<code>renderPage</code> 就会被调用。这与 monad 版本的那种必须等待前一个任务完成才能继续执行后面的操作完全不同。本来我们就无需根据目的地来获取事件，因此也就不需要依赖顺序执行。</p>
+<p>再次强调，因为我们是使用局部调用的函数来达成上述结果的，所以必须要保证 <code>renderpage</code> 是 curry 函数，否则它就不会一直等到两个 <code>Task</code> 都完成。而且如果你碰巧自己做过类似的事，那你一定会感激 <code>applicative functor</code> 这个异常简洁的接口的。这就是那种能够让我们离“奇点”（singularity）更近一步的优美代码。</p>
+<p>再来看另外一个例子。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 帮助函数：</span>
+<span class="hljs-comment">// ==============</span>
+<span class="hljs-comment">//  $ :: String -&gt; IO DOM</span>
+<span class="hljs-keyword">var</span> $ = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">selector</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.querySelector(selector) });
+}
+
+<span class="hljs-comment">//  getVal :: String -&gt; IO String</span>
+<span class="hljs-keyword">var</span> getVal = compose(map(_.prop(<span class="hljs-string">'value'</span>)), $);
+
+<span class="hljs-comment">// Example:</span>
+<span class="hljs-comment">// ===============</span>
+<span class="hljs-comment">//  signIn :: String -&gt; String -&gt; Bool -&gt; User</span>
+<span class="hljs-keyword">var</span> signIn = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">username, password, remember_me</span>)</span>{ <span class="hljs-comment">/* signing in */</span>  })
+
+IO.of(signIn).ap(getVal(<span class="hljs-string">'#email'</span>)).ap(getVal(<span class="hljs-string">'#password'</span>)).ap(IO.of(<span class="hljs-literal">false</span>));
+<span class="hljs-comment">// IO({id: 3, email: "gg@allin.com"})</span>
+</code></pre>
+<p><code>signIn</code> 是一个接收 3 个参数的 curry 函数，因此我们需要调用 <code>ap</code> 3 次。在每一次的 <code>ap</code> 调用中，<code>signIn</code> 就收到一个参数然后运行，直到所有的参数都传进来，它也就执行完毕了。我们可以继续扩展这种模式，处理任意多的参数。另外，左边两个参数在使用 <code>getVal</code> 调用后自然而然地成为了一个 <code>IO</code>，但是最右边的那个却需要手动 <code>lift</code>，然后变成一个 <code>IO</code>，这是因为 <code>ap</code> 需要调用者及其参数都属于同一类型。</p>
+<h2 id="lift">lift</h2>
+<p>（译者注：此处原标题是“Bro, do you even lift?”，是一流行语，发源于健身圈，指质疑别人的健身方式和效果并显示优越感，后扩散至其他领域。再注：作者书中用了不少此类俚语或俗语，有时并非在使用俚语的本意，就像这句，完全就是为了好玩。另，关于 lift 的概念可参看第 8 章。）</p>
+<p>我们来试试以一种 pointfree 的方式调用 applicative functor。因为 <code>map</code> 等价于 <code>of/ap</code>，那么我们就可以定义无数个能够 <code>ap</code> 通用函数。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> liftA2 = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, functor1, functor2</span>) </span>{
+  <span class="hljs-keyword">return</span> functor1.map(f).ap(functor2);
+});
+
+<span class="hljs-keyword">var</span> liftA3 = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, functor1, functor2, functor3</span>) </span>{
+  <span class="hljs-keyword">return</span> functor1.map(f).ap(functor2).ap(functor3);
+});
+
+<span class="hljs-comment">//liftA4, etc</span>
+</code></pre>
+<p><code>liftA2</code> 是个奇怪的名字，听起来像是破败工厂里挑剔的货运电梯，或者伪豪华汽车公司的个性车牌。不过你要是真正理解了，那么它的含义也就不证自明了：让那些小代码块发生 lift，成为 applicative functor 中的一员。</p>
+<p>刚开始我也觉得这种 2-3-4 的写法没什么意义，看起来又丑又没有必要，毕竟我们可以在 JavaScript 中检查函数的参数数量然后再动态地构造这样的函数。不过，局部调用（partially apply）<code>liftA(N)</code> 本身，有时也能发挥它的用处，这样的话，参数数量就固定了。</p>
+<p>来看看实际用例：</p>
+<pre><code class="lang-js"><span class="hljs-comment">// checkEmail :: User -&gt; Either String Email</span>
+<span class="hljs-comment">// checkName :: User -&gt; Either String String</span>
+
+<span class="hljs-comment">//  createUser :: Email -&gt; String -&gt; IO User</span>
+<span class="hljs-keyword">var</span> createUser = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">email, name</span>) </span>{ <span class="hljs-comment">/* creating... */</span> });
+
+Either.of(createUser).ap(checkEmail(user)).ap(checkName(user));
+<span class="hljs-comment">// Left("invalid email")</span>
+
+liftA2(createUser, checkEmail(user), checkName(user));
+<span class="hljs-comment">// Left("invalid email")</span>
+</code></pre>
+<p><code>createUser</code> 接收两个参数，因此我们使用的是 <code>liftA2</code>。上述两个语句是等价的，但是使用了 <code>liftA2</code> 的版本没有提到 <code>Either</code>，这就使得它更加通用灵活，因为不必与特定的数据类型耦合在一起。</p>
+<p>我们试试以这种方式重写前一个例子：</p>
+<pre><code class="lang-js">liftA2(add, Maybe.of(<span class="hljs-number">2</span>), Maybe.of(<span class="hljs-number">3</span>));
+<span class="hljs-comment">// Maybe(5)</span>
+
+liftA2(renderPage, Http.get(<span class="hljs-string">'/destinations'</span>), Http.get(<span class="hljs-string">'/events'</span>))
+<span class="hljs-comment">// Task("&lt;div&gt;some page with dest and events&lt;/div&gt;")</span>
+
+liftA3(signIn, getVal(<span class="hljs-string">'#email'</span>), getVal(<span class="hljs-string">'#password'</span>), IO.of(<span class="hljs-literal">false</span>));
+<span class="hljs-comment">// IO({id: 3, email: "gg@allin.com"})</span>
+</code></pre>
+<h2 id="操作符">操作符</h2>
+<p>在 haskell、scala、PureScript 以及 swift 等语言中，开发者可以创建自定义的中缀操作符（infix operators），所以你能看到到这样的语法：</p>
+<pre><code class="lang-hs"><span class="hljs-comment">-- haskell</span>
+<span class="hljs-title">add</span> &lt;$&gt; <span class="hljs-type">Right</span> <span class="hljs-number">2</span> &lt;*&gt; <span class="hljs-type">Right</span> <span class="hljs-number">3</span>
+</code></pre>
+<pre><code class="lang-js"><span class="hljs-comment">// JavaScript</span>
+map(add, Right(<span class="hljs-number">2</span>)).ap(Right(<span class="hljs-number">3</span>))
+</code></pre>
+<p><code>&lt;$&gt;</code> 就是 <code>map</code>（亦即 <code>fmap</code>），<code>&lt;*&gt;</code> 不过就是 <code>ap</code>。这样的语法使得开发者可以以一种更自然的风格来书写函数式应用，而且也能减少一些括号。</p>
+<h1 id="免费开瓶器">免费开瓶器</h1>
+<p><img src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/canopener.jpg" alt="http://breannabeckmeyer.com/drawing.html"></p>
+<p>我们尚未对衍生函数（derived function）着墨过多。不过看到本书介绍的所有这些接口都互相依赖并遵守一些定律，那么我们就可以根据一些强接口来定义一些弱接口了。</p>
+<p>比如，我们知道一个 applicative 首先是一个 functor，所以如果已经有一个 applicative 实例的话，毫无疑问可以依此定义一个 functor。</p>
+<p>这种完美的计算上的大和谐（computational harmony）之所以存在，是因为我们在跟一个数学“框架”打交道。哪怕是莫扎特在小时候就下载了 ableton（译者注：一款专业的音乐制作软件），他的钢琴也不可能弹得更好。</p>
+<p>前面提到过，<code>of/ap</code> 等价于 <code>map</code>，那么我们就可以利用这点来定义 <code>map</code>：</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 从 of/ap 衍生出的 map</span>
+X.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.constructor.of(f).ap(<span class="hljs-keyword">this</span>);
+}
+</code></pre>
+<p>monad 可以说是处在食物链的顶端，因此如果已经有了一个 <code>chain</code> 函数，那么就可以免费得到 functor 和 applicative：</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 从 chain 衍生出的 map</span>
+X.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">var</span> m = <span class="hljs-keyword">this</span>;
+  <span class="hljs-keyword">return</span> m.chain(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>) </span>{
+    <span class="hljs-keyword">return</span> m.constructor.of(f(a));
+  });
+}
+
+<span class="hljs-comment">// 从 chain/map 衍生出的 ap</span>
+X.prototype.ap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">other</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.chain(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-keyword">return</span> other.map(f);
+  });
+};
+</code></pre>
+<p>定义一个 monad，就既能得到 applicative 也能得到 functor。这一点非常强大，相当于这些“开瓶器”全都是免费的！我们甚至可以审查一个数据类型，然后自动化这个过程。</p>
+<p>应该要指出来的一点是，<code>ap</code> 的魅力有一部分就来自于并行的能力，所以通过 <code>chain</code> 来定义它就失去了这种优化。即便如此，开发者在设计出最佳实现的过程中就能有一个立即可用的接口，也是很好的。</p>
+<p>为啥不直接使用 monad？因为最好用合适的力量来解决合适的问题，一分不多，一分不少。这样就能通过排除可能的功能性来做到最小化认知负荷。因为这个原因，相比 monad，我们更倾向于使用 applicative。</p>
+<p>向下的嵌套结构使得 monad 拥有串行计算、变量赋值和暂缓后续执行等独特的能力。不过见识到 applicative 的实际用例之后，你就不必再考虑上面这些问题了。</p>
+<p>下面，来看看理论知识。</p>
+<h2 id="定律">定律</h2>
+<p>就像我们探索过的其他数学结构一样，我们在日常编码中也依赖 applicative functor 一些有用的特性。首先，你应该知道 applicative functor 是“组合关闭”（closed under composition）的，意味着 <code>ap</code> 永远不会改变容器类型（另一个胜过 monad 的原因）。这并不是说我们无法拥有多种不同的作用——我们还是可以把不同的类型压栈的，只不过我们知道它们将会在整个应用的过程中保持不变。</p>
+<p>下面的例子可以说明这一点：</p>
+<pre><code class="lang-js">  <span class="hljs-keyword">var</span> tOfM = compose(Task.of, Maybe.of);
+
+  liftA2(_.concat, tOfM(<span class="hljs-string">'Rainy Days and Mondays'</span>), tOfM(<span class="hljs-string">' always get me down'</span>));
+  <span class="hljs-comment">// Task(Maybe(Rainy Days and Mondays always get me down))</span>
+</code></pre>
+<p>你看，不必担心不同的类型会混合在一起。</p>
+<p>该去看看我们最喜欢的范畴学定律了：<em>同一律</em>（identity）。</p>
+<h3 id="同一律（identity）">同一律（identity）</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// 同一律</span>
+A.of(id).ap(v) == v
+</code></pre>
+<p>是的，对一个 functor 应用 <code>id</code> 函数不会改变 <code>v</code> 里的值。比如：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> v = Identity.of(<span class="hljs-string">"Pillow Pets"</span>);
+Identity.of(id).ap(v) == v
+</code></pre>
+<p><code>Identity.of(id)</code> 的“无用性”让我不禁莞尔。这里有意思的一点是，就像我们之前证明了的，<code>of/ap</code> 等价于 <code>map</code>，因此这个同一律遵循的是 functor 的同一律：<code>map(id) == id</code>。</p>
+<p>使用这些定律的优美之处在于，就像一个富有激情的幼儿园健身教练让所有的小朋友都能愉快地一块玩耍一样，它们能够强迫所有的接口都能完美结合。</p>
+<h3 id="同态（homomorphism）">同态（homomorphism）</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// 同态</span>
+A.of(f).ap(A.of(x)) == A.of(f(x))
+</code></pre>
+<p><em>同态</em>就是一个能够保持结构的映射（structure preserving map）。实际上，functor 就是一个在不同范畴间的同态，因为 functor 在经过映射之后保持了原始范畴的结构。</p>
+<p>事实上，我们不过是把普通的函数和值放进了一个容器，然后在里面进行各种计算。所以，不管是把所有的计算都放在容器里（等式左边），还是先在外面进行计算然后再放到容器里（等式右边），其结果都是一样的。</p>
+<p>一个简单例子：</p>
+<pre><code class="lang-js">Either.of(_.toUpper).ap(Either.of(<span class="hljs-string">"oreos"</span>)) == Either.of(_.toUpper(<span class="hljs-string">"oreos"</span>))
+</code></pre>
+<h3 id="互换（interchange）">互换（interchange）</h3>
+<p>互换（interchange）表明的是选择让函数在 <code>ap</code> 的左边还是右边发生 lift 是无关紧要的。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 互换</span>
+v.ap(A.of(x)) == A.of(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{ <span class="hljs-keyword">return</span> f(x) }).ap(v)
+</code></pre>
+<p>这里有个例子：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> v = Task.of(_.reverse);
+<span class="hljs-keyword">var</span> x = <span class="hljs-string">'Sparklehorse'</span>;
+
+v.ap(Task.of(x)) == Task.of(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{ <span class="hljs-keyword">return</span> f(x) }).ap(v)
+</code></pre>
+<h3 id="组合（composition）">组合（composition）</h3>
+<p>最后是组合。组合不过是在检查标准的函数组合是否适用于容器内部的函数调用。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 组合</span>
+A.of(compose).ap(u).ap(v).ap(w) == u.ap(v.ap(w));
+</code></pre>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> u = IO.of(_.toUpper);
+<span class="hljs-keyword">var</span> v = IO.of(_.concat(<span class="hljs-string">"&amp; beyond"</span>));
+<span class="hljs-keyword">var</span> w = IO.of(<span class="hljs-string">"blood bath "</span>);
+
+IO.of(_.compose).ap(u).ap(v).ap(w) == u.ap(v.ap(w))
+</code></pre>
+<h2 id="总结">总结</h2>
+<p>处理多个 functor 作为参数的情况，是 applicative functor 一个非常好的应用场景。借助 applicative functor，我们能够在 functor 的世界里调用函数。尽管已经可以通过 monad 达到这个目的，但在不需要 monad 的特定功能的时候，我们还是更倾向于使用 applicative functor。</p>
+<p>至此我们已经基本介绍完容器的 api 了，我们学会了如何对函数调用 <code>map</code>、<code>chain</code> 和 <code>ap</code>。下一章，我们将学习如何更好地处理多个 functor，以及如何以一种原则性的方式拆解它们。</p>
+<p><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch11.md">Chapter 11: Traversable/Foldable Functors</a></p>
+<h2 id="练习">练习</h2>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./support'</span>);
+<span class="hljs-keyword">var</span> Task = <span class="hljs-built_in">require</span>(<span class="hljs-string">'data.task'</span>);
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ramda'</span>);
+
+<span class="hljs-comment">// 模拟浏览器的 localStorage 对象</span>
+<span class="hljs-keyword">var</span> localStorage = {};
+
+
+
+<span class="hljs-comment">// 练习 1</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个函数，使用 Maybe 和 ap() 实现让两个可能是 null 的数值相加。</span>
+
+<span class="hljs-comment">//  ex1 :: Number -&gt; Number -&gt; Maybe Number</span>
+<span class="hljs-keyword">var</span> ex1 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{
+
+};
+
+
+<span class="hljs-comment">// 练习 2</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个函数，接收两个 Maybe 为参数，让它们相加。使用 liftA2 代替 ap()。</span>
+
+<span class="hljs-comment">//  ex2 :: Maybe Number -&gt; Maybe Number -&gt; Maybe Number</span>
+<span class="hljs-keyword">var</span> ex2 = <span class="hljs-literal">undefined</span>;
+
+
+
+<span class="hljs-comment">// 练习 3</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 运行 getPost(n) 和 getComments(n)，两者都运行完毕后执行渲染页面的操作。（参数 n 可以是任意值）。</span>
+
+<span class="hljs-keyword">var</span> makeComments = _.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">acc, c</span>)</span>{ <span class="hljs-keyword">return</span> acc+<span class="hljs-string">"&lt;li&gt;"</span>+c+<span class="hljs-string">"&lt;/li&gt;"</span> }, <span class="hljs-string">""</span>);
+<span class="hljs-keyword">var</span> render = _.curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p, cs</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"&lt;div&gt;"</span>+p.title+<span class="hljs-string">"&lt;/div&gt;"</span>+makeComments(cs); });
+
+<span class="hljs-comment">//  ex3 :: Task Error HTML</span>
+<span class="hljs-keyword">var</span> ex3 = <span class="hljs-literal">undefined</span>;
+
+
+
+<span class="hljs-comment">// 练习 4</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个 IO，从缓存中读取 player1 和 player2，然后开始游戏。</span>
+
+localStorage.player1 = <span class="hljs-string">"toby"</span>;
+localStorage.player2 = <span class="hljs-string">"sally"</span>;
+
+<span class="hljs-keyword">var</span> getCache = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> localStorage[x]; });
+}
+<span class="hljs-keyword">var</span> game = _.curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p1, p2</span>) </span>{ <span class="hljs-keyword">return</span> p1 + <span class="hljs-string">' vs '</span> + p2; });
+
+<span class="hljs-comment">//  ex4 :: IO String</span>
+<span class="hljs-keyword">var</span> ex4 = <span class="hljs-literal">undefined</span>;
+
+
+
+
+
+<span class="hljs-comment">// 帮助函数</span>
+<span class="hljs-comment">// =====================</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPost</span>(<span class="hljs-params">i</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Task(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">rej, res</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ res({ id: i, title: <span class="hljs-string">'Love them futures'</span> }); }, <span class="hljs-number">300</span>);
+  });
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getComments</span>(<span class="hljs-params">i</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Task(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">rej, res</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      res([<span class="hljs-string">"This book should be illegal"</span>, <span class="hljs-string">"Monads are like space burritos"</span>]);
+    }, <span class="hljs-number">300</span>);
+  });
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结" class="navigation navigation-prev " aria-label="Previous page: 总结">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor" class="navigation navigation-next " aria-label="Next page: 应用 applicative functor" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第 10 章: Applicative Functor","level":"1.11","depth":1,"next":{"title":"应用 applicative functor","level":"1.11.1","depth":2,"anchor":"#应用-applicative-functor","path":"ch10.md","ref":"ch10.md#应用-applicative-functor","articles":[]},"previous":{"title":"总结","level":"1.10.5","depth":2,"anchor":"#总结","path":"ch9.md","ref":"ch9.md#总结","articles":[]},"dir":"ltr"},"config":{"plugins":["comment"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"comment":{"highlightCommented":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"github":"llh911001/mostly-adequate-guide-chinese","theme":"default","author":"Linghao Li","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"JS函数式编程指南","language":"zh","links":{"sidebar":{"JS函数式编程指南":"https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese"},"gitbook":true},"gitbook":"*","description":"Mostly Adequate Guide 中文版"},"file":{"path":"ch10.md","mtime":"2016-09-19T03:35:00.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-19T03:34:10.921Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/gitbook.js"></script>
+    <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/theme.js"></script>
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/plugin.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/search-engine.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/search.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/lunr.min.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/search-lunr.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/buttons.js"></script>
+        
+    
+        
+        <script src="./第 10 章_ Applicative Functor · JS函数式编程指南_files/fontsettings.js"></script>
+        
+    
+
+    
+
+
+</body></html>
