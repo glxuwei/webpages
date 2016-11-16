@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>第 2 章: 一等公民的函数 · JS函数式编程指南</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="author" content="Linghao Li">
+        
+        
+    
+    <link rel="stylesheet" href="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+    
+    
+
+    <link rel="prev" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html"><link rel="next" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html"></head>
+    <body>
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" class="custom-link">JS函数式编程指南</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html">
+            
+                    
+                    第 1 章: 我们在做什么？
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#介绍">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子">
+            
+                    
+                    一个简单例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html">
+            
+                    
+                    第 2 章: 一等公民的函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter" data-level="1.3.1" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览">
+            
+                    
+                    快速概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter" data-level="1.3.2" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#为何钟爱一等公民">
+            
+                    
+                    为何钟爱一等公民
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    第 3 章: 纯函数的好处
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#再次强调“纯”">
+            
+                    
+                    再次强调“纯”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#副作用可能包括">
+            
+                    
+                    副作用可能包括...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#八年级数学">
+            
+                    
+                    八年级数学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#追求“纯”的理由">
+            
+                    
+                    追求“纯”的理由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html">
+            
+                    
+                    第 4 章: 柯里化（curry）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry">
+            
+                    
+                    不可或缺的 curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不仅仅是双关语咖喱">
+            
+                    
+                    不仅仅是双关语／咖喱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">
+            
+                    
+                    第 5 章: 代码组合（compose）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#函数饲养">
+            
+                    
+                    函数饲养
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">
+            
+                    
+                    pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#debug">
+            
+                    
+                    debug
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#范畴学">
+            
+                    
+                    范畴学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html">
+            
+                    
+                    第 6章: 示例应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#声明式代码">
+            
+                    
+                    声明式代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#一个函数式的-flickr">
+            
+                    
+                    一个函数式的 flickr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#有原则的重构">
+            
+                    
+                    有原则的重构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html">
+            
+                    
+                    第 7 章: Hindley-Milner 类型签名
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型">
+            
+                    
+                    初识类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#神秘的传奇故事">
+            
+                    
+                    神秘的传奇故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#缩小可能性范围">
+            
+                    
+                    缩小可能性范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#自由定理">
+            
+                    
+                    自由定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">
+            
+                    
+                    第 8 章: 特百惠
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器">
+            
+                    
+                    强大的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#第一个-functor">
+            
+                    
+                    第一个 functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#薛定谔的-maybe">
+            
+                    
+                    薛定谔的 Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#“纯”错误处理">
+            
+                    
+                    “纯”错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#王老先生有作用">
+            
+                    
+                    王老先生有作用...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#异步任务">
+            
+                    
+                    异步任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#一点理论">
+            
+                    
+                    一点理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">
+            
+                    
+                    第 9 章: Monad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#pointed-functor">
+            
+                    
+                    pointed functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#混合比喻">
+            
+                    
+                    混合比喻
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#chain-函数">
+            
+                    
+                    chain 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#理论">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html">
+            
+                    
+                    第 10 章: Applicative Functor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor">
+            
+                    
+                    应用 applicative functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#瓶中之船">
+            
+                    
+                    瓶中之船
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#协调于激励">
+            
+                    
+                    协调于激励
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#lift">
+            
+                    
+                    lift
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#免费开瓶器">
+            
+                    
+                    免费开瓶器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#定律">
+            
+                    
+                    定律
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">第 2 章: 一等公民的函数</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第-2-章-一等公民的函数">第 2 章: 一等公民的函数</h1>
+<h2 id="快速概览">快速概览</h2>
+<p class="comments-section">当我们说函数是“一等公民”的时候，我们实际上说的是它们和其他对象都一样...所以就是普通公民（坐经济舱的人？）。函数真没什么特殊的，你可以像对待任何其他数据类型一样对待它们——把它们存在数组里，当作参数传递，赋值给变量...等等。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这是 JavaScript 语言的基础概念，不过还是值得提一提的，因为在 Github 上随便一搜就能看到对这个概念的集体无视，或者也可能是无知。我们来看一个杜撰的例子：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> hi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">"Hi "</span> + name;
+};
+
+<span class="hljs-keyword">var</span> greeting = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">return</span> hi(name);
+};
+</code></pre>
+<p class="comments-section">这里 <code>greeting</code> 指向的那个把 <code>hi</code> 包了一层的包裹函数完全是多余的。为什么？因为 JavaScript 的函数是<em>可调用</em>的，当 <code>hi</code> 后面紧跟 <code>()</code> 的时候就会运行并返回一个值；如果没有 <code>()</code>，<code>hi</code> 就简单地返回存到这个变量里的函数。我们来确认一下：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">hi;
+<span class="hljs-comment">// function(name){</span>
+<span class="hljs-comment">//  return "Hi " + name</span>
+<span class="hljs-comment">// }</span>
+
+hi(<span class="hljs-string">"jonas"</span>);
+<span class="hljs-comment">// "Hi jonas"</span>
+</code></pre>
+<p class="comments-section"><code>greeting</code> 只不过是转了个身然后以相同的参数调用了 <code>hi</code> 函数而已，因此我们可以这么写：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> greeting = hi;
+
+
+greeting(<span class="hljs-string">"times"</span>);
+<span class="hljs-comment">// "Hi times"</span>
+</code></pre>
+<p class="comments-section">换句话说，<code>hi</code> 已经是个接受一个参数的函数了，为何要再定义一个额外的包裹函数，而它仅仅是用这个相同的参数调用 <code>hi</code>？完全没有道理。这就像在大夏天里穿上你最厚的大衣，只是为了跟热空气过不去，然后吃上个冰棍。真是脱裤子放屁多此一举。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">用一个函数把另一个函数包起来，目的仅仅是延迟执行，真的是非常糟糕的编程习惯。（稍后我将告诉你原因，跟可维护性密切相关。）<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">充分理解这个问题对读懂本书后面的内容至关重要，所以我们再来看几个例子。以下代码都来自 npm 上的模块包：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 太傻了</span>
+<span class="hljs-keyword">var</span> getServerStuff = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>)</span>{
+  <span class="hljs-keyword">return</span> ajaxCall(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>)</span>{
+    <span class="hljs-keyword">return</span> callback(json);
+  });
+};
+
+<span class="hljs-comment">// 这才像样</span>
+<span class="hljs-keyword">var</span> getServerStuff = ajaxCall;
+</code></pre>
+<p class="comments-section">世界上到处都充斥着这样的垃圾 ajax 代码。以下是上述两种写法等价的原因：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 这行</span>
+<span class="hljs-keyword">return</span> ajaxCall(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>)</span>{
+  <span class="hljs-keyword">return</span> callback(json);
+});
+
+<span class="hljs-comment">// 等价于这行</span>
+<span class="hljs-keyword">return</span> ajaxCall(callback);
+
+<span class="hljs-comment">// 那么，重构下 getServerStuff</span>
+<span class="hljs-keyword">var</span> getServerStuff = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>)</span>{
+  <span class="hljs-keyword">return</span> ajaxCall(callback);
+};
+
+<span class="hljs-comment">// ...就等于</span>
+<span class="hljs-keyword">var</span> getServerStuff = ajaxCall; <span class="hljs-comment">// &lt;-- 看，没有括号哦</span>
+</code></pre>
+<p class="comments-section">各位，以上才是写函数的正确方式。一会儿再告诉你为何我对此如此执着。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> BlogController = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> index = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">posts</span>) </span>{
+    <span class="hljs-keyword">return</span> Views.index(posts);
+  };
+
+  <span class="hljs-keyword">var</span> show = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">post</span>) </span>{
+    <span class="hljs-keyword">return</span> Views.show(post);
+  };
+
+  <span class="hljs-keyword">var</span> create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">attrs</span>) </span>{
+    <span class="hljs-keyword">return</span> Db.create(attrs);
+  };
+
+  <span class="hljs-keyword">var</span> update = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">post, attrs</span>) </span>{
+    <span class="hljs-keyword">return</span> Db.update(post, attrs);
+  };
+
+  <span class="hljs-keyword">var</span> destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">post</span>) </span>{
+    <span class="hljs-keyword">return</span> Db.destroy(post);
+  };
+
+  <span class="hljs-keyword">return</span> {index: index, show: show, create: create, update: update, destroy: destroy};
+})();
+</code></pre>
+<p class="comments-section">这个可笑的控制器（controller）99% 的代码都是垃圾。我们可以把它重写成这样：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> BlogController = {index: Views.index, show: Views.show, create: Db.create, update: Db.update, destroy: Db.destroy};
+</code></pre>
+<p class="comments-section">...或者直接全部删掉，因为它的作用仅仅就是把视图（Views）和数据库（Db）打包在一起而已。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="为何钟爱一等公民？">为何钟爱一等公民？</h2>
+<p class="comments-section">好了，现在我们来看看钟爱一等公民的原因是什么。前面 <code>getServerStuff</code> 和 <code>BlogController</code> 两个例子你也都看到了，虽说添加一些没有实际用处的间接层实现起来很容易，但这样做除了徒增代码量，提高维护和检索代码的成本外，没有任何用处。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">另外，如果一个函数被不必要地包裹起来了，而且发生了改动，那么包裹它的那个函数也要做相应的变更。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">httpGet(<span class="hljs-string">'/post/2'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>)</span>{
+  <span class="hljs-keyword">return</span> renderPost(json);
+});
+</code></pre>
+<p class="comments-section">如果 <code>httpGet</code> 要改成可以抛出一个可能出现的 <code>err</code> 异常，那我们还要回过头去把“胶水”函数也改了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 把整个应用里的所有 httpGet 调用都改成这样，可以传递 err 参数。</span>
+httpGet(<span class="hljs-string">'/post/2'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">json, err</span>)</span>{
+  <span class="hljs-keyword">return</span> renderPost(json, err);
+});
+</code></pre>
+<p class="comments-section">写成一等公民函数的形式，要做的改动将会少得多：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">httpGet(<span class="hljs-string">'/post/2'</span>, renderPost);  <span class="hljs-comment">// renderPost 将会在 httpGet 中调用，想要多少参数都行</span>
+</code></pre>
+<p class="comments-section">除了删除不必要的函数，正确地为参数命名也必不可少。当然命名不是什么大问题，但还是有可能存在一些不当的命名，尤其随着代码量的增长以及需求的变更，这种可能性也会增加。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">项目中常见的一种造成混淆的原因是，针对同一个概念使用不同的命名。还有通用代码的问题。比如，下面这两个函数做的事情一模一样，但后一个就显得更加通用，可重用性也更高：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 只针对当前的博客</span>
+<span class="hljs-keyword">var</span> validArticles = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">articles</span>) </span>{
+  <span class="hljs-keyword">return</span> articles.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">article</span>)</span>{
+    <span class="hljs-keyword">return</span> article !== <span class="hljs-literal">null</span> &amp;&amp; article !== <span class="hljs-literal">undefined</span>;
+  });
+};
+
+<span class="hljs-comment">// 对未来的项目友好太多</span>
+<span class="hljs-keyword">var</span> compact = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">return</span> xs.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> x !== <span class="hljs-literal">null</span> &amp;&amp; x !== <span class="hljs-literal">undefined</span>;
+  });
+};
+</code></pre>
+<p class="comments-section">在命名的时候，我们特别容易把自己限定在特定的数据上（本例中是 <code>articles</code>）。这种现象很常见，也是重复造轮子的一大原因。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">有一点我必须得指出，你一定要非常小心 <code>this</code> 值，别让它反咬你一口，这一点与面向对象代码类似。如果一个底层函数使用了 <code>this</code>，而且是以一等公民的方式被调用的，那你就等着 JS 这个蹩脚的抽象概念发怒吧。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+<span class="hljs-comment">// 太可怕了</span>
+fs.readFile(<span class="hljs-string">'freaky_friday.txt'</span>, Db.save);
+
+<span class="hljs-comment">// 好一点点</span>
+fs.readFile(<span class="hljs-string">'freaky_friday.txt'</span>, Db.save.bind(Db));
+</code></pre>
+<p class="comments-section">把 Db 绑定（bind）到它自己身上以后，你就可以随心所欲地调用它的原型链式垃圾代码了。<code>this</code> 就像一块脏尿布，我尽可能地避免使用它，因为在函数式编程中根本用不到它。然而，在使用其他的类库时，你却不得不向这个疯狂的世界低头。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">也有人反驳说 <code>this</code> 能提高执行速度。如果你是这种对速度吹毛求疵的人，那你还是合上这本书吧。要是没法退货退款，也许你可以去换一本更入门的书来读。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">至此，我们才准备好继续后面的章节。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">第 3 章: 纯函数的好处</a><div class="comments-icon"><div class="marker">+</div></div></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子" class="navigation navigation-prev " aria-label="Previous page: 一个简单例子">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览" class="navigation navigation-next " aria-label="Next page: 快速概览" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第 2 章: 一等公民的函数","level":"1.3","depth":1,"next":{"title":"快速概览","level":"1.3.1","depth":2,"anchor":"#快速概览","path":"ch2.md","ref":"ch2.md#快速概览","articles":[]},"previous":{"title":"一个简单例子","level":"1.2.2","depth":2,"anchor":"#一个简单例子","path":"ch1.md","ref":"ch1.md#一个简单例子","articles":[]},"dir":"ltr"},"config":{"plugins":["comment"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"comment":{"highlightCommented":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"github":"llh911001/mostly-adequate-guide-chinese","theme":"default","author":"Linghao Li","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"JS函数式编程指南","language":"zh","links":{"sidebar":{"JS函数式编程指南":"https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese"},"gitbook":true},"gitbook":"*","description":"Mostly Adequate Guide 中文版"},"file":{"path":"ch2.md","mtime":"2016-09-19T03:35:00.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-19T03:34:10.921Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/gitbook.js"></script>
+    <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/theme.js"></script>
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/plugin.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/search-engine.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/search.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/lunr.min.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/search-lunr.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/buttons.js"></script>
+        
+    
+        
+        <script src="./第 2 章_ 一等公民的函数 · JS函数式编程指南_files/fontsettings.js"></script>
+        
+    
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57505611-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body><div></div></html>

@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://github.com/lcxfs1991/blog/issues/2 -->
+<html lang="en" class=" is-copy-enabled emoji-size-boost is-u2f-enabled"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+
+    <link crossorigin="anonymous" href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/frameworks-119461b8a22c3dc631a815795aa9d7f436fe38386cd99a1ca106fd2798f159aa.css" integrity="sha256-EZRhuKIsPcYxqBV5WqnX9Db+ODhs2ZocoQb9J5jxWao=" media="all" rel="stylesheet">
+    <link crossorigin="anonymous" href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/github-fb3f5ff93b051ac1e6146d6a27dc2f57e11f1b9b36a7f15bbd84aacdb65ec3a8.css" integrity="sha256-+z9f+TsFGsHmFG1qJ9wvV+EfG5s2p/FbvYSqzbZew6g=" media="all" rel="stylesheet">
+    
+    
+    <link crossorigin="anonymous" href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/site-bfc167aa91c105811fa2848e54f5ae70b6c18ac4a42adf45cfacf9fbb078a71f.css" integrity="sha256-v8FnqpHBBYEfooSOVPWucLbBisSkKt9Fz6z5+7B4px8=" media="all" rel="stylesheet">
+    
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width">
+    
+    <title>webpack使用优化（基本篇） · Issue #2 · lcxfs1991/blog · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" href="https://github.com/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://github.com/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/apple-touch-icon-180x180.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="https://avatars2.githubusercontent.com/u/3348398?v=3&amp;s=400" name="twitter:image:src"><meta content="@github" name="twitter:site"><meta content="summary" name="twitter:card"><meta content="webpack使用优化（基本篇） · Issue #2 · lcxfs1991/blog" name="twitter:title"><meta content="前言
+本文不是webpack入门文章，如果对webpack还不了解，请前往题叶的Webpack入门，或者阮老师的Webpack-Demos。
+为什么要使用Webpack
+
+与react一类模块化开发的框架搭配着用比较好。
+属于配置型的构建工具，比较用容易上手，160行代码可大致实现gulp400行才能实现的功能。
+webpack使用内存来对构建内容进行缓存，构建过程中会比较快。
+
+第3点我想..." name="twitter:description">
+      <meta content="https://avatars2.githubusercontent.com/u/3348398?v=3&amp;s=400" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="webpack使用优化（基本篇） · Issue #2 · lcxfs1991/blog" property="og:title"><meta content="https://github.com/lcxfs1991/blog/issues/2" property="og:url"><meta content="前言
+本文不是webpack入门文章，如果对webpack还不了解，请前往题叶的Webpack入门，或者阮老师的Webpack-Demos。
+为什么要使用Webpack
+
+与react一类模块化开发的框架搭配着用比较好。
+属于配置型的构建工具，比较用容易上手，160行代码可大致实现gulp400行才能实现的功能。
+webpack使用内存来对构建内容进行缓存，构建过程中会比较快。
+
+第3点我想..." property="og:description">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+    <meta name="request-id" content="2D4F5351:08A7:224B10C:581FFF6B" data-pjax-transient="">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_issues" data-pjax-transient="">
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id"><meta content="2D4F5351:08A7:224B10C:581FFF6B" name="octolytics-dimension-request_id">
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/issues/show" data-pjax-transient="true" name="analytics-location">
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+      <meta name="js-proxy-site-detection-payload" content="MWY2OGE0YjY4ZDJhNTIzMzA5NTJmNjQ3ODZhMjYyNGI3ZmRjNDRlOGFkNWJhY2Q4ZTg1Y2QyZDliYWI5ZDlkZnx7InJlbW90ZV9hZGRyZXNzIjoiNDUuNzkuODMuODEiLCJyZXF1ZXN0X2lkIjoiMkQ0RjUzNTE6MDhBNzoyMjRCMTBDOjU4MUZGRjZCIiwidGltZXN0YW1wIjoxNDc4NDkyMDExLCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta name="html-safe-nonce" content="02f3ee30dbadc12f4a3b16aa601bce84b157b5db">
+    <meta content="e30d01c92efde6314d94e558650360676253c8aa" name="form-nonce">
+
+    <meta http-equiv="x-pjax-version" content="4274452f598450a3d9b254e0c1032f59">
+    
+
+      
+  <meta name="description" content="leehey&#39;s blog -- 请star或者watch">
+  <meta name="go-import" content="github.com/lcxfs1991/blog git https://github.com/lcxfs1991/blog.git">
+
+  <meta content="3348398" name="octolytics-dimension-user_id"><meta content="lcxfs1991" name="octolytics-dimension-user_login"><meta content="49327652" name="octolytics-dimension-repository_id"><meta content="lcxfs1991/blog" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="49327652" name="octolytics-dimension-repository_network_root_id"><meta content="lcxfs1991/blog" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/lcxfs1991/blog/commits/master.atom" rel="alternate" title="Recent Commits to blog:master" type="application/atom+xml">
+
+
+  </head>
+
+
+  <body class="logged-out  env-production macintosh vis-public">
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+    <a href="https://github.com/lcxfs1991/blog/issues/2#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+          <header class="site-header js-details-container" role="banner">
+  <div class="container-responsive">
+    <a class="header-logo-invertocat" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+    </a>
+
+    <button class="btn-link float-right site-header-toggle js-details-target" type="button" aria-label="Toggle navigation">
+      <svg aria-hidden="true" class="octicon octicon-three-bars" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
+    </button>
+
+    <div class="site-header-menu">
+      <nav class="site-header-nav site-header-nav-main">
+        <a href="https://github.com/personal" class="js-selected-navigation-item nav-item nav-item-personal" data-ga-click="Header, click, Nav menu - item:personal" data-selected-links="/personal /personal">
+          Personal
+</a>        <a href="https://github.com/open-source" class="js-selected-navigation-item nav-item nav-item-opensource" data-ga-click="Header, click, Nav menu - item:opensource" data-selected-links="/open-source /open-source">
+          Open source
+</a>        <a href="https://github.com/business" class="js-selected-navigation-item nav-item nav-item-business" data-ga-click="Header, click, Nav menu - item:business" data-selected-links="/business /business/partners /business/features /business/customers /business">
+          Business
+</a>        <a href="https://github.com/explore" class="js-selected-navigation-item nav-item nav-item-explore" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship /showcases /explore">
+          Explore
+</a>      </nav>
+
+      <div class="site-header-actions">
+            <a class="btn btn-primary site-header-actions-btn" href="https://github.com/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+          <a class="btn site-header-actions-btn mr-1" href="https://github.com/login?return_to=%2Flcxfs1991%2Fblog%2Fissues%2F2" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+      </div>
+
+        <nav class="site-header-nav site-header-nav-secondary mr-md-3">
+          <a class="nav-item" href="https://github.com/pricing">Pricing</a>
+          <a class="nav-item" href="https://github.com/blog">Blog</a>
+          <a class="nav-item" href="https://help.github.com/">Support</a>
+          <a class="nav-item header-search-link" href="https://github.com/search">Search GitHub</a>
+              <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/search" class="js-site-search-form" data-scoped-search-url="/lcxfs1991/blog/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+      <div class="header-search-scope">This repository</div>
+      <input type="text" class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable" data-hotkey="s" name="q" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" autocapitalize="off">
+    </label>
+</form></div>
+
+        </nav>
+    </div>
+  </div>
+</header>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Flcxfs1991%2Fblog" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+    Watch
+  </a>
+  <a class="social-count" href="https://github.com/lcxfs1991/blog/watchers" aria-label="115 users are watching this repository">
+    115
+  </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Flcxfs1991%2Fblog" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to star a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="https://github.com/lcxfs1991/blog/stargazers" aria-label="650 users starred this repository">
+      650
+    </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Flcxfs1991%2Fblog" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+        Fork
+      </a>
+
+    <a href="https://github.com/lcxfs1991/blog/network" class="social-count" aria-label="47 users are forked this repository">
+      47
+    </a>
+  </li>
+</ul>
+
+    <h1 class="public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a href="https://github.com/lcxfs1991" class="url fn" rel="author">lcxfs1991</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="https://github.com/lcxfs1991/blog" data-pjax="#js-repo-pjax-container">blog</a></strong>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/lcxfs1991/blog" class="js-selected-navigation-item reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /lcxfs1991/blog" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="https://github.com/lcxfs1991/blog/issues" aria-selected="true" class="js-selected-navigation-item selected reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /lcxfs1991/blog/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="counter">15</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/lcxfs1991/blog/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /lcxfs1991/blog/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="counter">0</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+  <a href="https://github.com/lcxfs1991/blog/projects" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /lcxfs1991/blog/projects">
+    <svg class="octicon" aria-hidden="true" version="1.1" width="15" height="16" viewBox="0 0 15 16">
+      <path d="M1 15h13V1H1v14zM15 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1zm-4.41 11h1.82c.59 0 .59-.41.59-1V3c0-.59 0-1-.59-1h-1.82C10 2 10 2.41 10 3v8c0 .59 0 1 .59 1zm-4-2h1.82C9 10 9 9.59 9 9V3c0-.59 0-1-.59-1H6.59C6 2 6 2.41 6 3v6c0 .59 0 1 .59 1zM2 13V3c0-.59 0-1 .59-1h1.82C5 2 5 2.41 5 3v10c0 .59 0 1-.59 1H2.59C2 14 2 13.59 2 13z"></path>
+    </svg>
+    Projects
+    <span class="counter">0</span>
+</a>
+
+
+  <a href="https://github.com/lcxfs1991/blog/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /lcxfs1991/blog/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"></path></svg>
+    Pulse
+</a>
+  <a href="https://github.com/lcxfs1991/blog/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /lcxfs1991/blog/graphs">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+<style type="text/css" media="screen">
+  span.labelstyle-fc2929, .linked-labelstyle-fc2929 {  background-color: #fc2929 !important;  color: #fff !important;}.labelstyle-fc2929.selected {  background-color: #fc2929 !important;  color: #fff !important;}.label-select-menu .labelstyle-fc2929.selected {  background:rgba(252, 41, 41, 0.12) !important;  color: #991818 !important;}
+
+span.labelstyle-cccccc, .linked-labelstyle-cccccc {  background-color: #cccccc !important;  color: #333333 !important;}.labelstyle-cccccc.selected {  background-color: #cccccc !important;  color: #333333 !important;}.label-select-menu .labelstyle-cccccc.selected {  background:rgba(204, 204, 204, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-84b6eb, .linked-labelstyle-84b6eb {  background-color: #84b6eb !important;  color: #1c2733 !important;}.labelstyle-84b6eb.selected {  background-color: #84b6eb !important;  color: #1c2733 !important;}.label-select-menu .labelstyle-84b6eb.selected {  background:rgba(132, 182, 235, 0.12) !important;  color: #557699 !important;}
+
+span.labelstyle-159818, .linked-labelstyle-159818 {  background-color: #159818 !important;  color: #fff !important;}.labelstyle-159818.selected {  background-color: #159818 !important;  color: #fff !important;}.label-select-menu .labelstyle-159818.selected {  background:rgba(21, 152, 24, 0.12) !important;  color: #159918 !important;}
+
+span.labelstyle-e6e6e6, .linked-labelstyle-e6e6e6 {  background-color: #e6e6e6 !important;  color: #333333 !important;}.labelstyle-e6e6e6.selected {  background-color: #e6e6e6 !important;  color: #333333 !important;}.label-select-menu .labelstyle-e6e6e6.selected {  background:rgba(230, 230, 230, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-cc317c, .linked-labelstyle-cc317c {  background-color: #cc317c !important;  color: #fff !important;}.labelstyle-cc317c.selected {  background-color: #cc317c !important;  color: #fff !important;}.label-select-menu .labelstyle-cc317c.selected {  background:rgba(204, 49, 124, 0.12) !important;  color: #99245c !important;}
+
+span.labelstyle-ffffff, .linked-labelstyle-ffffff {  background-color: #ffffff !important;  color: #333333 !important;}.labelstyle-ffffff.selected {  background-color: #ffffff !important;  color: #333333 !important;}.label-select-menu .labelstyle-ffffff.selected {  background:rgba(255, 255, 255, 0.12) !important;  color: #999999 !important;}
+</style>
+
+<div class="issues-listing" data-pjax="">
+    <div id="show_issue" class="js-issues-results">
+
+    
+  <div id="partial-discussion-header" class="gh-header js-details-container js-socket-channel js-updatable-content issue" data-channel="tenant:1:issue:125793489" data-url="/lcxfs1991/blog/issues/2/show_partial?partial=issues%2Ftitle">
+
+  <div class="gh-header-show ">
+      <div class="gh-header-actions">
+          <a href="https://github.com/lcxfs1991/blog/issues/new" class="btn btn-sm btn-primary float-right" data-hotkey="c">
+            New issue
+          </a>
+      </div>
+
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">
+        webpack使用优化（基本篇）
+      </span>
+      <span class="gh-header-number">#2</span>
+    </h1>
+  </div>
+
+
+  <div class="TableObject gh-header-meta">
+    <div class="TableObject-item">
+        <div class="state state-open">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+          Open
+        </div>
+    </div>
+    <div class="TableObject-item TableObject-item--primary">
+        <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a>  opened this <span class="noun">Issue</span> <relative-time datetime="2016-01-10T02:11:30Z" title="2016年1月10日 GMT+8 上午10:11">on 10 Jan</relative-time>
+        · 20 comments
+    </div>
+  </div>
+</div>
+
+
+    <div id="discussion_bucket" class="clearfix">
+      <div class="discussion-sidebar is-placeholder" style="visibility: hidden; display: block; height: 428px;"></div><div class="discussion-sidebar js-sticky is-stuck" style="position: fixed; top: 0px; left: 1233.5px; width: 200px; margin-top: 0px;">
+        <div id="partial-discussion-sidebar" class="js-socket-channel js-updatable-content" data-channel="tenant:1:issue:125793489" data-url="/lcxfs1991/blog/issues/2/show_partial?partial=issues%2Fsidebar">
+
+  <div class="discussion-sidebar-item js-discussion-sidebar-item">
+  
+  <h3 class="discussion-sidebar-heading">
+    Projects
+  </h3>
+
+
+  <span class="css-truncate">
+    None yet
+</span>
+
+</div>
+
+  <div class="discussion-sidebar-item sidebar-labels js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/issues/2?partial=issues%2Fsidebar%2Fshow%2Flabels" class="js-issue-sidebar-form" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="9X2ic0geMRTf8nV97rsFJ6Q0B56Wie7y162SO6e73OoSr5dhzV6RfpxSjL7TLM2DdgkcBR4kwa/znpDVYfk6lw=="></div>
+      
+  <h3 class="discussion-sidebar-heading">
+    Labels
+  </h3>
+
+
+    <div class="labels css-truncate">
+    None yet
+</div>
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-milestone js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/issues/2/set_milestone?partial=issues%2Fsidebar%2Fshow%2Fmilestone" class="js-issue-sidebar-form" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="E3t4ClwwAmDJuVIbukZC8oXQdP8Gvje/p8JoUAO3D5+ImozNoaQs1ZFJhVzIKWD4mgteY90xxc8iF85YEpm12g=="></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Milestone
+  </h3>
+
+
+      No milestone
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/issues/2?partial=issues%2Fsidebar%2Fshow%2Fassignees" class="js-issue-sidebar-form" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="f4OIzuMb/AjhiKiVUQgvT8Qv/PSXvret+acGJPBsM6Jxy5+Rz/AzuhXbqx0w+pP5uwQdrfw/1KF9bT448qoCVQ=="></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Assignees
+  </h3>
+
+
+    <span class="css-truncate">
+    No one assigned
+</span>
+
+</form></div>
+
+  <div id="partial-users-participants" class="discussion-sidebar-item">
+  <div class="participation">
+
+    <h3 class="discussion-sidebar-heading">
+      15 participants
+    </h3>
+    <div class="participation-avatars">
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="lcxfs1991" href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="MeCKodo" href="https://github.com/MeCKodo"><img alt="@MeCKodo" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/10184444" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="cssmagic" href="https://github.com/cssmagic"><img alt="@cssmagic" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1231359" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="simongfxu" href="https://github.com/simongfxu"><img alt="@simongfxu" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/2288388" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="cupools" href="https://github.com/cupools"><img alt="@cupools" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/5516312" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="dericgit" href="https://github.com/dericgit"><img alt="@dericgit" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/504723" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="FrendEr" href="https://github.com/FrendEr"><img alt="@FrendEr" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/11550410" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="bluemsn" href="https://github.com/bluemsn"><img alt="@bluemsn" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3715420" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="zhouyupeng" href="https://github.com/zhouyupeng"><img alt="@zhouyupeng" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/9276354" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="draco1023" href="https://github.com/draco1023"><img alt="@draco1023" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1821583" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="superfighter" href="https://github.com/superfighter"><img alt="@superfighter" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1487779" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="zhangbg" href="https://github.com/zhangbg"><img alt="@zhangbg" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/6231441" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="jimole775" href="https://github.com/jimole775"><img alt="@jimole775" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/12888021" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="nimojs" href="https://github.com/nimojs"><img alt="@nimojs" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3949015" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="johvin" href="https://github.com/johvin"><img alt="@johvin" class="avatar" height="26" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/5971277" width="26"> </a>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+
+</div>
+
+      </div>
+
+      <div class="discussion-timeline js-quote-selection-container ">
+
+        <div class="js-discussion js-socket-channel" data-channel="tenant:1:marked-as-read:issue:125793489">
+          
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issue-125793489" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="6c03dffb1a0ef7c326241f3da1dfcf4c">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issue-125793489" class="timestamp">
+        <relative-time datetime="2016-01-10T02:11:30Z" title="2016年1月10日 GMT+8 上午10:11">on 10 Jan</relative-time>
+      </a>
+
+      •
+      <span class="timestamp timestamp-edited tooltipped tooltipped-n" aria-label="lcxfs1991 edited this issue 5 months ago">
+        edited
+      </span>
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <h2>前言</h2>
+<p>本文不是webpack入门文章，如果对webpack还不了解，请前往题叶的<a href="http://segmentfault.com/a/1190000002551952">Webpack入门</a>，或者阮老师的<a href="https://github.com/ruanyf/webpack-demos">Webpack-Demos</a>。</p>
+<h2>为什么要使用Webpack</h2>
+<ol>
+<li>与react一类模块化开发的框架搭配着用比较好。</li>
+<li>属于配置型的构建工具，比较用容易上手，160行代码可大致实现gulp400行才能实现的功能。</li>
+<li>webpack使用内存来对构建内容进行缓存，构建过程中会比较快。</li>
+</ol>
+<p>第3点我想稍微论述一下，如果看过我之前写的<a href="https://github.com/lcxfs1991/blog/issues/1">《如何写一个webpack插件（一）》</a>，会发现，webpack会将文件内容存在compilation这个大的object里面，方便各种插件，loader间的调用。虽然gulp也用到了流(pipe)这样的内存处理方式，但感觉webpack更进一步。gulp是每一个任务(task)用一个流，而webpack是共享一个流。</p>
+<h2>简要回顾Webpack的配置</h2>
+<p><a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/59f04c1e-b784-11e5-93b5-9301333f0e22.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/59f04c1e-b784-11e5-93b5-9301333f0e22.png" alt="webpack_config" style="max-width:100%;"></a></p>
+<p>Webpack的配置主要为了这几大项目：</p>
+<ul>
+<li>entry：js入口源文件</li>
+<li>output：生成文件</li>
+<li>module：进行字符串的处理</li>
+<li>resolve：文件路径的指向</li>
+<li>plugins：插件，比loader更强大，能使用更多webpack的api</li>
+</ul>
+<h2>常用Loaders介绍</h2>
+<ul>
+<li>处理样式，转成css，如：less-loader, sass-loader</li>
+<li>图片处理，如: url-loader, file-loader。两个都必须用上。否则超过大小限制的图片无法生成到目标文件夹中</li>
+<li>处理js，将es6或更高级的代码转成es5的代码。如：<br>
+babel-loader，babel-preset-es2015，babel-preset-react</li>
+<li>将js模块暴露到全局，如果expose-loader</li>
+</ul>
+<h2>常用Plugins介绍</h2>
+<ul>
+<li>代码热替换, HotModuleReplacementPlugin</li>
+<li>生成html文件，HtmlWebpackPlugin</li>
+<li>将css成生文件，而非内联，ExtractTextPlugin</li>
+<li>报错但不退出webpack进程，NoErrorsPlugin</li>
+<li>代码丑化，UglifyJsPlugin，开发过程中不建议打开</li>
+<li>多个 html共用一个js文件(chunk)，可用CommonsChunkPlugin</li>
+<li>清理文件夹，Clean</li>
+<li>调用模块的别名ProvidePlugin，例如想在js中用$，如果通过webpack加载，需要将$与jQuery对应起来</li>
+</ul>
+<h2>使用优化</h2>
+<p>了解了以上介绍的Loaders和Plugins之后，基本就可以搭建一整套基于Webpack的构建（不需要gulp与grunt，合图除外）。下面让我来介绍一下在使用过程中的一些优化点。</p>
+<h3>优化点一.如何区分开发及生产环境</h3>
+<ol>
+<li>在package.json里面的script设置环境变量，注意mac与windows的设置方式不一样</li>
+</ol>
+<pre><code>"scripts": {
+    "publish-mac": "export NODE_ENV=prod&amp;&amp;webpack -p --progress --colors",
+    "publish-win":  "set NODE_ENV=prod&amp;&amp;webpack -p --progress --colors"
+}
+</code></pre>
+<ol>
+<li>在webpack.config.js使用process.env.NODE_ENV进行判断</li>
+</ol>
+<h3>优化点二.使用代码热替换</h3>
+<p>使用代码热替换在开发的时候无需刷新页面即可看到更新，而且，它将构建的内容放入内在中，能够获得更快的构建编译性能，因此是官方非常推荐的一种构建方式。</p>
+<h4>方法一：</h4>
+<p>1.将代码内联到入口js文件里<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/40d8b65c-b785-11e5-82f2-5557084605dc.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/40d8b65c-b785-11e5-82f2-5557084605dc.png" alt="w1" style="max-width:100%;"></a></p>
+<p>2.启动代码热替换的plugins<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/4a3acafa-b785-11e5-9836-0d0617c81d58.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/4a3acafa-b785-11e5-9836-0d0617c81d58.png" alt="w2" style="max-width:100%;"></a></p>
+<h4>方法二：</h4>
+<p>直接实现一个server.js，启动服务器（需要启动热替换plugin)，下面是我在业务中用到的一个范例。具体的一些参数可以</p>
+<pre><code>var webpack = require('webpack');
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackDevServer = require('webpack-dev-server');
+var config = require("./webpack.config.js");
+
+config.entry.index.unshift("webpack-dev-server/client?http://localhost:9000");  // 将执替换js内联进去
+config.entry.index.unshift("webpack/hot/only-dev-server");
+var compiler = webpack(config);
+var server = new webpackDevServer(compiler, {
+    hot: true,
+    historyApiFallback: false,
+    // noInfo: true,
+    stats: { 
+        colors: true  // 用颜色标识
+    },
+    proxy: {
+        "*": "http://localhost:9000" // 用于转发api数据，但webpack自己提供的并不太好用
+    },
+});
+server.listen(9000);
+</code></pre>
+<h4>方法三：</h4>
+<p>直接在webpack.config.js上配置。这个办法最简单，当然灵活性没有自己实现一个服务器好。<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/b46bef20-b786-11e5-9116-3481c8f06e95.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/b46bef20-b786-11e5-9116-3481c8f06e95.png" alt="w3" style="max-width:100%;"></a></p>
+<h3>优化点三.import react导致文件变大，编译速度变慢，乍办?</h3>
+<ol>
+<li>如果你想将react分离，不打包到一起，可以使用externals。然后用<code>&lt;script&gt;</code>单独将react引入<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/57e0e98a-b787-11e5-8cd1-59f2190669d8.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/57e0e98a-b787-11e5-8cd1-59f2190669d8.png" alt="w1" style="max-width:100%;"></a></li>
+<li>如果不介意将react打包到一起，请在alias中直接指向react的文件。可以提高webpack搜索的速度。准备部署上线时记得将换成react.min，能减少文件大小(减少约600kb)<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/64904914-b787-11e5-9736-8199c7f6a064.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/64904914-b787-11e5-9736-8199c7f6a064.png" alt="w2" style="max-width:100%;"></a></li>
+<li>使用module.noParse针对单独的react.min.js这类没有依赖的模块，速度会更快。</li>
+</ol>
+<h3>优化点四.将模块暴露到全局</h3>
+<p>如果想将report数据上报组件放到全局，有两种办法：</p>
+<h4>方法一：</h4>
+<p>在loader里使expose将report暴露到全局，然后就可以直接使用report进行上报</p>
+<pre><code>{
+    test: path.join(config.path.src, '/js/common/report'),
+    loader: 'expose?report'
+},
+</code></pre>
+<h4>方法二：</h4>
+<p>如果想用R直接代表report，除了要用expose loader之外，还需要用ProvidePlugin帮助，指向report，这样在代码中直接用R.tdw， R.monitor这样就可以</p>
+<pre><code>new webpack.ProvidePlugin({
+    "R": "report",
+}),
+</code></pre>
+<h3>优化点五. 合并公共代码</h3>
+<p>有些类库如utils, bootstrap之类的可能被多个页面共享，最好是可以合并成一个js，而非每个js单独去引用。这样能够节省一些空间。这时我们可以用到CommonsChunkPlugin，我们指定好生成文件的名字，以及想抽取哪些入口js文件的公共代码，webpack就会自动帮我们合并好。</p>
+<pre><code>new webpack.optimize.CommonsChunkPlugin({
+            name: "common",
+            filename: "js/common.js",
+            chunks: ['index', 'detail]
+        }),
+</code></pre>
+<h3>优化点六. 善用alias。</h3>
+<p>resolve里面有一个alias的配置项目，能够让开发者指定一些模块的引用路径。对一些经常要被import或者require的库，如react,我们最好可以直接指定它们的位置，这样webpack可以省下不少搜索硬盘的时间。<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/56bfd1aa-b78d-11e5-89d7-6bcc9230db81.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/56bfd1aa-b78d-11e5-89d7-6bcc9230db81.png" alt="w6" style="max-width:100%;"></a></p>
+<h3>优化点七. alias的索引路径。</h3>
+<p>有时候你的node_modules包可能会放在上层父文件夹中，这时你可以使用resolve.moduledirectories来扩张你的索引路径，例如我们给redux做一个alias：</p>
+<pre><code> resolve: {
+        moduledirectories:['node_modules', config.path.src],
+        extensions: [".js", ".jsx",],
+        alias: {
+            'redux': 'redux/dist/redux',
+        }
+    },
+</code></pre>
+<p>这样的话，它的索引路径会如下：</p>
+<pre><code>/a/b/node_module/redux/dist/redux
+/a/node_module/redux/dist/redux
+/node_module/redux/dist/redux
+</code></pre>
+<p>要注意的是多加索引路径可能会导致性能下降，所以除非项目复杂，否则慎用这个功能。</p>
+<h3>优化点八.多个html怎么办</h3>
+<ol>
+<li>使用HtmlWebpackPlugin，有多少个html，就排列多少个，记得不要用inject，否则全部js都会注入到html。如果真的要用inject模式，请务必将不需要的js用exclude chunk去掉或者用chunk参数填上你需要入口文件。</li>
+</ol>
+<p>仅使用app作为注入的文件：</p>
+<pre><code>plugins: [
+  new HtmlWebpackPlugin({
+    chunks: ['app']
+  })
+]
+</code></pre>
+<p>不使用dev-helper作为注入文件：</p>
+<pre><code>plugins: [
+  new HtmlWebpackPlugin({
+    excludeChunks: ['dev-helper']
+  })
+]
+</code></pre>
+<p>如果你不想用inject模式，但又想使用html-webpack-plugin，那你需要在html里用<code>&lt;script&gt;</code>标签放入对应的js，以及用&lt;link&gt;入对应的css。记住，这些资源的路径是在生成目录下的，写路径的时候请写生成目录下的相对路径。</p>
+<h3>优化点九. html-webpack-plugin不用使inject模式没又md5，而且不支持文件内联怎么破？</h3>
+<p>当时我就给维护者提了一个issue--<a href="https://github.com/ampedandwired/html-webpack-plugin/issues/157">Add inline feature to the plugin</a>。</p>
+<p>然后维护者在<a href="https://github.com/ampedandwired/html-webpack-plugin/tree/feature/loaders">开发的分支</a>上加了这么一个特性（证明维护者不想在插件里加内联功能了，想让我来弄）：</p>
+<p>事件<br>
+允许其它插件去使用执行事件<br>
+html-webpack-plugin-before-html-processing<br>
+html-webpack-plugin-after-html-processing<br>
+html-webpack-plugin-after-emit</p>
+<p>使用办法：</p>
+<pre><code>  compilation.plugin('html-webpack-plugin-before-html-processing', function(htmlPluginData, callback) {
+    htmlPluginData.html += 'The magic footer';
+    callback();
+  });
+</code></pre>
+<p>不过我还是决定自己开发一个了一个插件<br>
+<a href="https://github.com/lcxfs1991/html-res-webpack-plugin">html-res-webpack-plugin</a>，有中英文文档可以参考。其实html-webpack-plugin以js作为入口可能跟webpack的理念更为一致，但其实直接在html上放link和<code>script</code>更加方便直白一些。而且html-webpack-plugin局限性太多，如果我想在<code>script</code>上加attribute也是比较麻烦的事儿。所以我干脆开发一个可以允许在html上直接放link和script而且支持内联及md5的插件。</p>
+<p>但相信我之后也会针对html-webpack-plugin再写一个内联及md5的插件，适配一直在用这个插件的人。</p>
+<h3>优化点十.用gulp-webpack速度慢乍办</h3>
+<p><a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/e2503ece-b78a-11e5-976c-e4dfc6dd5a16.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/e2503ece-b78a-11e5-976c-e4dfc6dd5a16.png" alt="w3" style="max-width:100%;"></a></p>
+<p>上图是初始化构建30个文件的用时，一共用了<code>13</code>秒。用了externals优化后，还有100多kb，比用纯webpack优化要大50多kb。而且，由于你用的是gulp-webpack，每次有文件改动，都必须全部重新编译一次。因此，跟react搭配建议还是不要用gulp-webpack。因为如果你使用webpack的话，即使初次启动时速度也并不快，但开发过程中，webpack会自动识别，只会重新编译有修改的文件，这大大加快了编译构建速度。</p>
+<p>没办法，老项目改造，真的要用，乍办？我提供以下思路<br>
+（1）当非js文件改变的时候，不要去跑js打包的任务<br>
+（2）非公共的js发生改变的时候，只执行这个js的打包任务</p>
+<p><a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/8df48f0a-b78b-11e5-97ba-c8c31426364d.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/8df48f0a-b78b-11e5-97ba-c8c31426364d.png" alt="w4" style="max-width:100%;"></a></p>
+<p>下图是优化了之后，在开发过程中非公共文件修改后的编译速度。我的娘，纯webpack只需要100多200ms。建议还是用webpack吧。<br>
+<a href="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/98bab1a8-b78b-11e5-8710-4a9cdd70996b.png" target="_blank"><img src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/98bab1a8-b78b-11e5-8710-4a9cdd70996b.png" alt="w5" style="max-width:100%;"></a></p>
+<h3>优化点十一.如果在通过webpack在项目中使用bootstrap, jquery以及fontawesome</h3>
+<p>这一点对于创业公司来说可能比较有用，它们的初期产品都需要快速上线，用一些比较成熟的UI框架会比较好。</p>
+<p>这样，首先我们需要jquery文件，并且安装bootstrap(3.3.5) ,font-awesome(4.4.0),以及imports-loader(0.6.3)。还需要sass-loader(3.1.2)及less-loader(2.5.3)。</p>
+<p>然后，在主要入口文件要这么引用下面的样式文件：</p>
+<pre><code>require('bootstrap/less/bootstrap.less');
+require('font-awesome/scss/font-awesome.scss');
+require('./index.scss');
+</code></pre>
+<p>在webpack.config.js的entry项目里，可以加上这个vendor:</p>
+<pre><code>common: ['jquery', 'bootstrap'],
+</code></pre>
+<p>在loaders里加入以下loader，将jQuery暴露到全局:</p>
+<pre><code>{
+    test: path.join(config.path.src, '/libs/jq/jquery-2.1.4.min'),
+    loader: 'expose?jQuery'
+},
+</code></pre>
+<p>再添加以下loader，让webpack帮助复制font文件</p>
+<pre><code>{ 
+        test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,  
+        loader: 'url-loader?importLoaders=1&amp;limit=1000&amp;name=/fonts/[name].[ext]' 
+},
+</code></pre>
+<p>在plugins里添加ProvidePlugin，让$指向jQuery</p>
+<pre><code>new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery"
+}),
+</code></pre>
+<p>这样，就可以同时使用jQuery, Bootstrap和Fontawesome了。</p>
+<h2>webpack会取代gulp吗</h2>
+<ul>
+<li>未必，但在开发环境，以及不需要一些功能如合图的情况下，webpack可以完全取代gulp，至少现在我有三个项目完全用webpack进行开发和部署上线</li>
+<li>要取代gulp,还需要不断发展它的loader以及plugin生态，至少，完善一下开发者文档啊。</li>
+</ul>
+<h2>有样版boilerplate项目吗</h2>
+<p>目前有一个还没有成型的，我先放在这里，目前可以通过查看gulpfile.js和webpack.config.js文件进行学习<br>
+<a href="https://github.com/lcxfs1991/steamer/tree/v2">steamer_branch_v2</a>。要成为boilerplate还待我花一周时间整理。</p>
+<h2>推荐文章</h2>
+<p><a href="https://segmentfault.com/a/1190000005770042">开发工具心得：如何 10 倍提高你的 Webpack 构建效率</a></p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/reactions/update" class="js-pick-reaction" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="1WavJggWlsXjRLpYJO2KlSozZwByLH39nEj4dnb4JKJNKzDDKMBqBRKczK/AJDE7WSn+lTrpi4YrPC3kf0Dbwg=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="125793489">
+      <input type="hidden" name="reaction[subject_type]" value="Issue">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="eilvein, riskers, and zhangbg reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            3
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  
+
+
+      
+
+
+  <div class="discussion-item discussion-item-renamed">
+    <div class="discussion-item-header" id="event-510471624">
+
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg>
+      </span>
+      <img alt="@lcxfs1991" class="avatar" height="16" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(2)" width="16">
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a>
+      
+      changed the title from  <span class="renamed-was">webpack使用优化</span> to <span class="renamed-is">webpack使用优化（持续更新，欢迎补充）</span> <a href="https://github.com/lcxfs1991/blog/issues/2#event-510471624" class="timestamp"><relative-time class="timestamp" datetime="2016-01-10T14:50:58Z" title="2016年1月10日 GMT+8 下午10:50">on 10 Jan</relative-time></a>
+    </div>
+  </div>
+
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/MeCKodo"><img alt="@MeCKodo" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/10184444(1)" width="44"></a>
+    
+
+<div id="issuecomment-170413431" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="2852db5f1a4513dc818661cd0583caac">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/MeCKodo" class="author">MeCKodo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-170413431" class="timestamp">
+        <relative-time datetime="2016-01-11T01:25:43Z" title="2016年1月11日 GMT+8 上午9:25">on 11 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>至少，完善一下开发者文档啊</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/reactions/update" class="js-pick-reaction" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="QH65cyuyx+KaRlu0xPw2/3AYLotvEzAgiHr1fafK4C2n5j+Ll9vBwW01vFvA+S5PMjQCGNK3HecPYH0IZeo1cA=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="170413431">
+      <input type="hidden" name="reaction[subject_type]" value="IssueComment">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="AsJoy and SunnyFE reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            2
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issuecomment-170413966" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="0171fce384aab4b1bdfc9de450b5164e">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-170413966" class="timestamp">
+        <relative-time datetime="2016-01-11T01:34:51Z" title="2016年1月11日 GMT+8 上午9:34">on 11 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>你是指那个boilerplate吗？我这两天弄一下哈。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/MeCKodo"><img alt="@MeCKodo" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/10184444(1)" width="44"></a>
+    
+
+<div id="issuecomment-170414077" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="dbdec338815c1a36d06c5c0a1045512f">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/MeCKodo" class="author">MeCKodo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-170414077" class="timestamp">
+        <relative-time datetime="2016-01-11T01:37:01Z" title="2016年1月11日 GMT+8 上午9:37">on 11 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>不是，重复了下webpack会取代gulp哈！ :)<br>
+觉得webpack文档超乱  : (  </p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issuecomment-170414170" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="6469cdb1c8c90aa61d107b36d6916b67">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-170414170" class="timestamp">
+        <relative-time datetime="2016-01-11T01:38:41Z" title="2016年1月11日 GMT+8 上午9:38">on 11 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>因为它是配置型的构建，所以内容比较多。而且例子也不足。<br>
+gulp属于任务型的，更多依赖插件，所以文档相对简单一些。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/reactions/update" class="js-pick-reaction" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="noYCSdXw42TnYHncUrRV57EaE1Y8Iqtk6pB+89Ba+HiLxzTSz6dxlBXx4hflgfYUcnclZpJL0ZjU8HHudiY57Q=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="170414170">
+      <input type="hidden" name="reaction[subject_type]" value="IssueComment">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="xiaoyu2er and ironicstone reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            2
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  
+      <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header" id="ref-issue-127103783">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+
+      <img alt="@yutingzhao1991" class="avatar" height="16" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1061968" width="16">
+      <a href="https://github.com/yutingzhao1991" class="author" truncate="true">yutingzhao1991</a>
+      
+
+      referenced
+      this issue
+        in <strong>yutingzhao1991/github-blogs-weekly</strong>
+      <a class="timestamp" href="https://github.com/lcxfs1991/blog/issues/2#ref-issue-127103783">
+        <relative-time datetime="2016-01-17T15:51:53Z" title="2016年1月17日 GMT+8 下午11:51">on 17 Jan</relative-time>
+      </a>
+    </div>
+
+      <span class="state state-open float-right">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="14" version="1.1" viewBox="0 0 14 16" width="12"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        Open
+      </span>
+
+
+
+    <h4 class="discussion-item-ref-title">
+      <a href="https://github.com/yutingzhao1991/github-blogs-weekly/issues/22" class="title-link">
+        文章更新 [ 2016-01-10 - 2016-01-16 ]
+        <span class="issue-num">#22</span>
+</a>    </h4>
+    
+  </div>
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/cssmagic"><img alt="@cssmagic" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1231359(1)" width="44"></a>
+    
+
+<div id="issuecomment-172424570" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="fda3298d7495bda8bb2187aa7cd6ad1f">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/cssmagic" class="author">cssmagic</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-172424570" class="timestamp">
+        <relative-time datetime="2016-01-18T04:43:36Z" title="2016年1月18日 GMT+8 下午12:43">on 18 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>谢谢分享。对学习 Webpack 很有帮助 <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji> </p>
+
+<p>另建议给代码块加语法着色效果。部分图片也可以以代码块的方式来显示。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issuecomment-172533155" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="afd11fa93961ed5ea9242d35f90ef912">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-172533155" class="timestamp">
+        <relative-time datetime="2016-01-18T13:58:39Z" title="2016年1月18日 GMT+8 下午9:58">on 18 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>谢谢哈。有什么好的优化点都可以提出来，我整理一下。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/simongfxu"><img alt="@simongfxu" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/2288388(1)" width="44"></a>
+    
+
+<div id="issuecomment-174412797" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="7a0720cb65a7abd11707c679b7c69520">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/simongfxu" class="author">simongfxu</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-174412797" class="timestamp">
+        <relative-time datetime="2016-01-25T06:06:31Z" title="2016年1月25日 GMT+8 下午2:06">on 25 Jan</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>感觉webpack还是很难取代gulp，有些功能在webpack中处理起来很自然（各种预处理的loader以及optimize、define等plugins），有些任务尤其是核心代码之外的感觉在gulp中更自然。</p>
+
+<p>比如gulp-html-replace这个插件，做的工作其实和html-webpack-plugin差不多，但是这种任务其实和js/css代码关系不大，更多是核心代码之外的页面内容替换。<br>
+当然强行放在webpack里面也可以，但是总感觉哪里不对（我的webpack.config.js本来就50行左右，这个一加配置至少十来行，可能还需要自己写点代码）。但是放在gulp里面就感觉超自然的一个任务。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/reactions/update" class="js-pick-reaction" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="bwyM5mLpP5Kc5IIiXrHWsBMm8iu25eHQ/Sj3xKRNNlLlpvXtqduTFg6zhXsfDkHI0qCvHtB6g0a62MkT+AdXPg=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="174412797">
+      <input type="hidden" name="reaction[subject_type]" value="IssueComment">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="xiaoyu2er reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            1
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/cupools"><img alt="@cupools" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/5516312(1)" width="44"></a>
+    
+
+<div id="issuecomment-201178747" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="2011541f11e0cdc31833bc75b2fc8123">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/cupools" class="author">cupools</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-201178747" class="timestamp">
+        <relative-time datetime="2016-03-25T07:13:46Z" title="2016年3月25日 GMT+8 下午3:13">on 25 Mar</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>编译慢的问题可以试试这个 <a href="https://github.com/glenjamin/webpack-hot-middleware#webpack-hot-middleware">webpack-hot-middleware</a>，配合 <code>webpack-dev-middleware</code> 可以在文件改动时只编译相关的文件而不需要全部重新编译</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+  <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+      This was referenced <relative-time datetime="2016-03-30T15:31:59Z" title="2016年3月30日 GMT+8 下午11:31">on 30 Mar</relative-time>
+    </div>
+
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-closed float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-closed" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M7 10h2v2H7v-2zm2-6H7v5h2V4zm1.5 1.5l-1 1L12 9l4-4.5-1-1L12 7l-1.5-1.5zM8 13.7A5.71 5.71 0 0 1 2.3 8c0-3.14 2.56-5.7 5.7-5.7 1.83 0 3.45.88 4.5 2.2l.92-.92A6.947 6.947 0 0 0 8 1C4.14 1 1 4.14 1 8s3.14 7 7 7 7-3.14 7-7l-1.52 1.52c-.66 2.41-2.86 4.19-5.48 4.19v-.01z"></path></svg>
+            Closed
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-142174214">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/ogoodo/url/issues/12" class="title-link">
+              webPack 参考
+
+              <span class="issue-num">
+                ogoodo/url#12
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-open float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+            Open
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-90258344">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/thoughtbit/it-note/issues/28" class="title-link">
+              Webpack 学习
+
+              <span class="issue-num">
+                thoughtbit/it-note#28
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/dericgit"><img alt="@dericgit" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/504723(1)" width="44"></a>
+    
+
+<div id="issuecomment-208255571" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="c7e52340dcbb1dad1345c73414a33eed">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/dericgit" class="author">dericgit</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-208255571" class="timestamp">
+        <relative-time datetime="2016-04-11T09:39:09Z" title="2016年4月11日 GMT+8 下午5:39">on 11 Apr</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>webpack 在使用extract-text-webpack-plugin 抽取出css时， css 中的 相对路径会被改变</p>
+
+<p>例：<br>
+在app.vue 中 style 有 .shop {background: url('../images/experience/page1_background.jpg') center center no-repeat;}</p>
+
+<p>在经过 new ExtractTextPlugin('./css/styles.[contenthash].css')<br>
+生成后文件目录：<br>
+indx.html<br>
+js/<br>
+css/style.[contenthash].css</p>
+
+<p>.shop {background: url(./images/page1_background.jpg) center center no-repeat;}</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/reactions/update" class="js-pick-reaction" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="SwcshFJfo3AMhxThC+Msntcd2/JV08BdzYZxUbGRnpBdDkf8S0vKfCKlpzdbfw85v81RZ6e5PQdBG669PRU6YA=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="208255571">
+      <input type="hidden" name="reaction[subject_type]" value="IssueComment">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="kvkens reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            1
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issuecomment-208311154" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="d352be5087913102554d61f8b7d6ea41">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-208311154" class="timestamp">
+        <relative-time datetime="2016-04-11T12:09:23Z" title="2016年4月11日 GMT+8 下午8:09">on 11 Apr</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p><a href="https://github.com/dericgit" class="user-mention">@dericgit</a> 恩。应该是会根据你图片的生成路径去调整的。毕竟你src文件夹下面img和css的相对位置跟你最终生成的时候可能会不一样</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/FrendEr"><img alt="@FrendEr" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/11550410(1)" width="44"></a>
+    
+
+<div id="issuecomment-210821831" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="77a068149d8d45ef9de13adbf5ecf7b8">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/FrendEr" class="author">FrendEr</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-210821831" class="timestamp">
+        <relative-time datetime="2016-04-16T14:03:36Z" title="2016年4月16日 GMT+8 下午10:03">on 16 Apr</relative-time>
+      </a>
+
+      •
+      <span class="timestamp timestamp-edited tooltipped tooltipped-n" aria-label="FrendEr edited this comment 7 months ago">
+        edited
+      </span>
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>请教一下个问题：<br>
+如果我给 <code>react</code> 配置了别名</p>
+
+<pre><code>resolve: {
+            extensions: ['', '.js', '.jsx', '.es6', 'css', 'scss', 'png', 'jpg', 'jpeg'],
+            alias: {
+                'react': path.join(NODE_MODULES_PATH, '/react/dist/react.js')
+           }
+}
+</code></pre>
+
+<p>但我的项目依赖的一个第三方库中的一个组件 <code>module1.js</code> 存在这样的引用</p>
+
+<pre><code>var PropTypes = require('react/lib/ReactPropTypes');
+</code></pre>
+
+<p>在我的项目编译的时候，就会出错</p>
+
+<pre><code>Module not found: Error: Cannot resolve 'file' or 'directory' myProject/node_modules/react/react.js/lib/ReactPropTypes in myProject/node_modules/thirdFrame/module1
+</code></pre>
+
+<p>那么，问题是：像这种配置别名的使用，如何做一个容错处理？毕竟第三方库如何引用一个文件是不可控的。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/lcxfs1991"><img alt="@lcxfs1991" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(1)" width="44"></a>
+    
+
+<div id="issuecomment-210838297" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="5e4f2a9890ab5275ccb358a122698e35">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the blog repository.
+      ">
+      blog owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-210838297" class="timestamp">
+        <relative-time datetime="2016-04-16T15:21:03Z" title="2016年4月16日 GMT+8 下午11:21">on 16 Apr</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>目前确实没有办法。</p>
+
+<p>不过开发环境直接设react的alias，react官方并不建议，因为有些warning和报错会没掉。</p>
+
+<p>而生产环境的话，一般建议将react单独外链，可用externas : {react: React}</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+
+
+      
+
+
+  <div class="discussion-item discussion-item-renamed">
+    <div class="discussion-item-header" id="event-630367294">
+
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg>
+      </span>
+      <img alt="@lcxfs1991" class="avatar" height="16" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(2)" width="16">
+      <a href="https://github.com/lcxfs1991" class="author">lcxfs1991</a>
+      
+      changed the title from  <span class="renamed-was">webpack使用优化（持续更新，欢迎补充）</span> to <span class="renamed-is">webpack使用优化（基本篇）</span> <a href="https://github.com/lcxfs1991/blog/issues/2#event-630367294" class="timestamp"><relative-time class="timestamp" datetime="2016-04-17T14:46:46Z" title="2016年4月17日 GMT+8 下午10:46">on 17 Apr</relative-time></a>
+    </div>
+  </div>
+
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/bluemsn"><img alt="@bluemsn" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3715420(1)" width="44"></a>
+    
+
+<div id="issuecomment-211794748" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="2ad234cc1603fe7c55cad22d53cbf137">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/bluemsn" class="author">bluemsn</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-211794748" class="timestamp">
+        <relative-time datetime="2016-04-19T08:31:34Z" title="2016年4月19日 GMT+8 下午4:31">on 19 Apr</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>谢谢分享</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+      <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header" id="ref-issue-148960219">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+
+      <img alt="@lcxfs1991" class="avatar" height="16" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3348398(2)" width="16">
+      <a href="https://github.com/lcxfs1991" class="author" truncate="true">lcxfs1991</a>
+      
+
+      referenced
+      this issue
+      <a class="timestamp" href="https://github.com/lcxfs1991/blog/issues/2#ref-issue-148960219">
+        <relative-time datetime="2016-05-31T11:24:43Z" title="2016年5月31日 GMT+8 下午7:24">on 31 May</relative-time>
+      </a>
+    </div>
+
+      <span class="state state-open float-right">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="14" version="1.1" viewBox="0 0 14 16" width="12"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        Open
+      </span>
+
+
+
+    <h4 class="discussion-item-ref-title">
+      <a href="https://github.com/lcxfs1991/blog/issues/7" class="title-link">
+        webpack使用优化（react篇）
+        <span class="issue-num">#7</span>
+</a>    </h4>
+    
+  </div>
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/zhouyupeng"><img alt="@zhouyupeng" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/9276354(1)" width="44"></a>
+    
+
+<div id="issuecomment-228954612" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="b2cc34d33ca9e1836eb4ae212fd50cea">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/zhouyupeng" class="author">zhouyupeng</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-228954612" class="timestamp">
+        <relative-time datetime="2016-06-28T05:48:59Z" title="2016年6月28日 GMT+8 下午1:48">on 28 Jun</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>早看到就好了 解释的很详细和深入 </p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+      <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header" id="ref-issue-165132290">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+
+      <img alt="@chenbin92" class="avatar" height="16" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3995814" width="16">
+      <a href="https://github.com/chenbin92" class="author" truncate="true">chenbin92</a>
+      
+
+      referenced
+      this issue
+        in <strong>chenbin92/react-redux-webpack-starter</strong>
+      <a class="timestamp" href="https://github.com/lcxfs1991/blog/issues/2#ref-issue-165132290">
+        <relative-time datetime="2016-07-12T17:18:30Z" title="2016年7月13日 GMT+8 上午1:18">on 13 Jul</relative-time>
+      </a>
+    </div>
+
+      <span class="state state-open float-right">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="14" version="1.1" viewBox="0 0 14 16" width="12"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        Open
+      </span>
+
+
+
+    <h4 class="discussion-item-ref-title">
+      <a href="https://github.com/chenbin92/react-redux-webpack-starter/issues/1" class="title-link">
+        [React项目总结] 基于 webpack 搭建前端工程基础篇
+        <span class="issue-num">#1</span>
+</a>    </h4>
+    
+  </div>
+
+    
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/draco1023"><img alt="@draco1023" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1821583(1)" width="44"></a>
+    
+
+<div id="issuecomment-246305895" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="2ad234cc1603fe7c55cad22d53cbf137">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/draco1023" class="author">draco1023</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-246305895" class="timestamp">
+        <relative-time datetime="2016-09-12T10:15:28Z" title="2016年9月12日 GMT+8 下午6:15">on 12 Sep</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>谢谢分享</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/superfighter"><img alt="@superfighter" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/1487779(1)" width="44"></a>
+    
+
+<div id="issuecomment-248803283" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="f12730a7e31e5b32b97be10e3156b139">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/superfighter" class="author">superfighter</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-248803283" class="timestamp">
+        <relative-time datetime="2016-09-22T03:41:07Z" title="2016年9月22日 GMT+8 上午11:41">on 22 Sep</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>看帖回帖是美德。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/zhangbg"><img alt="@zhangbg" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/6231441(1)" width="44"></a>
+    
+
+<div id="issuecomment-250880946" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="8a6ec03fd83bc541b963b66cc9b3edf2">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/zhangbg" class="author">zhangbg</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-250880946" class="timestamp">
+        <relative-time datetime="2016-10-01T00:32:28Z" title="2016年10月1日 GMT+8 上午8:32">on 1 Oct</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>不错</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/jimole775"><img alt="@jimole775" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/12888021(1)" width="44"></a>
+    
+
+<div id="issuecomment-255279518" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="d8ca1965388c7143f3bb840db136433e">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/jimole775" class="author">jimole775</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-255279518" class="timestamp">
+        <relative-time datetime="2016-10-21T02:36:45Z" title="2016年10月21日 GMT+8 上午10:36">17 days ago</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>got it, and tks to share！</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/nimojs"><img alt="@nimojs" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/3949015(1)" width="44"></a>
+    
+
+<div id="issuecomment-255287700" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="dcd596dfdbec8491d8e05c64d83b13eb">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/nimojs" class="author">nimojs</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-255287700" class="timestamp">
+        <relative-time datetime="2016-10-21T03:54:04Z" title="2016年10月21日 GMT+8 上午11:54">17 days ago</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>webpack-stream 开启 watch 模式后速度会快很多</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/johvin"><img alt="@johvin" class="timeline-comment-avatar" height="44" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/5971277(1)" width="44"></a>
+    
+
+<div id="issuecomment-257238866" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="9f1b2426607956952a4fd5e79135e58a">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/johvin" class="author">johvin</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/lcxfs1991/blog/issues/2#issuecomment-257238866" class="timestamp">
+        <relative-time datetime="2016-10-31T08:34:44Z" title="2016年10月31日 GMT+8 下午4:34">7 days ago</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>很实用，mark</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+  <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+      This was referenced <relative-time datetime="2016-11-03T12:16:30Z" title="2016年11月3日 GMT+8 下午8:16">4 days ago</relative-time>
+    </div>
+
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-open float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+            Open
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-187038394">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/webpack/webpack.js.org/issues/294" class="title-link">
+              Chinese Version
+
+              <span class="issue-num">
+                webpack/webpack.js.org#294
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-open float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+            Open
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-169177056">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/dwqs/blog/issues/21" class="title-link">
+              详解前端模块化工具-Webpack
+
+              <span class="issue-num">
+                dwqs/blog#21
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+  </div>
+
+
+
+
+
+
+<!-- Rendered timeline since 2016-11-05 04:39:17 -->
+<div id="partial-timeline-marker" class="js-timeline-marker js-socket-channel js-updatable-content" data-channel="tenant:1:issue:125793489" data-url="/lcxfs1991/blog/issues/2/show_partial?partial=issues%2Ftimeline_marker&amp;since=1478345957" data-last-modified="Sat, 05 Nov 2016 11:39:17 GMT">
+
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/lcxfs1991/blog/notifications/mark?ids=117912886" class="d-none js-timeline-marker-form" data-form-nonce="e30d01c92efde6314d94e558650360676253c8aa" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="AT3MCJSW1PA0v2UtW7vC2rbcat9e2pb8mgsy1Figew12TYiADyJcKM3J53S0wYIPUHFkkufk+rFb3vlqbIdE2Q=="></div>
+</form></div>
+
+
+        </div>
+
+          <div class="discussion-timeline-actions">
+                <div class="signed-out-comment">
+    <a href="https://github.com/join?source=comment-repo" class="btn btn-primary" rel="nofollow">Sign up for free</a>
+    <strong>to join this conversation on GitHub</strong>.
+    Already have an account?
+    <a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Flcxfs1991%2Fblog%2Fissues%2F2" rel="nofollow">Sign in to comment</a>
+</div>
+
+
+          </div>
+      </div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+
+    </div>
+  </div>
+
+    </div>
+
+        <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links float-right">
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2016 <span title="0.30204s from github-fe150-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+
+    <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+      </button>
+      You can't perform that action at this time.
+    </div>
+
+
+      
+      <script crossorigin="anonymous" integrity="sha256-NbnFQdNBMJuTCxx5D6GyejDHxEzhDH+CQokOPYPIrb0=" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/frameworks-35b9c541d341309b930b1c790fa1b27a30c7c44ce10c7f8242890e3d83c8adbd.js"></script>
+      <script async="async" crossorigin="anonymous" integrity="sha256-NjAOUnQ3DcSBV1C8HROMiDYzsEoXXeR3crIdcpaIsIM=" src="./webpack使用优化（基本篇） · Issue #2 · lcxfs1991_blog · GitHub_files/github-36300e5274370dc4815750bc1d138c883633b04a175de47772b21d729688b083.js"></script>
+      
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://github.com/lcxfs1991/blog/issues/2">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://github.com/lcxfs1991/blog/issues/2">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  
+
+
+</body></html>

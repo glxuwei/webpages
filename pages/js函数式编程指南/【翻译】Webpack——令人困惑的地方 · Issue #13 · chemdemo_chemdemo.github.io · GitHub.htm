@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://github.com/chemdemo/chemdemo.github.io/issues/13 -->
+<html lang="en" class=" is-copy-enabled emoji-size-boost is-u2f-enabled"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+
+    <link crossorigin="anonymous" href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/frameworks-119461b8a22c3dc631a815795aa9d7f436fe38386cd99a1ca106fd2798f159aa.css" integrity="sha256-EZRhuKIsPcYxqBV5WqnX9Db+ODhs2ZocoQb9J5jxWao=" media="all" rel="stylesheet">
+    <link crossorigin="anonymous" href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/github-fb3f5ff93b051ac1e6146d6a27dc2f57e11f1b9b36a7f15bbd84aacdb65ec3a8.css" integrity="sha256-+z9f+TsFGsHmFG1qJ9wvV+EfG5s2p/FbvYSqzbZew6g=" media="all" rel="stylesheet">
+    
+    
+    <link crossorigin="anonymous" href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/site-bfc167aa91c105811fa2848e54f5ae70b6c18ac4a42adf45cfacf9fbb078a71f.css" integrity="sha256-v8FnqpHBBYEfooSOVPWucLbBisSkKt9Fz6z5+7B4px8=" media="all" rel="stylesheet">
+    
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width">
+    
+    <title>【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo/chemdemo.github.io · GitHub</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" href="https://github.com/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://github.com/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://github.com/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://github.com/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://github.com/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://github.com/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://github.com/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://github.com/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://github.com/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/apple-touch-icon-180x180.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="https://avatars1.githubusercontent.com/u/1014734?v=3&amp;s=400" name="twitter:image:src"><meta content="@github" name="twitter:site"><meta content="summary" name="twitter:card"><meta content="【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo/chemdemo.github.io" name="twitter:title"><meta content="原文 Webpack—The Confusing Parts
+Webpack是目前基于React和Redux开发的应用的主要打包工具。我想使用Angular 2或其他框架开发的应用也有很多在使用Webpack。
+当我第一次看到Webpack的配置文件时，它看起来非常的陌生，我非常的疑惑。经过一段时间的尝试之后我认为这是因为Webpack只是使用了比较特别的语法和引入了新的原理，因此会让使用者..." name="twitter:description">
+      <meta content="https://avatars1.githubusercontent.com/u/1014734?v=3&amp;s=400" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo/chemdemo.github.io" property="og:title"><meta content="https://github.com/chemdemo/chemdemo.github.io/issues/13" property="og:url"><meta content="原文 Webpack—The Confusing Parts
+Webpack是目前基于React和Redux开发的应用的主要打包工具。我想使用Angular 2或其他框架开发的应用也有很多在使用Webpack。
+当我第一次看到Webpack的配置文件时，它看起来非常的陌生，我非常的疑惑。经过一段时间的尝试之后我认为这是因为Webpack只是使用了比较特别的语法和引入了新的原理，因此会让使用者..." property="og:description">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    
+    <meta name="pjax-timeout" content="1000">
+    
+    <meta name="request-id" content="2D4F5351:08A7:224B0EF:581FFF6A" data-pjax-transient="">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_issues" data-pjax-transient="">
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="github" name="octolytics-app-id"><meta content="2D4F5351:08A7:224B0EF:581FFF6A" name="octolytics-dimension-request_id">
+<meta content="/&lt;user-name&gt;/&lt;repo-name&gt;/issues/show" data-pjax-transient="true" name="analytics-location">
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged Out">
+
+
+
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="">
+
+        <meta name="expected-hostname" content="github.com">
+      <meta name="js-proxy-site-detection-payload" content="YzVmN2QyMzAxMzVkMjUyYTBlMGYyYjk0MTljMjM3NTg1NGFjMGI0ZTc4OTJkNjcwMGYwYzRiOWQzNGIyMmY0OXx7InJlbW90ZV9hZGRyZXNzIjoiNDUuNzkuODMuODEiLCJyZXF1ZXN0X2lkIjoiMkQ0RjUzNTE6MDhBNzoyMjRCMEVGOjU4MUZGRjZBIiwidGltZXN0YW1wIjoxNDc4NDkyMDExLCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta name="html-safe-nonce" content="7267d54d5fd31f6ebb291c42f7e0c925d4237ad1">
+    <meta content="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" name="form-nonce">
+
+    <meta http-equiv="x-pjax-version" content="4274452f598450a3d9b254e0c1032f59">
+    
+
+      
+  <meta name="description" content="chemdemo.github.io - A collection of issues and demos.">
+  <meta name="go-import" content="github.com/chemdemo/chemdemo.github.io git https://github.com/chemdemo/chemdemo.github.io.git">
+
+  <meta content="1014734" name="octolytics-dimension-user_id"><meta content="chemdemo" name="octolytics-dimension-user_login"><meta content="13722707" name="octolytics-dimension-repository_id"><meta content="chemdemo/chemdemo.github.io" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="13722707" name="octolytics-dimension-repository_network_root_id"><meta content="chemdemo/chemdemo.github.io" name="octolytics-dimension-repository_network_root_nwo">
+  <link href="https://github.com/chemdemo/chemdemo.github.io/commits/master.atom" rel="alternate" title="Recent Commits to chemdemo.github.io:master" type="application/atom+xml">
+
+
+  </head>
+
+
+  <body class="logged-out  env-production macintosh vis-public">
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+    <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+          <header class="site-header js-details-container" role="banner">
+  <div class="container-responsive">
+    <a class="header-logo-invertocat" href="https://github.com/" aria-label="Homepage" data-ga-click="(Logged out) Header, go to homepage, icon:logo-wordmark">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+    </a>
+
+    <button class="btn-link float-right site-header-toggle js-details-target" type="button" aria-label="Toggle navigation">
+      <svg aria-hidden="true" class="octicon octicon-three-bars" height="24" version="1.1" viewBox="0 0 12 16" width="18"><path d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
+    </button>
+
+    <div class="site-header-menu">
+      <nav class="site-header-nav site-header-nav-main">
+        <a href="https://github.com/personal" class="js-selected-navigation-item nav-item nav-item-personal" data-ga-click="Header, click, Nav menu - item:personal" data-selected-links="/personal /personal">
+          Personal
+</a>        <a href="https://github.com/open-source" class="js-selected-navigation-item nav-item nav-item-opensource" data-ga-click="Header, click, Nav menu - item:opensource" data-selected-links="/open-source /open-source">
+          Open source
+</a>        <a href="https://github.com/business" class="js-selected-navigation-item nav-item nav-item-business" data-ga-click="Header, click, Nav menu - item:business" data-selected-links="/business /business/partners /business/features /business/customers /business">
+          Business
+</a>        <a href="https://github.com/explore" class="js-selected-navigation-item nav-item nav-item-explore" data-ga-click="Header, click, Nav menu - item:explore" data-selected-links="/explore /trending /trending/developers /integrations /integrations/feature/code /integrations/feature/collaborate /integrations/feature/ship /showcases /explore">
+          Explore
+</a>      </nav>
+
+      <div class="site-header-actions">
+            <a class="btn btn-primary site-header-actions-btn" href="https://github.com/join?source=header-repo" data-ga-click="(Logged out) Header, clicked Sign up, text:sign-up">Sign up</a>
+          <a class="btn site-header-actions-btn mr-1" href="https://github.com/login?return_to=%2Fchemdemo%2Fchemdemo.github.io%2Fissues%2F13" data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">Sign in</a>
+      </div>
+
+        <nav class="site-header-nav site-header-nav-secondary mr-md-3">
+          <a class="nav-item" href="https://github.com/pricing">Pricing</a>
+          <a class="nav-item" href="https://github.com/blog">Blog</a>
+          <a class="nav-item" href="https://help.github.com/">Support</a>
+          <a class="nav-item header-search-link" href="https://github.com/search">Search GitHub</a>
+              <div class="header-search scoped-search site-scoped-search js-site-search" role="search">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/search" class="js-site-search-form" data-scoped-search-url="/chemdemo/chemdemo.github.io/search" data-unscoped-search-url="/search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+    <label class="form-control header-search-wrapper js-chromeless-input-container">
+      <div class="header-search-scope">This repository</div>
+      <input type="text" class="form-control header-search-input js-site-search-focus js-site-search-field is-clearable" data-hotkey="s" name="q" placeholder="Search" aria-label="Search this repository" data-unscoped-placeholder="Search GitHub" data-scoped-placeholder="Search" autocapitalize="off">
+    </label>
+</form></div>
+
+        </nav>
+    </div>
+  </div>
+</header>
+
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+      <div id="js-flash-container">
+</div>
+
+
+    <div role="main">
+        <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+
+    
+
+<ul class="pagehead-actions">
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fchemdemo%2Fchemdemo.github.io" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to watch a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-eye" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>
+    Watch
+  </a>
+  <a class="social-count" href="https://github.com/chemdemo/chemdemo.github.io/watchers" aria-label="159 users are watching this repository">
+    159
+  </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fchemdemo%2Fchemdemo.github.io" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to star a repository" rel="nofollow">
+    <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+    Star
+  </a>
+
+    <a class="social-count js-social-count" href="https://github.com/chemdemo/chemdemo.github.io/stargazers" aria-label="550 users starred this repository">
+      550
+    </a>
+
+  </li>
+
+  <li>
+      <a href="https://github.com/login?return_to=%2Fchemdemo%2Fchemdemo.github.io" class="btn btn-sm btn-with-count tooltipped tooltipped-n" aria-label="You must be signed in to fork a repository" rel="nofollow">
+        <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+        Fork
+      </a>
+
+    <a href="https://github.com/chemdemo/chemdemo.github.io/network" class="social-count" aria-label="81 users are forked this repository">
+      81
+    </a>
+  </li>
+</ul>
+
+    <h1 class="public ">
+  <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+  <span class="author" itemprop="author"><a href="https://github.com/chemdemo" class="url fn" rel="author">chemdemo</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="https://github.com/chemdemo/chemdemo.github.io" data-pjax="#js-repo-pjax-container">chemdemo.github.io</a></strong>
+
+</h1>
+
+  </div>
+  <div class="container">
+    
+<nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/chemdemo/chemdemo.github.io" class="js-selected-navigation-item reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /chemdemo/chemdemo.github.io" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">Code</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+    <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues" aria-selected="true" class="js-selected-navigation-item selected reponav-item" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /chemdemo/chemdemo.github.io/issues" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">Issues</span>
+        <span class="counter">14</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/chemdemo/chemdemo.github.io/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /chemdemo/chemdemo.github.io/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pull requests</span>
+      <span class="counter">0</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+  <a href="https://github.com/chemdemo/chemdemo.github.io/projects" class="js-selected-navigation-item reponav-item" data-selected-links="repo_projects new_repo_project repo_project /chemdemo/chemdemo.github.io/projects">
+    <svg class="octicon" aria-hidden="true" version="1.1" width="15" height="16" viewBox="0 0 15 16">
+      <path d="M1 15h13V1H1v14zM15 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1zm-4.41 11h1.82c.59 0 .59-.41.59-1V3c0-.59 0-1-.59-1h-1.82C10 2 10 2.41 10 3v8c0 .59 0 1 .59 1zm-4-2h1.82C9 10 9 9.59 9 9V3c0-.59 0-1-.59-1H6.59C6 2 6 2.41 6 3v6c0 .59 0 1 .59 1zM2 13V3c0-.59 0-1 .59-1h1.82C5 2 5 2.41 5 3v10c0 .59 0 1-.59 1H2.59C2 14 2 13.59 2 13z"></path>
+    </svg>
+    Projects
+    <span class="counter">0</span>
+</a>
+
+
+  <a href="https://github.com/chemdemo/chemdemo.github.io/pulse" class="js-selected-navigation-item reponav-item" data-selected-links="pulse /chemdemo/chemdemo.github.io/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"></path></svg>
+    Pulse
+</a>
+  <a href="https://github.com/chemdemo/chemdemo.github.io/graphs" class="js-selected-navigation-item reponav-item" data-selected-links="repo_graphs repo_contributors /chemdemo/chemdemo.github.io/graphs">
+    <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+    Graphs
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content">
+
+    
+<style type="text/css" media="screen">
+  span.labelstyle-fc2929, .linked-labelstyle-fc2929 {  background-color: #fc2929 !important;  color: #fff !important;}.labelstyle-fc2929.selected {  background-color: #fc2929 !important;  color: #fff !important;}.label-select-menu .labelstyle-fc2929.selected {  background:rgba(252, 41, 41, 0.12) !important;  color: #991818 !important;}
+
+span.labelstyle-cccccc, .linked-labelstyle-cccccc {  background-color: #cccccc !important;  color: #333333 !important;}.labelstyle-cccccc.selected {  background-color: #cccccc !important;  color: #333333 !important;}.label-select-menu .labelstyle-cccccc.selected {  background:rgba(204, 204, 204, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-84b6eb, .linked-labelstyle-84b6eb {  background-color: #84b6eb !important;  color: #1c2733 !important;}.labelstyle-84b6eb.selected {  background-color: #84b6eb !important;  color: #1c2733 !important;}.label-select-menu .labelstyle-84b6eb.selected {  background:rgba(132, 182, 235, 0.12) !important;  color: #557699 !important;}
+
+span.labelstyle-e6e6e6, .linked-labelstyle-e6e6e6 {  background-color: #e6e6e6 !important;  color: #333333 !important;}.labelstyle-e6e6e6.selected {  background-color: #e6e6e6 !important;  color: #333333 !important;}.label-select-menu .labelstyle-e6e6e6.selected {  background:rgba(230, 230, 230, 0.12) !important;  color: #999999 !important;}
+
+span.labelstyle-cc317c, .linked-labelstyle-cc317c {  background-color: #cc317c !important;  color: #fff !important;}.labelstyle-cc317c.selected {  background-color: #cc317c !important;  color: #fff !important;}.label-select-menu .labelstyle-cc317c.selected {  background:rgba(204, 49, 124, 0.12) !important;  color: #99245c !important;}
+
+span.labelstyle-ffffff, .linked-labelstyle-ffffff {  background-color: #ffffff !important;  color: #333333 !important;}.labelstyle-ffffff.selected {  background-color: #ffffff !important;  color: #333333 !important;}.label-select-menu .labelstyle-ffffff.selected {  background:rgba(255, 255, 255, 0.12) !important;  color: #999999 !important;}
+</style>
+
+<div class="issues-listing" data-pjax="">
+    <div id="show_issue" class="js-issues-results">
+
+    
+  <div id="partial-discussion-header" class="gh-header js-details-container js-socket-channel js-updatable-content issue" data-channel="tenant:1:issue:152920415" data-url="/chemdemo/chemdemo.github.io/issues/13/show_partial?partial=issues%2Ftitle">
+
+  <div class="gh-header-show ">
+      <div class="gh-header-actions">
+          <a href="https://github.com/chemdemo/chemdemo.github.io/issues/new" class="btn btn-sm btn-primary float-right" data-hotkey="c">
+            New issue
+          </a>
+      </div>
+
+    <h1 class="gh-header-title">
+      <span class="js-issue-title">
+        【翻译】Webpack——令人困惑的地方
+      </span>
+      <span class="gh-header-number">#13</span>
+    </h1>
+  </div>
+
+
+  <div class="TableObject gh-header-meta">
+    <div class="TableObject-item">
+        <div class="state state-open">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+          Open
+        </div>
+    </div>
+    <div class="TableObject-item TableObject-item--primary">
+        <a href="https://github.com/chemdemo" class="author">chemdemo</a>  opened this <span class="noun">Issue</span> <relative-time datetime="2016-05-04T03:03:18Z" title="2016年5月4日 GMT+8 上午11:03">on 4 May</relative-time>
+        · 11 comments
+    </div>
+  </div>
+</div>
+
+
+    <div id="discussion_bucket" class="clearfix">
+      <div class="discussion-sidebar is-placeholder" style="visibility: hidden; display: block; height: 370px;"></div><div class="discussion-sidebar js-sticky is-stuck" style="position: fixed; top: 0px; left: 1233.5px; width: 200px; margin-top: 0px;">
+        <div id="partial-discussion-sidebar" class="js-socket-channel js-updatable-content" data-channel="tenant:1:issue:152920415" data-url="/chemdemo/chemdemo.github.io/issues/13/show_partial?partial=issues%2Fsidebar">
+
+  <div class="discussion-sidebar-item js-discussion-sidebar-item">
+  
+  <h3 class="discussion-sidebar-heading">
+    Projects
+  </h3>
+
+
+  <span class="css-truncate">
+    None yet
+</span>
+
+</div>
+
+  <div class="discussion-sidebar-item sidebar-labels js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/issues/13?partial=issues%2Fsidebar%2Fshow%2Flabels" class="js-issue-sidebar-form" data-form-nonce="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="Mt8Gmh7+XV/ebNkcxx8dWv0u6aL7bd/f/7Toaciuy4kaMdW6QhqgIJLoNltB+yyOSpdwbW88rc7vmGs0+jVoyg=="></div>
+      
+  <h3 class="discussion-sidebar-heading">
+    Labels
+  </h3>
+
+
+    <div class="labels css-truncate">
+    None yet
+</div>
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-milestone js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/issues/13/set_milestone?partial=issues%2Fsidebar%2Fshow%2Fmilestone" class="js-issue-sidebar-form" data-form-nonce="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="zJA3Z/l18waV7SxRZ1e9fbULhT5UmYixKZ+6wvmpMn+uTn2BacR7c1M1XVB9wUjEi8Bwm2XvvyjwGKMp4LT9gA=="></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Milestone
+  </h3>
+
+
+      No milestone
+
+</form></div>
+
+  <div class="discussion-sidebar-item sidebar-assignee js-discussion-sidebar-item">
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/issues/13?partial=issues%2Fsidebar%2Fshow%2Fassignees" class="js-issue-sidebar-form" data-form-nonce="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="CpSmbcu4es6AQuvRAn5bodmTh/ReOjVYDH2JwVDcuvlKb9PEhRr6PnwVYoZcWbJ5hL76SLRdxEaSl94VKSMEng=="></div>
+    
+  <h3 class="discussion-sidebar-heading">
+    Assignees
+  </h3>
+
+
+    <span class="css-truncate">
+    No one assigned
+</span>
+
+</form></div>
+
+  <div id="partial-users-participants" class="discussion-sidebar-item">
+  <div class="participation">
+
+    <h3 class="discussion-sidebar-heading">
+      7 participants
+    </h3>
+    <div class="participation-avatars">
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="chemdemo" href="https://github.com/chemdemo"><img alt="@chemdemo" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/1014734" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="luqin" href="https://github.com/luqin"><img alt="@luqin" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/2267688" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="yalishizhude" href="https://github.com/yalishizhude"><img alt="@yalishizhude" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/3870098" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="qbaty" href="https://github.com/qbaty"><img alt="@qbaty" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/190570" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="loopArray" href="https://github.com/loopArray"><img alt="@loopArray" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7822744" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="docikaci" href="https://github.com/docikaci"><img alt="@docikaci" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7788102" width="26"> </a>
+        <a class="participant-avatar tooltipped tooltipped-n" aria-label="dearYan" href="https://github.com/dearYan"><img alt="@dearYan" class="avatar" height="26" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/16253971" width="26"> </a>
+    </div>
+  </div>
+</div>
+
+
+  
+  
+
+</div>
+
+      </div>
+
+      <div class="discussion-timeline js-quote-selection-container ">
+
+        <div class="js-discussion js-socket-channel" data-channel="tenant:1:marked-as-read:issue:152920415">
+          
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/chemdemo"><img alt="@chemdemo" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/1014734(1)" width="44"></a>
+    
+
+<div id="issue-152920415" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="190ba5cd7d190f27dc950bc7d66b8e42">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the chemdemo.github.io repository.
+      ">
+      chemdemo.github.io owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/chemdemo" class="author">chemdemo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issue-152920415" class="timestamp">
+        <relative-time datetime="2016-05-04T03:03:18Z" title="2016年5月4日 GMT+8 上午11:03">on 4 May</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>原文 <a href="https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9#.jaqo97f72">Webpack—The Confusing Parts</a></p>
+<p>Webpack是目前基于React和Redux开发的应用的主要打包工具。我想使用Angular 2或其他框架开发的应用也有很多在使用Webpack。</p>
+<p>当我第一次看到Webpack的配置文件时，它看起来非常的陌生，我非常的疑惑。经过一段时间的尝试之后我认为这是因为Webpack只是使用了比较特别的语法和引入了新的原理，因此会让使用者感到疑惑。这些也是导致Webpack不被人熟悉的原因。</p>
+<p>因为刚开始使用Webpack很让人疑惑，我觉得有必要写几篇介绍Webpack的功能和特性的文章以帮助初学者快速理解。此文是最开始的一篇。</p>
+<h2>Webpack的核心原理</h2>
+<p>Webpack的两个最核心的原理分别是：</p>
+<ol>
+<li>一切皆模块<br>
+正如js文件可以是一个“模块（module）”一样，其他的（如css、image或html）文件也可视作模 块。因此，你可以<code>require('myJSfile.js')</code>亦可以<code>require('myCSSfile.css')</code>。这意味着我们可以将事物（业务）分割成更小的易于管理的片段，从而达到重复利用等的目的。</li>
+<li>按需加载<br>
+传统的模块打包工具（module bundlers）最终将所有的模块编译生成一个庞大的<code>bundle.js</code>文件。但是在真实的app里边，“bundle.js”文件可能有10M到15M之大可能会导致应用一直处于加载中状态。因此Webpack使用许多特性来分割代码然后生成多个“bundle”文件，而且异步加载部分代码以实现按需加载。</li>
+</ol>
+<p>好了，下面来看看那些令人困惑的部分吧。</p>
+<h2>1. 开发模式和生产模式</h2>
+<p>首先要知道的是Webpack有许许多多的特性，一些是”开发模式“下才有的，一些是”生产模式“下才有的，还有一些是两种模式下都有的。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a574341644d69303449464557646e674b38626b4663772e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a574341644d69303449464557646e674b38626b4663772e706e67" alt="A sample dev v/s prod Webpack files" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*WCAdMi04IFEWdngK8bkFcw.png" style="max-width:100%;"></a></p>
+<blockquote>
+<p>通常使用到Webpack如此多特性的项目都会有两个比较大的Webpack配置文件</p>
+</blockquote>
+<p>为了生成bundles文件你可能在<code>package.json</code>文件加入如下的scripts项：</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-s"><span class="pl-pds">"</span>scripts<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+  <span class="pl-c">// 运行npm run build 来编译生成生产模式下的bundles</span>
+  <span class="pl-s"><span class="pl-pds">"</span>build<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>webpack --config webpack.config.prod.js<span class="pl-pds">"</span></span>,
+  <span class="pl-c">// 运行npm run dev来生成开发模式下的bundles以及启动本地server</span>
+  <span class="pl-s"><span class="pl-pds">"</span>dev<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>webpack-dev-server<span class="pl-pds">"</span></span>
+ }</pre></div>
+<h2>2. webpack CLI 和webpack-dev-server</h2>
+<p>值得注意的是，Webpack作为模块打包工具，提供两种用户交互接口：</p>
+<ol>
+<li>Webpack CLI tool：默认的交互方式（已随Webpack本身安装到本地）</li>
+<li>webpack-dev-server：一个Node.js服务器（需要开发者从npm自行安装）</li>
+</ol>
+<h3>Webpack CLI（有利于生产模式下打包）</h3>
+<p>这种方式可以从命令行获取参数也可以从配置文件（默认叫webpack.config.js）获取，将获取到的参数传入Webpack来打包。</p>
+<blockquote>
+<p>当然你也可以从命令行（CLI）开始学习Webpack，以后你可能主要在生产模式下使用到它。</p>
+</blockquote>
+<p>用法：</p>
+<div class="highlight highlight-source-js"><pre>方式<span class="pl-c1">1</span><span class="pl-k">:</span> 
+<span class="pl-c">// 全局模式安装webpack</span>
+npm install webpack <span class="pl-k">--</span>g
+<span class="pl-c">// 在终端输入</span>
+$ webpack <span class="pl-c">// &lt;--使用webpack.config.js生成bundle</span>
+
+方式 <span class="pl-c1">2</span> <span class="pl-k">:</span>
+<span class="pl-c">// 费全局模式安装webpack然后添加到package.json依赖里边</span>
+npm install webpack <span class="pl-k">--</span>save
+<span class="pl-c">// 添加build命令到package.json的scripts配置项</span>
+<span class="pl-s"><span class="pl-pds">"</span>scripts<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+ <span class="pl-s"><span class="pl-pds">"</span>build<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>webpack --config webpack.config.prod.js -p<span class="pl-pds">"</span></span>,
+ <span class="pl-k">...</span>
+ }
+<span class="pl-c">// 用法：</span>
+<span class="pl-s"><span class="pl-pds">"</span>npm run build<span class="pl-pds">"</span></span></pre></div>
+<h3>webpack-dev-server（有利于在开发模式下编译）</h3>
+<p>这是一个基于Express.js框架开发的web server，默认监听8080端口。server内部调用Webpack，这样做的好处是提供了额外的功能如热更新“Live Reload”以及热替换“Hot Module Replacement”（即HMR）。</p>
+<p>用法：</p>
+<div class="highlight highlight-source-js"><pre>方式 <span class="pl-c1">1</span><span class="pl-k">:</span>
+<span class="pl-c">// 全局安装</span>
+npm install webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server <span class="pl-k">--</span>save
+<span class="pl-c">// 终端输入</span>
+$ webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server <span class="pl-k">--</span>inline <span class="pl-k">--</span>hot
+
+用法 <span class="pl-c1">2</span><span class="pl-k">:</span>
+<span class="pl-c">// 添加到package.json scripts</span>
+<span class="pl-s"><span class="pl-pds">"</span>scripts<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+ <span class="pl-s"><span class="pl-pds">"</span>start<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>webpack-dev-server --inline --hot<span class="pl-pds">"</span></span>,
+ <span class="pl-k">...</span>
+ }
+<span class="pl-c">// 运行： </span>
+$ npm start
+
+<span class="pl-c">// 浏览器预览：</span>
+http<span class="pl-k">:</span><span class="pl-c">//localhost:8080</span></pre></div>
+<h3>Webpack VS Webpack-dev-server选项</h3>
+<p>注意像<code>inline</code>和<code>hot</code>这些选项是Webpack-dev-server特有的，而另外的如<code>hide-modules</code>则是CLI模式特有的选项。</p>
+<h3>webpack-dev-server CLI选项和配置项</h3>
+<p>另外值得注意的是你可以通过以下两种方式向webpack-dev-server传入参数：</p>
+<ol>
+<li>通过webpack.config.js文件的"devServer"对象</li>
+<li>通过CLI选项</li>
+</ol>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// 通过CLI传参</span>
+webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server <span class="pl-k">--</span>hot <span class="pl-k">--</span>inline
+<span class="pl-c">// 通过webpack.config.js传参</span>
+devServer<span class="pl-k">:</span> {
+  inline<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  hot<span class="pl-k">:</span><span class="pl-c1">true</span>
+}</pre></div>
+<blockquote>
+<p>我发现有时devServer配置项（hot: true 和inline: true）不生效，我更偏向使用如下的方式向CLI传递参数：</p>
+</blockquote>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// package.json</span>
+{
+    <span class="pl-s"><span class="pl-pds">"</span>scripts<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>webpack-dev-server --hot --inline<span class="pl-pds">"</span></span>
+}</pre></div>
+<blockquote>
+<p>注意：确定你没有同时传入<code>hot:true</code>和<code>-hot</code></p>
+</blockquote>
+<h3>webpack-dev-server的“hot” 和 “inline”选项</h3>
+<p>“inline”选项会为入口页面添加“热加载”功能，“hot”选项则开启“热替换（Hot Module Reloading）”，即尝试重新加载组件改变的部分（而不是重新加载整个页面）。如果两个参数都传入，当资源改变时，webpack-dev-server将会先尝试HRM（即热替换），如果失败则重新加载整个入口页面。</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// 当资源发生改变，以下三种方式都会生成新的bundle，但是又有区别：</span>
+
+<span class="pl-c">// 1. 不会刷新浏览器</span>
+$ webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server
+<span class="pl-c">//2. 刷新浏览器</span>
+$ webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server <span class="pl-k">--</span>inline
+<span class="pl-c">//3. 重新加载改变的部分，HRM失败则刷新页面</span>
+$ webpack<span class="pl-k">-</span>dev<span class="pl-k">-</span>server  <span class="pl-k">--</span>inline <span class="pl-k">--</span>hot</pre></div>
+<h2>3. “entry”：值分别是字符串、数组和对象的情况</h2>
+<p>Enter配置项告诉Webpack应用的根模块或起始点在哪里，它的值可以是字符串、数组或对象。这看起来可能令人困惑，因为不同类型的值有着不同的目的。</p>
+<p>像绝大多数app一样，倘若你的应用只有一个单一的入口，enter项的值你可以使用任意类型，最终输出的结果都是一样的。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a4f6e58706676347a6a4c2d357a4f324861366d5844772e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a4f6e58706676347a6a4c2d357a4f324861366d5844772e706e67" alt="Different entry types but same output" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*OnXpfv4zjL-5zO2Ha6mXDw.png" style="max-width:100%;"></a></p>
+<h3>enter：数组类型</h3>
+<p>但是，如果你想添加多个彼此不互相依赖的文件，你可以使用数组格式的值。</p>
+<p>例如，你可能在html文件里引用了“googleAnalytics.js”文件，可以告诉Webpack将其加到bundle.js的最后。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a794c566453336f4e34586f384b496e6f5449666930412e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a794c566453336f4e34586f384b496e6f5449666930412e706e67" alt="enter array" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*yLVdS3oN4Xo8KInoTIfi0A.png" style="max-width:100%;"></a></p>
+<h3>enter：对象</h3>
+<p>现在，假设你的应用是多页面的（multi-page application）而不是SPA，有多个html文件（index.html和profile.html）。然后你通过一个对象告诉Webpack为每一个html生成一个bundle文件。</p>
+<p>以下的配置将会生成两个js文件：indexEntry.js和profileEntry.js分别会在index.html和profile.html中被引用。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a7842353152524334696b36424250326c4a39304975772e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a7842353152524334696b36424250326c4a39304975772e706e67" alt="entry object" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*xB51RRC4ik6BBP2lJ90Iuw.png" style="max-width:100%;"></a></p>
+<p>用法：</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">//profile.html</span>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span>”dist<span class="pl-k">/</span><span class="pl-smi">profileEntry</span>.<span class="pl-smi">js</span>”<span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-c">//index.html</span>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span>”dist<span class="pl-k">/</span><span class="pl-smi">indexEntry</span>.<span class="pl-smi">js</span>”<span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre></div>
+<p>注意：文件名取自“entry”对象的键名。</p>
+<h3>enter：混合类型</h3>
+<p>你也可以在enter对象里使用数组类型，例如下面的配置将会生成3个文件：vender.js（包含三个文件），index.js和profile.js文件。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a797a373651593166567a42474b4a2d365836456c65672e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a797a373651593166567a42474b4a2d365836456c65672e706e67" alt="enter combination" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*yz76QY1fVzBGKJ-6X6Eleg.png" style="max-width:100%;"></a></p>
+<h2>4. output：“path”项和“publicPath”项</h2>
+<p>output项告诉webpack怎样存储输出结果以及存储到哪里。output的两个配置项“path”和“publicPath”可能会造成困惑。</p>
+<p>“path”仅仅告诉Webpack结果存储在哪里，然而“publicPath”项则被许多Webpack的插件用于在生产模式下更新内嵌到css、html文件里的url值。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a36335a7461346d62435f336f343451647963724437512e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a36335a7461346d62435f336f343451647963724437512e706e67" alt="publicPath in Development vs Production" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*63Zta4mbC_3o44QdycrD7Q.png" style="max-width:100%;"></a></p>
+<p>例如，在localhost（译者注：即本地开发模式）里的css文件中边你可能用“./test.png”这样的url来加载图片，但是在生产模式下“test.png”文件可能会定位到CDN上并且你的Node.js服务器可能是运行在HeroKu上边的。这就意味着在生产环境你必须手动更新所有文件里的url为CDN的路径。</p>
+<p>然而你也可以使用Webpack的“publicPath”选项和一些插件来在生产模式下编译输出文件时自动更新这些url。</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a614f4d355a4638616c574c723442433043665a6530772e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a614f4d355a4638616c574c723442433043665a6530772e706e67" alt="publicPath Production example" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*aOM5ZF8alWLr4BC0CfZe0w.png" style="max-width:100%;"></a></p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// 开发环境：Server和图片都是在localhost（域名）下</span>
+.<span class="pl-smi">image</span> { 
+  background<span class="pl-k">-</span>image<span class="pl-k">:</span> <span class="pl-en">url</span>(<span class="pl-s"><span class="pl-pds">'</span>./test.png<span class="pl-pds">'</span></span>);
+ }
+<span class="pl-c">// 生产环境：Server部署下HeroKu但是图片在CDN上</span>
+.<span class="pl-smi">image</span> { 
+  background<span class="pl-k">-</span>image<span class="pl-k">:</span> <span class="pl-en">url</span>(<span class="pl-s"><span class="pl-pds">'</span>https://someCDN/test.png<span class="pl-pds">'</span></span>);
+ }</pre></div>
+<h2>5. 模块加载和链式模块加载</h2>
+<p>模块加载器是可自由添加的Node模块，用于将不同类型的文件“load”或“import”并转换成浏览器可以识别的类型，如js、Stylesheet等。更高级的模块加载器甚至可以支持使用ES6里边的“require”或“import”引入模块。</p>
+<p>例如，你可以使用<code>babel-loader</code>来将使用ES6语法写成的文件转换成ES5：</p>
+<div class="highlight highlight-source-js"><pre>module<span class="pl-k">:</span> {
+ loaders<span class="pl-k">:</span> [{
+  test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>js<span class="pl-k">$</span><span class="pl-pds">/</span></span>, <span class="pl-c">// 匹配.js文件，如果通过则使用下面的loader</span>
+  exclude<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span>node_modules<span class="pl-pds">/</span></span>, <span class="pl-c">// 排除node_modules文件夹</span>
+  loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>babel<span class="pl-pds">'</span></span> <span class="pl-c">// 使用babel（babel-loader的简写）作为loader</span>
+ }]</pre></div>
+<h3>链式（管道式）的加载器（从右往左执行）</h3>
+<p>多个loader可以用在同一个文件上并且被链式调用。链式调用时从右到左执行且loader之间用“!”来分割。</p>
+<p>例如，假设我们有一个名为“myCssFile.css”的css文件，然后我们想将它的内容使用style标签内联到最终输出的html里边。我们可以使用css-loader和style-loader两个loader来达到目的。</p>
+<div class="highlight highlight-source-js"><pre>module<span class="pl-k">:</span> {
+ loaders<span class="pl-k">:</span> [{
+  test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>css<span class="pl-k">$</span><span class="pl-pds">/</span></span>,
+  loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>style!css<span class="pl-pds">'</span></span> <span class="pl-c">//(short for style-loader!css-loader)</span>
+ }]</pre></div>
+<p>这里展示它是如何工作的：</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a6e657339694c6d736b6d734438467034456b33752d412e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a6e657339694c6d736b6d734438467034456b33752d412e706e67" alt="chaining loaders" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*nes9iLmskmsD8Fp4Ek3u-A.png" style="max-width:100%;"></a></p>
+<ol>
+<li>Webpack在模块颞部搜索在css的依赖项，即Webpack检查js文件是否有“require('myCssFile.css')”的引用，如果它发现有css的依赖，Webpack将css文件交给“css-loader”去处理</li>
+<li>css-loader加载所有的css文件以及css自身的依赖（如，<a href="https://github.com/import" class="user-mention">@import</a> 其他css）到JSON对象里，Webpack然后将处理结果传给“style-loader”</li>
+<li>style-loader接受JSON值然后添加一个style标签并将其内嵌到html文件里</li>
+</ol>
+<h2>6. loader自身可以配置</h2>
+<p>模块加载器（loader）自身可以根据传入不同的参数进行配置。</p>
+<p>在下面的例子中，我们可以配置url-loader来将小于1024字节的图片使用DataUrl替换而大于1024字节的图片使用url，我们可以用如下两种方式通过传入“limit“参数来实现这一目的：</p>
+<p><a href="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a2d71566463413345384a536474737a784871664964412e706e67" target="_blank"><img src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f3830302f312a2d71566463413345384a536474737a784871664964412e706e67" alt="configure loaders" data-canonical-src="https://cdn-images-1.medium.com/max/800/1*-qVdcA3E8JSdtszxHqfIdA.png" style="max-width:100%;"></a></p>
+<h2>7. .babelrc 文件</h2>
+<p>babal-loader使用”presets“配置项来标识如何将ES6语法转成ES5以及如何转换React的JSX成js文件。我们可以用如下的方式使用”query“参数传入配置：</p>
+<div class="highlight highlight-source-js"><pre>module<span class="pl-k">:</span> {
+  loaders<span class="pl-k">:</span> [
+    {
+      test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>jsx<span class="pl-k">?</span><span class="pl-k">$</span><span class="pl-pds">/</span></span>,
+      exclude<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span>(node_modules<span class="pl-k">|</span>bower_components)<span class="pl-pds">/</span></span>,
+      loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>babel<span class="pl-pds">'</span></span>,
+      query<span class="pl-k">:</span> {
+        presets<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>es2015<span class="pl-pds">'</span></span>]
+      }
+    }
+  ]
+}</pre></div>
+<p>然而在很多项目里babel的配置可能比较大，因此你可以把babel-loader的配置项单独保存在一个名为”.babelrc“的文件中，在执行时babel-loader将会自动加载.babelrc文件。</p>
+<p>所以在很多例子里，你可能会看到：</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">//webpack.config.js </span>
+module<span class="pl-k">:</span> {
+  loaders<span class="pl-k">:</span> [
+    {
+      test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>jsx<span class="pl-k">?</span><span class="pl-k">$</span><span class="pl-pds">/</span></span>,
+      exclude<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span>(node_modules<span class="pl-k">|</span>bower_components)<span class="pl-pds">/</span></span>,
+      loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>babel<span class="pl-pds">'</span></span>
+    }
+  ]
+}
+
+<span class="pl-c">//.bablerc</span>
+{
+ presets<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>es2015<span class="pl-pds">'</span></span>]
+}</pre></div>
+<h2>8. 插件</h2>
+<p>插件一般都是用于输出bundle的node模块。</p>
+<p>例如，<a href="https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin">uglifyJSPlugin</a>获取bundle.js然后压缩和混淆内容以减小文件体积。</p>
+<p>类似的<a href="https://github.com/webpack/extract-text-webpack-plugin">extract-text-webpack-plugin</a>内部使用css-loader和style-loader来收集所有的css到一个地方最终将结果提取结果到一个独立的”styles.css“文件，并且在html里边引用style.css文件。</p>
+<div class="highlight highlight-source-js"><pre><span class="pl-c">//webpack.config.js</span>
+<span class="pl-c">// 获取所有的.css文件，合并它们的内容然后提取css内容到一个独立的”styles.css“里</span>
+<span class="pl-k">var</span> <span class="pl-c1">ETP</span> <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">"</span>extract-text-webpack-plugin<span class="pl-pds">"</span></span>);
+
+module<span class="pl-k">:</span> {
+ loaders<span class="pl-k">:</span> [
+  {test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>css<span class="pl-k">$</span><span class="pl-pds">/</span></span>, loader<span class="pl-k">:</span><span class="pl-c1">ETP</span>.<span class="pl-en">extract</span>(<span class="pl-s"><span class="pl-pds">"</span>style-loader<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>css-loader<span class="pl-pds">"</span></span>) }
+  ]
+},
+plugins<span class="pl-k">:</span> [
+    <span class="pl-k">new</span> <span class="pl-en">ExtractTextPlugin</span>(<span class="pl-s"><span class="pl-pds">"</span>styles.css<span class="pl-pds">"</span></span>) <span class="pl-c">//Extract to styles.css file</span>
+  ]
+}</pre></div>
+<p>注意：如果你只是想把css使用style标签内联到html里，你不必使用extract-text-webpack-plugin，仅仅使用css loader和style loader即可：</p>
+<div class="highlight highlight-source-js"><pre>module<span class="pl-k">:</span> {
+ loaders<span class="pl-k">:</span> [{
+  test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span><span class="pl-cce">\.</span>css<span class="pl-k">$</span><span class="pl-pds">/</span></span>,
+  loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>style!css<span class="pl-pds">'</span></span> <span class="pl-c">// (short for style-loader!css-loader)</span>
+ }]</pre></div>
+<h2>9. 加载器（loader）和插件</h2>
+<p>你可能已经意识到了，Loader处理单独的文件级别并且通常作用于包生成之前或生成的过程中。</p>
+<p>而插件则是处理包（bundle）或者chunk级别，且通常是bundle生成的最后阶段。一些插件如<a href="https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin">commonschunkplugin</a>甚至更直接修改bundle的生成方式。</p>
+<h2>10. 处理文件的扩展名</h2>
+<p>很多Webpack的配置文件都有一个<code>resolve</code>属性，然后就像下面代码所示有一个空字符串的值。空字符串在此是为了resolve一些在import文件时不带文件扩展名的表达式，如<code>require('./myJSFile')</code>或者<code>import myJSFile from './myJSFile'</code>（译者注：实际就是自动添加后缀，默认是当成js文件来查找路径）</p>
+<div class="highlight highlight-source-js"><pre>{
+ resolve<span class="pl-k">:</span> {
+   extensions<span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.js<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.jsx<span class="pl-pds">'</span></span>]
+ }
+}</pre></div>
+<p>就这么多。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions has-reactions js-reactions-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/reactions/update" class="js-pick-reaction" data-form-nonce="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="cBXUxr0FJ3TTpN3qa+d4dM0SQR7FnE/r38HaqJo8mbrz4PaOGn8H1ctWiowPKwM1O7D3c+fDlAOcd1sQgbO/cA=="></div>
+      <input type="hidden" name="reaction[subject_id]" value="152920415">
+      <input type="hidden" name="reaction[subject_type]" value="Issue">
+      <div class="comment-reactions-options">
+          <button disabled="" class="btn-link reaction-summary-item tooltipped tooltipped-se tooltipped-multiline " name="reaction[content]" type="submit" value="+1 react" aria-label="eilvein and mrdream24 reacted with thumbs up emoji">
+            <g-emoji alias="+1" class="emoji mr-1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">👍</g-emoji>
+            2
+          </button>
+      </div>
+</form></div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/luqin"><img alt="@luqin" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/2267688(1)" width="44"></a>
+    
+
+<div id="issuecomment-216767693" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="d82e331ddea55a7668013226a1e98dc4">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/luqin" class="author">luqin</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-216767693" class="timestamp">
+        <relative-time datetime="2016-05-04T07:39:54Z" title="2016年5月4日 GMT+8 下午3:39">on 4 May</relative-time>
+      </a>
+
+      •
+      <span class="timestamp timestamp-edited tooltipped tooltipped-n" aria-label="luqin edited this comment 6 months ago">
+        edited
+      </span>
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>entry 也支持带目录结构的输出：</p>
+
+<div class="highlight highlight-source-js"><pre>entry {
+   <span class="pl-s"><span class="pl-pds">'</span>a/b/c<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>c<span class="pl-pds">'</span></span>
+}</pre></div>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/chemdemo"><img alt="@chemdemo" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/1014734(1)" width="44"></a>
+    
+
+<div id="issuecomment-217056667" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="1fa645eb06c592a8c08b53da0f8281ed">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the chemdemo.github.io repository.
+      ">
+      chemdemo.github.io owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/chemdemo" class="author">chemdemo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-217056667" class="timestamp">
+        <relative-time datetime="2016-05-05T01:50:55Z" title="2016年5月5日 GMT+8 上午9:50">on 5 May</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>对的 支持 但整体来看它还是个map</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/yalishizhude"><img alt="@yalishizhude" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/3870098(1)" width="44"></a>
+    
+
+<div id="issuecomment-217065881" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="cabdaff6bf98a5c221d63a0146145af0">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/yalishizhude" class="author">yalishizhude</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-217065881" class="timestamp">
+        <relative-time datetime="2016-05-05T03:06:51Z" title="2016年5月5日 GMT+8 上午11:06">on 5 May</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>webpack感觉就是个复杂的半成品，第三方依赖没有很好的处理方式~</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/qbaty"><img alt="@qbaty" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/190570(1)" width="44"></a>
+    
+
+<div id="issuecomment-230240651" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="06fc691563403d9222071ba906944998">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/qbaty" class="author">qbaty</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230240651" class="timestamp">
+        <relative-time datetime="2016-07-04T08:58:40Z" title="2016年7月4日 GMT+8 下午4:58">on 4 Jul</relative-time>
+      </a>
+
+      •
+      <span class="timestamp timestamp-edited tooltipped tooltipped-n" aria-label="qbaty edited this comment 4 months ago">
+        edited
+      </span>
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>很多我啃了很久才理解的东西，这里说清楚了，老外这文章很及时</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/loopArray"><img alt="@loopArray" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7822744(1)" width="44"></a>
+    
+
+<div id="issuecomment-230399310" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="ee5b537534c67a0e3e6d516941b959ba">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/loopArray" class="author">loopArray</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230399310" class="timestamp">
+        <relative-time datetime="2016-07-05T06:46:12Z" title="2016年7月5日 GMT+8 下午2:46">on 5 Jul</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>我在配置webpack的时候碰到一些module用babel6转换的情况，但是用require的时候必须要加default。用了add-module-exports这个babel插件但是不会处理node_module里的情况。所以把exclude:/node_module/给去掉了，但是这样导致处理所有的module，速度很慢，又加了include指定node_module下的目录但是不起作用。是不是这两个配置会冲突，exclude里的存在的，include的就不起作用。<br>
+后来的解决办法是配置preLoaders</p>
+
+<div class="highlight highlight-source-js"><pre>preLoaders <span class="pl-k">=</span> [
+    {
+      test<span class="pl-k">:</span><span class="pl-sr"> <span class="pl-pds">/</span>redux-thunk<span class="pl-pds">/</span></span>,
+      loader<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>babel<span class="pl-pds">'</span></span>,
+      query<span class="pl-k">:</span> <span class="pl-smi">webpackConfig</span>.<span class="pl-smi">babel</span>
+    }
+  ]</pre></div>
+
+<p>对于请求路径包含自己想要的模块就先处理一下。这样可以解决自己的需求了，但是不知道是不是很笨，发个issue求正解。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/chemdemo"><img alt="@chemdemo" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/1014734(1)" width="44"></a>
+    
+
+<div id="issuecomment-230425683" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="619e2dc00f13f6ee15bd7eca65205476">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the chemdemo.github.io repository.
+      ">
+      chemdemo.github.io owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/chemdemo" class="author">chemdemo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230425683" class="timestamp">
+        <relative-time datetime="2016-07-05T09:07:20Z" title="2016年7月5日 GMT+8 下午5:07">on 5 Jul</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p><a href="https://github.com/iwx" class="user-mention">@iwx</a> 其实不是很懂你的问题哎<br>
+“用require的时候必须要加default” 是啥意思</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/loopArray"><img alt="@loopArray" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7822744(1)" width="44"></a>
+    
+
+<div id="issuecomment-230441669" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="0471528ab63629773ccbcf175c13289d">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/loopArray" class="author">loopArray</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230441669" class="timestamp">
+        <relative-time datetime="2016-07-05T10:21:25Z" title="2016年7月5日 GMT+8 下午6:21">on 5 Jul</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p><a href="https://github.com/chemdemo" class="user-mention">@chemdemo</a> <br>
+其实就是这个问题描述的情况，我没讲清楚这点，只想着怎么用webpack去解决了<br>
+<a href="http://stackoverflow.com/questions/33505992/babel-6-changes-how-it-exports-default">Babel 6 changes how it exports default</a></p>
+
+<p><a href="https://www.npmjs.com/package/babel-plugin-add-module-exports">https://www.npmjs.com/package/babel-plugin-add-module-exports</a></p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/chemdemo"><img alt="@chemdemo" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/1014734(1)" width="44"></a>
+    
+
+<div id="issuecomment-230661880" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    owner-comment  " data-body-version="2c74bad2c73c21533f1353e95621c79e">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+    <span class="timeline-comment-label owner-comment
+        tooltipped tooltipped-multiline tooltipped-s" aria-label="This user is the owner of the chemdemo.github.io repository.
+      ">
+      chemdemo.github.io owner
+    </span>
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/chemdemo" class="author">chemdemo</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230661880" class="timestamp">
+        <relative-time datetime="2016-07-06T03:21:45Z" title="2016年7月6日 GMT+8 上午11:21">on 6 Jul</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>这是babel转换es6的问题吧，跟webpack没啥关系。</p>
+
+<p>不想加default的话可以用花括号：</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// foo.js</span>
+<span class="pl-k">export</span> <span class="pl-v">default</span> <span class="pl-smi">foo</span></pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> { <span class="pl-smi">foo</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span></pre></div>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/loopArray"><img alt="@loopArray" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7822744(1)" width="44"></a>
+    
+
+<div id="issuecomment-230697141" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="499c5d43155114fe38a0ec987a63b792">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/loopArray" class="author">loopArray</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-230697141" class="timestamp">
+        <relative-time datetime="2016-07-06T07:20:19Z" title="2016年7月6日 GMT+8 下午3:20">on 6 Jul</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>我引用了第三方module，module是已经编译好的了，总不能去npm install后修改module吧。<br>
+webpack的babel loader提供了这样的转换，只是还没找到更好的配置方法。</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+      <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header" id="ref-issue-165132290">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+
+      <img alt="@chenbin92" class="avatar" height="16" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/3995814" width="16">
+      <a href="https://github.com/chenbin92" class="author" truncate="true">chenbin92</a>
+      
+
+      referenced
+      this issue
+        in <strong>chenbin92/react-redux-webpack-starter</strong>
+      <a class="timestamp" href="https://github.com/chemdemo/chemdemo.github.io/issues/13#ref-issue-165132290">
+        <relative-time datetime="2016-07-12T17:18:30Z" title="2016年7月13日 GMT+8 上午1:18">on 13 Jul</relative-time>
+      </a>
+    </div>
+
+      <span class="state state-open float-right">
+          <svg aria-hidden="true" class="octicon octicon-issue-opened" height="14" version="1.1" viewBox="0 0 14 16" width="12"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        Open
+      </span>
+
+
+
+    <h4 class="discussion-item-ref-title">
+      <a href="https://github.com/chenbin92/react-redux-webpack-starter/issues/1" class="title-link">
+        [React项目总结] 基于 webpack 搭建前端工程基础篇
+        <span class="issue-num">#1</span>
+</a>    </h4>
+    
+  </div>
+
+
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/docikaci"><img alt="@docikaci" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/7788102(1)" width="44"></a>
+    
+
+<div id="issuecomment-245808834" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="76b30f7c82da7ed79c9458f7f7f1bee3">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/docikaci" class="author">docikaci</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-245808834" class="timestamp">
+        <relative-time datetime="2016-09-09T03:24:53Z" title="2016年9月9日 GMT+8 上午11:24">on 9 Sep</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>mark 顶你</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  <div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://github.com/dearYan"><img alt="@dearYan" class="timeline-comment-avatar" height="44" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/16253971(1)" width="44"></a>
+    
+
+<div id="issuecomment-246969413" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                      " data-body-version="658123f31145ba3f3af26139e87df3a3">
+
+  
+<div class="timeline-comment-header ">
+
+    <div class="timeline-comment-actions">
+
+
+    </div>
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://github.com/dearYan" class="author">dearYan</a> 
+    </strong>
+
+    commented
+
+      <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13#issuecomment-246969413" class="timestamp">
+        <relative-time datetime="2016-09-14T10:22:43Z" title="2016年9月14日 GMT+8 下午6:22">on 14 Sep</relative-time>
+      </a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+    <div class="comment-body markdown-body markdown-format js-comment-body">
+        <p>疑惑好像慢慢解开了 ，好棒！</p>
+    </div>
+  </div>
+
+
+    
+
+<div class="comment-reactions  js-reactions-container ">
+</div>
+
+</div>
+
+  </div>
+  
+  <div class="discussion-item discussion-item-ref">
+    <div class="discussion-item-header">
+      <span class="discussion-item-icon">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </span>
+      This was referenced <relative-time datetime="2016-09-18T12:57:33Z" title="2016年9月18日 GMT+8 下午8:57">on 18 Sep</relative-time>
+    </div>
+
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-open float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+            Open
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-177650335">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/zhongxia245/blog/issues/17" class="title-link">
+              【20160918】webpack 教程资源收集
+
+              <span class="issue-num">
+                zhongxia245/blog#17
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+      <div class="discussion-item-rollup-ref">
+          <span class="state state-open float-right">
+                <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+            Open
+          </span>
+
+
+
+        <div class="discussion-item-header" id="ref-issue-181806814">
+          <h4 class="discussion-item-ref-title">
+            <a href="https://github.com/dhj9/blog/issues/4" class="title-link">
+              webpack编译流程漫谈
+
+              <span class="issue-num">
+                dhj9/blog#4
+              </span>
+</a>          </h4>
+        </div>
+      </div>
+
+  </div>
+
+
+
+
+
+
+<!-- Rendered timeline since 2016-10-07 22:50:37 -->
+<div id="partial-timeline-marker" class="js-timeline-marker js-socket-channel js-updatable-content" data-channel="tenant:1:issue:152920415" data-url="/chemdemo/chemdemo.github.io/issues/13/show_partial?partial=issues%2Ftimeline_marker&amp;since=1475905837" data-last-modified="Sat, 08 Oct 2016 05:50:37 GMT">
+
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://github.com/chemdemo/chemdemo.github.io/notifications/mark?ids=140194257" class="d-none js-timeline-marker-form" data-form-nonce="b3804c2c395cbcfb060f7c18e63a1e37a3587ac9" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="HZv9wfIzxzWATS9rnR6JcsSCAmyAVjGK07E69fPzRs2UOr1zUIlAuS0uNvubvFh+/OSCVVvpfqOswaGu0lQgdg=="></div>
+</form></div>
+
+
+        </div>
+
+          <div class="discussion-timeline-actions">
+                <div class="signed-out-comment">
+    <a href="https://github.com/join?source=comment-repo" class="btn btn-primary" rel="nofollow">Sign up for free</a>
+    <strong>to join this conversation on GitHub</strong>.
+    Already have an account?
+    <a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fchemdemo%2Fchemdemo.github.io%2Fissues%2F13" rel="nofollow">Sign in to comment</a>
+</div>
+
+
+          </div>
+      </div>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>
+
+
+  </div>
+  <div class="modal-backdrop js-touch-events"></div>
+</div>
+
+
+    </div>
+  </div>
+
+    </div>
+
+        <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links float-right">
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2016 <span title="0.24120s from github-fe-54106a2.cp1-iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+
+    <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+      </button>
+      You can't perform that action at this time.
+    </div>
+
+
+      
+      <script crossorigin="anonymous" integrity="sha256-NbnFQdNBMJuTCxx5D6GyejDHxEzhDH+CQokOPYPIrb0=" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/frameworks-35b9c541d341309b930b1c790fa1b27a30c7c44ce10c7f8242890e3d83c8adbd.js"></script>
+      <script async="async" crossorigin="anonymous" integrity="sha256-NjAOUnQ3DcSBV1C8HROMiDYzsEoXXeR3crIdcpaIsIM=" src="./【翻译】Webpack——令人困惑的地方 · Issue #13 · chemdemo_chemdemo.github.io · GitHub_files/github-36300e5274370dc4815750bc1d138c883633b04a175de47772b21d729688b083.js"></script>
+      
+      
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+      <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://github.com/chemdemo/chemdemo.github.io/issues/13">Reload</a> to refresh your session.</span>
+    </div>
+    <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+  
+
+
+</body></html>

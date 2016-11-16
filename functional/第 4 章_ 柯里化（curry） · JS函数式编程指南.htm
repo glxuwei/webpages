@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>第 4 章: 柯里化（curry） · JS函数式编程指南</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="author" content="Linghao Li">
+        
+        
+    
+    <link rel="stylesheet" href="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+    
+    
+
+    <link rel="prev" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html"><link rel="next" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html"></head>
+    <body>
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" class="custom-link">JS函数式编程指南</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html">
+            
+                    
+                    第 1 章: 我们在做什么？
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#介绍">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子">
+            
+                    
+                    一个简单例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html">
+            
+                    
+                    第 2 章: 一等公民的函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览">
+            
+                    
+                    快速概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#为何钟爱一等公民">
+            
+                    
+                    为何钟爱一等公民
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    第 3 章: 纯函数的好处
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#再次强调“纯”">
+            
+                    
+                    再次强调“纯”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#副作用可能包括">
+            
+                    
+                    副作用可能包括...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#八年级数学">
+            
+                    
+                    八年级数学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#追求“纯”的理由">
+            
+                    
+                    追求“纯”的理由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html">
+            
+                    
+                    第 4 章: 柯里化（curry）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry">
+            
+                    
+                    不可或缺的 curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不仅仅是双关语咖喱">
+            
+                    
+                    不仅仅是双关语／咖喱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">
+            
+                    
+                    第 5 章: 代码组合（compose）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#函数饲养">
+            
+                    
+                    函数饲养
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">
+            
+                    
+                    pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#debug">
+            
+                    
+                    debug
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#范畴学">
+            
+                    
+                    范畴学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html">
+            
+                    
+                    第 6章: 示例应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#声明式代码">
+            
+                    
+                    声明式代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#一个函数式的-flickr">
+            
+                    
+                    一个函数式的 flickr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#有原则的重构">
+            
+                    
+                    有原则的重构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html">
+            
+                    
+                    第 7 章: Hindley-Milner 类型签名
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型">
+            
+                    
+                    初识类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#神秘的传奇故事">
+            
+                    
+                    神秘的传奇故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#缩小可能性范围">
+            
+                    
+                    缩小可能性范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#自由定理">
+            
+                    
+                    自由定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">
+            
+                    
+                    第 8 章: 特百惠
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器">
+            
+                    
+                    强大的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#第一个-functor">
+            
+                    
+                    第一个 functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#薛定谔的-maybe">
+            
+                    
+                    薛定谔的 Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#“纯”错误处理">
+            
+                    
+                    “纯”错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#王老先生有作用">
+            
+                    
+                    王老先生有作用...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#异步任务">
+            
+                    
+                    异步任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#一点理论">
+            
+                    
+                    一点理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">
+            
+                    
+                    第 9 章: Monad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#pointed-functor">
+            
+                    
+                    pointed functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#混合比喻">
+            
+                    
+                    混合比喻
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#chain-函数">
+            
+                    
+                    chain 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#理论">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html">
+            
+                    
+                    第 10 章: Applicative Functor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor">
+            
+                    
+                    应用 applicative functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#瓶中之船">
+            
+                    
+                    瓶中之船
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#协调于激励">
+            
+                    
+                    协调于激励
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#lift">
+            
+                    
+                    lift
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#免费开瓶器">
+            
+                    
+                    免费开瓶器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#定律">
+            
+                    
+                    定律
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">第 4 章: 柯里化（curry）</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第-4-章-柯里化（curry）">第 4 章: 柯里化（curry）</h1>
+<h2 id="不可或缺的-curry">不可或缺的 curry</h2>
+<p class="comments-section">（译者注：原标题是“Can't live if livin' is without you”，为英国乐队 Badfinger 歌曲 <em>Without You</em> 中歌词。）<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">我父亲以前跟我说过，有些事物在你得到之前是无足轻重的，得到之后就不可或缺了。微波炉是这样，智能手机是这样，互联网也是这样——老人们在没有互联网的时候过得也很充实。对我来说，函数的柯里化（curry）也是这样。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">curry 的概念很简单：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">你可以一次性地调用 curry 函数，也可以每次只传一个参数分多次调用。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+  };
+};
+
+<span class="hljs-keyword">var</span> increment = add(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">var</span> addTen = add(<span class="hljs-number">10</span>);
+
+increment(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// 3</span>
+
+addTen(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// 12</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments">这里我们定义了一个 <code>add</code> 函数，它接受一个参数并返回一个新的函数。调用 <code>add</code> 之后，返回的函数就通过闭包的方式记住了 <code>add</code> 的第一个参数。一次性地调用它实在是有点繁琐，好在我们可以使用一个特殊的 <code>curry</code> 帮助函数（helper function）使这类函数的定义和调用更加容易。<div class="comments-icon"><div class="marker">6</div></div></p>
+<p class="comments-section">我们来创建一些 curry 函数享受下（译者注：此处原文是“for our enjoyment”，语出自圣经）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> curry = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>).curry;
+
+<span class="hljs-keyword">var</span> match = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">what, str</span>) </span>{
+  <span class="hljs-keyword">return</span> str.match(what);
+});
+
+<span class="hljs-keyword">var</span> replace = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">what, replacement, str</span>) </span>{
+  <span class="hljs-keyword">return</span> str.replace(what, replacement);
+});
+
+<span class="hljs-keyword">var</span> filter = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, ary</span>) </span>{
+  <span class="hljs-keyword">return</span> ary.filter(f);
+});
+
+<span class="hljs-keyword">var</span> map = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, ary</span>) </span>{
+  <span class="hljs-keyword">return</span> ary.map(f);
+});
+</code></pre>
+<p class="comments-section">我在上面的代码中遵循的是一种简单，同时也非常重要的模式。即策略性地把要操作的数据（String， Array）放到最后一个参数里。到使用它们的时候你就明白这样做的原因是什么了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">match(<span class="hljs-regexp">/\s+/g</span>, <span class="hljs-string">"hello world"</span>);
+<span class="hljs-comment">// [ ' ' ]</span>
+
+match(<span class="hljs-regexp">/\s+/g</span>)(<span class="hljs-string">"hello world"</span>);
+<span class="hljs-comment">// [ ' ' ]</span>
+
+<span class="hljs-keyword">var</span> hasSpaces = match(<span class="hljs-regexp">/\s+/g</span>);
+<span class="hljs-comment">// function(x) { return x.match(/\s+/g) }</span>
+
+hasSpaces(<span class="hljs-string">"hello world"</span>);
+<span class="hljs-comment">// [ ' ' ]</span>
+
+hasSpaces(<span class="hljs-string">"spaceless"</span>);
+<span class="hljs-comment">// null</span>
+
+filter(hasSpaces, [<span class="hljs-string">"tori_spelling"</span>, <span class="hljs-string">"tori amos"</span>]);
+<span class="hljs-comment">// ["tori amos"]</span>
+
+<span class="hljs-keyword">var</span> findSpaces = filter(hasSpaces);
+<span class="hljs-comment">// function(xs) { return xs.filter(function(x) { return x.match(/\s+/g) }) }</span>
+
+findSpaces([<span class="hljs-string">"tori_spelling"</span>, <span class="hljs-string">"tori amos"</span>]);
+<span class="hljs-comment">// ["tori amos"]</span>
+
+<span class="hljs-keyword">var</span> noVowels = replace(<span class="hljs-regexp">/[aeiou]/ig</span>);
+<span class="hljs-comment">// function(replacement, x) { return x.replace(/[aeiou]/ig, replacement) }</span>
+
+<span class="hljs-keyword">var</span> censored = noVowels(<span class="hljs-string">"*"</span>);
+<span class="hljs-comment">// function(x) { return x.replace(/[aeiou]/ig, "*") }</span>
+
+censored(<span class="hljs-string">"Chocolate Rain"</span>);
+<span class="hljs-comment">// 'Ch*c*l*t* R**n'</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments">这里表明的是一种“预加载”函数的能力，通过传递一到两个参数调用函数，就能得到一个记住了这些参数的新函数。<div class="comments-icon"><div class="marker">1</div></div></p>
+<p class="comments-section">我鼓励你使用 <code>npm install lodash</code> 安装 <code>lodash</code>，复制上面的代码放到 REPL 里跑一跑。当然你也可以在能够使用 <code>lodash</code> 或 <code>ramda</code> 的网页中运行它们。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="不仅仅是双关语／咖喱">不仅仅是双关语／咖喱</h2>
+<p class="comments-section">curry 的用处非常广泛，就像在 <code>hasSpaces</code>、<code>findSpaces</code> 和 <code>censored</code> 看到的那样，只需传给函数一些参数，就能得到一个新函数。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section has-comments has-highlight-comments">用 <code>map</code> 简单地把参数是单个元素的函数包裹一下，就能把它转换成参数为数组的函数。<div class="comments-icon"><div class="marker">1</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> getChildren = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> x.childNodes;
+};
+
+<span class="hljs-keyword">var</span> allTheChildren = map(getChildren);
+</code></pre>
+<p class="comments-section">只传给函数一部分参数通常也叫做<em>局部调用</em>（partial application），能够大量减少样板文件代码（boilerplate code）。考虑上面的 <code>allTheChildren</code> 函数，如果用 lodash 的普通 <code>map</code> 来写会是什么样的（注意参数的顺序也变了）：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> allTheChildren = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">elements</span>) </span>{
+  <span class="hljs-keyword">return</span> _.map(elements, getChildren);
+};
+</code></pre>
+<p class="comments-section">通常我们不定义直接操作数组的函数，因为只需内联调用 <code>map(getChildren)</code> 就能达到目的。这一点同样适用于 <code>sort</code>、<code>filter</code> 以及其他的高阶函数（higher order function）（高阶函数：参数或返回值为函数的函数）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">当我们谈论<em>纯函数</em>的时候，我们说它们接受一个输入返回一个输出。curry 函数所做的正是这样：每传递一个参数调用函数，就返回一个新函数处理剩余的参数。这就是一个输入对应一个输出啊。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">哪怕输出是另一个函数，它也是纯函数。当然 curry 函数也允许一次传递多个参数，但这只是出于减少 <code>()</code> 的方便。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="总结">总结</h2>
+<p class="comments-section">curry 函数用起来非常得心应手，每天使用它对我来说简直就是一种享受。它堪称手头必备工具，能够让函数式编程不那么繁琐和沉闷。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">通过简单地传递几个参数，就能动态创建实用的新函数；而且还能带来一个额外好处，那就是保留了数学的函数定义，尽管参数不止一个。
+下一章我们将学习另一个重要的工具：<code>组合</code>（compose）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">第 5 章: 代码组合（compose）</a><div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="练习">练习</h2>
+<p class="comments-section has-comments has-highlight-comments">开始练习之前先说明一下，我们将默认使用 <a href="http://ramdajs.com/" target="_blank">ramda</a> 这个库来把函数转为 curry 函数。或者你也可以选择由 losash 的作者编写和维护的 <a href="https://github.com/lodash/lodash-fp" target="_blank">lodash-fp</a>。这两个库都很好用，选择哪一个就看你自己的喜好了。<div class="comments-icon"><div class="marker">1</div></div></p>
+<p class="comments-section">你还可以对自己的练习代码做<a href="https://github.com/llh911001/mostly-adequate-guide-chinese/tree/master/code/part1_exercises" target="_blank">单元测试</a>，或者把代码拷贝到一个 REPL 里运行看看。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这些练习的答案可以在<a href="https://github.com/llh911001/mostly-adequate-guide-chinese/tree/master/code/part1_exercises/answers" target="_blank">本书仓库</a>中找到。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ramda'</span>);
+
+
+<span class="hljs-comment">// 练习 1</span>
+<span class="hljs-comment">//==============</span>
+<span class="hljs-comment">// 通过局部调用（partial apply）移除所有参数</span>
+
+<span class="hljs-keyword">var</span> words = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) </span>{
+  <span class="hljs-keyword">return</span> split(<span class="hljs-string">' '</span>, str);
+};
+
+<span class="hljs-comment">// 练习 1a</span>
+<span class="hljs-comment">//==============</span>
+<span class="hljs-comment">// 使用 `map` 创建一个新的 `words` 函数，使之能够操作字符串数组</span>
+
+<span class="hljs-keyword">var</span> sentences = <span class="hljs-literal">undefined</span>;
+
+
+<span class="hljs-comment">// 练习 2</span>
+<span class="hljs-comment">//==============</span>
+<span class="hljs-comment">// 通过局部调用（partial apply）移除所有参数</span>
+
+<span class="hljs-keyword">var</span> filterQs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">return</span> filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>)</span>{ <span class="hljs-keyword">return</span> match(<span class="hljs-regexp">/q/i</span>, x);  }, xs);
+};
+
+
+<span class="hljs-comment">// 练习 3</span>
+<span class="hljs-comment">//==============</span>
+<span class="hljs-comment">// 使用帮助函数 `_keepHighest` 重构 `max` 使之成为 curry 函数</span>
+
+<span class="hljs-comment">// 无须改动:</span>
+<span class="hljs-keyword">var</span> _keepHighest = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x,y</span>)</span>{ <span class="hljs-keyword">return</span> x &gt;= y ? x : y; };
+
+<span class="hljs-comment">// 重构这段代码:</span>
+<span class="hljs-keyword">var</span> max = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">return</span> reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">acc, x</span>)</span>{
+    <span class="hljs-keyword">return</span> _keepHighest(acc, x);
+  }, -<span class="hljs-literal">Infinity</span>, xs);
+};
+
+
+<span class="hljs-comment">// 彩蛋 1:</span>
+<span class="hljs-comment">// ============</span>
+<span class="hljs-comment">// wrap array's slice to be functional and curried.</span>
+<span class="hljs-comment">// 包裹数组的 `slice` 函数使之成为 curry 函数</span>
+<span class="hljs-comment">// //[1,2,3].slice(0, 2)</span>
+<span class="hljs-keyword">var</span> slice = <span class="hljs-literal">undefined</span>;
+
+
+<span class="hljs-comment">// 彩蛋 2:</span>
+<span class="hljs-comment">// ============</span>
+<span class="hljs-comment">// 借助 `slice` 定义一个 `take` curry 函数，接受 n 个元素为参数。</span>
+<span class="hljs-keyword">var</span> take = <span class="hljs-literal">undefined</span>;
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结" class="navigation navigation-prev " aria-label="Previous page: 总结">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry" class="navigation navigation-next " aria-label="Next page: 不可或缺的 curry" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第 4 章: 柯里化（curry）","level":"1.5","depth":1,"next":{"title":"不可或缺的 curry","level":"1.5.1","depth":2,"anchor":"#不可或缺的-curry","path":"ch4.md","ref":"ch4.md#不可或缺的-curry","articles":[]},"previous":{"title":"总结","level":"1.4.5","depth":2,"anchor":"#总结","path":"ch3.md","ref":"ch3.md#总结","articles":[]},"dir":"ltr"},"config":{"plugins":["comment"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"comment":{"highlightCommented":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"github":"llh911001/mostly-adequate-guide-chinese","theme":"default","author":"Linghao Li","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"JS函数式编程指南","language":"zh","links":{"sidebar":{"JS函数式编程指南":"https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese"},"gitbook":true},"gitbook":"*","description":"Mostly Adequate Guide 中文版"},"file":{"path":"ch4.md","mtime":"2016-09-19T03:35:00.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-19T03:34:10.921Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/gitbook.js"></script>
+    <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/theme.js"></script>
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/plugin.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/search-engine.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/search.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/lunr.min.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/search-lunr.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/buttons.js"></script>
+        
+    
+        
+        <script src="./第 4 章_ 柯里化（curry） · JS函数式编程指南_files/fontsettings.js"></script>
+        
+    
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57505611-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body><div></div></html>

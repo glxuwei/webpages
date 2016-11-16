@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>第 8 章: 特百惠 · JS函数式编程指南</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="author" content="Linghao Li">
+        
+        
+    
+    <link rel="stylesheet" href="./第 8 章_ 特百惠 · JS函数式编程指南_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./第 8 章_ 特百惠 · JS函数式编程指南_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 8 章_ 特百惠 · JS函数式编程指南_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 8 章_ 特百惠 · JS函数式编程指南_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 8 章_ 特百惠 · JS函数式编程指南_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+    
+    
+
+    <link rel="prev" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html"><link rel="next" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html"></head>
+    <body>
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" class="custom-link">JS函数式编程指南</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html">
+            
+                    
+                    第 1 章: 我们在做什么？
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#介绍">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子">
+            
+                    
+                    一个简单例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html">
+            
+                    
+                    第 2 章: 一等公民的函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览">
+            
+                    
+                    快速概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#为何钟爱一等公民">
+            
+                    
+                    为何钟爱一等公民
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    第 3 章: 纯函数的好处
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#再次强调“纯”">
+            
+                    
+                    再次强调“纯”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#副作用可能包括">
+            
+                    
+                    副作用可能包括...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#八年级数学">
+            
+                    
+                    八年级数学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#追求“纯”的理由">
+            
+                    
+                    追求“纯”的理由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html">
+            
+                    
+                    第 4 章: 柯里化（curry）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry">
+            
+                    
+                    不可或缺的 curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不仅仅是双关语咖喱">
+            
+                    
+                    不仅仅是双关语／咖喱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">
+            
+                    
+                    第 5 章: 代码组合（compose）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#函数饲养">
+            
+                    
+                    函数饲养
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">
+            
+                    
+                    pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#debug">
+            
+                    
+                    debug
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#范畴学">
+            
+                    
+                    范畴学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html">
+            
+                    
+                    第 6章: 示例应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#声明式代码">
+            
+                    
+                    声明式代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#一个函数式的-flickr">
+            
+                    
+                    一个函数式的 flickr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#有原则的重构">
+            
+                    
+                    有原则的重构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html">
+            
+                    
+                    第 7 章: Hindley-Milner 类型签名
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型">
+            
+                    
+                    初识类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#神秘的传奇故事">
+            
+                    
+                    神秘的传奇故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#缩小可能性范围">
+            
+                    
+                    缩小可能性范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#自由定理">
+            
+                    
+                    自由定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">
+            
+                    
+                    第 8 章: 特百惠
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器">
+            
+                    
+                    强大的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#第一个-functor">
+            
+                    
+                    第一个 functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#薛定谔的-maybe">
+            
+                    
+                    薛定谔的 Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#“纯”错误处理">
+            
+                    
+                    “纯”错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#王老先生有作用">
+            
+                    
+                    王老先生有作用...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#异步任务">
+            
+                    
+                    异步任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#一点理论">
+            
+                    
+                    一点理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">
+            
+                    
+                    第 9 章: Monad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#pointed-functor">
+            
+                    
+                    pointed functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#混合比喻">
+            
+                    
+                    混合比喻
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#chain-函数">
+            
+                    
+                    chain 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#理论">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html">
+            
+                    
+                    第 10 章: Applicative Functor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor">
+            
+                    
+                    应用 applicative functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#瓶中之船">
+            
+                    
+                    瓶中之船
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#协调于激励">
+            
+                    
+                    协调于激励
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#lift">
+            
+                    
+                    lift
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#免费开瓶器">
+            
+                    
+                    免费开瓶器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#定律">
+            
+                    
+                    定律
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">第 8 章: 特百惠</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="特百惠">特百惠</h1>
+<p class="comments-section">（译者注：特百惠是美国家居用品品牌，代表产品是塑料容器。）<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="强大的容器">强大的容器</h2>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/jar.jpg" alt="http://blog.dwinegar.com/2011/06/another-jar.html"></p>
+<p class="comments-section">我们已经知道如何书写函数式的程序了，即通过管道把数据在一系列纯函数间传递的程序。我们也知道了，这些程序就是声明式的行为规范。但是，控制流（control flow）、异常处理（error handling）、异步操作（asynchronous actions）和状态（state）呢？还有更棘手的作用（effects）呢？本章将对上述这些抽象概念赖以建立的基础作一番探究。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">首先我们将创建一个容器（container）。这个容器必须能够装载任意类型的值；否则的话，像只能装木薯布丁的密封塑料袋是没什么用的。这个容器将会是一个对象，但我们不会为它添加面向对象观念下的属性和方法。是的，我们将把它当作一个百宝箱——一个存放宝贵的数据的特殊盒子。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Container = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Container.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Container(x); };
+</code></pre>
+<p class="comments-section">这是本书的第一个容器，我们贴心地把它命名为 <code>Container</code>。我们将使用 <code>Container.of</code> 作为构造器（constructor），这样就不用到处去写糟糕的 <code>new</code> 关键字了，非常省心。实际上不能这么简单地看待 <code>of</code> 函数，但暂时先认为它是把值放到容器里的一种方式。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">我们来检验下这个崭新的盒子：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">Container.of(<span class="hljs-number">3</span>)
+<span class="hljs-comment">//=&gt; Container(3)</span>
+
+
+Container.of(<span class="hljs-string">"hotdogs"</span>)
+<span class="hljs-comment">//=&gt; Container("hotdogs")</span>
+
+
+Container.of(Container.of({name: <span class="hljs-string">"yoda"</span>}))
+<span class="hljs-comment">//=&gt; Container(Container({name: "yoda" }))</span>
+</code></pre>
+<p class="comments-section">如果用的是 node，那么你会看到打印出来的是 <code>{__value: x}</code>，而不是实际值 <code>Container(x)</code>；Chrome 打印出来的是正确的。不过这并不重要，只要你理解 <code>Container</code> 是什么样的就行了。有些环境下，你也可以重写 <code>inspect</code> 方法，但我们不打算涉及这方面的知识。在本书中，出于教学和美学上的考虑，我们将把概念性的输出都写成好像 <code>inspect</code> 被重写了的样子，因为这样写的教育意义将远远大于 <code>{__value: x}</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">在继续后面的内容之前，先澄清几点：<div class="comments-icon"><div class="marker">+</div></div></p>
+<ul>
+<li><code>Container</code> 是个只有一个属性的对象。尽管容器可以有不止一个的属性，但大多数容器还是只有一个。我们很随意地把 <code>Container</code> 的这个属性命名为 <code>__value</code>。</li>
+<li><code>__value</code> 不能是某个特定的类型，不然 <code>Container</code> 就对不起它这个名字了。</li>
+<li>数据一旦存放到 <code>Container</code>，就会一直待在那儿。我们<em>可以</em>用 <code>.__value</code> 获取到数据，但这样做有悖初衷。</li>
+</ul>
+<p class="comments-section">如果把容器想象成玻璃罐的话，上面这三条陈述的理由就会比较清晰了。但是暂时，请先保持耐心。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="第一个-functor">第一个 functor</h2>
+<p class="comments-section">一旦容器里有了值，不管这个值是什么，我们就需要一种方法来让别的函数能够操作它。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// (a -&gt; b) -&gt; Container a -&gt; Container b</span>
+Container.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>)</span>{
+  <span class="hljs-keyword">return</span> Container.of(f(<span class="hljs-keyword">this</span>.__value))
+}
+</code></pre>
+<p class="comments-section">这个 <code>map</code> 跟数组那个著名的 <code>map</code> 一样，除了前者的参数是 <code>Container a</code> 而后者是 <code>[a]</code>。它们的使用方式也几乎一致：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">Container.of(<span class="hljs-number">2</span>).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">two</span>)</span>{ <span class="hljs-keyword">return</span> two + <span class="hljs-number">2</span> })
+<span class="hljs-comment">//=&gt; Container(4)</span>
+
+
+Container.of(<span class="hljs-string">"flamethrowers"</span>).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>)</span>{ <span class="hljs-keyword">return</span> s.toUpperCase() })
+<span class="hljs-comment">//=&gt; Container("FLAMETHROWERS")</span>
+
+
+Container.of(<span class="hljs-string">"bombs"</span>).map(concat(<span class="hljs-string">' away'</span>)).map(_.prop(<span class="hljs-string">'length'</span>))
+<span class="hljs-comment">//=&gt; Container(10)</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments">为什么要使用这样一种方法？因为我们能够在不离开 <code>Container</code> 的情况下操作容器里面的值。这是非常了不起的一件事情。<code>Container</code> 里的值传递给 <code>map</code> 函数之后，就可以任我们操作；操作结束后，为了防止意外再把它放回它所属的 <code>Container</code>。这样做的结果是，我们能连续地调用 <code>map</code>，运行任何我们想运行的函数。甚至还可以改变值的类型，就像上面最后一个例子中那样。<div class="comments-icon"><div class="marker">2</div></div></p>
+<p class="comments-section">等等，如果我们能一直调用 <code>map</code>，那它不就是个组合（composition）么！这里边是有什么数学魔法在起作用？是 <em>functor</em>。各位，这个数学魔法就是 <em>functor</em>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<blockquote>
+<p class="comments-section">functor 是实现了 <code>map</code> 函数并遵守一些特定规则的容器类型。<div class="comments-icon"><div class="marker">+</div></div></p>
+</blockquote>
+<p class="comments-section">没错，<em>functor</em> 就是一个签了合约的接口。我们本来可以简单地把它称为 <code>Mappable</code>，但现在为时已晚，哪怕 <em>functor</em> 一点也不 <em>fun</em>。functor 是范畴学里的概念，我们将在本章末尾详细探索与此相关的数学知识；暂时我们先用这个名字很奇怪的接口做一些不那么理论的、实用性的练习。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">把值装进一个容器，而且只能使用 <code>map</code> 来处理它，这么做的理由到底是什么呢？如果我们换种方式来问，答案就很明显了：让容器自己去运用函数能给我们带来什么好处？答案是抽象，对于函数运用的抽象。当 <code>map</code> 一个函数的时候，我们请求容器来运行这个函数。不夸张地讲，这是一种十分强大的理念。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="薛定谔的-maybe">薛定谔的 Maybe</h2>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/cat.png" alt="cool cat, need reference"></p>
+<p class="comments-section">说实话 <code>Container</code> 挺无聊的，而且通常我们称它为 <code>Identity</code>，与 <code>id</code> 函数的作用相同（这里也是有数学上的联系的，我们会在适当时候加以说明）。除此之外，还有另外一种 functor，那就是实现了 <code>map</code> 函数的类似容器的数据类型，这种 functor 在调用 <code>map</code> 的时候能够提供非常有用的行为。现在让我们来定义一个这样的 functor。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Maybe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Maybe.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Maybe(x);
+}
+
+Maybe.prototype.isNothing = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.__value === <span class="hljs-literal">null</span> || <span class="hljs-keyword">this</span>.__value === <span class="hljs-literal">undefined</span>);
+}
+
+Maybe.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.isNothing() ? Maybe.of(<span class="hljs-literal">null</span>) : Maybe.of(f(<span class="hljs-keyword">this</span>.__value));
+}
+</code></pre>
+<p class="comments-section"><code>Maybe</code> 看起来跟 <code>Container</code> 非常类似，但是有一点不同：<code>Maybe</code> 会先检查自己的值是否为空，然后才调用传进来的函数。这样我们在使用 <code>map</code> 的时候就能避免恼人的空值了（注意这个实现出于教学目的做了简化）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">Maybe.of(<span class="hljs-string">"Malkovich Malkovich"</span>).map(match(<span class="hljs-regexp">/a/ig</span>));
+<span class="hljs-comment">//=&gt; Maybe(['a', 'a'])</span>
+
+Maybe.of(<span class="hljs-literal">null</span>).map(match(<span class="hljs-regexp">/a/ig</span>));
+<span class="hljs-comment">//=&gt; Maybe(null)</span>
+
+Maybe.of({name: <span class="hljs-string">"Boris"</span>}).map(_.prop(<span class="hljs-string">"age"</span>)).map(add(<span class="hljs-number">10</span>));
+<span class="hljs-comment">//=&gt; Maybe(null)</span>
+
+Maybe.of({name: <span class="hljs-string">"Dinah"</span>, age: <span class="hljs-number">14</span>}).map(_.prop(<span class="hljs-string">"age"</span>)).map(add(<span class="hljs-number">10</span>));
+<span class="hljs-comment">//=&gt; Maybe(24)</span>
+</code></pre>
+<p class="comments-section">注意看，当传给 <code>map</code> 的值是 <code>null</code> 时，代码并没有爆出错误。这是因为每一次 <code>Maybe</code> 要调用函数的时候，都会先检查它自己的值是否为空。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这种点记法（dot notation syntax）已经足够函数式了，但是正如在第 1 部分指出的那样，我们更想保持一种 pointfree 的风格。碰巧的是，<code>map</code> 完全有能力以 curry 函数的方式来“代理”任何 functor：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  map :: Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b</span>
+<span class="hljs-keyword">var</span> map = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, any_functor_at_all</span>) </span>{
+  <span class="hljs-keyword">return</span> any_functor_at_all.map(f);
+});
+</code></pre>
+<p class="comments-section">这样我们就可以像平常一样使用组合，同时也能正常使用 <code>map</code> 了，非常振奋人心。ramda 的 <code>map</code> 也是这样。后面的章节中，我们将在点记法更有教育意义的时候使用点记法，在方便使用 pointfree 模式的时候就用 pointfree。你注意到了么？我在类型标签中偷偷引入了一个额外的标记：<code>Functor f =&gt;</code>。这个标记告诉我们 <code>f</code> 必须是一个 functor。没什么复杂的，但我觉得有必要提一下。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="用例">用例</h2>
+<p class="comments-section">实际当中，<code>Maybe</code> 最常用在那些可能会无法成功返回结果的函数中。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  safeHead :: [a] -&gt; Maybe(a)</span>
+<span class="hljs-keyword">var</span> safeHead = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xs</span>) </span>{
+  <span class="hljs-keyword">return</span> Maybe.of(xs[<span class="hljs-number">0</span>]);
+};
+
+<span class="hljs-keyword">var</span> streetName = compose(map(_.prop(<span class="hljs-string">'street'</span>)), safeHead, _.prop(<span class="hljs-string">'addresses'</span>));
+
+streetName({addresses: []});
+<span class="hljs-comment">// Maybe(null)</span>
+
+streetName({addresses: [{street: <span class="hljs-string">"Shady Ln."</span>, number: <span class="hljs-number">4201</span>}]});
+<span class="hljs-comment">// Maybe("Shady Ln.")</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments"><code>safeHead</code> 与一般的 <code>_.head</code> 类似，但是增加了类型安全保证。引入 <code>Maybe</code> 会发生一件非常有意思的事情，那就是我们被迫要与狡猾的 <code>null</code> 打交道了。<code>safeHead</code> 函数能够诚实地预告它可能的失败——失败真没什么可耻的——然后返回一个 <code>Maybe</code> 来通知我们相关信息。实际上不仅仅是<em>通知</em>，因为毕竟我们想要的值深藏在 <code>Maybe</code> 对象中，而且只能通过 <code>map</code> 来操作它。本质上，这是一种由 <code>safeHead</code> 强制执行的空值检查。有了这种检查，我们才能在夜里安然入睡，因为我们知道最不受人待见的 <code>null</code> 不会突然出现。类似这样的 API 能够把一个像纸糊起来的、脆弱的应用升级为实实在在的、健壮的应用，这样的 API 保证了更加安全的软件。<div class="comments-icon"><div class="marker">1</div></div></p>
+<p class="comments-section">有时候函数可以明确返回一个 <code>Maybe(null)</code> 来表明失败，例如：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  withdraw :: Number -&gt; Account -&gt; Maybe(Account)</span>
+<span class="hljs-keyword">var</span> withdraw = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">amount, account</span>) </span>{
+  <span class="hljs-keyword">return</span> account.balance &gt;= amount ?
+    Maybe.of({balance: account.balance - amount}) :
+    Maybe.of(<span class="hljs-literal">null</span>);
+});
+
+<span class="hljs-comment">//  finishTransaction :: Account -&gt; String</span>
+<span class="hljs-keyword">var</span> finishTransaction = compose(remainingBalance, updateLedger); <span class="hljs-comment">// &lt;- 假定这两个函数已经在别处定义好了</span>
+
+<span class="hljs-comment">//  getTwenty :: Account -&gt; Maybe(String)</span>
+<span class="hljs-keyword">var</span> getTwenty = compose(map(finishTransaction), withdraw(<span class="hljs-number">20</span>));
+
+
+getTwenty({ balance: <span class="hljs-number">200.00</span>});
+<span class="hljs-comment">// Maybe("Your balance is $180.00")</span>
+
+getTwenty({ balance: <span class="hljs-number">10.00</span>});
+<span class="hljs-comment">// Maybe(null)</span>
+</code></pre>
+<p class="comments-section">要是钱不够，<code>withdraw</code> 就会对我们嗤之以鼻然后返回一个 <code>Maybe(null)</code>。<code>withdraw</code> 也显示出了它的多变性，使得我们后续的操作只能用 <code>map</code> 来进行。这个例子与前面例子不同的地方在于，这里的 <code>null</code> 是有意的。我们不用 <code>Maybe(String)</code> ，而是用 <code>Maybe(null)</code> 来发送失败的信号，这样程序在收到信号后就能立刻停止执行。这一点很重要：如果 <code>withdraw</code> 失败了，<code>map</code> 就会切断后续代码的执行，因为它根本就不会运行传递给它的函数，即 <code>finishTransaction</code>。这正是预期的效果：如果取款失败，我们并不想更新或者显示账户余额。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="释放容器里的值">释放容器里的值</h2>
+<p class="comments-section">人们经常忽略的一个事实是：任何事物都有个最终尽头。那些会产生作用的函数，不管它们是发送 JSON 数据，还是在屏幕上打印东西，还是更改文件系统，还是别的什么，都要有一个结束。但是我们无法通过 <code>return</code> 把输出传递到外部世界，必须要运行这样或那样的函数才能传递出去。关于这一点，可以借用禅宗公案的口吻来叙述：“如果一个程序运行之后没有可观察到的作用，那它到底运行了没有？”。或者，运行之后达到自身的目的了没有？有可能它只是浪费了几个 CPU 周期然后就去睡觉了...<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">应用程序所做的工作就是获取、更改和保存数据直到不再需要它们，对数据做这些操作的函数有可能被 <code>map</code> 调用，这样的话数据就可以不用离开它温暖舒适的容器。讽刺的是，有一种常见的错误就是试图以各种方法删除 <code>Maybe</code> 里的值，好像这个不确定的值是魔鬼，删除它就能让它突然显形，然后一切罪恶都会得到宽恕似的（译者注：此处原文应该是源自圣经）。要知道，我们的值没有完成它的使命，很有可能是其他代码分支造成的。我们的代码，就像薛定谔的猫一样，在某个特定的时间点有两种状态，而且应该保持这种状况不变直到最后一个函数为止。这样，哪怕代码有很多逻辑性的分支，也能保证一种线性的工作流。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">不过，对容器里的值来说，还是有个逃生口可以出去。也就是说，如果我们想返回一个自定义的值然后还能继续执行后面的代码的话，是可以做到的；要达到这一目的，可以借助一个帮助函数 <code>maybe</code>：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  maybe :: b -&gt; (a -&gt; b) -&gt; Maybe a -&gt; b</span>
+<span class="hljs-keyword">var</span> maybe = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, f, m</span>) </span>{
+  <span class="hljs-keyword">return</span> m.isNothing() ? x : f(m.__value);
+});
+
+<span class="hljs-comment">//  getTwenty :: Account -&gt; String</span>
+<span class="hljs-keyword">var</span> getTwenty = compose(
+  maybe(<span class="hljs-string">"You're broke!"</span>, finishTransaction), withdraw(<span class="hljs-number">20</span>)
+);
+
+
+getTwenty({ balance: <span class="hljs-number">200.00</span>});
+<span class="hljs-comment">// "Your balance is $180.00"</span>
+
+getTwenty({ balance: <span class="hljs-number">10.00</span>});
+<span class="hljs-comment">// "You're broke!"</span>
+</code></pre>
+<p class="comments-section">这样就可以要么返回一个静态值（与 <code>finishTransaction</code> 返回值的类型一致），要么继续愉快地在没有 <code>Maybe</code> 的情况下完成交易。<code>maybe</code> 使我们得以避免普通 <code>map</code> 那种命令式的 <code>if/else</code> 语句：<code>if(x !== null) { return f(x) }</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">引入 <code>Maybe</code> 可能会在初期造成一些不适。Swift 和 Scala 用户知道我在说什么，因为这两门语言的核心库里就有 <code>Maybe</code> 的概念，只不过伪装成 <code>Option(al)</code> 罢了。被迫在任何情况下都进行空值检查（甚至有些时候我们可以确定某个值不会为空），的确让大部分人头疼不已。然而随着时间推移，空值检查会成为第二本能，说不定你还会感激它提供的安全性呢。不管怎么说，空值检查大多数时候都能防止在代码逻辑上偷工减料，让我们脱离危险。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">编写不安全的软件就像用蜡笔小心翼翼地画彩蛋，画完之后把它们扔到大街上一样（译者注：意思是彩蛋非常易于寻找。来源于复活节习俗，人们会藏起一些彩蛋让孩子寻找），或者像用三只小猪警告过的材料盖个养老院一样（译者注：来源于“三只小猪”童话故事）。<code>Maybe</code> 能够非常有效地帮助我们增加函数的安全性。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">有一点我必须要提及，否则就太不负责任了，那就是 <code>Maybe</code> 的“真正”实现会把它分为两种类型：一种是非空值，另一种是空值。这种实现允许我们遵守 <code>map</code> 的 parametricity 特性，因此 <code>null</code> 和 <code>undefined</code> 能够依然被 <code>map</code> 调用，functor 里的值所需的那种普遍性条件也能得到满足。所以你会经常看到 <code>Some(x) / None</code> 或者 <code>Just(x) / Nothing</code> 这样的容器类型在做空值检查，而不是 <code>Maybe</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="纯错误处理">“纯”错误处理</h2>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/fists.jpg" alt="pick a hand... need a reference"></p>
+<p class="comments-section">说出来可能会让你震惊，<code>throw/catch</code> 并不十分“纯”。当一个错误抛出的时候，我们没有收到返回值，反而是得到了一个警告！抛错的函数吐出一大堆的 0 和 1 作为盾和矛来攻击我们，简直就像是在反击输入值的入侵而进行的一场电子大作战。有了 <code>Either</code> 这个新朋友，我们就能以一种比向输入值宣战好得多的方式来处理错误，那就是返回一条非常礼貌的消息作为回应。我们来看一下：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Left = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Left.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Left(x);
+}
+
+Left.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+
+<span class="hljs-keyword">var</span> Right = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Right.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Right(x);
+}
+
+Right.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> Right.of(f(<span class="hljs-keyword">this</span>.__value));
+}
+</code></pre>
+<p class="comments-section"><code>Left</code> 和 <code>Right</code> 是我们称之为 <code>Either</code> 的抽象类型的两个子类。我略去了创建 <code>Either</code> 父类的繁文缛节，因为我们不会用到它的，但你了解一下也没坏处。注意看，这里除了有两个类型，没别的新鲜东西。来看看它们是怎么运行的：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">Right.of(<span class="hljs-string">"rain"</span>).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"b"</span>+str; });
+<span class="hljs-comment">// Right("brain")</span>
+
+Left.of(<span class="hljs-string">"rain"</span>).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"b"</span>+str; });
+<span class="hljs-comment">// Left("rain")</span>
+
+Right.of({host: <span class="hljs-string">'localhost'</span>, port: <span class="hljs-number">80</span>}).map(_.prop(<span class="hljs-string">'host'</span>));
+<span class="hljs-comment">// Right('localhost')</span>
+
+Left.of(<span class="hljs-string">"rolls eyes..."</span>).map(_.prop(<span class="hljs-string">"host"</span>));
+<span class="hljs-comment">// Left('rolls eyes...')</span>
+</code></pre>
+<p class="comments-section"><code>Left</code> 就像是青春期少年那样无视我们要 <code>map</code> 它的请求。<code>Right</code> 的作用就像是一个 <code>Container</code>（也就是 Identity）。这里强大的地方在于，<code>Left</code> 有能力在它内部嵌入一个错误消息。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">假设有一个可能会失败的函数，就拿根据生日计算年龄来说好了。的确，我们可以用 <code>Maybe(null)</code> 来表示失败并把程序引向另一个分支，但是这并没有告诉我们太多信息。很有可能我们想知道失败的原因是什么。用 <code>Either</code> 写一个这样的程序看看：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>(<span class="hljs-string">'moment'</span>);
+
+<span class="hljs-comment">//  getAge :: Date -&gt; User -&gt; Either(String, Number)</span>
+<span class="hljs-keyword">var</span> getAge = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">now, user</span>) </span>{
+  <span class="hljs-keyword">var</span> birthdate = moment(user.birthdate, <span class="hljs-string">'YYYY-MM-DD'</span>);
+  <span class="hljs-keyword">if</span>(!birthdate.isValid()) <span class="hljs-keyword">return</span> Left.of(<span class="hljs-string">"Birth date could not be parsed"</span>);
+  <span class="hljs-keyword">return</span> Right.of(now.diff(birthdate, <span class="hljs-string">'years'</span>));
+});
+
+getAge(moment(), {birthdate: <span class="hljs-string">'2005-12-12'</span>});
+<span class="hljs-comment">// Right(9)</span>
+
+getAge(moment(), {birthdate: <span class="hljs-string">'20010704'</span>});
+<span class="hljs-comment">// Left("Birth date could not be parsed")</span>
+</code></pre>
+<p class="comments-section">这么一来，就像 <code>Maybe(null)</code>，当返回一个 <code>Left</code> 的时候就直接让程序短路。跟 <code>Maybe(null)</code> 不同的是，现在我们对程序为何脱离原先轨道至少有了一点头绪。有一件事要注意，这里返回的是 <code>Either(String, Number)</code>，意味着我们这个 <code>Either</code> 左边的值是 <code>String</code>，右边（译者注：也就是正确的值）的值是 <code>Number</code>。这个类型签名不是很正式，因为我们并没有定义一个真正的 <code>Either</code> 父类；但我们还是从这个类型那里了解到不少东西。它告诉我们，我们得到的要么是一条错误消息，要么就是正确的年龄值。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  fortune :: Number -&gt; String</span>
+<span class="hljs-keyword">var</span> fortune  = compose(concat(<span class="hljs-string">"If you survive, you will be "</span>), add(<span class="hljs-number">1</span>));
+
+<span class="hljs-comment">//  zoltar :: User -&gt; Either(String, _)</span>
+<span class="hljs-keyword">var</span> zoltar = compose(map(<span class="hljs-built_in">console</span>.log), map(fortune), getAge(moment()));
+
+zoltar({birthdate: <span class="hljs-string">'2005-12-12'</span>});
+<span class="hljs-comment">// "If you survive, you will be 10"</span>
+<span class="hljs-comment">// Right(undefined)</span>
+
+zoltar({birthdate: <span class="hljs-string">'balloons!'</span>});
+<span class="hljs-comment">// Left("Birth date could not be parsed")</span>
+</code></pre>
+<p class="comments-section">如果 <code>birthdate</code> 合法，这个程序就会把它神秘的命运打印在屏幕上让我们见证；如果不合法，我们就会收到一个有着清清楚楚的错误消息的 <code>Left</code>，尽管这个消息是稳稳当当地待在它的容器里的。这种行为就像，虽然我们在抛错，但是是以一种平静温和的方式抛错，而不是像一个小孩子那样，有什么不对劲就闹脾气大喊大叫。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">在这个例子中，我们根据 <code>birthdate</code> 的合法性来控制代码的逻辑分支，同时又让代码进行从右到左的直线运动，而不用爬过各种条件语句的大括号。通常，我们不会把 <code>console.log</code> 放到 <code>zoltar</code> 函数里，而是在调用 <code>zoltar</code> 的时候才 <code>map</code> 它，不过本例中，让你看看 <code>Right</code> 分支如何与 <code>Left</code> 不同也是很有帮助的。我们在 <code>Right</code> 分支的类型签名中使用 <code>_</code> 表示一个应该忽略的值（在有些浏览器中，你必须要 <code>console.log.bind(console)</code> 才能把 <code>console.log</code> 当作一等公民使用）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">我想借此机会指出一件你可能没注意到的事：这个例子中，尽管 <code>fortune</code> 使用了 <code>Either</code>，它对每一个 functor 到底要干什么却是毫不知情的。前面例子中的 <code>finishTransaction</code> 也是一样。通俗点来讲，一个函数在调用的时候，如果被 <code>map</code> 包裹了，那么它就会从一个非 functor 函数转换为一个 functor 函数。我们把这个过程叫做 <em>lift</em>。一般情况下，普通函数更适合操作普通的数据类型而不是容器类型，在必要的时候再通过 <em>lift</em> 变为合适的容器去操作容器类型。这样做的好处是能得到更简单、重用性更高的函数，它们能够随需求而变，兼容任意 functor。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><code>Either</code> 并不仅仅只对合法性检查这种一般性的错误作用非凡，对一些更严重的、能够中断程序执行的错误比如文件丢失或者 socket 连接断开等，<code>Either</code> 同样效果显著。你可以试试把前面例子中的 <code>Maybe</code> 替换为 <code>Either</code>，看怎么得到更好的反馈。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">此刻我忍不住在想，我仅仅是把 <code>Either</code> 当作一个错误消息的容器介绍给你！这样的介绍有失偏颇，它的能耐远不止于此。比如，它表示了逻辑或（也就是 <code>||</code>）。再比如，它体现了范畴学里 <em>coproduct</em> 的概念，当然本书不会涉及这方面的知识，但值得你去深入了解，因为这个概念有很多特性值得利用。还比如，它是标准的 sum type（或者叫不交并集，disjoint union of sets），因为它含有的所有可能的值的总数就是它包含的那两种类型的总数（我知道这么说你听不懂，没关系，这里有一篇<a href="https://www.fpcomplete.com/school/to-infinity-and-beyond/pick-of-the-week/sum-types" target="_blank">非常棒的文章</a>讲述这个问题）。<code>Either</code> 能做的事情多着呢，但是作为一个 functor，我们就用它处理错误。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">就像 <code>Maybe</code> 可以有个 <code>maybe</code> 一样，<code>Either</code> 也可以有一个 <code>either</code>。两者的用法类似，但 <code>either</code> 接受两个函数（而不是一个）和一个静态值为参数。这两个函数的返回值类型一致：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  either :: (a -&gt; c) -&gt; (b -&gt; c) -&gt; Either a b -&gt; c</span>
+<span class="hljs-keyword">var</span> either = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, g, e</span>) </span>{
+  <span class="hljs-keyword">switch</span>(e.constructor) {
+    <span class="hljs-keyword">case</span> Left: <span class="hljs-keyword">return</span> f(e.__value);
+    <span class="hljs-keyword">case</span> Right: <span class="hljs-keyword">return</span> g(e.__value);
+  }
+});
+
+<span class="hljs-comment">//  zoltar :: User -&gt; _</span>
+<span class="hljs-keyword">var</span> zoltar = compose(<span class="hljs-built_in">console</span>.log, either(id, fortune), getAge(moment()));
+
+zoltar({birthdate: <span class="hljs-string">'2005-12-12'</span>});
+<span class="hljs-comment">// "If you survive, you will be 10"</span>
+<span class="hljs-comment">// undefined</span>
+
+zoltar({birthdate: <span class="hljs-string">'balloons!'</span>});
+<span class="hljs-comment">// "Birth date could not be parsed"</span>
+<span class="hljs-comment">// undefined</span>
+</code></pre>
+<p class="comments-section">终于用了一回那个神秘的 <code>id</code> 函数！其实它就是简单地复制了 <code>Left</code> 里的错误消息，然后把这个值传给 <code>console.log</code> 而已。通过强制在 <code>getAge</code> 内部进行错误处理，我们的算命程序更加健壮了。结果就是，要么告诉用户一个残酷的事实并像算命师那样跟他击掌，要么就继续运行程序。好了，现在我们已经准备好去学习一个完全不同类型的 functor 了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="王老先生有作用">王老先生有作用...</h2>
+<p class="comments-section">（译者注：原标题是“Old McDonald had Effects...”，源于美国儿歌“Old McDonald Had a Farm”。）<div class="comments-icon"><div class="marker">+</div></div></p>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/dominoes.jpg" alt="dominoes.. need a reference"></p>
+<p class="comments-section">在关于纯函数的的那一章（即第 3 章）里，有一个很奇怪的例子。这个例子中的函数会产生副作用，但是我们通过把它包裹在另一个函数里的方式把它变得看起来像一个纯函数。这里还有一个类似的例子：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  getFromStorage :: String -&gt; (_ -&gt; String)</span>
+<span class="hljs-keyword">var</span> getFromStorage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> localStorage[key];
+  }
+}
+</code></pre>
+<p class="comments-section">要是我们没把 <code>getFromStorage</code> 包在另一个函数里，它的输出值就是不定的，会随外部环境变化而变化。有了这个结实的包裹函数（wrapper），同一个输入就总能返回同一个输出：一个从 <code>localStorage</code> 里取出某个特定的元素的函数。就这样（也许再高唱几句赞美圣母的赞歌）我们洗涤了心灵，一切都得到了宽恕。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">然而，这并没有多大的用处，你说是不是。就像是你收藏的全新未拆封的玩偶，不能拿出来玩有什么意思。所以要是能有办法进到这个容器里面，拿到它藏在那儿的东西就好了...办法是有的，请看 <code>IO</code>：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> IO = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = f;
+}
+
+IO.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> x;
+  });
+}
+
+IO.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(_.compose(f, <span class="hljs-keyword">this</span>.__value));
+}
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments"><code>IO</code> 跟之前的 functor 不同的地方在于，它的 <code>__value</code> 总是一个函数。不过我们不把它当作一个函数——实现的细节我们最好先不管。这里发生的事情跟我们在 <code>getFromStorage</code> 那里看到的一模一样：<code>IO</code> 把非纯执行动作（impure action）捕获到包裹函数里，目的是延迟执行这个非纯动作。就这一点而言，我们认为 <code>IO</code> 包含的是被包裹的执行动作的返回值，而不是包裹函数本身。这在 <code>of</code> 函数里很明显：<code>IO(function(){ return x })</code> 仅仅是为了延迟执行，其实我们得到的是 <code>IO(x)</code>。<div class="comments-icon"><div class="marker">1</div></div></p>
+<p class="comments-section">来用用看：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  io_window_ :: IO Window</span>
+<span class="hljs-keyword">var</span> io_window = <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>; });
+
+io_window.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">win</span>)</span>{ <span class="hljs-keyword">return</span> win.innerWidth });
+<span class="hljs-comment">// IO(1430)</span>
+
+io_window.map(_.prop(<span class="hljs-string">'location'</span>)).map(_.prop(<span class="hljs-string">'href'</span>)).map(split(<span class="hljs-string">'/'</span>));
+<span class="hljs-comment">// IO(["http:", "", "localhost:8000", "blog", "posts"])</span>
+
+
+<span class="hljs-comment">//  $ :: String -&gt; IO [DOM]</span>
+<span class="hljs-keyword">var</span> $ = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">selector</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.querySelectorAll(selector); });
+}
+
+$(<span class="hljs-string">'#myDiv'</span>).map(head).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">div</span>)</span>{ <span class="hljs-keyword">return</span> div.innerHTML; });
+<span class="hljs-comment">// IO('I am some inner html')</span>
+</code></pre>
+<p class="comments-section">这里，<code>io_window</code> 是一个真正的 <code>IO</code>，我们可以直接对它使用 <code>map</code>。至于 <code>$</code>，则是一个函数，调用后会返回一个 <code>IO</code>。我把这里的返回值都写成了<em>概念性</em>的，这样就更加直观；不过实际的返回值是 <code>{ __value: [Function] }</code>。当调用 <code>IO</code> 的 <code>map</code> 的时候，我们把传进来的函数放在了 <code>map</code> 函数里的组合的最末端（也就是最左边），反过来这个函数就成为了新的 <code>IO</code> 的新 <code>__value</code>，并继续下去。传给 <code>map</code> 的函数并没有运行，我们只是把它们压到一个“运行栈”的最末端而已，一个函数紧挨着另一个函数，就像小心摆放的多米诺骨牌一样，让人不敢轻易推倒。这种情形很容易叫人联想起“四人帮”（译者注：《设计模式》一书作者）提出的命令模式（command pattern）或者队列（queue）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">花点时间找回你关于 functor 的直觉吧。把实现细节放在一边不管，你应该就能自然而然地对各种各样的容器使用 <code>map</code> 了，不管它是多么奇特怪异。这种伪超自然的力量要归功于 functor 的定律，我们将在本章末尾对此作一番探索。无论如何，我们终于可以在不牺牲代码纯粹性的情况下，随意使用这些不纯的值了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">好了，我们已经把野兽关进了笼子。但是，在某一时刻还是要把它放出来。因为对 <code>IO</code> 调用 <code>map</code> 已经积累了太多不纯的操作，最后再运行它无疑会打破平静。问题是在哪里，什么时候打开笼子的开关？而且有没有可能我们只运行 <code>IO</code> 却不让不纯的操作弄脏双手？答案是可以的，只要把责任推到调用者身上就行了。我们的纯代码，尽管阴险狡诈诡计多端，但是却始终保持一副清白无辜的模样，反而是实际运行 <code>IO</code> 并产生了作用的调用者，背了黑锅。来看一个具体的例子。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js">
+<span class="hljs-comment">////// 纯代码库: lib/params.js ///////</span>
+
+<span class="hljs-comment">//  url :: IO String</span>
+<span class="hljs-keyword">var</span> url = <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.location.href; });
+
+<span class="hljs-comment">//  toPairs =  String -&gt; [[String]]</span>
+<span class="hljs-keyword">var</span> toPairs = compose(map(split(<span class="hljs-string">'='</span>)), split(<span class="hljs-string">'&amp;'</span>));
+
+<span class="hljs-comment">//  params :: String -&gt; [[String]]</span>
+<span class="hljs-keyword">var</span> params = compose(toPairs, last, split(<span class="hljs-string">'?'</span>));
+
+<span class="hljs-comment">//  findParam :: String -&gt; IO Maybe [String]</span>
+<span class="hljs-keyword">var</span> findParam = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">return</span> map(compose(Maybe.of, filter(compose(eq(key), head)), params), url);
+};
+
+<span class="hljs-comment">////// 非纯调用代码: main.js ///////</span>
+
+<span class="hljs-comment">// 调用 __value() 来运行它！</span>
+findParam(<span class="hljs-string">"searchTerm"</span>).__value();
+<span class="hljs-comment">// Maybe(['searchTerm', 'wafflehouse'])</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments">lib/params.js 把 <code>url</code> 包裹在一个 <code>IO</code> 里，然后把这头野兽传给了调用者；一双手保持的非常干净。你可能也注意到了，我们把容器也“压栈”了，要知道创建一个 <code>IO(Maybe([x]))</code> 没有任何不合理的地方。我们这个“栈”有三层 functor（<code>Array</code> 是最有资格成为 mappable 的容器类型），令人印象深刻。<div class="comments-icon"><div class="marker">1</div></div></p>
+<p class="comments-section">有件事困扰我很久了，现在我必须得说出来：<code>IO</code> 的 <code>__value</code> 并不是它包含的值，也不是像两个下划线暗示那样是一个私有属性。<code>__value</code> 是手榴弹的弹栓，只应该被调用者以最公开的方式拉动。为了提醒用户它的变化无常，我们把它重命名为 <code>unsafePerformIO</code> 看看。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> IO = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">this</span>.unsafePerformIO = f;
+}
+
+IO.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(_.compose(f, <span class="hljs-keyword">this</span>.unsafePerformIO));
+}
+</code></pre>
+<p class="comments-section">看，这就好多了。现在调用的代码就变成了 <code>findParam("searchTerm").unsafePerformIO()</code>，对应用程序的用户（以及本书读者）来说，这简直就直白得不能再直白了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><code>IO</code> 会成为一个忠诚的伴侣，帮助我们驯化那些狂野的非纯操作。下一节我们将学习一种跟 <code>IO</code> 在精神上相似，但是用法上又千差万别的类型。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="异步任务">异步任务</h2>
+<p class="comments-section">回调（callback）是通往地狱的狭窄的螺旋阶梯。它们是埃舍尔（译者注：荷兰版画艺术家）设计的控制流。看到一个个嵌套的回调挤在大小括号搭成的架子上，让人不由自主地联想到地牢里的灵薄狱（还能再低点么！）（译者注：灵薄狱即 limbo，基督教中地狱边缘之意）。光是想到这样的回调就让我幽闭恐怖症发作了。不过别担心，处理异步代码，我们有一种更好的方式，它的名字以“F”开头。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这种方式的内部机制过于复杂，复杂得哪怕我唾沫横飞也很难讲清楚。所以我们就直接用 Quildreen Motta 的 <a href="http://folktalejs.org/" target="_blank">Folktale</a> 里的 <code>Data.Task</code> （之前是 <code>Data.Future</code>）。来见证一些例子吧：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// Node readfile example:</span>
+<span class="hljs-comment">//=======================</span>
+
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+
+<span class="hljs-comment">//  readFile :: String -&gt; Task(Error, JSON)</span>
+<span class="hljs-keyword">var</span> readFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">filename</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Task(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reject, result</span>) </span>{
+    fs.readFile(filename, <span class="hljs-string">'utf-8'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, data</span>) </span>{
+      err ? reject(err) : result(data);
+    });
+  });
+};
+
+readFile(<span class="hljs-string">"metamorphosis"</span>).map(split(<span class="hljs-string">'\n'</span>)).map(head);
+<span class="hljs-comment">// Task("One morning, as Gregor Samsa was waking up from anxious dreams, he discovered that</span>
+<span class="hljs-comment">// in bed he had been changed into a monstrous verminous bug.")</span>
+
+
+<span class="hljs-comment">// jQuery getJSON example:</span>
+<span class="hljs-comment">//========================</span>
+
+<span class="hljs-comment">//  getJSON :: String -&gt; {} -&gt; Task(Error, JSON)</span>
+<span class="hljs-keyword">var</span> getJSON = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">url, params</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Task(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reject, result</span>) </span>{
+    $.getJSON(url, params, result).fail(reject);
+  });
+});
+
+getJSON(<span class="hljs-string">'/video'</span>, {id: <span class="hljs-number">10</span>}).map(_.prop(<span class="hljs-string">'title'</span>));
+<span class="hljs-comment">// Task("Family Matters ep 15")</span>
+
+<span class="hljs-comment">// 传入普通的实际值也没问题</span>
+Task.of(<span class="hljs-number">3</span>).map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">three</span>)</span>{ <span class="hljs-keyword">return</span> three + <span class="hljs-number">1</span> });
+<span class="hljs-comment">// Task(4)</span>
+</code></pre>
+<p class="comments-section">例子中的 <code>reject</code> 和 <code>result</code> 函数分别是失败和成功的回调。正如你看到的，我们只是简单地调用 <code>Task</code> 的 <code>map</code> 函数，就能操作将来的值，好像这个值就在那儿似的。到现在 <code>map</code> 对你来说应该不稀奇了。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">如果熟悉 promise 的话，你该能认出来 <code>map</code> 就是 <code>then</code>，<code>Task</code> 就是一个 promise。如果不熟悉你也不必气馁，反正我们也不会用它，因为它并不纯；但刚才的类比还是成立的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">与 <code>IO</code> 类似，<code>Task</code> 在我们给它绿灯之前是不会运行的。事实上，正因为它要等我们的命令，<code>IO</code> 实际就被纳入到了 <code>Task</code> 名下，代表所有的异步操作——<code>readFile</code> 和 <code>getJSON</code> 并不需要一个额外的 <code>IO</code> 容器来变纯。更重要的是，当我们调用它的 <code>map</code> 的时候，<code>Task</code> 工作的方式与 <code>IO</code> 几无差别：都是把对未来的操作的指示放在一个时间胶囊里，就像家务列表（chore chart）那样——真是一种精密的拖延术。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">我们必须调用 <code>fork</code> 方法才能运行 <code>Task</code>，这种机制与 <code>unsafePerformIO</code> 类似。但也有不同，不同之处就像 <code>fork</code> 这个名称表明的那样，它会 fork 一个子进程运行它接收到的参数代码，其他部分的执行不受影响，主线程也不会阻塞。当然这种效果也可以用其他一些技术比如线程实现，但这里的这种方法工作起来就像是一个普通的异步调用，而且 event loop 能够不受影响地继续运转。我们来看一下 <code>fork</code>：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// Pure application</span>
+<span class="hljs-comment">//=====================</span>
+<span class="hljs-comment">// blogTemplate :: String</span>
+
+<span class="hljs-comment">//  blogPage :: Posts -&gt; HTML</span>
+<span class="hljs-keyword">var</span> blogPage = Handlebars.compile(blogTemplate);
+
+<span class="hljs-comment">//  renderPage :: Posts -&gt; HTML</span>
+<span class="hljs-keyword">var</span> renderPage = compose(blogPage, sortBy(<span class="hljs-string">'date'</span>));
+
+<span class="hljs-comment">//  blog :: Params -&gt; Task(Error, HTML)</span>
+<span class="hljs-keyword">var</span> blog = compose(map(renderPage), getJSON(<span class="hljs-string">'/posts'</span>));
+
+
+<span class="hljs-comment">// Impure calling code</span>
+<span class="hljs-comment">//=====================</span>
+blog({}).fork(
+  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>)</span>{ $(<span class="hljs-string">"#error"</span>).html(error.message); },
+  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">page</span>)</span>{ $(<span class="hljs-string">"#main"</span>).html(page); }
+);
+
+$(<span class="hljs-string">'#spinner'</span>).show();
+</code></pre>
+<p class="comments-section">调用 <code>fork</code> 之后，<code>Task</code> 就赶紧跑去找一些文章，渲染到页面上。与此同时，我们在页面上展示一个 spinner，因为 <code>fork</code> 不会等收到响应了才执行它后面的代码。最后，我们要么把文章展示在页面上，要么就显示一个出错信息，视 <code>getJSON</code> 请求是否成功而定。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">花点时间思考下这里的控制流为何是线性的。我们只需要从下读到上，从右读到左就能理解代码，即便这段程序实际上会在执行过程中到处跳来跳去。这种方式使得阅读和理解应用程序的代码比那种要在各种回调和错误处理代码块之间跳跃的方式容易得多。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">天哪，你看到了么，<code>Task</code> 居然也包含了 <code>Either</code>！没办法，为了能处理将来可能出现的错误，它必须得这么做，因为普通的控制流在异步的世界里不适用。这自然是好事一桩，因为它天然地提供了充分的“纯”错误处理。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">就算是有了 <code>Task</code>，<code>IO</code> 和 <code>Either</code> 这两个 functor 也照样能派上用场。待我举个简单例子向你说明一种更复杂、更假想的情况，虽然如此，这个例子还是能够说明我的目的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// Postgres.connect :: Url -&gt; IO DbConnection</span>
+<span class="hljs-comment">// runQuery :: DbConnection -&gt; ResultSet</span>
+<span class="hljs-comment">// readFile :: String -&gt; Task Error String</span>
+
+<span class="hljs-comment">// Pure application</span>
+<span class="hljs-comment">//=====================</span>
+
+<span class="hljs-comment">//  dbUrl :: Config -&gt; Either Error Url</span>
+<span class="hljs-keyword">var</span> dbUrl = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) </span>{
+  <span class="hljs-keyword">return</span> (c.uname &amp;&amp; c.pass &amp;&amp; c.host &amp;&amp; c.db)
+    ? Right.of(<span class="hljs-string">"db:pg://"</span>+c.uname+<span class="hljs-string">":"</span>+c.pass+<span class="hljs-string">"@"</span>+c.host+<span class="hljs-string">"5432/"</span>+c.db)
+    : Left.of(<span class="hljs-built_in">Error</span>(<span class="hljs-string">"Invalid config!"</span>));
+}
+
+<span class="hljs-comment">//  connectDb :: Config -&gt; Either Error (IO DbConnection)</span>
+<span class="hljs-keyword">var</span> connectDb = compose(map(Postgres.connect), dbUrl);
+
+<span class="hljs-comment">//  getConfig :: Filename -&gt; Task Error (Either Error (IO DbConnection))</span>
+<span class="hljs-keyword">var</span> getConfig = compose(map(compose(connectDB, <span class="hljs-built_in">JSON</span>.parse)), readFile);
+
+
+<span class="hljs-comment">// Impure calling code</span>
+<span class="hljs-comment">//=====================</span>
+getConfig(<span class="hljs-string">"db.json"</span>).fork(
+  logErr(<span class="hljs-string">"couldn't read file"</span>), either(<span class="hljs-built_in">console</span>.log, map(runQuery))
+);
+</code></pre>
+<p class="comments-section">这个例子中，我们在 <code>readFile</code> 成功的那个代码分支里利用了 <code>Either</code> 和 <code>IO</code>。<code>Task</code> 处理异步读取文件这一操作当中的不“纯”性，但是验证 config 的合法性以及连接数据库则分别使用了 <code>Either</code> 和 <code>IO</code>。所以你看，我们依然在同步地跟所有事物打交道。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">例子我还可以再举一些，但是就到此为止吧。这些概念就像 <code>map</code> 一样简单。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">实际当中，你很有可能在一个工作流中跑好几个异步任务，但我们还没有完整学习容器的 api 来应对这种情况。不必担心，我们很快就会去学习 monad 之类的概念。不过，在那之前，我们得先检查下所有这些背后的数学知识。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="一点理论">一点理论</h2>
+<p class="comments-section">前面提到，functor 的概念来自于范畴学，并满足一些定律。我们先来探索这些实用的定律。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// identity</span>
+map(id) === id;
+
+<span class="hljs-comment">// composition</span>
+compose(map(f), map(g)) === map(compose(f, g));
+</code></pre>
+<p class="comments-section"><em>同一律</em>很简单，但是也很重要。因为这些定律都是可运行的代码，所以我们完全可以在我们自己的 functor 上试验它们，验证它们是否成立。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> idLaw1 = map(id);
+<span class="hljs-keyword">var</span> idLaw2 = id;
+
+idLaw1(Container.of(<span class="hljs-number">2</span>));
+<span class="hljs-comment">//=&gt; Container(2)</span>
+
+idLaw2(Container.of(<span class="hljs-number">2</span>));
+<span class="hljs-comment">//=&gt; Container(2)</span>
+</code></pre>
+<p class="comments-section">看到没，它们是相等的。接下来看一看组合。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> compLaw1 = compose(map(concat(<span class="hljs-string">" world"</span>)), map(concat(<span class="hljs-string">" cruel"</span>)));
+<span class="hljs-keyword">var</span> compLaw2 = map(compose(concat(<span class="hljs-string">" world"</span>), concat(<span class="hljs-string">" cruel"</span>)));
+
+compLaw1(Container.of(<span class="hljs-string">"Goodbye"</span>));
+<span class="hljs-comment">//=&gt; Container('Goodbye cruel world')</span>
+
+compLaw2(Container.of(<span class="hljs-string">"Goodbye"</span>));
+<span class="hljs-comment">//=&gt; Container('Goodbye cruel world')</span>
+</code></pre>
+<p class="comments-section">在范畴学中，functor 接受一个范畴的对象和态射（morphism），然后把它们映射（map）到另一个范畴里去。根据定义，这个新范畴一定会有一个单位元（identity），也一定能够组合态射；我们无须验证这一点，前面提到的定律保证这些东西会在映射后得到保留。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">可能我们关于范畴的定义还是有点模糊。你可以把范畴想象成一个有着多个对象的网络，对象之间靠态射连接。那么 functor 可以把一个范畴映射到另外一个，而且不会破坏原有的网络。如果一个对象 <code>a</code> 属于源范畴 <code>C</code>，那么通过 functor <code>F</code> 把 <code>a</code> 映射到目标范畴 <code>D</code> 上之后，就可以使用 <code>F a</code> 来指代 <code>a</code> 对象（把这些字母拼起来是什么？！）。可能看图会更容易理解：<div class="comments-icon"><div class="marker">+</div></div></p>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/catmap.png" alt="Categories mapped"></p>
+<p class="comments-section">比如，<code>Maybe</code> 就把类型和函数的范畴映射到这样一个范畴：即每个对象都有可能不存在，每个态射都有空值检查的范畴。这个结果在代码中的实现方式是用 <code>map</code> 包裹每一个函数，用 functor 包裹每一个类型。这样就能保证每个普通的类型和函数都能在新环境下继续使用组合。从技术上讲，代码中的 functor 实际上是把范畴映射到了一个包含类型和函数的子范畴（sub category）上，使得这些 functor 成为了一种新的特殊的 endofunctor。但出于本书的目的，我们认为它就是一个不同的范畴。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">可以用一张图来表示这种态射及其对象的映射：<div class="comments-icon"><div class="marker">+</div></div></p>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/functormap.png" alt="functor diagram"></p>
+<p class="comments-section">这张图除了能表示态射借助 functor <code>F</code> 完成从一个范畴到另一个范畴的映射之外，我们发现它还符合交换律，也就是说，顺着箭头的方向往前，形成的每一个路径都指向同一个结果。不同的路径意味着不同的行为，但最终都会得到同一个数据类型。这种形式化给了我们原则性的方式去思考代码——无须分析和评估每一个单独的场景，只管可以大胆地应用公式即可。来看一个具体的例子。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  topRoute :: String -&gt; Maybe(String)</span>
+<span class="hljs-keyword">var</span> topRoute = compose(Maybe.of, reverse);
+
+<span class="hljs-comment">//  bottomRoute :: String -&gt; Maybe(String)</span>
+<span class="hljs-keyword">var</span> bottomRoute = compose(map(reverse), Maybe.of);
+
+
+topRoute(<span class="hljs-string">"hi"</span>);
+<span class="hljs-comment">// Maybe("ih")</span>
+
+bottomRoute(<span class="hljs-string">"hi"</span>);
+<span class="hljs-comment">// Maybe("ih")</span>
+</code></pre>
+<p class="comments-section has-comments has-highlight-comments">或者看图：<div class="comments-icon"><div class="marker">1</div></div></p>
+<p><img src="./第 8 章_ 特百惠 · JS函数式编程指南_files/functormapmaybe.png" alt="functor diagram 2"></p>
+<p class="comments-section">根据所有 functor 都有的特性，我们可以立即理解代码，重构代码。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">functor 也能嵌套使用：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> nested = Task.of([Right.of(<span class="hljs-string">"pillows"</span>), Left.of(<span class="hljs-string">"no sleep for you"</span>)]);
+
+map(map(map(toUpperCase)), nested);
+<span class="hljs-comment">// Task([Right("PILLOWS"), Left("no sleep for you")])</span>
+</code></pre>
+<p class="comments-section"><code>nested</code> 是一个将来的数组，数组的元素有可能是程序抛出的错误。我们使用 <code>map</code> 剥开每一层的嵌套，然后对数组的元素调用传递进去的函数。可以看到，这中间没有回调、<code>if/else</code> 语句和 <code>for</code> 循环，只有一个明确的上下文。的确，我们必须要 <code>map(map(map(f)))</code> 才能最终运行函数。不想这么做的话，可以组合 functor。是的，你没听错：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Compose = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f_g_x</span>)</span>{
+  <span class="hljs-keyword">this</span>.getCompose = f_g_x;
+}
+
+Compose.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Compose(map(map(f), <span class="hljs-keyword">this</span>.getCompose));
+}
+
+<span class="hljs-keyword">var</span> tmd = Task.of(Maybe.of(<span class="hljs-string">"Rock over London"</span>))
+
+<span class="hljs-keyword">var</span> ctmd = <span class="hljs-keyword">new</span> Compose(tmd);
+
+map(concat(<span class="hljs-string">", rock on, Chicago"</span>), ctmd);
+<span class="hljs-comment">// Compose(Task(Maybe("Rock over London, rock on, Chicago")))</span>
+
+ctmd.getCompose;
+<span class="hljs-comment">// Task(Maybe("Rock over London, rock on, Chicago"))</span>
+</code></pre>
+<p class="comments-section">看，只有一个 <code>map</code>。functor 组合是符合结合律的，而且之前我们定义的 <code>Container</code> 实际上是一个叫 <code>Identity</code> 的 functor。identity 和可结合的组合也能产生一个范畴，这个特殊的范畴的对象是其他范畴，态射是 functor。这实在太伤脑筋了，所以我们不会深入这个问题，但是赞叹一下这种模式的结构性含义，或者它的简单的抽象之美也是好的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="总结">总结</h2>
+<p class="comments-section">我们已经认识了几个不同的 functor，但它们的数量其实是无限的。有一些值得注意的可迭代数据类型（iterable data structure）我们没有介绍，像 tree、list、map 和 pair 等，以及所有你能说出来的。eventstream 和 observable 也都是 functor。其他的 functor 可能就是拿来做封装或者仅仅是模拟类型。我们身边到处都有 functor 的身影，本书也将会大量使用它们。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">用多个 functor 参数调用一个函数怎么样呢？处理一个由不纯的或者异步的操作组成的有序序列怎么样呢？要应对这个什么都装在盒子里的世界，目前我们工具箱里的工具还不全。下一章，我们将直奔 monad 而去。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">第 9 章: Monad</a><div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="练习">练习</h2>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">'../../support'</span>);
+<span class="hljs-keyword">var</span> Task = <span class="hljs-built_in">require</span>(<span class="hljs-string">'data.task'</span>);
+<span class="hljs-keyword">var</span> _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ramda'</span>);
+
+<span class="hljs-comment">// 练习 1</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 使用 _.add(x,y) 和 _.map(f,x) 创建一个能让 functor 里的值增加的函数</span>
+
+<span class="hljs-keyword">var</span> ex1 = <span class="hljs-literal">undefined</span>
+
+
+
+<span class="hljs-comment">//练习 2</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 使用 _.head 获取列表的第一个元素</span>
+<span class="hljs-keyword">var</span> xs = Identity.of([<span class="hljs-string">'do'</span>, <span class="hljs-string">'ray'</span>, <span class="hljs-string">'me'</span>, <span class="hljs-string">'fa'</span>, <span class="hljs-string">'so'</span>, <span class="hljs-string">'la'</span>, <span class="hljs-string">'ti'</span>, <span class="hljs-string">'do'</span>]);
+
+<span class="hljs-keyword">var</span> ex2 = <span class="hljs-literal">undefined</span>
+
+
+
+<span class="hljs-comment">// 练习 3</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 使用 safeProp 和 _.head 找到 user 的名字的首字母</span>
+<span class="hljs-keyword">var</span> safeProp = _.curry(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, o</span>) </span>{ <span class="hljs-keyword">return</span> Maybe.of(o[x]); });
+
+<span class="hljs-keyword">var</span> user = { id: <span class="hljs-number">2</span>, name: <span class="hljs-string">"Albert"</span> };
+
+<span class="hljs-keyword">var</span> ex3 = <span class="hljs-literal">undefined</span>
+
+
+<span class="hljs-comment">// 练习 4</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 使用 Maybe 重写 ex4，不要有 if 语句</span>
+
+<span class="hljs-keyword">var</span> ex4 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">if</span> (n) { <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(n); }
+};
+
+<span class="hljs-keyword">var</span> ex4 = <span class="hljs-literal">undefined</span>
+
+
+
+<span class="hljs-comment">// 练习 5</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个函数，先 getPost 获取一篇文章，然后 toUpperCase 让这片文章标题变为大写</span>
+
+<span class="hljs-comment">// getPost :: Int -&gt; Future({id: Int, title: String})</span>
+<span class="hljs-keyword">var</span> getPost = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">i</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Task(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rej, res</span>) </span>{
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      res({id: i, title: <span class="hljs-string">'Love them futures'</span>})
+    }, <span class="hljs-number">300</span>)
+  });
+}
+
+<span class="hljs-keyword">var</span> ex5 = <span class="hljs-literal">undefined</span>
+
+
+
+<span class="hljs-comment">// 练习 6</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个函数，使用 checkActive() 和 showWelcome() 分别允许访问或返回错误</span>
+
+<span class="hljs-keyword">var</span> showWelcome = _.compose(_.add( <span class="hljs-string">"Welcome "</span>), _.prop(<span class="hljs-string">'name'</span>))
+
+<span class="hljs-keyword">var</span> checkActive = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user</span>) </span>{
+ <span class="hljs-keyword">return</span> user.active ? Right.of(user) : Left.of(<span class="hljs-string">'Your account is not active'</span>)
+}
+
+<span class="hljs-keyword">var</span> ex6 = <span class="hljs-literal">undefined</span>
+
+
+
+<span class="hljs-comment">// 练习 7</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 写一个验证函数，检查参数是否 length &gt; 3。如果是就返回 Right(x)，否则就返回</span>
+<span class="hljs-comment">// Left("You need &gt; 3")</span>
+
+<span class="hljs-keyword">var</span> ex7 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span> <span class="hljs-comment">// &lt;--- write me. (don't be pointfree)</span>
+}
+
+
+
+<span class="hljs-comment">// 练习 8</span>
+<span class="hljs-comment">// ==========</span>
+<span class="hljs-comment">// 使用练习 7 的 ex7 和 Either 构造一个 functor，如果一个 user 合法就保存它，否则</span>
+<span class="hljs-comment">// 返回错误消息。别忘了 either 的两个参数必须返回同一类型的数据。</span>
+
+<span class="hljs-keyword">var</span> save = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>)</span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IO(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"SAVED USER!"</span>);
+    <span class="hljs-keyword">return</span> x + <span class="hljs-string">'-saved'</span>;
+  });
+}
+
+<span class="hljs-keyword">var</span> ex8 = <span class="hljs-literal">undefined</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结" class="navigation navigation-prev " aria-label="Previous page: 总结">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器" class="navigation navigation-next " aria-label="Next page: 强大的容器" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第 8 章: 特百惠","level":"1.9","depth":1,"next":{"title":"强大的容器","level":"1.9.1","depth":2,"anchor":"#强大的容器","path":"ch8.md","ref":"ch8.md#强大的容器","articles":[]},"previous":{"title":"总结","level":"1.8.5","depth":2,"anchor":"#总结","path":"ch7.md","ref":"ch7.md#总结","articles":[]},"dir":"ltr"},"config":{"plugins":["comment"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"comment":{"highlightCommented":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"github":"llh911001/mostly-adequate-guide-chinese","theme":"default","author":"Linghao Li","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"JS函数式编程指南","language":"zh","links":{"sidebar":{"JS函数式编程指南":"https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese"},"gitbook":true},"gitbook":"*","description":"Mostly Adequate Guide 中文版"},"file":{"path":"ch8.md","mtime":"2016-09-19T03:35:00.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-19T03:34:10.921Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/gitbook.js"></script>
+    <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/theme.js"></script>
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/plugin.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/search-engine.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/search.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/lunr.min.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/search-lunr.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/buttons.js"></script>
+        
+    
+        
+        <script src="./第 8 章_ 特百惠 · JS函数式编程指南_files/fontsettings.js"></script>
+        
+    
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57505611-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body><div></div></html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)http://blog.leanote.com/post/sams/webpack%E7%9F%A5%E8%AF%86%E7%82%B9%E6%BB%B4 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="leanote,leanote.com">
+<meta name="description" content="leanote, not only a notebook">
+<meta name="author" content="leanote">
+
+<title>
+
+	webpack知识点滴
+
+    
+</title>
+
+<link href="./webpack知识点滴_files/bootstrap.css" rel="stylesheet">
+
+<link href="./webpack知识点滴_files/font-awesome.css" rel="stylesheet">
+<link href="./webpack知识点滴_files/style.css" rel="stylesheet">
+<script>
+function log(o) {
+}
+</script>
+<style>
+
+</style>
+<script type="text/javascript" src="./webpack知识点滴_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body style="zoom: 1;"><div id="MathJax_Message" style="display: none;"></div>
+
+
+<div class="clearfix">
+
+<div id="headerAndNav">
+	<div id="headerContainer" class="container">
+		
+		<div id="header">
+		
+			
+			<h1>
+				<a href="http://blog.leanote.com/sams" id="logo">
+    				
+    				<div>
+    				    我的世界你不懂
+    				</div>
+				</a>
+			</h1>
+			<div id="blogDesc">
+				点滴记录
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="navbar navbar-default">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="http://blog.leanote.com/sams">
+	      	
+			我的世界你不懂
+		
+	      </a>
+	    </div>
+	    <div class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav">
+	      	
+	    	<li class=""><a href="http://blog.leanote.com/sams">主页</a></li>
+		    
+		   	
+			
+			
+			    <li class="">
+					<a href="http://blog.leanote.com/single/sams/About-Me">About Me</a>
+				</li>
+			
+			
+			
+			<li class="">
+				<a href="http://blog.leanote.com/archives/sams">归档</a>
+			</li>
+			<li class="">
+				<a href="http://blog.leanote.com/tags/sams">标签</a>
+			</li>
+			
+	      </ul>
+	      <form class="navbar-form navbar-right" id="search" onsubmit="search(event);return false;">
+	      	<div class="input-group">
+			  	<span class="input-group-addon" id="searchIcon" onclick="search(event);"><i class="fa fa-search"></i></span>
+		        <input type="text" placeholder="search" id="searchInput" class="form-control" value="">
+		  	</div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<style>
+    #headerAndNav {
+        position: static;
+        float: left;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none;
+        bottom: auto;
+    }
+</style>
+<div id="postsContainer">
+	<div id="posts">
+		<div class="each-post">
+			<div class="title">
+				webpack知识点滴
+			</div>
+			<div class="created-time">
+				
+    			 
+    			    <i class="fa fa-bookmark-o"></i>
+    				<a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/webpack">webpack</a> <a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/R2">R2</a> <a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/webpack%E5%BA%94%E7%94%A8">webpack应用</a>
+    				&nbsp;&nbsp;
+    			
+    			
+    			<i class="fa fa-clock-o"></i> 2016-04-22 19:54:18 
+    			&nbsp;&nbsp;
+    			<span class="fa fa-eye"></span> 594
+    			&nbsp;&nbsp;
+    			<span class="fa fa-thumbs-o-up"></span> 0
+    			&nbsp;&nbsp;
+    			<span class="fa fa-comments-o"></span> 0
+			</div>
+			
+			
+			<div class="mobile-created-time">
+			
+				<img src="./webpack知识点滴_files/042f6b55c2a09af8f990ed156b46a578.jpg" id="userLogo">
+			
+			sams
+	
+			
+				&nbsp;
+				<i class="fa fa-bookmark-o" style="color: #666"></i>
+				<a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/webpack">webpack</a> <a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/R2">R2</a> <a class="label label-default label-post" href="http://blog.leanote.com/tag/sams/webpack%E5%BA%94%E7%94%A8">webpack应用</a>
+			
+			</div>
+			
+			<div class="desc" id="content"><h1 id="title">前言</h1>
+
+<p>针对所本人参与开发的PC端<a href="https://github.com/dog-days/r2">R2框架</a>(Redux React Framework),如何一步一步搭建好webpack(点滴记录，持续更新)。webpack打包后的js是相对比较大，目前（2016-04-14），还不适合移动端大范围使用。本框架的开发环境webpack.config.js和生产环境Gruntfile.js(生产环境使用了Grunt)配置如下,可以结合一起看,看不懂就先看下面的内容。 <br>
+<code>webpack.config.js</code></p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> webpack </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'webpack'</span><span class="pun">)</span></code></li><li class="L1"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> path </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'path'</span><span class="pun">)</span></code></li><li class="L2"><code class="language-javascript"></code></li><li class="L3"><code class="language-javascript"><span class="com">/**</span></code></li><li class="L4"><code class="language-javascript"><span class="com"> * 开发环境开react热替换</span></code></li><li class="L5"><code class="language-javascript"><span class="com"> */</span></code></li><li class="L6"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> entry</span><span class="pun">;</span></code></li><li class="L7"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> NODE_ENV </span><span class="pun">=</span><span class="pln"> </span><span class="str">'development'</span><span class="pun">;</span></code></li><li class="L8"><code class="language-javascript"><span class="com">//多入口设置</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">entry </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    </span><span class="str">'eventsource-polyfill'</span><span class="pun">,</span><span class="pln"> </span><span class="com">// necessary for hot reloading with IE,没再IE试过，也基本不会在IE调试</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="str">'webpack-hot-middleware/client'</span><span class="pun">,</span><span class="com">//热替入口文件</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="str">'./src/index.jsx'</span></code></li><li class="L3"><code class="language-javascript"><span class="pun">]</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    devtool</span><span class="pun">:</span><span class="pln"> </span><span class="str">'inline-source-map'</span><span class="pun">,</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">        app </span><span class="pun">:</span><span class="pln"> entry</span><span class="pun">,</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="com">//vendor: vendor,</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        </span><span class="com">//libs : ['react','antd'], </span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span><span class="pln"> </span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">'bundle.js'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        path</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'public/js'</span><span class="pun">),</span><span class="com">//输出目录为项目根目录public/js目录下</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        publicPath</span><span class="pun">:</span><span class="pln"> </span><span class="str">'/js/'</span><span class="pun">,</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        chunkFilename</span><span class="pun">:</span><span class="pln"> </span><span class="str">'[name].chunk.js'</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    module</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln">test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.(jpg|png|gif)$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"url?limit=8192"</span><span class="pun">},</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln"> </span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.js[x]?$/</span><span class="pun">,</span><span class="pln"> </span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">'babel'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                exclude</span><span class="pun">:</span><span class="pln"> </span><span class="str">/node_modules/</span><span class="pun">,</span><span class="com">//解析node_modules的es6语法 </span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"style!css"</span><span class="pln"> </span><span class="pun">},</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">    resolve</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        alias</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="str">'.fr'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'.fr'</span><span class="pun">),</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">            </span><span class="str">'frontend'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'.fr/generator/frontend'</span><span class="pun">),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">            </span><span class="str">'src'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src'</span><span class="pun">),</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            </span><span class="str">'css'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'style/css'</span><span class="pun">),</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="str">'img'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'style/img'</span><span class="pun">),</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">            </span><span class="str">'page'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/page'</span><span class="pun">),</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">            </span><span class="str">'libs'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs'</span><span class="pun">),</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">            </span><span class="str">'validate'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs/antd-form-validate'</span><span class="pun">),</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">            </span><span class="str">'function'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs/function.js'</span><span class="pun">),</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="str">'common'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/common'</span><span class="pun">),</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="pun">},</span><span class="pln"> </span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        extensions</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'.js'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'.jsx'</span><span class="pun">]</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    externals </span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">{</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="pun">}</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">],</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    plugins</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">NoErrorsPlugin</span><span class="pun">(),</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">HotModuleReplacementPlugin</span><span class="pun">(),</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="com">//new webpack.optimize.CommonsChunkPlugin("vendor","vendor.bundle.js",['app']),</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="com">//new webpack.optimize.CommonsChunkPlugin("libs","libs.bundle.js",['vendor','chunk']),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">DefinePlugin</span><span class="pun">({</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            </span><span class="str">'process.env.NODE_ENV'</span><span class="pun">:</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">stringify</span><span class="pun">(</span><span class="pln">NODE_ENV</span><span class="pun">)</span><span class="pln">  </span><span class="com">//定义开发和生产环境,(如果要用到)必须定义</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">}),</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    </span><span class="pun">]</span></code></li><li class="L6"><code class="language-javascript"><span class="pun">};</span></code></li></ol></pre>
+
+<p><code>Gruntfile.js</code></p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> webpack </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'webpack'</span><span class="pun">)</span></code></li><li class="L1"><code class="language-javascript"><span class="com">//压缩插件</span></code></li><li class="L2"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> uglifyJsPlugin </span><span class="pun">=</span><span class="pln"> webpack</span><span class="pun">.</span><span class="pln">optimize</span><span class="pun">.</span><span class="typ">UglifyJsPlugin</span><span class="pun">;</span></code></li><li class="L3"><code class="language-javascript"><span class="com">//样式分离插件</span></code></li><li class="L4"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> </span><span class="typ">ExtractTextPlugin</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">"extract-text-webpack-plugin"</span><span class="pun">);</span></code></li><li class="L5"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> webpack_config </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'./webpack.config.js'</span><span class="pun">);</span></code></li><li class="L6"><code class="language-javascript"><span class="com">//var vendor = require('./src/page/vendor.js');</span></code></li><li class="L7"><code class="language-javascript"><span class="com">//webpack生出环境覆盖开发环境配置</span></code></li><li class="L8"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> config </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">assign</span><span class="pun">({},</span><span class="pln"> webpack_config</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">    devtool</span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        app</span><span class="pun">:</span><span class="pln"> </span><span class="str">'./src/index.jsx'</span><span class="pun">,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="com">//vendor: vendor,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        </span><span class="com">//libs : ['react','antd'], </span></code></li><li class="L4"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    resolve</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">assign</span><span class="pun">(</span><span class="pln">webpack_config</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">}),</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    module</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln">test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.(jpg|png)$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"url?limit=8192"</span><span class="pun">},</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln"> </span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.js[x]?$/</span><span class="pun">,</span><span class="pln"> </span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">'babel'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                exclude</span><span class="pun">:</span><span class="pln"> </span><span class="str">/node_modules/</span><span class="pun">,</span><span class="com">//设置node_modules目录为根目录下的node_modules,根目录以package为参考</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="typ">ExtractTextPlugin</span><span class="pun">.</span><span class="pln">extract</span><span class="pun">(</span><span class="str">"style-loader"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"css-loader"</span><span class="pun">)</span><span class="pln"> </span><span class="pun">},</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">    plugins</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">NoErrorsPlugin</span><span class="pun">(),</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="com">//new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", ['app']),</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="com">//new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js", []),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="com">//new webpack.optimize.CommonsChunkPlugin("libs", "libs.bundle.js", ['vendor', 'chunk']),</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">DefinePlugin</span><span class="pun">({</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="str">'process.env.NODE_ENV'</span><span class="pun">:</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">stringify</span><span class="pun">(</span><span class="str">"production"</span><span class="pun">)</span><span class="pln"> </span><span class="com">//定义为生产环境</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="pun">}),</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> uglifyJsPlugin</span><span class="pun">({</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">            compress</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                warnings</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">}</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="pun">}),</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ExtractTextPlugin</span><span class="pun">(</span><span class="str">'css/styles.css'</span><span class="pun">),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="pun">]</span></code></li><li class="L3"><code class="language-javascript"><span class="pun">});</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">grunt</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    grunt</span><span class="pun">.</span><span class="pln">initConfig</span><span class="pun">({</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        webpack</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">            production</span><span class="pun">:</span><span class="pln"> config</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="pun">},</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        compress</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            main</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                options</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                    mode</span><span class="pun">:</span><span class="pln"> </span><span class="str">'zip'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                    archive</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                        </span><span class="kwd">return</span><span class="pln"> </span><span class="str">'publish-'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> grunt</span><span class="pun">.</span><span class="pln">template</span><span class="pun">.</span><span class="pln">today</span><span class="pun">(</span><span class="str">'yyyymmddHHMMss'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">'.zip'</span><span class="pun">;</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                    </span><span class="pun">}</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                expand</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                cwd</span><span class="pun">:</span><span class="pln"> </span><span class="str">'public/'</span><span class="pun">,</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                src</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'**/*'</span><span class="pun">],</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">}</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="pun">}</span></code></li><li class="L2"><code class="language-javascript"></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="pun">});</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">    grunt</span><span class="pun">.</span><span class="pln">loadNpmTasks</span><span class="pun">(</span><span class="str">'grunt-webpack'</span><span class="pun">);</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    grunt</span><span class="pun">.</span><span class="pln">registerTask</span><span class="pun">(</span><span class="str">"default"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">'webpack'</span><span class="pun">,</span><span class="str">'compress'</span><span class="pun">]);</span></code></li><li class="L6"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<p>如果哪位没有webpack基础的可以先看下下面的学习资源。</p>
+
+<h2 id="title-1">学习资源</h2>
+
+<ul>
+<li><a href="http://webpack.github.io/docs">webpack官网文档</a></li>
+</ul>
+
+<p>一个足够，后面看我的!</p>
+
+<p><img src="./webpack知识点滴_files/getImage" alt="" title=""> </p>
+
+<hr>
+
+<h2 id="p">webpack</h2>
+
+<p>NodeJs的流行，催生了很多优秀的前端工具。webpack就是非常优秀的一种标准模块化工具。适合单页面app开发。</p>
+
+<p>webpack的三个概念：模块（module）、入口文件（entry）、分块（chunk）。其中，module指各种资源文件，如js、css、图片、svg、scss、less等等，一切资源皆被当做模块。</p>
+
+<h2 id="title-2">首次尝试</h2>
+
+<p>首先我们需要建立entry.js（js入口文件,可以理解为我们编写的代码都通过这个文件执行），index.html文件（浏览器入口文件）。</p>
+
+<p>下面看看如何使用webpack，首先看下index.html</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-html"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1"><code class="language-html"><span class="tag">&lt;html&gt;</span></code></li><li class="L2"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span></code></li><li class="L4"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L5"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;body&gt;</span></code></li><li class="L6"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"bundle.js"</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="com">&lt;!--关键看这一句--&gt;</span></code></li><li class="L7"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L8"><code class="language-html"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre>
+
+<p>entry.js和bundle.js可以自己命名。输入命令：</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">webpack </span><span class="pun">./</span><span class="pln">entry</span><span class="pun">.</span><span class="pln">js bundle</span><span class="pun">.</span><span class="pln">js</span></code></li></ol></pre>
+
+<p>就这么简单！上面的命令是把entry的代码解析成浏览器可执行的js代码。</p>
+
+<h2 id="p-1">配置文件 webpack.config.js</h2>
+
+<p>上面的命令虽然不复杂，但是后面的各种依赖配置也一起下上当然不可取，<code>webpack.config.js</code>就是为了解决上述问题。</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="str">"./entry.js"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        path</span><span class="pun">:</span><span class="pln"> __dirname</span><span class="pun">,</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bundle.js"</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L6"><code class="language-javascript"><span class="pun">};</span></code></li></ol></pre>
+
+<p>配置一目了然,<code>__dirname</code>是项目目录(以package.json为参考)，webpack.config的当前目录。然后直接在终端使用<code>webpack</code>命令回车就OK了。</p>
+
+<p>后面详细针对R2框架的webpack.config.js文件说明。</p>
+
+<h2 id="title-3">入口文件(配置项entry)</h2>
+
+<p>R2框架entry配置</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="com">//开发环境</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">entry</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    app </span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        </span><span class="str">'eventsource-polyfill'</span><span class="pun">,</span><span class="pln"> </span><span class="com">// necessary for hot reloading with IE,没再IE试过，也基本不会在IE调试</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="str">'webpack-hot-middleware/client'</span><span class="pun">,</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="str">'./src/index.jsx'</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">]</span></code></li><li class="L7"><code class="language-javascript"><span class="pun">},</span></code></li><li class="L8"><code class="language-javascript"><span class="com">//生产环境</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">entry</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    app </span><span class="pun">:</span><span class="pln"> </span><span class="str">"./src/index.jsx"</span><span class="pun">,</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="com">//vendor: vendor,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="com">//libs : ['react','antd'], </span></code></li><li class="L3"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<p>开发环境入口文件还经过了热替换处理(后面介绍),生成环境直接配置入口文件即可。 <br>
+设置为app是为了后面code-spliting,注释的部分是单独提取指定类库或代码块(后面插件Chunk详解)。多入口的，暂时用不到，就不说了。详细entry处理方法,要结合output看，可以看<a href="http://webpack.github.io/docs/configuration.html#output-filename">官方文档</a></p>
+
+<h2 id="p-2">输出打包文件(配置项output)</h2>
+
+<p>R2框架output</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">'bundle.js'</span><span class="pun">,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    path</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'public/js'</span><span class="pun">),</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    publicPath</span><span class="pun">:</span><span class="pln"> </span><span class="str">'/js/'</span><span class="pun">,</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">    chunkFilename</span><span class="pun">:</span><span class="pln"> </span><span class="str">'[name].chunk.js'</span></code></li><li class="L5"><code class="language-javascript"><span class="pun">},</span></code></li></ol></pre>
+
+<h3 id="p-3">output.filename</h3>
+
+<p>输出文件名，不做多入口文件输出说明。</p>
+
+<h3 id="pp">output.path</h3>
+
+<p>webpack编译后打包后的js等文件存放目录设置，是绝对路径（相对于webpack.config.js）。开发环境使用node服务器，这个设置暂时没效(不过必须设置)。</p>
+
+<h3 id="ppp">output.publicPath</h3>
+
+<p>API是这样解释的，当在index.html入口文件中使用了标签sript和link等，需要载入资源的就中这个目录查找。所以使用webpack-dev-middleware进行开发调试时，两者publicPath要相同，webpack-dev-middleware会在内存中生成output的信息，就像实际生成似的,可直接访问(服务会直接代理相应的请求,到内存信息中)。跟output.path没有任何关系,publicPath的位置是相对于index.html入口文件的位置。</p>
+
+<h3 id="p-4">output.chunkFilename</h3>
+
+<p>此设置需要配合前端代码require.ensure配合使用。使用require.ensure代表要异步载入里面的代码,包括里面require的文件。设置类似filename,可以使用以下四种标记：</p>
+
+<ul>
+<li>[id] webpack会自动算好的。</li>
+<li>[name] 根据设置的chunk名，如果没有就使用[id],一般都用这个。</li>
+<li>[hash] webpack生成的hash不用了解</li>
+<li>[chunkhash] webpack生成的hash不用了解</li>
+</ul>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    getComponent</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        require</span><span class="pun">.</span><span class="pln">ensure</span><span class="pun">([],</span><span class="pln"> </span><span class="pun">(</span><span class="pln">require</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            require</span><span class="pun">(</span><span class="str">'page/view/certification'</span><span class="pun">);</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">})</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L6"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<p>webpack编译输出的文件包括以下2种：</p>
+
+<ul>
+<li>app入口文件输出的文件：入口，可以是一个或者多个资源合并而成，由html通过script标签引入</li>
+<li>chunk文件：被app entry所依赖的额外的代码块，同样可以包含一个或者多个文件,可以实现页面模块代码(单页面路由切换时，异步加载,详细查看<a href="http://webpack.github.io/docs/code-splitting.html">code splitting</a>)，可以拆分类库等代码(由script标签引入),</li>
+</ul>
+
+<h2 id="title-4"><a href="http://webpack.github.io/docs/using-loaders.html">loaders</a></h2>
+
+<p>loader需要额外安装，其实就是插件的一种，不过比较特殊。可以使开发者可以使用AMD一样加载资源，js进行处理输出最终使用的代码。官网也说的很清楚的。</p>
+
+<h2 id="title-5">resolve</h2>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">resolve</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    alias</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="str">'.fr'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'.fr'</span><span class="pun">),</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        </span><span class="str">'frontend'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'.fr/generator/frontend'</span><span class="pun">),</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="str">'src'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src'</span><span class="pun">),</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="str">'css'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'style/css'</span><span class="pun">),</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="str">'img'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'style/img'</span><span class="pun">),</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">        </span><span class="str">'page'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/page'</span><span class="pun">),</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="str">'libs'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs'</span><span class="pun">),</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        </span><span class="str">'validate'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs/antd-form-validate'</span><span class="pun">),</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="str">'function'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/libs/function.js'</span><span class="pun">),</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="str">'common'</span><span class="pun">:</span><span class="pln"> path</span><span class="pun">.</span><span class="pln">resolve</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="str">'src/common'</span><span class="pun">),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span><span class="pln"> </span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    extensions</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'.js'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'.jsx'</span><span class="pun">]</span></code></li><li class="L4"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<h3 id="title-6">resolve.alias</h3>
+
+<p>alias字面意思是别名，在webpack中resolve.alias可以为目录或文件设置别名，require时就可以直接使用别名代替。很方便的一种用法。</p>
+
+<h3 id="title-7">resolve.root</h3>
+
+<p>跟resolve.modulesDirectories类似，不过是绝对路径。</p>
+
+<h3 id="title-8">resolve.modulesDirectories</h3>
+
+<p>直接将module模块直接定义到指定文件夹,require模块是会在当前目录或父目录查找设置的文件夹中的模块。默认的时 [“web_modules”, “node_modules”]。这就要考虑到命名不能冲突了。即web_modules和node_modules的子文件夹和子文件不能命名相同。（本人在项目中没怎么用到。）</p>
+
+<h3 id="title-9">resolve.extensions</h3>
+
+<p>此功能是require识别没有带后缀名的模块，如下代码，如果没有配置只会识别action.js,而加上.jsx后，如果action.js不存在就会找action.jsx</p>
+
+<h3 id="title-10">resolve.externals</h3>
+
+<p>很强大的一个功能，本人觉得是个难点(难道是我太蠢了吗…)。等我弄懂了在写…</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="kwd">require</span><span class="pun">(</span><span class="str">"test/action"</span><span class="pun">)</span></code></li></ol></pre>
+
+<h2 id="title-11">loaders</h2>
+
+<p>loader需要额外安装，其实就是插件的一种，不过比较特殊,webpack离开了loader就不叫webpack了。</p>
+
+<p>R2框架使用的loader如下：</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L1"><code><span class="pln">    </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"style!css"</span><span class="pln"> </span><span class="pun">},</span></code></li><li class="L2"><code><span class="pln">    </span><span class="pun">{</span><span class="pln"> </span></code></li><li class="L3"><code><span class="pln">        test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.js[x]?$/</span><span class="pun">,</span><span class="pln"> </span></code></li><li class="L4"><code><span class="pln">        loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">'babel'</span><span class="pun">,</span></code></li><li class="L5"><code><span class="pln">        exclude</span><span class="pun">:</span><span class="pln"> </span><span class="str">/node_modules/</span><span class="pun">,</span><span class="com">//设置解析node_modules的es6语法 </span></code></li><li class="L6"><code><span class="pln">    </span><span class="pun">},</span></code></li><li class="L7"><code><span class="pln">    </span><span class="pun">{</span><span class="pln">test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.(jpg|png|gif)$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"url?limit=8192"</span><span class="pun">},</span></code></li><li class="L8"><code><span class="pun">]</span></code></li></ol></pre>
+
+<h3 id="title-12">CSS loader</h3>
+
+<p>webpack让你可以在js文件中require CSS并通过CSS loader处理成浏览器可这行代码。 <br>
+执行以下命令安装loader</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">npm install css</span><span class="pun">-</span><span class="pln">loader style</span><span class="pun">-</span><span class="pln">loader</span></code></li></ol></pre>
+
+<p>新建style.css</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-css"><span class="pun">.</span><span class="pln">body</span><span class="pun">{</span></code></li><li class="L1"><code class="language-css"><span class="pln">    background</span><span class="pun">-</span><span class="pln">color</span><span class="pun">:#</span><span class="pln">ccc</span><span class="pun">;</span></code></li><li class="L2"><code class="language-css"><span class="pun">}</span></code></li></ol></pre>
+
+<p>content.js</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="str">"It works from content.js."</span><span class="pun">;</span></code></li></ol></pre>
+
+<p>webpack 是以 commonJS 的形式来书写脚本,然而对 webpack 来说，我们可以直接在上面书写 commonJS 形式的语法，无须任何 define （毕竟最终模块都打包在一起，webpack 也会最终自动加上自己的加载器)</p>
+
+<p>entry.js</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="pln">require</span><span class="pun">(</span><span class="str">"./style.css"</span><span class="pun">);</span></code></li><li class="L1"><code class="language-js"><span class="pln">document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="pln">require</span><span class="pun">(</span><span class="str">"./content.js"</span><span class="pun">));</span></code></li></ol></pre>
+
+<p>是不是觉得不可思议，css和js都可以用require！下面的配置就是为了识别css:</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-js"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="str">"./entry.js"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-js"><span class="pln">    output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-js"><span class="pln">        path</span><span class="pun">:</span><span class="pln"> __dirname</span><span class="pun">,</span></code></li><li class="L4"><code class="language-js"><span class="pln">        filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bundle.js"</span></code></li><li class="L5"><code class="language-js"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L6"><code class="language-js"><span class="pln">    module</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-js"><span class="pln">        loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L8"><code class="language-js"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"style!css"</span><span class="pln"> </span><span class="pun">}</span><span class="com">//识别css</span></code></li><li class="L9"><code class="language-js"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L0"><code class="language-js"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L1"><code class="language-js"><span class="pun">};</span></code></li></ol></pre>
+
+<p>最后webpack回车。</p>
+
+<h3 id="title-13">Babel Loader</h3>
+
+<p>babel是R2框架必用到的，框架全程采用ES6语法。 <br>
+安装</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">npm install babel</span><span class="pun">-</span><span class="pln">loader</span></code></li></ol></pre>
+
+<p>bable可以把JSX/ES6文件转换成可执行的JS文件，在开发React应用需要用到。</p>
+
+<p>下面的是React例子 entry.js</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="kwd">const</span><span class="pln"> </span><span class="typ">React</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'react'</span><span class="pun">);</span></code></li><li class="L1"><code class="language-js"><span class="kwd">const</span><span class="pln"> </span><span class="typ">ReactDOM</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'react-dom'</span><span class="pun">);</span></code></li><li class="L2"><code class="language-js"></code></li><li class="L3"><code class="language-js"><span class="typ">ReactDOM</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span></code></li><li class="L4"><code class="language-js"><span class="pln">  </span><span class="pun">&lt;</span><span class="pln">h1</span><span class="pun">&gt;</span><span class="typ">Hello</span><span class="pun">,</span><span class="pln"> world</span><span class="pun">!&lt;/</span><span class="pln">h1</span><span class="pun">&gt;,</span></code></li><li class="L5"><code class="language-js"><span class="pln">  document</span><span class="pun">.</span><span class="pln">body</span></code></li><li class="L6"><code class="language-js"><span class="pun">);</span></code></li></ol></pre>
+
+<p>webpack.config.js</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-js"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="str">"./entry.js"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-js"><span class="pln">    output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-js"><span class="pln">        path</span><span class="pun">:</span><span class="pln"> __dirname</span><span class="pun">,</span></code></li><li class="L4"><code class="language-js"><span class="pln">        filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bundle.js"</span></code></li><li class="L5"><code class="language-js"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L6"><code class="language-js"><span class="pln">    module</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-js"><span class="pln">        loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L8"><code class="language-js"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"style!css"</span><span class="pln"> </span><span class="pun">},</span><span class="com">//识别css</span></code></li><li class="L9"><code class="language-js"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.js$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"babel-loader?presets[]=es2015&amp;presets[]=react"</span><span class="pln"> </span><span class="pun">}</span><span class="com">//识别babel</span></code></li><li class="L0"><code class="language-js"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L1"><code class="language-js"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L2"><code class="language-js"><span class="pun">};</span></code></li></ol></pre>
+
+<p>上面代码出现es2015代表需要插件<a href="https://www.npmjs.com/package/babel-preset-es2015">babel-preset-es2015</a>，react代表需要插件<a href="https://www.npmjs.com/package/babel-preset-react">babel-preset-react</a></p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pln">npm install babel</span><span class="pun">-</span><span class="pln">preset</span><span class="pun">-</span><span class="pln">es2015 </span><span class="pun">--</span><span class="pln">save</span><span class="pun">-</span><span class="pln">dev</span></code></li><li class="L1"><code><span class="pln">npm install babel</span><span class="pun">-</span><span class="pln">preset</span><span class="pun">-</span><span class="pln">react </span><span class="pun">--</span><span class="pln">save</span><span class="pun">-</span><span class="pln">dev</span></code></li></ol></pre>
+
+<p>配置文件也可以这样编写</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="pln">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-js"><span class="pln">    entry</span><span class="pun">:</span><span class="pln"> </span><span class="str">"./entry.js"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-js"><span class="pln">    output</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-js"><span class="pln">        path</span><span class="pun">:</span><span class="pln"> __dirname</span><span class="pun">,</span></code></li><li class="L4"><code class="language-js"><span class="pln">        filename</span><span class="pun">:</span><span class="pln"> </span><span class="str">"bundle.js"</span></code></li><li class="L5"><code class="language-js"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L6"><code class="language-js"><span class="pln">    module</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-js"><span class="pln">        loaders</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L8"><code class="language-js"><span class="pln">            </span><span class="pun">{</span><span class="pln"> test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.css$/</span><span class="pun">,</span><span class="pln"> loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"style!css"</span><span class="pln"> </span><span class="pun">},</span><span class="com">//识别css</span></code></li><li class="L9"><code class="language-js"><span class="pln">            </span><span class="pun">{</span><span class="pln"> </span></code></li><li class="L0"><code class="language-js"><span class="pln">                test</span><span class="pun">:</span><span class="pln"> </span><span class="str">/\.js$/</span><span class="pun">,</span><span class="pln"> </span></code></li><li class="L1"><code class="language-js"><span class="pln">                loader</span><span class="pun">:</span><span class="pln"> </span><span class="str">"babel"</span><span class="pun">,</span></code></li><li class="L2"><code class="language-js"><span class="pln">                query</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-js"><span class="pln">                    presets</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'es2015'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'react'</span><span class="pun">]</span></code></li><li class="L4"><code class="language-js"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L5"><code class="language-js"><span class="pln">            </span><span class="pun">}</span><span class="com">//识别babel</span></code></li><li class="L6"><code class="language-js"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L7"><code class="language-js"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L8"><code class="language-js"><span class="pun">};</span></code></li></ol></pre>
+
+<p>R2框架使用更简单粗暴的方法是在项目根目录配置<code>.babelrc</code>文件,后面的要用到bable解析的都设置在这个配置文件,很方便的。</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">  </span><span class="str">"presets"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"react"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"es2015"</span><span class="pun">],</span></code></li><li class="L2"><code class="language-javascript"><span class="pun">}</span></code></li></ol></pre>
+
+<h3 id="title-14">Image loader</h3>
+
+<p>运行在JS文件中require图片，经过<a href="https://www.npmjs.com/package/url-loader">url-loader</a>处理。如果图片大小于8192字节，图片将会被转换成 <code>Data URL</code>，<strong>这才是要用这个的真正原因</strong>。<a href="http://xianshannan.github.io/webpack-demo/demo05/">demo05</a></p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-html"><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"data:image/png;base64,iVBOR...uQmCC"</span><span class="tag">&gt;</span><span class="pln"> </span><span class="com">&lt;!--大小小于8192字节--&gt;</span></code></li><li class="L1"><code class="language-html"><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"4853ca667a2b8b8844eb2693ac1b2578.png"</span><span class="tag">&gt;</span><span class="com">&lt;!--大小大于8192字节--&gt;</span></code></li></ol></pre>
+
+<h3 id="title-15">结论</h3>
+
+<p>很好用,就是想贴下 <a href="http://webpack.github.io/docs/using-loaders.html">官网loaders API</a></p>
+
+<h2 id="p-5">plugins</h2>
+
+<h3 id="pp-1">webpack.NoErrorsPlugin</h3>
+
+<p>允许错误不打断程序</p>
+
+<h3 id="pp-2">HotModuleReplacementPlugin</h3>
+
+<p>热替换功能必须开启的一个插件。</p>
+
+<h3 id="ppp-1">webpack.optimize.CommonsChunkPlugin</h3>
+
+<p>作用是提取公共Chunk</p>
+
+<h3 id="title-16">什么是chunk</h3>
+
+<p>chunk到底是什么，Chunk在webpack中是什么作用？Webpack中将打包后的文件都称之为“Chunk”。Chunk我归类为两种：</p>
+
+<ul>
+<li><p>异步加载进来的</p>
+
+<p>而异步chunk插件就是将代码拆分(code splitting)打包。只需要在output配置chunkFilename就行了,看上面。</p>
+
+<p>在开发webapp时，总会有一些功能是使用过程中才会用到的，出于性能优化的需要，对于这部分资源我们希望做成异步加载，所以这部分的代码一般不用打包到入口文件里边。对于这一点，webpack提供了非常好的支持，即code splitting，即使用<code>require.ensure()</code>作为代码分割的标识。</p>
+
+<p>例如某个需求场景，根据url参数，加载不同的两个UI组件，示例代码如下：</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-js"><span class="kwd">var</span><span class="pln"> component </span><span class="pun">=</span><span class="pln"> getUrlQuery</span><span class="pun">(</span><span class="str">'component'</span><span class="pun">);</span></code></li><li class="L1"><code class="language-js"><span class="kwd">if</span><span class="pun">(</span><span class="str">'dialog'</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> component</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-js"><span class="pln">    require</span><span class="pun">.</span><span class="pln">ensure</span><span class="pun">([],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">require</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-js"><span class="pln">        </span><span class="com">//异步加载的代码</span></code></li><li class="L4"><code class="language-js"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> dialog </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'./components/dialog'</span><span class="pun">);</span></code></li><li class="L5"><code class="language-js"><span class="pln">        </span><span class="com">// todo ...</span></code></li><li class="L6"><code class="language-js"><span class="pln">    </span><span class="pun">},</span><span class="str">'dialog'</span><span class="pun">);</span></code></li><li class="L7"><code class="language-js"><span class="pun">}</span></code></li><li class="L8"><code class="language-js"><span class="kwd">if</span><span class="pun">(</span><span class="str">'toast'</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> component</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code class="language-js"><span class="pln">    require</span><span class="pun">.</span><span class="pln">ensure</span><span class="pun">([],</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">require</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code class="language-js"><span class="pln">        </span><span class="com">//异步加载的代码</span></code></li><li class="L1"><code class="language-js"><span class="pln">        </span><span class="kwd">var</span><span class="pln"> toast </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'./components/toast'</span><span class="pun">);</span></code></li><li class="L2"><code class="language-js"><span class="pln">        </span><span class="com">// todo ...</span></code></li><li class="L3"><code class="language-js"><span class="pln">    </span><span class="pun">},</span><span class="str">'toast'</span><span class="pun">);</span></code></li><li class="L4"><code class="language-js"><span class="pun">}</span></code></li></ol></pre></li>
+<li><p>script标签引进来的</p>
+
+<p>这中就需要使用CommonsChunkPlugin <br>
+R2中使用的</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="pln">    </span><span class="com">//参数为: 入口文件，输出文件名，需要提取的入口文件</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="pln">optimize</span><span class="pun">.</span><span class="typ">CommonsChunkPlugin</span><span class="pun">(</span><span class="str">"vendor"</span><span class="pun">,</span><span class="str">"vendor.bundle.js"</span><span class="pun">,[</span><span class="str">'app'</span><span class="pun">]),</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="pln">optimize</span><span class="pun">.</span><span class="typ">CommonsChunkPlugin</span><span class="pun">(</span><span class="str">"libs"</span><span class="pun">,</span><span class="str">"libs.bundle.js"</span><span class="pun">,[</span><span class="str">'vendor'</span><span class="pun">,</span><span class="str">'chunk'</span><span class="pun">]),</span></code></li></ol></pre>
+
+<p>其中上面入口文件定义为app,vendor,libs(其中vendor和libs要和插件定义的名字对应,我上面的注释了)。上面的第一行的意思是,从app(整个app的代码)中提取vendor定义的模块保存在vendor中。第二行原理一样，我是用来提取公共类库的如react,其中就包括提取vendor和chunk(通过require.ensure引进了的代码就是chunk模块)公共模块如react。</p>
+
+<p>上面的配置文件之说以注释掉，因为目前没有必要，整个项目打包后输出的bundle.js文件有950kb(es6转es5占了一部分，react占200多kb，antd UI 占 250多,还有d3等一些类库，有些还是可以做优化的)，经过服务端压缩后就只有267kb。也没必要拆开分两次载入。其他部分的代码都是异步载入的。 </p>
+
+<p>需要注意引入文件的<strong>顺序</strong>，加载先后顺序libs.bundle.js-&gt;vendor.bundle.js-&gt;bundle.js！</p></li>
+</ul>
+
+<h3 id="pp-3">webpack.DefinePlugin</h3>
+
+<p>这个是定义全局变量,常量，像process.env.NODE_ENV在node服务端才可以访问的到，通过以下代码可以在客户端也可以访问。通过这个方式就可以用来区别开发和生产环境。目前R2框架我是采用webpack.config.js为开发环境，Gruntfile.js是生产环境，Gruntfile.js里面覆盖了一些webpack.config.js的配置。</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="com">//需要使用使用JSON.stringify</span></code></li><li class="L1"><code class="language-javascript"><span class="kwd">new</span><span class="pln"> webpack</span><span class="pun">.</span><span class="typ">DefinePlugin</span><span class="pun">({</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    </span><span class="str">'process.env.NODE_ENV'</span><span class="pun">:</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">stringify</span><span class="pun">(</span><span class="str">"production"</span><span class="pun">)</span><span class="pln"> </span><span class="com">//定义为生产环境</span></code></li><li class="L3"><code class="language-javascript"><span class="pun">}),</span></code></li></ol></pre>
+
+<p>这样就可以process.evn.NODE_ENV的值就为production</p>
+
+<h3 id="ppp-2">webpack.optimize.UglifyJsPlugin</h3>
+
+<p>用于生产环境打包压缩插件。当然你要在开发环境用,也没人阻止你，当你调试的时候就清楚了。</p>
+
+<h3 id="p-p">extract-text-webpack-plugin</h3>
+
+<p>不是webpack自带的插件。</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascirpt"><span class="kwd">new</span><span class="pln"> </span><span class="typ">ExtractTextPlugin</span><span class="pun">(</span><span class="str">'css/styles.css'</span><span class="pun">),</span></code></li></ol></pre>
+
+<p>上面的设置是将所有require的css打包成一个独立的styles.css文件,当然也可以按css文件一一对应打包，这里不多说。</p>
+
+<h2 id="title-17">devtool</h2>
+
+<p>是设置调试模式增强debug,看<a href="http://webpack.github.io/docs/configuration.html#devtool">官网</a>。R2框架开发环境使用inline-source-map,生产环境为空不用调试啊,就不用生成source map。</p>
+
+<h2 id="title-18">热替换</h2>
+
+<p>这个是webpack非常棒的一个功能。修改代码后不用刷新页面就可以看到效果，是不是有点神奇！</p>
+
+<h3 id="title-19">react-tramsform</h3>
+
+<p>跟react-hot-loader（不建议使用了）是同一个作者。这个热替换插件可以实现react的热替换，不过在R2框架上还是有某些地方不支持热替换，react-tramsform作者在redux也提了一个issue建议在redux中不要使用react-tramsfrom而是基于webpack热替换新开发一套功能。</p>
+
+<h1 id="title-20">使用</h1>
+
+<p>上面的都了解了，就开始用了。</p>
+
+<h2 id="title-21">开发环境</h2>
+
+<p>开发是还需要一个server端，实时编译。这里采用express node 服务端，结合webpack-dev-middle和webpack-hot-middle Dev Tools提供编译和访问服务。 不了解的话，就需要看下node和express知识了。 <br>
+R2框架的server.js</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> path </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'path'</span><span class="pun">);</span></code></li><li class="L1"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'express'</span><span class="pun">);</span></code></li><li class="L2"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> webpack </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'webpack'</span><span class="pun">);</span></code></li><li class="L3"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> config </span><span class="pun">=</span><span class="pln"> require</span><span class="pun">(</span><span class="str">'./webpack.config'</span><span class="pun">);</span></code></li><li class="L4"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> compiler </span><span class="pun">=</span><span class="pln"> webpack</span><span class="pun">(</span><span class="pln">config</span><span class="pun">);</span></code></li><li class="L5"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> port </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8080</span><span class="pun">;</span></code></li><li class="L6"><code class="language-javascript"><span class="kwd">var</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> express</span><span class="pun">();</span></code></li><li class="L7"><code class="language-javascript"><span class="com">//使用中间件，生产编译内存信息，不生产真实文件。</span></code></li><li class="L8"><code class="language-javascript"><span class="com">//webpack-dev-middleware会在内存中生成output的信息</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">use</span><span class="pun">(</span><span class="pln">require</span><span class="pun">(</span><span class="str">'webpack-dev-middleware'</span><span class="pun">)(</span><span class="pln">compiler</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    noInfo</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    publicPath</span><span class="pun">:</span><span class="pln"> config</span><span class="pun">.</span><span class="pln">output</span><span class="pun">.</span><span class="pln">publicPath</span><span class="pun">,</span><span class="com">//必须跟webpack.config.js一致</span></code></li><li class="L2"><code class="language-javascript"><span class="pun">}));</span></code></li><li class="L3"><code class="language-javascript"><span class="com">//使用热替换工具</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">use</span><span class="pun">(</span><span class="pln">require</span><span class="pun">(</span><span class="str">'webpack-hot-middleware'</span><span class="pun">)(</span><span class="pln">compiler</span><span class="pun">));</span></code></li><li class="L5"><code class="language-javascript"><span class="com">//设置内存路径不存在(webpack-dev-middleware内存中也不存在)时访问的目录</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="kwd">static</span><span class="pun">(</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="pln"> </span><span class="str">'public'</span><span class="pun">)));</span></code></li><li class="L7"><code class="language-javascript"><span class="com">//地址重写，所以请求都定位到public/index.html文件</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'*'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">    res</span><span class="pun">.</span><span class="pln">sendFile</span><span class="pun">(</span><span class="pln">path</span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">__dirname</span><span class="pun">,</span><span class="pln"> </span><span class="str">'public/index.html'</span><span class="pun">));</span></code></li><li class="L0"><code class="language-javascript"><span class="pun">});</span></code></li><li class="L1"><code class="language-javascript"><span class="com">//启动服务</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">app</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span class="pln">port</span><span class="pun">,</span><span class="pln"> </span><span class="str">'localhost'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">err</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">err</span><span class="pun">);</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="kwd">return</span><span class="pun">;</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    console</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"==&gt; 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser."</span><span class="pun">,</span><span class="pln"> port</span><span class="pun">,</span><span class="pln"> port</span><span class="pun">)</span></code></li><li class="L8"><code class="language-javascript"><span class="pun">});</span></code></li></ol></pre>
+
+<p><code>node server.js</code> 即可运行,当然也可以在package.json设置script命令。</p>
+
+<h2 id="title-22">生产环境</h2>
+
+<p>生产环境只要配置好Gruntfile.js(针对R2),直接<code>grunt</code>即可,在指定的public目录生产线上文件。</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pun">-</span><span class="kwd">public</span></code></li><li class="L1"><code><span class="pln">    index</span><span class="pun">.</span><span class="pln">html</span></code></li><li class="L2"><code><span class="pln">    </span><span class="pun">+</span><span class="pln">js</span><span class="com">//生成的文件都在这个文件夹中，包括css(如果没有设置其他目录)</span></code></li></ol></pre>
+
+<p>index.html内容如下</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code class="language-html"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1"><code class="language-html"><span class="tag">&lt;html&gt;</span></code></li><li class="L2"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span></code></li><li class="L4"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"/js/css/styles.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></code></li><li class="L5"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;title&gt;&lt;/title&gt;</span></code></li><li class="L6"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L7"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;body&gt;</span></code></li><li class="L8"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"app_container"</span><span class="pln"> </span><span class="tag">&gt;</span></code></li><li class="L9"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;/div&gt;</span></code></li><li class="L0"><code class="language-html"><span class="pln">        </span><span class="com">&lt;!--兼容IE8以上--&gt;</span></code></li><li class="L1"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.2/es6-shim.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></li><li class="L2"><code class="language-html"><span class="pln">        </span><span class="com">&lt;!--&lt;script src="/js/libs.bundle.js"&gt;&lt;/script&gt;--&gt;</span></code></li><li class="L3"><code class="language-html"><span class="pln">        </span><span class="com">&lt;!--&lt;script src="/js/vendor.bundle.js"&gt;&lt;/script&gt;--&gt;</span></code></li><li class="L4"><code class="language-html"><span class="pln">        </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/js/bundle.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></li><li class="L5"><code class="language-html"><span class="pln">    </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L6"><code class="language-html"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre>
+
+<p>当然也可以复制webpack.config.js修改成webpack.config.production.js，把这个文件处理成生产环境的webpack配置文件,然后运行<code>webpack</code>。</p>
+
+<h1 id="title-23">坑集</h1>
+
+<h2 id="title-24">Babel版本太老</h2>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="pun">&gt;</span><span class="typ">Module</span><span class="pln"> build failed</span><span class="pun">:</span><span class="pln"> </span><span class="typ">ReferenceError</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">BABEL</span><span class="pun">]</span></code></li></ol></pre>
+
+<p>如果出现类似错误很可能是babel版本比较老，更新后问题解决。</p>
+
+<h2 id="p-6">react-hot-loader错误(react-hot-loader已被抛弃,改用react-transform-boilerplate)</h2>
+
+<ul>
+<li>报import关键字需要再文件最上面使用错误。原因是webpack.config.js配置loader顺序问题，需要先使用babel在使用react-hot-loader。</li>
+</ul>
+
+<h2 id="p-7">import react 时报大小写warning</h2>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="typ">There</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> another </span><span class="kwd">module</span><span class="pln"> </span><span class="kwd">with</span><span class="pln"> an equal name </span><span class="kwd">when</span><span class="pln"> </span><span class="kwd">case</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> ignored</span><span class="pun">.</span></code></li><li class="L1"><code><span class="typ">This</span><span class="pln"> can lead to unexpected behavior </span><span class="kwd">when</span><span class="pln"> compiling on a filesystem </span><span class="kwd">with</span><span class="pln"> other </span><span class="kwd">case</span><span class="pun">-</span><span class="pln">semantic</span><span class="pun">.</span></code></li><li class="L2"><code><span class="typ">Rename</span><span class="pln"> </span><span class="kwd">module</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> multiple modules are expected </span><span class="kwd">or</span><span class="pln"> </span><span class="kwd">use</span><span class="pln"> equal casing </span><span class="kwd">if</span><span class="pln"> one </span><span class="kwd">module</span><span class="pln"> </span><span class="kwd">is</span><span class="pln"> expected</span><span class="pun">.</span></code></li></ol></pre>
+
+<p>出现这些提示是应为下面的react在不同文件上出现了大小写不一致，需要统一使用react或React</p>
+
+<pre class="prettyprint linenums prettyprinted"><ol class="linenums"><li class="L0"><code><span class="kwd">import</span><span class="pln"> </span><span class="typ">React</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> </span><span class="str">'react'</span></code></li><li class="L1"><code><span class="kwd">import</span><span class="pln"> </span><span class="typ">React</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> </span><span class="str">'React'</span></code></li></ol></pre></div>
+			
+		    <div class="pre-next-post">
+		        <p>
+			    上一篇: <a href="http://blog.leanote.com/post/sams/JavaScript%E7%BC%96%E7%A8%8BTips">JavaScript编程技巧总结</a>
+                </p>
+                <p>
+                下一篇: <a href="http://blog.leanote.com/post/sams/ded62a4f8060">Javascript学习要点（进阶巩固）</a>
+			    </p>
+			</div>
+			
+			
+			
+<div class="entry-controls clearfix">
+	<div class="vote-section-wrapper clearfix">
+		<button class="btn btn-default btn-zan" id="likeBtn"><i class="fa fa-thumbs-o-up"></i> <span id="likeNum">0</span> 赞</button>
+		<span class="control-item read-counts"><i class="fa fa-eye"></i> 594 人读过</span>
+	</div>
+	<div class="right-section">
+		<div id="weixinQRCode"></div>
+		<button class="btn btn-share btn-default btn-weibo"><i class="fa fa-weibo"></i> 新浪微博</button>
+		<button class="btn btn-share btn-default btn-weixin"><i class="fa fa-wechat"></i> 微信</button>
+		<div class="dropdown" style="display: inline-block; cursor: pointer; padding: 5px 10px; padding-right: 30px">
+			
+			<div class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+				<i class="fa fa-ellipsis-h"></i>
+			</div>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="http://blog.leanote.com/post/sams/webpack%E7%9F%A5%E8%AF%86%E7%82%B9%E6%BB%B4#" class="btn-share tencent-weibo"><i class="fa fa-tencent-weibo"></i> 腾讯微博</a></li>
+				<li><a href="http://blog.leanote.com/post/sams/webpack%E7%9F%A5%E8%AF%86%E7%82%B9%E6%BB%B4#" class="btn-share qq"><i class="fa fa-qq"></i> QQ空间</a></li>
+				<li><a href="http://blog.leanote.com/post/sams/webpack%E7%9F%A5%E8%AF%86%E7%82%B9%E6%BB%B4#" class="btn-share renren"><i class="fa fa-renren"></i> 人人网</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="voters clearfix" id="likers">
+
+</div>
+</div>
+
+<script type="text/x-jsrender" id="tLikers" data-jsv-tmpl="_0">
+[[for users]]
+	<a id="liker_[[:UserId]]" title="[[:BlogTitle]]" href="[[:BlogUrl]]" target="_blank" class="voter">
+		[[if Logo]]
+			<img alt="avatar" class="avatar-small" src="[[:Logo]]">
+		[[else]]
+			<img alt="avatar" class="avatar-small" src="/images/blog/default_avatar.png">
+		[[/if]]
+	</a>
+[[/for]]
+</script>
+
+
+<script type="text/x-jsrender" id="tComments">
+[[for comments]]
+	<li class="comment-item">
+		<!-- 头像 -->
+		<a ui-hovercard="" target="_blank" class="avatar-link" title="[[:UserInfo.Username]]" href="[[:UserInfo.BlogUrl]]">
+			<img class="avatar" src="[[:UserInfo.Logo]]">
+		</a>
+		<!-- 评论 -->
+		<div class="comment-body">
+			<div class="comment-hd">
+				<a href="[[:UserInfo.BlogUrl]]" target="_blank" >[[:UserInfo.Username]]</a>
+				[[if IsAuthorComment]]
+				<span>(作者)</span>
+				[[/if]]
+				
+				<!-- 回复其它人 -->
+				[[if ToUserInfo]]
+					<span class="in-reply-to">
+			        回复
+			        <a href="[[:ToUserInfo.BlogUrl]]">[[:ToUserInfo.Username]]</a>
+					</span>
+					[[if ToUserIsAuthor]]
+					<span>(作者)</span>
+					[[/if]]
+				[[/if]]
+			</div>
+			<div class="comment-content ng-binding" ng-bind-html="comment.content">
+				[[html:Content]]
+			</div>
+			<div class="comment-ft clearfix" data-comment-id="[[:CommentId]]" >
+				<span title="" ui-time="" class="date">[[:PublishDate]] </span>
+				<span class="like-num [[if !LikeNum]]hide[[/if]]" title="[[:LikeNum]] 赞"><span class="like-num-i">[[:LikeNum]]</span> 赞</span></span>
+				
+				[[if ~root.visitUserInfo.UserId]]
+					[[if IsMyNote && !IsMyComment]]
+						<a href="javascript:;" class="comment-trash op-link "><i class="fa fa-trash"></i> 删除</a>
+					[[/if]]
+					[[if !IsMyComment]]
+					<a href="javascript:;" class="comment-reply op-link ">
+						<i class="fa fa-reply"></i>
+						回复
+					</a>
+					<a href="javascript:;" class="comment-like op-link"><i class="fa fa-thumbs-o-up"></i> <span class="like-text">[[if IsILikeIt]]取消赞[[else]]赞[[/if]]</span></a>
+					[[else]]
+					<a href="javascript:;" class="comment-trash op-link "><i class="fa fa-trash"></i> 删除</a>
+					[[/if]]
+				[[/if]]
+			</div>
+			
+			<!-- 回复该评论 -->
+			[[if ~root.visitUserInfo.UserId]]
+			<form class="comment-form comment-box-ft">
+				<div class="clearfix">
+					<div class="avatar-wrap">
+						<img class="avatar" src="[[:~root.visitUserInfo.Logo]]">
+					</div>
+					<div class="editor-wrap">
+						<textarea class="editable" id="commentContent" name="commentContent" placeholder="回复"></textarea>
+					</div>
+				</div>
+				
+				<div class="command clearfix" style="display: block;">
+					<button class="reply-comment-btn save btn btn-primary" data-comment-id="[[:CommentId]]">提交评论</button>
+					<a class="cancel reply-cancel btn-link">取消</a>
+				</div>
+			</form>
+			[[/if]]
+		</div>
+	</li>
+[[/for]]
+</script>
+
+
+<div class="comment-box">
+	<form class="comment-form comment-box-ft hide" id="commentForm">
+		<div class="clearfix">
+			<div class="avatar-wrap">
+				<img class="avatar" id="visitUserLogo">
+			</div>
+			<div class="editor-wrap">
+				<textarea class="editable" id="commentContent" name="commentContent" placeholder="评论" style="height: 100px;"></textarea>
+			</div>
+		</div>
+		<div class="command clearfix" style="display: block;">
+			<button id="commentBtn" class="reply-comment-btn save btn btn-primary">提交评论</button>
+		</div>
+	</form>
+	<div class="needLogin" id="noLoginContainer">
+		<a onclick="goLogin()">立即登录</a>, 发表评论.
+		<br>
+		没有帐号? <a onclick="goRegister()">立即注册</a>
+	</div>
+	<div class="box-header">
+	    <span class="counter">
+	      <i class="icon icon-comment"></i><span id="commentNum">0</span> 条评论
+	    </span>
+    </div>
+    
+	<ul id="comments">
+	</ul>
+</div>
+
+
+<div id="moreComments">
+	<div class="hide comments-more">
+		<a>More...</a>
+	</div>
+	<div class="comments-loading hide">
+		<img src="./webpack知识点滴_files/loading-32.gif">
+	</div>
+</div>
+
+
+	
+		</div>
+	</div>
+</div>
+
+</div>
+
+<div id="footerContainer">
+	
+	<div class="container" id="footer">
+        <div class="col-md-4">
+          <h3>导航</h3>
+          <ul>
+          	<li><a href="http://blog.leanote.com/sams">主页</a></li>
+          	
+			
+			
+			    <li class="">
+					<a href="http://blog.leanote.com/single/sams/About-Me">About Me</a>
+				</li>
+			
+			
+			
+			<li class="">
+				<a href="http://blog.leanote.com/archives/sams">归档</a>
+			</li>
+			<li class="">
+				<a href="http://blog.leanote.com/tags/sams">标签</a>
+			</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h3>最近发表</h3>
+          <ul>
+          	
+          	<li title="React高阶组件替代Mixins"><a href="http://blog.leanote.com/post/sams/React%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E6%9B%BF%E4%BB%A3Mixins">React高阶组件替代Mixins</a></li>
+          	
+          	<li title=" Ajax或Fetch请求之IE和Edge缓存问题"><a href="http://blog.leanote.com/post/sams/59195a761f13"> Ajax或Fetch请求之IE和Edge缓存问题</a></li>
+          	
+          	<li title="Javascript学习要点（进阶巩固）"><a href="http://blog.leanote.com/post/sams/Javascript%E5%AD%A6%E4%B9%A0%E8%A6%81%E7%82%B9%EF%BC%88%E8%BF%9B%E9%98%B6%E5%B7%A9%E5%9B%BA%EF%BC%89-2">Javascript学习要点（进阶巩固）</a></li>
+          	
+          	<li title="Javascript学习要点（进阶巩固）"><a href="http://blog.leanote.com/post/sams/Javascript%E5%AD%A6%E4%B9%A0%E8%A6%81%E7%82%B9%EF%BC%88%E8%BF%9B%E9%98%B6%E5%B7%A9%E5%9B%BA%EF%BC%89">Javascript学习要点（进阶巩固）</a></li>
+          	
+          	<li title="实时监控系统Demo前端(r2-real-time-frontend)"><a href="http://blog.leanote.com/post/sams/r2-real-time-frontend">实时监控系统Demo前端(r2-real-time-frontend)</a></li>
+          	
+          </ul>
+       </div>
+        <div class="col-md-4">
+          <h3>友情链接 </h3>
+          <ul>
+          	
+          		
+					<li><a href="https://leanote.com/note" target="_blank">My Note</a></li>
+          		
+					<li><a href="https://leanote.com/" target="_blank">Leanote Home</a></li>
+          		
+					<li><a href="http://bbs.leanote.com/" target="_blank">Leanote BBS</a></li>
+          		
+					<li><a href="https://github.com/leanote/leanote" target="_blank">Leanote Github</a></li>
+          		
+          	
+		 </ul>
+        </div>
+    </div>
+    <div class="footer-leanote">Proudly powered by <a href="https://leanote.com/">Leanote</a></div>
+</div>
+<script src="./webpack知识点滴_files/jquery-1.9.0.min.js"></script>
+<script src="./webpack知识点滴_files/bootstrap-min.js"></script>
+<script src="./webpack知识点滴_files/bootstrap-hover-dropdown.js"></script>
+<script>
+
+function search(e) {
+	var keywords = $("#searchInput").val();
+	if(!keywords) {
+		location.href = "http:\/\/blog.leanote.com\/search\/sams";
+	} else {
+		var tpl = '<form action="http:\/\/blog.leanote.com\/search\/sams" method="get">';
+		tpl += '<input name="keywords" value="' + keywords + '" />';
+		tpl += "</form";
+		$(tpl).submit();
+	}
+}
+</script>
+
+<link href="./webpack知识点滴_files/prettify.css" type="text/css" rel="stylesheet">
+<script src="./webpack知识点滴_files/prettify.js"></script>
+<script>
+$("pre").addClass("prettyprint linenums");
+prettyPrint();
+</script>
+
+<div id="blogNav" style="top: 10px; left: 980px; display: block;">
+	<div id="blogNavNav">
+		<i class="fa fa-align-justify" title="文档导航"></i>
+		<span>文档导航</span>
+	</div>
+	<div id="blogNavContent"><ul><li class="nav-h1"><a data-a="h1-%E5%89%8D%E8%A8%80" onclick="scrollTo(this, &#39;h1&#39;, &#39;前言&#39;)">前言</a></li><li class="nav-h2"><a data-a="h2-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90" onclick="scrollTo(this, &#39;h2&#39;, &#39;学习资源&#39;)">学习资源</a></li><li class="nav-h2"><a data-a="h2-webpack" onclick="scrollTo(this, &#39;h2&#39;, &#39;webpack&#39;)">webpack</a></li><li class="nav-h2"><a data-a="h2-%E9%A6%96%E6%AC%A1%E5%B0%9D%E8%AF%95" onclick="scrollTo(this, &#39;h2&#39;, &#39;首次尝试&#39;)">首次尝试</a></li><li class="nav-h2"><a data-a="h2-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%20webpack.config.js" onclick="scrollTo(this, &#39;h2&#39;, &#39;配置文件 webpack.config.js&#39;)">配置文件 webpack.config.js</a></li><li class="nav-h2"><a data-a="h2-%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6(%E9%85%8D%E7%BD%AE%E9%A1%B9entry)" onclick="scrollTo(this, &#39;h2&#39;, &#39;入口文件(配置项entry)&#39;)">入口文件(配置项entry)</a></li><li class="nav-h2"><a data-a="h2-%E8%BE%93%E5%87%BA%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6(%E9%85%8D%E7%BD%AE%E9%A1%B9output)" onclick="scrollTo(this, &#39;h2&#39;, &#39;输出打包文件(配置项output)&#39;)">输出打包文件(配置项output)</a></li><li class="nav-h3"><a data-a="h3-output.filename" onclick="scrollTo(this, &#39;h3&#39;, &#39;output.filename&#39;)">output.filename</a></li><li class="nav-h3"><a data-a="h3-output.path" onclick="scrollTo(this, &#39;h3&#39;, &#39;output.path&#39;)">output.path</a></li><li class="nav-h3"><a data-a="h3-output.publicPath" onclick="scrollTo(this, &#39;h3&#39;, &#39;output.publicPath&#39;)">output.publicPath</a></li><li class="nav-h3"><a data-a="h3-output.chunkFilename" onclick="scrollTo(this, &#39;h3&#39;, &#39;output.chunkFilename&#39;)">output.chunkFilename</a></li><li class="nav-h2"><a data-a="h2-loaders" onclick="scrollTo(this, &#39;h2&#39;, &#39;loaders&#39;)">loaders</a></li><li class="nav-h2"><a data-a="h2-resolve" onclick="scrollTo(this, &#39;h2&#39;, &#39;resolve&#39;)">resolve</a></li><li class="nav-h3"><a data-a="h3-resolve.alias" onclick="scrollTo(this, &#39;h3&#39;, &#39;resolve.alias&#39;)">resolve.alias</a></li><li class="nav-h3"><a data-a="h3-resolve.root" onclick="scrollTo(this, &#39;h3&#39;, &#39;resolve.root&#39;)">resolve.root</a></li><li class="nav-h3"><a data-a="h3-resolve.modulesDirectories" onclick="scrollTo(this, &#39;h3&#39;, &#39;resolve.modulesDirectories&#39;)">resolve.modulesDirectories</a></li><li class="nav-h3"><a data-a="h3-resolve.extensions" onclick="scrollTo(this, &#39;h3&#39;, &#39;resolve.extensions&#39;)">resolve.extensions</a></li><li class="nav-h3"><a data-a="h3-resolve.externals" onclick="scrollTo(this, &#39;h3&#39;, &#39;resolve.externals&#39;)">resolve.externals</a></li><li class="nav-h2"><a data-a="h2-loaders" onclick="scrollTo(this, &#39;h2&#39;, &#39;loaders&#39;)">loaders</a></li><li class="nav-h3"><a data-a="h3-CSS%20loader" onclick="scrollTo(this, &#39;h3&#39;, &#39;CSS loader&#39;)">CSS loader</a></li><li class="nav-h3"><a data-a="h3-Babel%20Loader" onclick="scrollTo(this, &#39;h3&#39;, &#39;Babel Loader&#39;)">Babel Loader</a></li><li class="nav-h3"><a data-a="h3-Image%20loader" onclick="scrollTo(this, &#39;h3&#39;, &#39;Image loader&#39;)">Image loader</a></li><li class="nav-h3"><a data-a="h3-%E7%BB%93%E8%AE%BA" onclick="scrollTo(this, &#39;h3&#39;, &#39;结论&#39;)">结论</a></li><li class="nav-h2"><a data-a="h2-plugins" onclick="scrollTo(this, &#39;h2&#39;, &#39;plugins&#39;)">plugins</a></li><li class="nav-h3"><a data-a="h3-webpack.NoErrorsPlugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;webpack.NoErrorsPlugin&#39;)">webpack.NoErrorsPlugin</a></li><li class="nav-h3"><a data-a="h3-HotModuleReplacementPlugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;HotModuleReplacementPlugin&#39;)">HotModuleReplacementPlugin</a></li><li class="nav-h3"><a data-a="h3-webpack.optimize.CommonsChunkPlugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;webpack.optimize.CommonsChunkPlugin&#39;)">webpack.optimize.CommonsChunkPlugin</a></li><li class="nav-h3"><a data-a="h3-%E4%BB%80%E4%B9%88%E6%98%AFchunk" onclick="scrollTo(this, &#39;h3&#39;, &#39;什么是chunk&#39;)">什么是chunk</a></li><li class="nav-h3"><a data-a="h3-webpack.DefinePlugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;webpack.DefinePlugin&#39;)">webpack.DefinePlugin</a></li><li class="nav-h3"><a data-a="h3-webpack.optimize.UglifyJsPlugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;webpack.optimize.UglifyJsPlugin&#39;)">webpack.optimize.UglifyJsPlugin</a></li><li class="nav-h3"><a data-a="h3-extract-text-webpack-plugin" onclick="scrollTo(this, &#39;h3&#39;, &#39;extract-text-webpack-plugin&#39;)">extract-text-webpack-plugin</a></li><li class="nav-h2"><a data-a="h2-devtool" onclick="scrollTo(this, &#39;h2&#39;, &#39;devtool&#39;)">devtool</a></li><li class="nav-h2"><a data-a="h2-%E7%83%AD%E6%9B%BF%E6%8D%A2" onclick="scrollTo(this, &#39;h2&#39;, &#39;热替换&#39;)">热替换</a></li><li class="nav-h3"><a data-a="h3-react-tramsform" onclick="scrollTo(this, &#39;h3&#39;, &#39;react-tramsform&#39;)">react-tramsform</a></li><li class="nav-h1"><a data-a="h1-%E4%BD%BF%E7%94%A8" onclick="scrollTo(this, &#39;h1&#39;, &#39;使用&#39;)">使用</a></li><li class="nav-h2"><a data-a="h2-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" onclick="scrollTo(this, &#39;h2&#39;, &#39;开发环境&#39;)">开发环境</a></li><li class="nav-h2"><a data-a="h2-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83" onclick="scrollTo(this, &#39;h2&#39;, &#39;生产环境&#39;)">生产环境</a></li><li class="nav-h1"><a data-a="h1-%E5%9D%91%E9%9B%86" onclick="scrollTo(this, &#39;h1&#39;, &#39;坑集&#39;)">坑集</a></li><li class="nav-h2"><a data-a="h2-Babel%E7%89%88%E6%9C%AC%E5%A4%AA%E8%80%81" onclick="scrollTo(this, &#39;h2&#39;, &#39;Babel版本太老&#39;)">Babel版本太老</a></li><li class="nav-h2"><a data-a="h2-react-hot-loader%E9%94%99%E8%AF%AF(react-hot-loader%E5%B7%B2%E8%A2%AB%E6%8A%9B%E5%BC%83,%E6%94%B9%E7%94%A8react-transform-boilerplate)" onclick="scrollTo(this, &#39;h2&#39;, &#39;react-hot-loader错误(react-hot-loader已被抛弃,改用react-transform-boilerplate)&#39;)">react-hot-loader错误(react-hot-loader已被抛弃,改用react-transform-boilerplate)</a></li><li class="nav-h2"><a data-a="h2-import%20react%20%E6%97%B6%E6%8A%A5%E5%A4%A7%E5%B0%8F%E5%86%99warning" onclick="scrollTo(this, &#39;h2&#39;, &#39;import react 时报大小写warning&#39;)">import react 时报大小写warning</a></li></ul></div>
+</div>
+
+
+<script>
+var siteUrl = "http:\/\/leanote.com"; 
+
+var blogInfo={UserId: "56fce434ab64415150000fb8", OpenComment:  true , CommentType: ""}; 
+var noteId = "570f39e8ab644163a30015ba"; 
+var preLikeNum = +"0";
+var commentNum = +"0";
+</script>
+
+
+<link href="./webpack知识点滴_files/share_comment.css" rel="stylesheet">
+
+<script src="./webpack知识点滴_files/common.js"></script>
+<script src="./webpack知识点滴_files/jsrender.js"></script>
+<script src="./webpack知识点滴_files/jquery-cookie-min.js"></script>
+<script src="./webpack知识点滴_files/bootstrap-dialog.min.js"></script>
+<script src="./webpack知识点滴_files/jquery.qrcode.min.js"></script>
+
+<script src="./webpack知识点滴_files/share_comment.js"></script>
+
+
+<script src="./webpack知识点滴_files/md2html.js"></script>
+<script>
+var content = $.trim($("#markdownContent textarea").val());
+md2Html(content, $("#content"), function(html) {
+    $("pre").addClass("prettyprint linenums");
+    prettyPrint();
+    initNav();
+    weixin();
+});
+</script>
+
+
+
+
+</body></html>

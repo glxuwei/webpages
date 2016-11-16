@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>第 7 章: Hindley-Milner 类型签名 · JS函数式编程指南</title>
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="author" content="Linghao Li">
+        
+        
+    
+    <link rel="stylesheet" href="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/website(1).css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    
+    
+    
+    
+
+    <link rel="prev" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html"><link rel="next" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html"></head>
+    <body>
+        
+<div class="book without-animation with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese" target="_blank" class="custom-link">JS函数式编程指南</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html">
+            
+                    
+                    第 1 章: 我们在做什么？
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#介绍">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch1.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch1.html#一个简单例子">
+            
+                    
+                    一个简单例子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html">
+            
+                    
+                    第 2 章: 一等公民的函数
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#快速概览">
+            
+                    
+                    快速概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ch2.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch2.html#为何钟爱一等公民">
+            
+                    
+                    为何钟爱一等公民
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    第 3 章: 纯函数的好处
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#再次强调“纯”">
+            
+                    
+                    再次强调“纯”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#副作用可能包括">
+            
+                    
+                    副作用可能包括...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#八年级数学">
+            
+                    
+                    八年级数学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#追求“纯”的理由">
+            
+                    
+                    追求“纯”的理由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch3.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html">
+            
+                    
+                    第 4 章: 柯里化（curry）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不可或缺的-curry">
+            
+                    
+                    不可或缺的 curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#不仅仅是双关语咖喱">
+            
+                    
+                    不仅仅是双关语／咖喱
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch4.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html">
+            
+                    
+                    第 5 章: 代码组合（compose）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#函数饲养">
+            
+                    
+                    函数饲养
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#pointfree">
+            
+                    
+                    pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#debug">
+            
+                    
+                    debug
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#范畴学">
+            
+                    
+                    范畴学
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch5.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch5.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html">
+            
+                    
+                    第 6章: 示例应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#声明式代码">
+            
+                    
+                    声明式代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#一个函数式的-flickr">
+            
+                    
+                    一个函数式的 flickr
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#有原则的重构">
+            
+                    
+                    有原则的重构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch6.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html">
+            
+                    
+                    第 7 章: Hindley-Milner 类型签名
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter" data-level="1.8.1" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型">
+            
+                    
+                    初识类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter" data-level="1.8.2" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#神秘的传奇故事">
+            
+                    
+                    神秘的传奇故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter" data-level="1.8.3" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#缩小可能性范围">
+            
+                    
+                    缩小可能性范围
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter" data-level="1.8.4" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#自由定理">
+            
+                    
+                    自由定理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter" data-level="1.8.5" data-path="ch7.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">
+            
+                    
+                    第 8 章: 特百惠
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#强大的容器">
+            
+                    
+                    强大的容器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#第一个-functor">
+            
+                    
+                    第一个 functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#薛定谔的-maybe">
+            
+                    
+                    薛定谔的 Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#“纯”错误处理">
+            
+                    
+                    “纯”错误处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#王老先生有作用">
+            
+                    
+                    王老先生有作用...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#异步任务">
+            
+                    
+                    异步任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#一点理论">
+            
+                    
+                    一点理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch8.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html">
+            
+                    
+                    第 9 章: Monad
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#pointed-functor">
+            
+                    
+                    pointed functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#混合比喻">
+            
+                    
+                    混合比喻
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#chain-函数">
+            
+                    
+                    chain 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#理论">
+            
+                    
+                    理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch9.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch9.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html">
+            
+                    
+                    第 10 章: Applicative Functor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#应用-applicative-functor">
+            
+                    
+                    应用 applicative functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#瓶中之船">
+            
+                    
+                    瓶中之船
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#协调于激励">
+            
+                    
+                    协调于激励
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#lift">
+            
+                    
+                    lift
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#免费开瓶器">
+            
+                    
+                    免费开瓶器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#定律">
+            
+                    
+                    定律
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch10.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com/" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <a class="btn pull-left js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#"><i class="fa fa-align-justify"></i></a><div class="dropdown pull-right  js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Share" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#"><i class="fa fa-share-alt"></i></a><div class="dropdown-menu dropdown-left"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-5 ">Facebook</button><button class="button size-5 ">Google+</button><button class="button size-5 ">Twitter</button><button class="button size-5 ">Weibo</button><button class="button size-5 ">Instapaper</button></div></div></div><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#"><i class="fa fa-facebook"></i></a><a class="btn pull-right js-toolbar-action" aria-label="" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#"><i class="fa fa-twitter"></i></a><div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Font Settings" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#"><i class="fa fa-font"></i></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><button class="button size-2 font-reduce">A</button><button class="button size-2 font-enlarge">A</button></div><div class="buttons"><button class="button size-2 ">Serif</button><button class="button size-2 ">Sans</button></div><div class="buttons"><button class="button size-3 ">White</button><button class="button size-3 ">Sepia</button><button class="button size-3 ">Night</button></div></div></div><h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/">第 7 章: Hindley-Milner 类型签名</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="hindley-milner-类型签名">Hindley-Milner 类型签名</h1>
+<h2 id="初识类型">初识类型</h2>
+<p class="comments-section">刚接触函数式编程的人很容易深陷类型签名（type signatures）的泥淖。类型（type）是让所有不同背景的人都能高效沟通的元语言。很大程度上，类型签名是以 “Hindley-Milner” 系统写就的，本章我们将一起探究下这个系统。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">类型签名在写纯函数时所起的作用非常大，大到英语都不能望其项背。这些签名轻轻诉说着函数最不可告人的秘密。短短一行，就能暴露函数的行为和目的。类型签名还衍生出了 “自由定理（free theorems）” 的概念。因为类型是可以推断的，所以明确的类型签名并不是必要的；不过你完全可以写精确度很高的类型签名，也可以让它们保持通用、抽象。类型签名不但可以用于编译时检测（compile time checks），还是最好的文档。所以类型签名在函数式编程中扮演着非常重要的角色——重要程度远远超出你的想象。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">JavaScript 是一种动态类型语言，但这并不意味着要一味否定类型。我们还是要和字符串、数值、布尔值等等类型打交道的；只不过，语言层面上没有相关的集成让我们时刻谨记各种数据的类型罢了。别担心，既然我们可以用类型签名生成文档，也可以用注释来达到区分类型的目的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">JavaScript 也有一些类型检查工具，比如 <a href="http://flowtype.org/" target="_blank">Flow</a>，或者它的静态类型方言 <a href="http://www.typescriptlang.org/" target="_blank">TypeScript</a> 。由于本书的目标是让读者能够熟练使用各种工具去书写函数式代码，所以我们将选择所有函数式语言都遵循的标准类型系统。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="神秘的传奇故事">神秘的传奇故事</h2>
+<p class="comments-section">从积尘已久的数学书，到浩如烟海的学术论文；从每周必读的博客文章，到源代码本身，我们都能发现 Hindley-Milner 类型签名的身影。Hindley-Milner 并不是一个复杂的系统，但还是需要一些解释和练习才能完全掌握这个小型语言的要义。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  capitalize :: String -&gt; String</span>
+<span class="hljs-keyword">var</span> capitalize = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>)</span>{
+  <span class="hljs-keyword">return</span> toUpperCase(head(s)) + toLowerCase(tail(s));
+}
+
+capitalize(<span class="hljs-string">"smurf"</span>);
+<span class="hljs-comment">//=&gt; "Smurf"</span>
+</code></pre>
+<p class="comments-section">这里，<code>capitalize</code> 接受一个 <code>String</code> 并返回了一个 <code>String</code>。先别管实现，我们感兴趣的是它的类型签名。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">在 Hindley-Milner 系统中，函数都写成类似 <code>a -&gt; b</code> 这个样子，其中 <code>a</code> 和<code>b</code> 是任意类型的变量。因此，<code>capitalize</code> 函数的类型签名可以理解为“一个接受 <code>String</code> 返回 <code>String</code> 的函数”。换句话说，它接受一个 <code>String</code> 类型作为输入，并返回一个 <code>String</code> 类型的输出。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">再来看一些函数签名：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  strLength :: String -&gt; Number</span>
+<span class="hljs-keyword">var</span> strLength = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">s</span>)</span>{
+  <span class="hljs-keyword">return</span> s.length;
+}
+
+<span class="hljs-comment">//  join :: String -&gt; [String] -&gt; String</span>
+<span class="hljs-keyword">var</span> join = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">what, xs</span>)</span>{
+  <span class="hljs-keyword">return</span> xs.join(what);
+});
+
+<span class="hljs-comment">//  match :: Regex -&gt; String -&gt; [String]</span>
+<span class="hljs-keyword">var</span> match = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reg, s</span>)</span>{
+  <span class="hljs-keyword">return</span> s.match(reg);
+});
+
+<span class="hljs-comment">//  replace :: Regex -&gt; String -&gt; String -&gt; String</span>
+<span class="hljs-keyword">var</span> replace = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reg, sub, s</span>)</span>{
+  <span class="hljs-keyword">return</span> s.replace(reg, sub);
+});
+</code></pre>
+<p class="comments-section"><code>strLength</code> 和 <code>capitalize</code> 类似：接受一个 <code>String</code> 然后返回一个 <code>Number</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">至于其他的，第一眼看起来可能会比较疑惑。不过在还不完全了解细节的情况下，你尽可以把最后一个类型视作返回值。那么 <code>match</code> 函数就可以这么理解：它接受一个 <code>Regex</code> 和一个 <code>String</code>，返回一个 <code>[String]</code>。但是，这里有一个非常有趣的地方，请允许我稍作解释。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">对于 <code>match</code> 函数，我们完全可以把它的类型签名这样分组：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  match :: Regex -&gt; (String -&gt; [String])</span>
+<span class="hljs-keyword">var</span> match = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reg, s</span>)</span>{
+  <span class="hljs-keyword">return</span> s.match(reg);
+});
+</code></pre>
+<p class="comments-section">是的，把最后两个类型包在括号里就能反映更多的信息了。现在我们可以看出 <code>match</code> 这个函数接受一个 <code>Regex</code> 作为参数，返回一个从 <code>String</code> 到 <code>[String]</code> 的函数。因为 curry，造成的结果就是这样：给 <code>match</code> 函数一个 <code>Regex</code>，得到一个新函数，能够处理其 <code>String</code> 参数。当然了，我们并非一定要这么看待这个过程，但这样思考有助于理解为何最后一个类型是返回值。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  match :: Regex -&gt; (String -&gt; [String])</span>
+
+<span class="hljs-comment">//  onHoliday :: String -&gt; [String]</span>
+<span class="hljs-keyword">var</span> onHoliday = match(<span class="hljs-regexp">/holiday/ig</span>);
+</code></pre>
+<p class="comments-section">每传一个参数，就会弹出类型签名最前面的那个类型。所以 <code>onHoliday</code> 就是已经有了 <code>Regex</code> 参数的 <code>match</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  replace :: Regex -&gt; (String -&gt; (String -&gt; String))</span>
+<span class="hljs-keyword">var</span> replace = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reg, sub, s</span>)</span>{
+  <span class="hljs-keyword">return</span> s.replace(reg, sub);
+});
+</code></pre>
+<p class="comments-section">但是在这段代码中，就像你看到的那样，为 <code>replace</code> 加上这么多括号未免有些多余。所以这里的括号是完全可以省略的，如果我们愿意，可以一次性把所有的参数都传进来；所以，一种更简单的思路是：<code>replace</code> 接受三个参数，分别是 <code>Regex</code>、<code>String</code> 和另一个 <code>String</code>，返回的还是一个 <code>String</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">最后几点：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  id :: a -&gt; a</span>
+<span class="hljs-keyword">var</span> id = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>)</span>{ <span class="hljs-keyword">return</span> x; }
+
+<span class="hljs-comment">//  map :: (a -&gt; b) -&gt; [a] -&gt; [b]</span>
+<span class="hljs-keyword">var</span> map = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, xs</span>)</span>{
+  <span class="hljs-keyword">return</span> xs.map(f);
+});
+</code></pre>
+<p class="comments-section">这里的 <code>id</code> 函数接受任意类型的 <code>a</code> 并返回同一个类型的数据。和普通代码一样，我们也可以在类型签名中使用变量。把变量命名为 <code>a</code> 和 <code>b</code> 只是一种约定俗成的习惯，你可以使用任何你喜欢的名称。对于相同的变量名，其类型也一定相同。这是非常重要的一个原则，所以我们必须重申：<code>a -&gt; b</code> 可以是从任意类型的 <code>a</code> 到任意类型的 <code>b</code>，但是 <code>a -&gt; a</code> 必须是同一个类型。例如，<code>id</code> 可以是 <code>String -&gt; String</code>，也可以是 <code>Number -&gt; Number</code>，但不能是 <code>String -&gt; Bool</code>。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">相似地，<code>map</code> 也使用了变量，只不过这里的 <code>b</code> 可能与 <code>a</code> 类型相同，也可能不相同。我们可以这么理解：<code>map</code> 接受两个参数，第一个是从任意类型 <code>a</code> 到任意类型 <code>b</code> 的函数；第二个是一个数组，元素是任意类型的 <code>a</code>；<code>map</code> 最后返回的是一个类型 <code>b</code> 的数组。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">类型签名的美妙令人印象深刻，希望你已经被它深深折服。类型签名简直能够一字一句地告诉我们函数做了什么事情。比如 <code>map</code> 函数就是这样：给定一个从 <code>a</code> 到 <code>b</code> 的函数和一个 <code>a</code> 类型的数组作为参数，它就能返回一个 <code>b</code> 类型的数组。<code>map</code> 唯一的明智之举就是使用其函数参数调用每一个 <code>a</code>，其他所有操作都是噱头。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">辨别类型和它们的含义是一项重要的技能，这项技能可以让你在函数式编程的路上走得更远。不仅论文、博客和文档等更易理解，类型签名本身也基本上能够告诉你它的函数性（functionality）。要成为一个能够熟练读懂类型签名的人，你得勤于练习；不过一旦掌握了这项技能，你将会受益无穷，不读手册也能获取大量信息。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这里还有一些例子，你可以自己试试看能不能理解它们。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">//  head :: [a] -&gt; a</span>
+<span class="hljs-keyword">var</span> head = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xs</span>)</span>{ <span class="hljs-keyword">return</span> xs[<span class="hljs-number">0</span>]; }
+
+<span class="hljs-comment">//  filter :: (a -&gt; Bool) -&gt; [a] -&gt; [a]</span>
+<span class="hljs-keyword">var</span> filter = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, xs</span>)</span>{
+  <span class="hljs-keyword">return</span> xs.filter(f);
+});
+
+<span class="hljs-comment">//  reduce :: (b -&gt; a -&gt; b) -&gt; b -&gt; [a] -&gt; b</span>
+<span class="hljs-keyword">var</span> reduce = curry(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f, x, xs</span>)</span>{
+  <span class="hljs-keyword">return</span> xs.reduce(f, x);
+});
+</code></pre>
+<p class="comments-section"><code>reduce</code> 可能是以上签名里让人印象最为深刻的一个，同时也是最复杂的一个了，所以如果你理解起来有困难的话，也不必气馁。为了满足你的好奇心，我还是试着解释一下吧；尽管我的解释远远不如你自己通过类型签名理解其含义来得有教益。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section has-comments has-highlight-comments">不保证解释完全正确...（译者注：此处原文是“here goes nothing”，一般用于人们在做没有把握的事情之前说的话。）注意看 <code>reduce</code> 的签名，可以看到它的第一个参数是个函数，这个函数接受一个 <code>b</code> 和一个 <code>a</code> 并返回一个 <code>b</code>。那么这些 <code>a</code> 和 <code>b</code> 是从哪来的呢？很简单，签名中的第二个和第三个参数就是 <code>b</code> 和元素为 <code>a</code> 的数组，所以唯一合理的假设就是这里的 <code>b</code> 和每一个 <code>a</code> 都将传给前面说的函数作为参数。我们还可以看到，<code>reduce</code> 函数最后返回的结果是一个 <code>b</code>，也就是说，<code>reduce</code> 的第一个参数函数的输出就是 <code>reduce</code> 函数的输出。知道了 <code>reduce</code> 的含义，我们才敢说上面关于类型签名的推理是正确的。<div class="comments-icon"><div class="marker">1</div></div></p>
+<h2 id="缩小可能性范围">缩小可能性范围</h2>
+<p class="comments-section">一旦引入一个类型变量，就会出现一个奇怪的特性叫做 <em>parametricity</em>（<a href="http://en.wikipedia.org/wiki/Parametricity" target="_blank">http://en.wikipedia.org/wiki/Parametricity</a> ）。这个特性表明，函数将会<em>以一种统一的行为作用于所有的类型</em>。我们来研究下：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// head :: [a] -&gt; a</span>
+</code></pre>
+<p class="comments-section">注意看 <code>head</code>，可以看到它接受 <code>[a]</code> 返回 <code>a</code>。我们除了知道参数是个<code>数组</code>，其他的一概不知；所以函数的功能就只限于操作这个数组上。在它对 <code>a</code> 一无所知的情况下，它可能对 <code>a</code> 做什么操作呢？换句话说，<code>a</code> 告诉我们它不是一个<code>特定</code>的类型，这意味着它可以是<code>任意</code>类型；那么我们的函数对<em>每一个</em>可能的类型的操作都必须保持统一。这就是 <em>parametricity</em> 的含义。要让我们来猜测 <code>head</code> 的实现的话，唯一合理的推断就是它返回数组的第一个，或者最后一个，或者某个随机的元素；当然，<code>head</code> 这个命名应该能给我们一些线索。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">再看一个例子：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// reverse :: [a] -&gt; [a]</span>
+</code></pre>
+<p class="comments-section">仅从类型签名来看，<code>reverse</code> 可能的目的是什么？再次强调，它不能对 <code>a</code> 做任何特定的事情。它不能把 <code>a</code> 变成另一个类型，或者引入一个 <code>b</code>；这都是不可能的。那它可以排序么？答案是不能，没有足够的信息让它去为每一个可能的类型排序。它能重新排列么？可以的，我觉得它可以，但它必须以一种可预料的方式达成目标。另外，它也有可能删除或者重复某一个元素。重点是，不管在哪种情况下，类型 <code>a</code> 的多态性（polymorphism）都会大幅缩小 <code>reverse</code> 函数可能的行为的范围。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">这种“可能性范围的缩小”（narrowing of possibility）允许我们利用类似 <a href="https://www.haskell.org/hoogle" target="_blank">Hoogle</a> 这样的类型签名搜索引擎去搜索我们想要的函数。类型签名所能包含的信息量真的非常大。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="自由定理">自由定理</h2>
+<p class="comments-section">类型签名除了能够帮助我们推断函数可能的实现，还能够给我们带来<em>自由定理</em>（free theorems）。下面是两个直接从 <a href="http://ttic.uchicago.edu/~dreyer/course/papers/wadler.pdf" target="_blank">Wadler 关于此主题的论文</a> 中随机选择的例子：<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// head :: [a] -&gt; a</span>
+compose(f, head) == compose(head, map(f));
+
+<span class="hljs-comment">// filter :: (a -&gt; Bool) -&gt; [a] -&gt; [a]</span>
+compose(map(f), filter(compose(p, f))) == compose(filter(p), map(f));
+</code></pre>
+<p class="comments-section">不用写一行代码你也能理解这些定理，它们直接来自于类型本身。第一个例子中，等式左边说的是，先获取数组的<code>头部</code>（译者注：即第一个元素），然后对它调用函数 <code>f</code>；等式右边说的是，先对数组中的每一个元素调用 <code>f</code>，然后再取其返回结果的<code>头部</code>。这两个表达式的作用是相等的，但是前者要快得多。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">你可能会想，这不是常识么。但根据我的调查，计算机是没有常识的。实际上，计算机必须要有一种形式化方法来自动进行类似的代码优化。数学提供了这种方法，能够形式化直观的感觉，这无疑对死板的计算机逻辑非常有用。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">第二个例子 <code>filter</code> 也是一样。等式左边是说，先组合 <code>f</code> 和 <code>p</code> 检查哪些元素要过滤掉，然后再通过 <code>map</code> 实际调用 <code>f</code>（别忘了 <code>filter</code> 是不会改变数组中元素的，这就保证了 <code>a</code> 将保持不变）；等式右边是说，先用 <code>map</code> 调用 <code>f</code>，然后再根据 <code>p</code> 过滤元素。这两者也是相等的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">以上只是两个例子，但它们传达的定理却是普适的，可以应用到所有的多态性类型签名上。在 JavaScript 中，你可以借助一些工具来声明重写规则，也可以直接使用 <code>compose</code> 函数来定义重写规则。总之，这么做的好处是显而易见且唾手可得的，可能性则是无限的。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h1 id="类型约束">类型约束</h1>
+<p class="comments-section">最后要注意的一点是，签名也可以把类型约束为一个特定的接口（interface）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// sort :: Ord a =&gt; [a] -&gt; [a]</span>
+</code></pre>
+<p class="comments-section">胖箭头左边表明的是这样一个事实：<code>a</code> 一定是个 <code>Ord</code> 对象。也就是说，<code>a</code> 必须要实现 <code>Ord</code> 接口。<code>Ord</code> 到底是什么？它是从哪来的？在一门强类型语言中，它可能就是一个自定义的接口，能够让不同的值排序。通过这种方式，我们不仅能够获取关于 <code>a</code> 的更多信息，了解 <code>sort</code> 函数具体要干什么，而且还能限制函数的作用范围。我们把这种接口声明叫做<em>类型约束</em>（type constraints）。<div class="comments-icon"><div class="marker">+</div></div></p>
+<pre><code class="lang-js"><span class="hljs-comment">// assertEqual :: (Eq a, Show a) =&gt; a -&gt; a -&gt; Assertion</span>
+</code></pre>
+<p class="comments-section">这个例子中有两个约束：<code>Eq</code> 和 <code>Show</code>。它们保证了我们可以检查不同的 <code>a</code> 是否相等，并在有不相等的情况下打印出其中的差异。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section">我们将会在后面的章节中看到更多类型约束的例子，其含义也会更加清晰。<div class="comments-icon"><div class="marker">+</div></div></p>
+<h2 id="总结">总结</h2>
+<p class="comments-section">Hindley-Milner 类型签名在函数式编程中无处不在，它们简单易读，写起来也不复杂。但仅仅凭签名就能理解整个程序还是有一定难度的，要想精通这个技能就更需要花点时间了。从这开始，我们将给每一行代码都加上类型签名。<div class="comments-icon"><div class="marker">+</div></div></p>
+<p class="comments-section"><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch8.html">第 8 章: 特百惠</a><div class="comments-icon"><div class="marker">+</div></div></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class="search-results-count"></span> results matching "<span class="search-query"></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch6.html#总结" class="navigation navigation-prev " aria-label="Previous page: 总结">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch7.html#初识类型" class="navigation navigation-next " aria-label="Next page: 初识类型" style="margin-right: 15px;">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"第 7 章: Hindley-Milner 类型签名","level":"1.8","depth":1,"next":{"title":"初识类型","level":"1.8.1","depth":2,"anchor":"#初识类型","path":"ch7.md","ref":"ch7.md#初识类型","articles":[]},"previous":{"title":"总结","level":"1.7.4","depth":2,"anchor":"#总结","path":"ch6.md","ref":"ch6.md#总结","articles":[]},"dir":"ltr"},"config":{"plugins":["comment"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"comment":{"highlightCommented":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"github":"llh911001/mostly-adequate-guide-chinese","theme":"default","author":"Linghao Li","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"JS函数式编程指南","language":"zh","links":{"sidebar":{"JS函数式编程指南":"https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese"},"gitbook":true},"gitbook":"*","description":"Mostly Adequate Guide 中文版"},"file":{"path":"ch7.md","mtime":"2016-09-19T03:35:00.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2016-09-19T03:34:10.921Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/gitbook.js"></script>
+    <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/theme.js"></script>
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/plugin.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/search-engine.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/search.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/lunr.min.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/search-lunr.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/buttons.js"></script>
+        
+    
+        
+        <script src="./第 7 章_ Hindley-Milner 类型签名 · JS函数式编程指南_files/fontsettings.js"></script>
+        
+    
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57505611-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body><div></div></html>
